@@ -1,28 +1,84 @@
-import React, { Component } from 'react';
-import './styles.scss';
-import Button from '../Forms/Button';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { emailSignInStart, googleSignInStart } from './../../redux/User/user.actions';
 
-import { signInWithGoogle } from './../../firebase/utils';
+import './styles.scss';
+
+import FormInput from '../Forms/FormInput';
+import Button from '../Forms/Button';
+import AuthWrapper from '../AuthWrapper';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class SignIn extends Component {
 
-  handleSubmit = async e => {
-    e.preventDefault();
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser
+});
+
+const SignIn = props => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { currentUser } = useSelector(mapState);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] =useState('');
+
+  useEffect(() => {
+    if (currentUser) {
+      resetForm();
+      history.push('/');
+    }
+
+  }, [currentUser]);
+
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
   }
 
-  render() {
-    return (
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(emailSignInStart({ email, password }));
+  }
+
+  const handleGoogleSignIn = () => {
+    dispatch(googleSignInStart());
+  }
+
+  const configAuthWrapper = {
+    headline: '로그인'
+  };
+  
+  return (
+    <AuthWrapper {...configAuthWrapper}>
       <div className="sign-in">
-        <div className="sign-in-title">
-          <h2>로그인</h2>
-        </div>
         <div className="sign-in-content-wrap">
-          <form onSubmit={this.handleSubmit}>
+
+          <form onSubmit={handleSubmit}>
+
+            <FormInput 
+              type="email"
+              name="email"
+              value={email}
+              placeholder= "Email"
+              handleChange={e => setEmail(e.target.value)}
+            />
+
+            <FormInput 
+              type="password"
+              name="password"
+              value={password}
+              placeholder= "Password"
+              handleChange={e => setPassword(e.target.value)}
+            />
+
+            <Button type="submit">
+              로그인
+            </Button>
+
             <div className="sign-in-social">
-              <Button onClick={signInWithGoogle}>
+              <Button onClick={handleGoogleSignIn}>
                 <FontAwesomeIcon className="i" icon={faGoogle} />
                 <p>Google계정으로 이용하기</p>
               </Button>
@@ -30,8 +86,8 @@ class SignIn extends Component {
           </form>
         </div>
       </div>
-    );
-  }
+    </AuthWrapper>
+  );
 }
 
 export default SignIn;

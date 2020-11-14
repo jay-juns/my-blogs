@@ -32,7 +32,7 @@ export const userError = err => ({
   payload: err
 });
 
-export const resetPasswordStart =userCredentials => ({
+export const resetPasswordStart = userCredentials => ({
   type: userTypes.RESET_PASSWORD_START,
   payload: userCredentials
 });

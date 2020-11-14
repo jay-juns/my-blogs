@@ -76,7 +76,7 @@ export function* signUpUser({ payload: {
 }}) {
 
   if (password !== confirmPassword) {
-    const err = ['Password don\'t match'];
+    const err = ['패스워드가 일치하지 않습니다.'];
     yield put(
       userError(err)
     );

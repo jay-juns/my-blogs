@@ -1,17 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/utils';
+import { useSelector, useDispatch } from  'react-redux';
+import { signOutUserStart } from './../../redux/User/user.actions';
 import './styles.scss';
 
 import Logo from './../../assets/logo.png';
 
 // import Modal from './../Modal';
 
+const mapState = (state) => ({
+  currentUser: state.user.currentUser
+});
 
 const Header = props => {
   // const [isOpen, setIsOpen] = useState(false) 
   // const [signIsOpen, setSignOpen] = useState(false)
-  const { currentUser } = props;
+  const dispatch = useDispatch(); 
+  const { currentUser } = useSelector(mapState);
+
+  const signOut = () => {
+    dispatch(signOutUserStart());
+  };
   
   return (
     <div className="header-row-wrapper">
@@ -46,7 +55,7 @@ const Header = props => {
           
           {currentUser && (
             <div className="header-right-item">
-              <span onClick={() => auth.signOut()}>
+              <span onClick={() => signOut()}>
                 로그아웃
               </span>
             </div>
@@ -58,7 +67,7 @@ const Header = props => {
               <Link to="/Login">
                 로그인
               </Link>
-              <Link to="/Signup">
+              <Link to="/Registration">
                 회원가입
               </Link>
             </div>  
