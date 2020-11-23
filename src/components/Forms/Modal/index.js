@@ -6,17 +6,19 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const Modal = ({ open, children, onClose }) => {
-  if (!open) return null;
+const Modal = ({ hideModal, toggleModal, children }) => {
+  if (hideModal) return null;
 
   return ReactDom.createPortal(
     <>
-      <div className="overLay" onClick={onClose}></div>
+      <div className="overLay" onClick={() => toggleModal()}></div>
       <div className="modal-wrap">
-        <button onClick={onClose}>
-          <FontAwesomeIcon className="i" icon={faTimes} size="7x" />
+        <button className="closed-btn" onClick={() => toggleModal()}>
+          <FontAwesomeIcon className="i" icon={faTimes} size="2x" />
         </button>
-        {children}
+        <div className="modal-contents">
+          {children}
+        </div>
       </div>
     </>,
     document.getElementById('portal')

@@ -64,10 +64,10 @@ const Header = props => {
           {!currentUser && (
             
             <div className="header-right-item">
-              <Link to="/Login">
+              <Link to="/login">
                 로그인
               </Link>
-              <Link to="/Registration">
+              <Link to="/registration">
                 회원가입
               </Link>
             </div>  
