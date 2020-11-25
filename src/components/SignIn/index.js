@@ -73,7 +73,7 @@ const SignIn = props => {
               handleChange={e => setPassword(e.target.value)}
             />
 
-            <Button type="submit">
+            <Button className="login-btn" type="submit">
               로그인
             </Button>
 

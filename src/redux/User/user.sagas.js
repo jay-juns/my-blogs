@@ -75,7 +75,14 @@ export function* signUpUser({ payload: {
   confirmPassword
 }}) {
 
-  if (password !== confirmPassword) {
+  if (!displayName || !email || !password || !confirmPassword) {
+    const Eerr = ['빈칸을 다 채워 주세요'];
+    yield put(
+      userError(Eerr)
+    );
+    return;
+  } else if (password !== confirmPassword) {
+    
     const err = ['패스워드가 일치하지 않습니다.'];
     yield put(
       userError(err)

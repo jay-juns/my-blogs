@@ -3,9 +3,7 @@ import React from 'react';
 const Inquire = props => {
   return (
     <div className="all">
-      <div className="main">
-        Inquires
-      </div>
+      Inquires
     </div>
   );
 };

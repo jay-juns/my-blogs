@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addContentsData } from './../../../redux/Contents/contents.actions';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContentsData, fetchContentsStart } from './../../../redux/Contents/contents.actions';
 
 import Button from './../../Forms/Button';
 import Modal from './../../Forms/Modal';
@@ -9,12 +9,12 @@ import CKEditor from 'ckeditor4-react';
 
 import './styles.scss';
 
-// const mapState = ({ contentData }) =>({
-//   contents: contentData.contents
-// });
+const mapState = ({ contentsData }) =>({
+  contents: contentsData.contents
+});
 
 const BlogItems = props => {
-  // const { contents } = useSelector(mapState);
+  const { contents } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
 
@@ -23,6 +23,12 @@ const BlogItems = props => {
   const [contentDesc, setContentDesc] = useState('');
 
   // const { data } = contents;
+
+  useEffect(() => {
+    dispatch(
+      fetchContentsStart()
+    );
+  }, []);
 
 
   const toggleModal = () => setHideModal(!hideModal);
@@ -58,6 +64,7 @@ const BlogItems = props => {
         <Button onClick={() => toggleModal()}>
           글쓰기
         </Button>
+        <h2>전체 글</h2> 
       </div>
       <Modal {...configModal}>
         <div>
@@ -78,6 +85,10 @@ const BlogItems = props => {
 
             <CKEditor
               onChange={evt => setContentDesc(evt.editor.getData())}
+              config={{
+                extraAllowedContent: 'div(*)',
+                allowedContent: true
+             }}
             />
 
             <br />
@@ -88,12 +99,9 @@ const BlogItems = props => {
           </form>
         </div>
       </Modal>
-      <div>
-        <h2>전체 글</h2>       
-      </div>
-      <div>
-        <div>
-        {/* {(Array.isArray(data) && data.length > 0) && data.map((content, index) => {
+      
+      <div className="contents-wrap">
+        {contents.map((content, index) => {
           const {
             contentTitle,
             contentThumbnail,
@@ -101,29 +109,26 @@ const BlogItems = props => {
           } = content;
 
           return (
-            <div key={index}>
-              <span>
+            <div className="contents-wrap-items" key={index}>
+              <div className="contents-wrap-thumb">
                 <img className="thumb" src={contentThumbnail} />
-              </span>
-              <span>
-                {contentTitle}
-              </span>
-              <p>
-                {contentDesc}
-              </p>
-              <span>
-                <Button>
-                  삭제
-                </Button>
-              </span>
+              </div>
+              <div className="contents-wrap-text">
+                <div>
+                  <h4>{contentTitle}</h4>
+                </div>
+                <div>
+                  <p
+                  dangerouslySetInnerHTML={{ __html: contentDesc }}
+                  />
+                </div>
+              </div>
             </div>
           )
-        })} */}
-        </div>
+        })}
       </div>
- 
     </div>
   );
-};
+}
 
 export default BlogItems;

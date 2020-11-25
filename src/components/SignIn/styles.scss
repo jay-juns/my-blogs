@@ -7,8 +7,20 @@
   .sign-in-content-wrap {
     
     form {
+
+      .login-btn {
+        background-color: #fff;
+        width: 220px;
+        min-height: 34px;
+        padding: .4rem;
+        border: 1px solid #37352f;
+        color: #37352f;
+        border-radius: .4rem;
+        font-weight: 600;
+      }
       
       .sign-in-social {
+        margin-top: 1.2rem;
         
         button {
           background-color: rgb(222, 117, 87);

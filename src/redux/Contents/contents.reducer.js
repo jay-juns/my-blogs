@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const contentsReducer = (state=INITIAL_STATE, action) => {
   switch(action.type) {
-    case contentsType.ADD_CONTENTS:
+    case contentsType.SET_CONTENTS:
       return {
         ...state,
         contents: action.payload

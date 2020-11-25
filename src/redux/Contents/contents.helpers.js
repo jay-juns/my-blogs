@@ -14,3 +14,23 @@ export const handleAddContentsData = content => {
       })
   });
 }
+
+export const handleFetchContents = () => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('contents')
+      .get()
+      .then(snapshot => {
+        const contentsArray = snapshot.docs.map(doc => {
+          return {
+            ...doc.data(),
+            documentID: doc.id
+          }
+        });
+        resolve(contentsArray);  
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}
