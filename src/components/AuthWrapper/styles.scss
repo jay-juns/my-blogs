@@ -1,15 +1,17 @@
 .authWrapper {
-  display: block;
   width: 100%;
-  margin: 5.2rem auto 0;
+  height: 100%;
+  position: absolute;
   
   .wrap {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 16vh;
-    margin-top: 8vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
     h2 {
       font-size: 2.2rem;

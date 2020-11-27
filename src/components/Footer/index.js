@@ -3,8 +3,10 @@ import './styles.scss';
 
 const Footer = props => {
   return (
-    <div>
-      Footer
+    <div className="footer-wrap">
+      <div className="footer-contents">
+        © 2020 My Blogs
+      </div>
     </div>
   );
 };

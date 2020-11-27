@@ -1,0 +1,13 @@
+.footer-wrap {
+  height: 82px;
+  border-top: 1px solid #e0e0e0;
+
+  .footer-contents {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}

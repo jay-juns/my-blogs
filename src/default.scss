@@ -50,9 +50,11 @@ button {
 }
 
 .main {
+  position: relative;
   width: 100%;
   max-width: 1080px;
-  margin: 0 auto;
+  margin: 52px auto 0;
+  min-height: calc( 100% - 152px );
 
   .all {
     margin-top: 52px;
