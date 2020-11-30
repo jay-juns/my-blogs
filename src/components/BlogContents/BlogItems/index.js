@@ -129,7 +129,10 @@ const BlogItems = props => {
           } = content;
 
           return (
-            <div className="contents-wrap-items" key={index}>
+            <div 
+              key={index}
+              className="contents-wrap-items"
+            >
               <div className="contents-wrap-thumb">
                 <img className="thumb" src={contentThumbnail} />
               </div>
@@ -139,7 +142,7 @@ const BlogItems = props => {
                 </div>
                 <div>
                   <p
-                  dangerouslySetInnerHTML={{ __html: contentDesc }}
+                    dangerouslySetInnerHTML={{ __html: contentDesc }}
                   />
                 </div>
               </div>

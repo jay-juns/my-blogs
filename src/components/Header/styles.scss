@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     
     .header-left {
       position: relative;
@@ -38,7 +38,7 @@
           font-weight: bold;
 
           &:hover {
-            color: #ccc;
+            color: #daff0c;
           }
 
           &:last-child {
@@ -46,7 +46,7 @@
           }
         }
         .active {
-          color: #ccc;
+          color: #daff0c;
         }
       }
     }
@@ -65,7 +65,7 @@
           font-weight: bold;
 
           &:hover {
-            color: #ccc;
+            color: #daff0c;
           }
 
           &:last-child {
@@ -79,12 +79,12 @@
           font-weight: bold;
 
           &:hover {
-            color: #ccc;
+            color: #daff0c;
           }
         }
         
         .active {
-          color: #ccc;
+          color: #daff0c;
         }
       }
     }
