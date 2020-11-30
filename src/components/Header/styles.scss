@@ -72,6 +72,16 @@
             margin-right: 0;
           }
         }
+
+        span {
+          cursor: pointer;
+          color:#fff;
+          font-weight: bold;
+
+          &:hover {
+            color: #ccc;
+          }
+        }
         
         .active {
           color: #ccc;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContentsData, fetchContentsStart } from './../../../redux/Contents/contents.actions';
 
@@ -9,12 +10,13 @@ import CKEditor from 'ckeditor4-react';
 
 import './styles.scss';
 
-const mapState = ({ contentsData }) =>({
-  contents: contentsData.contents
+const mapState = ({ contentsData, user }) =>({
+  contents: contentsData.contents,
+  currentUser: user.currentUser
 });
 
 const BlogItems = props => {
-  const { contents } = useSelector(mapState);
+  const { contents, currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
 
@@ -66,7 +68,8 @@ const BlogItems = props => {
         </Button>
         <h2>전체 글</h2> 
       </div>
-      <Modal {...configModal}>
+      {currentUser &&[
+        <Modal {...configModal}>
         <div className="modal-contents">
           <div className="modal-contents--header">
             <h3>등록하기</h3>
@@ -104,6 +107,18 @@ const BlogItems = props => {
           </form>
         </div>
       </Modal>
+      ]}
+      {!currentUser && [
+        <Modal {...configModal}>
+          <p>로그인을 해야 글을 작성할 수 있습니다.</p>
+          <Link
+           to="/login"
+           className="login-link-btn"
+          >
+            로그인 하러 가기
+          </Link>
+        </Modal>
+      ]}
       
       <div className="contents-wrap">
         {contents.map((content, index) => {
