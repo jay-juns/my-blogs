@@ -59,29 +59,36 @@ const BlogItems = props => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="blog-contents-wrap">
+      <div className="blog-head-area">
         <Button onClick={() => toggleModal()}>
           글쓰기
         </Button>
         <h2>전체 글</h2> 
       </div>
       <Modal {...configModal}>
-        <div>
+        <div className="modal-contents">
+          <div className="modal-contents--header">
+            <h3>등록하기</h3>
+          </div>
           <form onSubmit={handleSubmit}>
             <FormInput
-              label="title"
+              formClass = "form-blogs"
+              label="제목 입력"
               type="txet"
               value={contentTitle}
               handleChange={e => setContentTitle(e.target.value)}
             />
 
             <FormInput
-              label="img URL"
+              formClass = "form-blogs"
+              label="이미지 주소 입력"
               type="url"
               value={contentThumbnail}
               handleChange={e => setContentThumbnail(e.target.value)}
             />
+
+            <p>내용 작성하기</p>  
 
             <CKEditor
               onChange={evt => setContentDesc(evt.editor.getData())}
@@ -91,9 +98,7 @@ const BlogItems = props => {
              }}
             />
 
-            <br />
-
-            <Button type="submit">
+            <Button className="blog-ok-btn" type="submit">
               완료
             </Button>
           </form>

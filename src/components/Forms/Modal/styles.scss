@@ -5,32 +5,37 @@
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 103;
 }
 
 .modal-wrap {
   width: 100%;
-  max-width: 640px;
-  height: 500px;
+  max-width: 600px;
+  height: auto;
+  padding: 3rem;
   background-color: #fff;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
+  border-radius: .8rem;
+  z-index: 104;
 
   .closed-btn {
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 36px;
-    height: 36px;
-    background: #000;
-    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border-radius: .4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
-    padding: 4px;
-    color: #fff;
+    color: #333;
     outline:none;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
   }
 }

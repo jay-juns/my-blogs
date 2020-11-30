@@ -1,11 +1,20 @@
 import React from 'react';
-import './styles.scss';
+import sliderImage from './../sliderImage';
 
 function Card(props) {
   return (
-    <div className="card">
-      <img src={props.card_img} alt="item"/>
-    </div>
+    <section>
+      {sliderImage.map((slide, index) => (
+        <div
+          key={index}
+          className={index === props.activeIndex ? "slides active" : 'inactive'}
+        >
+          <img className='slide-image' src={slide.urls} alt='img' />
+          <h3 className="slide-title">{slide.title}</h3>
+          <p className="slide-text">{slide.description}</p>
+        </div>
+      ))}
+    </section>
   )
 }
 

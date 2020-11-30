@@ -15,6 +15,10 @@ body,
   height: 100%;
 }
 
+#root {
+  overflow: auto;
+}
+
 * ::before, ::after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -26,6 +30,7 @@ body {
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 1;
+  overflow: hidden;
 }
 
 a {
@@ -55,8 +60,13 @@ button {
   max-width: 1080px;
   margin: 52px auto 0;
   min-height: calc( 100% - 152px );
+  z-index: 100;
 
   .all {
     margin-top: 52px;
+
+    .main-wrap {
+      margin-top: 80px;
+    }
   }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles.scss';
 
-const FormInput = ({ handleChange, label, ...otherProps }) => {
+const FormInput = ({ handleChange, label, formClass, ...otherProps }) => {
   return (
-    <div className="formRow">
+    <div className={formClass}>
       {label && (
         <label>
           {label}

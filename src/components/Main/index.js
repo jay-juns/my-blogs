@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles.scss';
-import Slider from '../Slider';
+import SliderMain from '../Slider/sliderMain';
 
 const Main = props => {
   return (
     <div className="main-wrap">
-      <Slider />
+      <SliderMain />
       <div>
         main contents
       </div>
