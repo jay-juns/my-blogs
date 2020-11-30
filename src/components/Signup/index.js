@@ -67,7 +67,7 @@ const Signup = props => {
       <div className="sign-up">
 
         {errors.length > 0 && (
-          <ul>
+          <ul className="alert-sign-up">
             {errors.map((err, index) =>{
               return (
                 <li key={index}>
@@ -83,7 +83,7 @@ const Signup = props => {
             type="text"
             name="displayName"
             value={displayName}
-            placeholder="Full name"
+            placeholder="닉네임 입력"
             handleChange={e => setDisplayName(e.target.value)}
           />
 
@@ -91,7 +91,7 @@ const Signup = props => {
             type="email"
             name="email"
             value={email}
-            placeholder="Email"
+            placeholder="가입할 이메일 주소 입력"
             handleChange={e => setEmail(e.target.value)}
           />
 
@@ -99,7 +99,7 @@ const Signup = props => {
             type="password"
             name="password"
             value={password}
-            placeholder="password"
+            placeholder="비밀번호 입력"
             handleChange={e => setPassword(e.target.value)}
           />
 
@@ -107,7 +107,7 @@ const Signup = props => {
             type="password"
             name="confirmPassword"
             value={confirmPassword}
-            placeholder="Confirm Password"
+            placeholder="비밀번호 확인"
             handleChange={e => setConfirmPassword(e.target.value)}
           />
 

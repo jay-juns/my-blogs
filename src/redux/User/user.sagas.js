@@ -83,7 +83,7 @@ export function* signUpUser({ payload: {
     return;
   } else if (password !== confirmPassword) {
     
-    const err = ['패스워드가 일치하지 않습니다.'];
+    const err = ['비밀번호가 일치하지 않습니다.'];
     yield put(
       userError(err)
     );

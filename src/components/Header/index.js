@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink  } from 'react-router-dom';
 import { useSelector, useDispatch } from  'react-redux';
 import { signOutUserStart } from './../../redux/User/user.actions';
 import './styles.scss';
@@ -34,19 +34,32 @@ const Header = props => {
 
           <nav>
             
-            <Link to="/">
+            <NavLink
+            exact 
+            to="/"
+            activeClassName="active"
+            className="link"
+            >
               홈
-            </Link>
+            </NavLink>
           
           
-            <Link to="/blog">
+            <NavLink 
+            to="/blog"
+            activeClassName="active"
+            className="link"
+            >
               블로그
-            </Link>
+            </NavLink>
           
           
-            <Link to="/inquire">
+            <NavLink 
+            to="/inquire"
+            activeClassName="active"
+            className="link"
+            >
               문의사항
-            </Link>
+            </NavLink>
             
           </nav>
         </div>
@@ -64,12 +77,19 @@ const Header = props => {
           {!currentUser && (
             
             <div className="header-right-item">
-              <Link to="/login">
+              <NavLink 
+              to="/login"
+              activeClassName="active"
+              className="link"
+              >
                 로그인
-              </Link>
-              <Link to="/registration">
+              </NavLink>
+              <NavLink to="/registration"
+              activeClassName="active"
+              className="link"
+              >
                 회원가입
-              </Link>
+              </NavLink>
             </div>  
           )}
 
