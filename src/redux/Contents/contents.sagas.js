@@ -1,26 +1,38 @@
 import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { setContents } from './contents.actions';
-import { handleAddContentsData, handleFetchContents } from './contents.helpers';
-import  contentsType from './contents.types';
+import { setContents, fetchContentsStart } from './contents.actions';
+import { handleAddContent, handleFetchContents, handleFetchContent, handleDeleteContent } from './contents.helpers';
+import  contentsTypes from './contents.types';
 
-export function* addContents({ payload }) {
+export function* addContent({ payload: {
+    contentTag,
+    contentTitle,
+    contentThumbnail,
+    contentDesc
+} }) {
 
   try {
     const timestamp = new Date();
-    yield handleAddContentsData({
-      ...payload,
+    yield handleAddContent({
+      contentTag,
+      contentTitle,
+      contentThumbnail,
+      contentDesc,
       contentsAdminUserUID: auth.currentUser.uid,
       createDate: timestamp
     });
+
+    yield put(
+      fetchContentsStart()
+    );
 
   } catch(err) {
     // console.log(err);
   }
 }
 
-export function* onAddContentsData() {
-  yield takeLatest(contentsType.ADD_CONTENTS, addContents);
+export function* onAddContentsStart() {
+  yield takeLatest(contentsTypes.ADD_CONTENT_START, addContent)
 }
 
 
@@ -29,19 +41,58 @@ export function* fetchContents() {
     const contents = yield handleFetchContents();
     yield put(
       setContents(contents)
-    )
+    );
   } catch (err) {
     // console.log(err);
   }
 }
 
 export function* onFetchContentsStart() {
-  yield takeLatest(contentsType.FETCH_CONTENTS_START, fetchContents);
+  yield takeLatest(contentsTypes.FETCH_CONTENTS_START, fetchContents);
+}
+
+
+
+export function* deleteContent({ payload }) {
+  try {
+    yield handleDeleteContent(payload);
+    yield put (
+      fetchContentsStart()
+    );
+
+  } catch(err) {
+    // console.log(err);
+  }
+}
+
+
+export function* onDeleteContentStart() {
+  yield takeLatest(contentsTypes.DELETE_CONTENT_START, deleteContent);
+}
+
+
+
+export function* fetchContent({ payload }) {
+  try {
+    const content = yield handleFetchContent(payload);
+    yield put(
+      setContents(content)
+    )
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+
+export function* onFetchContentStart() {
+  yield takeLatest(contentsTypes.FETCH_CONTENT_START, fetchContent);
 }
 
 export default function* contentsSagas() {
   yield all([
-    call(onAddContentsData),
-    call(onFetchContentsStart)
+    call(onAddContentsStart),
+    call(onFetchContentsStart),
+    call(onDeleteContentStart),
+    call(onFetchContentStart)
   ])
 }

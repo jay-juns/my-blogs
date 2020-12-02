@@ -1,10 +1,10 @@
 import React from 'react';
-import BlogItems from '../../components/BlogContents/BlogItems';
+import BlogMain from '../../components/BlogContents/BlogMain';
 
 const Blog = props => {
   return (
     <div className="all">
-      <BlogItems />
+      <BlogMain />
     </div>
   );
 };

@@ -40,7 +40,13 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="/blog" render={() => (
+        <Route exact path="/blog" render={() => (
+          <MainLayout>
+            <Blog />
+          </MainLayout>
+        )}
+        />
+        <Route path="/blog/:filterType" render={() => (
           <MainLayout>
             <Blog />
           </MainLayout>
