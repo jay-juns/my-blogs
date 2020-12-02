@@ -33,7 +33,7 @@ const MainItems = ({ }) => {
 
   return (
     <div className="main-items">
-      <div>
+      <div className="main-row">
         {data.map((content, pos) => {
           const {
             contentTitle,

@@ -1,0 +1,100 @@
+.blog-main-wrap {
+
+  .write-btn {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    min-width: 80px;
+    background-color: #00BCD4;
+    color: #fff;
+    font-weight: 600;
+    font-siZe: 1.5rem;
+    padding: .8rem;
+    border-radius: .4rem;
+    transition: background-color .4s ease-in;
+
+    &:hover {
+      background-color: #8ecad2;
+    }
+  }
+
+  .show-contents {
+    width: 100%;
+   
+    .show-container {
+      margin-top: 1rem;
+      
+      .show-row {
+        width: 100%;
+        max-width: 660px;
+        margin: 0 auto;
+        background-color: #fff;
+        margin-bottom: 5rem;
+        box-shadow: 0 1px rgba(140,140,140,.9),0 0 2px rgba(140,140,140,.9);
+        min-height: 480px;
+        overflow: hidden;
+
+        .show-img {
+          width: 100%;
+
+          img {
+            width: 100%;
+            display: block;
+          }
+        }
+        .show-text {
+          position: relative;
+
+          .show-title {
+            min-height: 120px;
+            margin: 1rem 2rem;
+  
+            p {
+              font-size: 1.3rem;
+              font-weight: 400;
+              color: #575757;
+            }
+  
+            .show-titie-first {
+              font-size: 1.8rem;
+              font-weight: bold;
+              color: #000;
+              margin-bottom: 1.5rem;
+            }
+          }
+
+          .show-del-btn-wrap {
+            position: absolute;
+            right: 10px;
+            min-width: 60px;
+            bottom: 14px;
+            
+            button {
+              width: 100%;
+              background-color: #f3f3f3;
+              color: #333;
+              font-siZe: 1.5rem;
+              padding: .2rem .5rem;
+              border-radius: .4rem;
+              transition: background-color .4s ease-in;
+
+              &:hover {
+                background-color: #dadada;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .add-btn {
+    width: 100%;
+    font-size: 2.2rem;
+    background: #E91E63;
+    color: #fff;
+    padding: 1rem;
+    border-radius: .8rem;
+    margin: 3.5rem 0;
+  }
+}

@@ -9,10 +9,15 @@ const otherMain = ({
 
   return (
     <div className="other-main">
-      {contentTitle}
-      <p
+      <div className="other-img">
+        <img src={contentThumbnail} alt="img" />
+      </div>
+      <div className="other-contents">
+        <p className="other-title">{contentTitle}</p>
+        <p
         dangerouslySetInnerHTML={{ __html: contentDesc }}
-      />
+      />  
+      </div>
     </div>
   );
 };

@@ -100,7 +100,7 @@ const BlogMain = props => {
 
   return (
     <div className="blog-main-wrap">
-      <Button onClick={() => toggleModal()}>
+      <Button className="write-btn" onClick={() => toggleModal()}>
         글쓰기
       </Button>
 
@@ -148,7 +148,7 @@ const BlogMain = props => {
       </Modal>
 
       <div className="show-contents">
-         <div>
+         <div className="show-container">
             {(Array.isArray(data) && data.length > 0) && data.map((content, index) => {
               const {
                 contentTitle,
@@ -158,22 +158,22 @@ const BlogMain = props => {
               } = content;
 
               return (
-                <div key={index}>
-                  <div>
+                <div className="show-row" key={index}>
+                  <div className="show-img">
                     <img src={contentThumbnail} alt="img" />
                   </div>
-                  <div>
-                    <div>
-                      {contentTitle}
-                    </div>
-                    <div>
+                  <div className="show-text">
+                    <div className="show-title">
+                      <p className="show-titie-first">{contentTitle}</p>
                       <p
                         dangerouslySetInnerHTML={{ __html: contentDesc }}
                       />
                     </div>
-                    <Button onClick={() => dispatch(deleteContentStart(documentID))}>
-                      삭제
-                    </Button>
+                    <div className="show-del-btn-wrap">
+                      <Button onClick={() => dispatch(deleteContentStart(documentID))}>
+                        삭제
+                      </Button>
+                    </div>                    
                   </div>
                 </div>
               )
