@@ -19,7 +19,7 @@ export function* addContent({ payload: {
       contentThumbnail,
       contentDesc,
       contentsAdminUserUID: auth.currentUser.uid,
-      createDate: timestamp
+      createdDate: timestamp
     });
 
     yield put(
@@ -36,9 +36,11 @@ export function* onAddContentsStart() {
 }
 
 
-export function* fetchContents() {
+export function* fetchContents({ payload: {
+  filterType
+} }) {
   try {
-    const contents = yield handleFetchContents();
+    const contents = yield handleFetchContents(filterType);
     yield put(
       setContents(contents)
     );
@@ -74,9 +76,9 @@ export function* onDeleteContentStart() {
 
 export function* fetchContent({ payload }) {
   try {
-    const content = yield handleFetchContent(payload);
+    const content = yield handleFetchContent({ payload });
     yield put(
-      setContents(content)
+      setContent(content)
     )
   } catch (err) {
     // console.log(err);

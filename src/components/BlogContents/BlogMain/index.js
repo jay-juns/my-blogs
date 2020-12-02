@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles.scss';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContentsStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
 import CKEditor from 'ckeditor4-react';
@@ -12,9 +13,11 @@ const mapState = ({ contentsData }) => ({
   contents: contentsData.contents
 })
 
-const BlogMain = props => {
+const BlogMain = ({}) => {
   const { contents } = useSelector(mapState);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { filterType } = useParams();
   const [hideModal, setHideModal] = useState(true);
   const [contentTag, setContentTag] = useState('잡담');
   const [contentTitle, setContentTitle] = useState('');
@@ -23,10 +26,10 @@ const BlogMain = props => {
 
   useEffect(() => {
     dispatch(
-      fetchContentsStart()
+      fetchContentsStart({ filterType })
     );
     
-  }, []);
+  }, [filterType]);
   
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -58,13 +61,35 @@ const BlogMain = props => {
 
   };
 
+  const handleFilter = (e) => {
+    const nextFilter = e.target.value;
+    history.push(`/blog/${nextFilter}`);
+  };
 
+  const configFilter = {
+    defaultValue: filterType,
+    options: [{
+      name: '전체',
+      value: ''
+    },
+    {
+      name: '잡담',
+      value: 'chat'
+    },
+    {
+      name: '정보',
+      value: 'info'
+    }],
+    handleChange: handleFilter
+  };
 
   return (
     <div className="blog-main-wrap">
       <Button onClick={() => toggleModal()}>
         글쓰기
       </Button>
+
+      <FormSelect {...configFilter} />
 
       <Modal {...configModal}>
         <div className="modal-wrap">

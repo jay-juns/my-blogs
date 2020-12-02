@@ -5,8 +5,9 @@ export const addContentsStart = contentData => ({
   payload: contentData
 });
 
-export const fetchContentsStart = () => ({
-  type: contentsTypes.FETCH_CONTENTS_START
+export const fetchContentsStart = (filters={}) => ({
+  type: contentsTypes.FETCH_CONTENTS_START,
+  payload: filters
 });
 
 export const setContents = contents => ({

@@ -15,13 +15,15 @@ export const handleAddContent = content => {
   });
 }
 
-export const handleFetchContents = () => {
+export const handleFetchContents = ({ filterType }) => {
   return new Promise((resolve, reject) => {
 
-    firestore
-      .collection('contents')
-      .orderBy('createDate')
-      .get()
+    let ref = firestore.collection('contents').orderBy('createdDate', 'desc');
+
+    if (filterType) ref = ref.where('contentTag', '==', filterType);
+      
+    ref
+      .get()  
       .then(snapshot => {
         const contentsArray = snapshot.docs.map(doc => {
           return {
