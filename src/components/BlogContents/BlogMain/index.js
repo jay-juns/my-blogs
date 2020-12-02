@@ -8,12 +8,13 @@ import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import Button from './../../Forms/Button';
+import LoadMore from './../../LoadMore';
 
 const mapState = ({ contentsData }) => ({
   contents: contentsData.contents
 })
 
-const BlogMain = ({}) => {
+const BlogMain = props => {
   const { contents } = useSelector(mapState);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,6 +24,8 @@ const BlogMain = ({}) => {
   const [contentTitle, setContentTitle] = useState('');
   const [contentThumbnail, setContentThumbnail] = useState('');
   const [contentDesc, setContentDesc] = useState('');
+
+  const { data, queryDoc, isLastPage } = contents;
 
   useEffect(() => {
     dispatch(
@@ -58,7 +61,6 @@ const BlogMain = ({}) => {
       })
     );
     resetForm();
-
   };
 
   const handleFilter = (e) => {
@@ -81,6 +83,19 @@ const BlogMain = ({}) => {
       value: 'info'
     }],
     handleChange: handleFilter
+  };
+  const handleLoadMore = () => {
+    dispatch(
+      fetchContentsStart({ 
+        filterType, 
+        startAtferDoc: queryDoc,
+        psersistContents: data 
+      })
+    );
+  };
+
+  const configLoadMore = {
+    onLoadMoreEvt: handleLoadMore,
   };
 
   return (
@@ -134,7 +149,7 @@ const BlogMain = ({}) => {
 
       <div className="show-contents">
          <div>
-            {contents.map((content, index) => {
+            {(Array.isArray(data) && data.length > 0) && data.map((content, index) => {
               const {
                 contentTitle,
                 contentThumbnail,
@@ -143,7 +158,7 @@ const BlogMain = ({}) => {
               } = content;
 
               return (
-                <div>
+                <div key={index}>
                   <div>
                     <img src={contentThumbnail} alt="img" />
                   </div>
@@ -165,6 +180,10 @@ const BlogMain = ({}) => {
             })}  
          </div>
       </div>        
+
+      {!isLastPage && (
+        <LoadMore {...configLoadMore} />
+      )}    
 
     </div>
   );

@@ -1,8 +1,7 @@
 import contentsTypes from './contents.types';
 
 const INITIAL_STATE = {
-  contents: [],
-  content: {}
+  contents: []
 }
 
 const contentsReducer = (state=INITIAL_STATE, action) => {
@@ -12,11 +11,6 @@ const contentsReducer = (state=INITIAL_STATE, action) => {
         ...state,
         contents: action.payload
       }
-    case contentsTypes.SET_CONTENT:
-      return {
-        ...state,
-        content: action.payload
-      }  
     default:
       return state;
   }

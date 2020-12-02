@@ -12,14 +12,16 @@ const MainItems = ({ }) => {
   const dispatch = useDispatch();
   const { contents } = useSelector(mapState);
 
+  const { data } = contents;
+
   useEffect(() => {
     dispatch(
       fetchContentsStart()
     )
   }, []);
 
-  if (!Array.isArray(contents)) return null;
-  if (contents.length < 1) {
+  if (!Array.isArray(data)) return null;
+  if (data.length < 1) {
     return (
       <div className="main-items">
         <p>
@@ -32,7 +34,7 @@ const MainItems = ({ }) => {
   return (
     <div className="main-items">
       <div>
-        {contents.map((content, pos) => {
+        {data.map((content, pos) => {
           const {
             contentTitle,
             contentThumbnail,
@@ -48,7 +50,7 @@ const MainItems = ({ }) => {
           };
 
           return (
-            <OtherMain {...configContent} />
+            <OtherMain {...configContent} key={pos}/>
           );
         })}
       </div>
