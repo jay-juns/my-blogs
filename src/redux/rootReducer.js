@@ -4,10 +4,12 @@ import { combineReducers } from 'redux';
 
 import userReducer from './User/user.reducer';
 import contentsReducer from './Contents/contents.reducer';
+import alertReducer from './Alert/alert.reducer';
 
 export const rootReducer = combineReducers({
   user: userReducer,
-  contentsData: contentsReducer
+  contentsData: contentsReducer,
+  msg: alertReducer
 });
 
 // const configStorage = {

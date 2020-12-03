@@ -36,12 +36,18 @@
         p {
           font-size: 1.2rem;
           font-weight: 400;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         .other-title {
           font-size: 1.5rem;
           font-weight: 600;
           margin-bottom: .8rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }

@@ -3,6 +3,7 @@ import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContentsStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
+import { checkUserIsAdmin } from './../../../Utils';
 import CKEditor from 'ckeditor4-react';
 import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
@@ -10,12 +11,14 @@ import FormSelect from './../../Forms/FormSelect';
 import Button from './../../Forms/Button';
 import LoadMore from './../../LoadMore';
 
-const mapState = ({ contentsData }) => ({
-  contents: contentsData.contents
+const mapState = ({ contentsData, user }) => ({
+  contents: contentsData.contents,
+  currentUser: user.currentUser
 })
 
 const BlogMain = props => {
   const { contents } = useSelector(mapState);
+  const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const history = useHistory();
   const { filterType } = useParams();
@@ -26,6 +29,7 @@ const BlogMain = props => {
   const [contentDesc, setContentDesc] = useState('');
 
   const { data, queryDoc, isLastPage } = contents;
+  const isAdmin = checkUserIsAdmin(currentUser);
 
   useEffect(() => {
     dispatch(
@@ -105,47 +109,58 @@ const BlogMain = props => {
       </Button>
 
       <FormSelect {...configFilter} />
+      {currentUser && [
+        <Modal {...configModal}>
+          <div className="modal-wrap">
+            <form onSubmit={handleSubmit}>
+              <h2>새로운 글쓰기</h2>
+              <FormSelect 
+                label="태그 선택"
+                options={[{
+                  value: "잡담",
+                  name: "잡담"                
+                }, {
+                  value: "정보",
+                  name: "정보"
+                }]}
+                handleChange={e => setContentTag(e.target.value)}
+              />
 
-      <Modal {...configModal}>
-        <div className="modal-wrap">
-          <form onSubmit={handleSubmit}>
-            <h2>새로운 글쓰기</h2>
-            <FormSelect 
-              label="태그 선택"
-              options={[{
-                value: "잡담",
-                name: "잡담"                
-              }, {
-                value: "정보",
-                name: "정보"
-              }]}
-              handleChange={e => setContentTag(e.target.value)}
-            />
+              <FormInput 
+                label="제목"
+                formClass="modal-items"
+                type="text"
+                value={contentTitle}
+                handleChange={e => setContentTitle(e.target.value)}
+              />
 
-            <FormInput 
-              label="제목"
-              type="text"
-              value={contentTitle}
-              handleChange={e => setContentTitle(e.target.value)}
-            />
+              <FormInput 
+                label="이미지"
+                formClass="modal-items"
+                type="url"
+                value={contentThumbnail}
+                handleChange={e => setContentThumbnail(e.target.value)}
+              />
 
-            <FormInput 
-              label="이미지"
-              type="url"
-              value={contentThumbnail}
-              handleChange={e => setContentThumbnail(e.target.value)}
-            />
+              <CKEditor
+                onChange={evt => setContentDesc(evt.editor.getData())}
+              />
+              <div className="btn-wrap">
+                <Button className="ent-btn" type="submit">
+                  생성하기
+                </Button> 
+              </div>
+            </form>
+          </div>
+        </Modal>
+      ]}
 
-            <CKEditor
-              onChange={evt => setContentDesc(evt.editor.getData())}
-            />
-
-            <Button type="submit">
-              생성하기
-            </Button>
-          </form>
-        </div>
-      </Modal>
+      {!currentUser && [
+        <Modal {...configModal}>
+          글을 작성 하려면 먼저 로그인을 해야 합니다.
+        </Modal>
+      ]}
+      
 
       <div className="show-contents">
          <div className="show-container">
@@ -169,11 +184,17 @@ const BlogMain = props => {
                         dangerouslySetInnerHTML={{ __html: contentDesc }}
                       />
                     </div>
-                    <div className="show-del-btn-wrap">
-                      <Button onClick={() => dispatch(deleteContentStart(documentID))}>
-                        삭제
-                      </Button>
-                    </div>                    
+                    {isAdmin && [
+                      <div className="show-del-btn-wrap">
+                        <Button onClick={() => dispatch(deleteContentStart(documentID))}>
+                          삭제
+                        </Button>
+                    </div>
+                    ]}
+                    {!isAdmin && [
+                      <div>
+                      </div>
+                    ]}                    
                   </div>
                 </div>
               )

@@ -3,7 +3,7 @@
   .write-btn {
     position: absolute;
     right: 0;
-    top: 10px;
+    top: 28px;
     min-width: 80px;
     background-color: #00BCD4;
     color: #fff;
@@ -14,7 +14,7 @@
     transition: background-color .4s ease-in;
 
     &:hover {
-      background-color: #8ecad2;
+      background-color: #009baf;
     }
   }
 
@@ -76,10 +76,10 @@
               font-siZe: 1.5rem;
               padding: .2rem .5rem;
               border-radius: .4rem;
-              transition: background-color .4s ease-in;
 
               &:hover {
-                background-color: #dadada;
+                color: #E91E63;
+                background-color: #e4e4e4;
               }
             }
           }

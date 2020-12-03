@@ -7,6 +7,7 @@ import './styles.scss';
 import FormInput from '../Forms/FormInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
+import Alert from '../Alert';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -67,16 +68,18 @@ const Signup = props => {
       <div className="sign-up">
 
         {errors.length > 0 && (
-          <ul className="alert-sign-up">
+          <div className="alert-sign-up">
             {errors.map((err, index) =>{
               return (
-                <li key={index}>
-                  {err}
-                </li>
+                <Alert 
+                  key={index}
+                  message={err}
+                  alertClass="notification-items"
+                />
               );
             })}
-          </ul>
-        )}
+          </div>
+        )} 
 
         <form onSubmit={handleFormSubmit}>
           <FormInput
