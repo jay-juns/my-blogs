@@ -2,28 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signUpUserStart } from './../../redux/User/user.actions';
+// import { setAlert } from './../../redux/Alert/alert.action';
 import './styles.scss';
 
 import FormInput from '../Forms/FormInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
-import Alert from '../Alert';
 
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser,
-  userErr: user.userErr
+  currentUser: user.currentUser
 });
 
 
 const Signup = props => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser, userErr } = useSelector(mapState);
+  const { currentUser } = useSelector(mapState);
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     if (currentUser) {
@@ -33,19 +31,12 @@ const Signup = props => {
 
   }, [currentUser]);
 
-  useEffect(() => {
-    if (Array.isArray(userErr) && userErr.length > 0) {
-      setErrors(userErr);
-    }
-
-  }, [userErr]);
 
   const reset = () => {
     setDisplayName('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
-    setErrors([]);
   }
 
   const handleFormSubmit = event => {
@@ -62,24 +53,10 @@ const Signup = props => {
   const configAuthWrapper = {
     headline: '회원가입'
   };
-  
+
   return (
     <AuthWrapper {...configAuthWrapper}>
-      <div className="sign-up">
-
-        {errors.length > 0 && (
-          <div className="alert-sign-up">
-            {errors.map((err, index) =>{
-              return (
-                <Alert 
-                  key={index}
-                  message={err}
-                  alertClass="notification-items"
-                />
-              );
-            })}
-          </div>
-        )} 
+      <div className="sign-up"> 
 
         <form onSubmit={handleFormSubmit}>
           <FormInput

@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
+
 import { addContentsStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
 import { checkUserIsAdmin } from './../../../Utils';
+
 import CKEditor from 'ckeditor4-react';
 import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
@@ -27,7 +30,7 @@ const BlogMain = props => {
   const [contentTitle, setContentTitle] = useState('');
   const [contentThumbnail, setContentThumbnail] = useState('');
   const [contentDesc, setContentDesc] = useState('');
-
+  const [createdDate, setCreateAt] = useState(toString());
   const { data, queryDoc, isLastPage } = contents;
   const isAdmin = checkUserIsAdmin(currentUser);
 
@@ -51,6 +54,7 @@ const BlogMain = props => {
     setContentTitle('');
     setContentThumbnail('');
     setContentDesc('');
+    setCreateAt('');
   };
 
   const handleSubmit = e => {
@@ -61,7 +65,8 @@ const BlogMain = props => {
         contentTag,
         contentTitle,
         contentThumbnail,
-        contentDesc
+        contentDesc,
+        createdDate
       })
     );
     resetForm();
@@ -169,7 +174,8 @@ const BlogMain = props => {
                 contentTitle,
                 contentThumbnail,
                 contentDesc,
-                documentID
+                documentID,
+                createdDate
               } = content;
 
               return (
@@ -183,16 +189,19 @@ const BlogMain = props => {
                       <p
                         dangerouslySetInnerHTML={{ __html: contentDesc }}
                       />
+                      <span>
+                        {moment(createdDate.toDate().toString()).format('YYYY-MM-DD')}
+                      </span>
                     </div>
                     {isAdmin && [
-                      <div className="show-del-btn-wrap">
+                      <div className="show-del-btn-wrap" key={index}>
                         <Button onClick={() => dispatch(deleteContentStart(documentID))}>
                           삭제
                         </Button>
                     </div>
                     ]}
                     {!isAdmin && [
-                      <div>
+                      <div key={index}>
                       </div>
                     ]}                    
                   </div>

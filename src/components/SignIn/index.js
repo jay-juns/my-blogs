@@ -8,6 +8,7 @@ import './styles.scss';
 import FormInput from '../Forms/FormInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
+import Alert from '../Alert/GlobelAlert';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +23,9 @@ const SignIn = props => {
   const history = useHistory();
   const { currentUser } = useSelector(mapState);
   const [email, setEmail] = useState('');
-  const [password, setPassword] =useState('');
+  const [password, setPassword] = useState('');
+  const [text, setText] = useState('');
+  const [color, setColor] = useState('');
 
   useEffect(() => {
     if (currentUser) {
@@ -35,6 +38,8 @@ const SignIn = props => {
   const resetForm = () => {
     setEmail('');
     setPassword('');
+    setText('');
+    setColor('');
   }
 
   const handleSubmit = e => {
@@ -52,6 +57,10 @@ const SignIn = props => {
   
   return (
     <AuthWrapper {...configAuthWrapper}>
+      <Alert 
+        color={color}
+        text={text}
+      />
       <div className="sign-in">
         <div className="sign-in-content-wrap">
 

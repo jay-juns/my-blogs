@@ -3,6 +3,7 @@ import { auth, handleUserProfile, getCurrentUser, GoogleProvider } from './../..
 import userTypes from './user.types';
 import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } from './user.actions';
 import { handleResetPasswordAPI } from './user.helpers';
+import { setAlert } from './../Alert/alert.action';
 
 export function* getSnapshotFromUserAuth(user, additionalData={}) {
   try {
@@ -28,6 +29,11 @@ export function* emailSignIn({ payload: { email, password } }) {
 
   } catch(err) {
     // console.log(err);
+    yield put(
+      setAlert({
+        text: '비밀번호나 패스워드가 일치하지 않습니다',
+        color: 'danger'
+      }));
   }
 }
 
@@ -75,19 +81,9 @@ export function* signUpUser({ payload: {
   confirmPassword
 }}) {
   
-  let err = [];
-
-  if (!displayName || !email || !password || !confirmPassword) {
+  if (password !== confirmPassword) {
     
-    err = ['빈칸을 다 채워 주세요'];
-    
-    yield put(
-      userError(err)
-    );
-    return;
-  } else if (password !== confirmPassword) {
-    
-    err = ['비밀번호가 일치하지 않습니다.'];
+    const err = ['비밀번호가 일치하지 않습니다.'];
     
     yield put(
       userError(err)
@@ -101,8 +97,12 @@ export function* signUpUser({ payload: {
     const additionalData = { displayName };
     yield getSnapshotFromUserAuth(user, additionalData); 
 
-  } catch(err) {
-    // console.log(err);
+  } catch(e) {
+    yield put(
+      setAlert({
+        text: '실패했어요',
+        color: 'danger'
+      }));
   }
 }
 
