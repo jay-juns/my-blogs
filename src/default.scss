@@ -47,6 +47,10 @@ button {
   cursor: pointer;
 }
 
+.hide {
+  display: none;
+}
+
 .full-wrap {
   width: 100%;
   height: 100%;
@@ -58,8 +62,7 @@ button {
 
 .main {
   position: relative;
-  width: 100%;
-  max-width: 1080px;
+  width: 100%;  
   margin: 52px auto 0;
   min-height: calc( 100% - 152px );
   z-index: 100;
@@ -68,7 +71,39 @@ button {
     margin-top: 52px;
 
     .main-wrap {
-      margin-top: 80px;
+      margin-top: 54px;
+    }
+  }
+}
+
+.dashboardLayout {
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f8;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+
+  .control-panal {
+    position: relative;
+    width: 100%;
+    margin: 52px 0 0;
+    min-height: calc( 100% - 152px);
+    z-index: 100;
+
+    .side-bar {
+      width: 160px;
+      height: 100%;
+      background-color: #fff;
+      position: absolute;
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      height: 100%;
     }
   }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink  } from 'react-router-dom';
-import { useSelector, useDispatch } from  'react-redux';
-import { signOutUserStart } from './../../redux/User/user.actions';
+import { useSelector } from  'react-redux';
 import './styles.scss';
 
 import Logo from './../../assets/logo.png';
@@ -15,12 +14,8 @@ const mapState = (state) => ({
 const Header = props => {
   // const [isOpen, setIsOpen] = useState(false) 
   // const [signIsOpen, setSignOpen] = useState(false)
-  const dispatch = useDispatch(); 
   const { currentUser } = useSelector(mapState);
 
-  const signOut = () => {
-    dispatch(signOutUserStart());
-  };
   
   return (
     <div className="header-row-wrapper">
@@ -68,9 +63,13 @@ const Header = props => {
           
           {currentUser && (
             <div className="header-right-item">
-              <span onClick={() => signOut()}>
-                로그아웃
-              </span>
+              <NavLink 
+              to="/dashboard"
+              activeClassName="active"
+              className="link"
+              >
+                프로필
+              </NavLink>
             </div>
           )}
 

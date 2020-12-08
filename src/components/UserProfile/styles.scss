@@ -1,0 +1,14 @@
+.user-profile {
+  margin: 2.5rem 2rem 1rem;
+  
+  .user-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .display-name {
+      font-size: 1.5rem;
+      margin-top: .8rem;
+    }
+  }
+}

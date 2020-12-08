@@ -6,9 +6,11 @@ const LoadMore = ({
 }) => {
   
   return (
-    <Button className="add-btn" onClick={() => onLoadMoreEvt()}>
+    <div className="add-btn-wrap">
+      <Button className="add-btn" onClick={() => onLoadMoreEvt()}>
       더보기
     </Button>
+    </div>
   );
 };
 

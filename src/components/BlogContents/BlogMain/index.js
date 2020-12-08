@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-
 import { addContentsStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
+import BlogItem from './../BlogItem';
 import CKEditor from 'ckeditor4-react';
 import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
@@ -30,7 +29,7 @@ const BlogMain = props => {
   const [contentTitle, setContentTitle] = useState('');
   const [contentThumbnail, setContentThumbnail] = useState('');
   const [contentDesc, setContentDesc] = useState('');
-  const [createdDate, setCreateAt] = useState(toString());
+  const [createdDate, setCreateDate] = useState(toString());
   const { data, queryDoc, isLastPage } = contents;
   const isAdmin = checkUserIsAdmin(currentUser);
 
@@ -54,7 +53,7 @@ const BlogMain = props => {
     setContentTitle('');
     setContentThumbnail('');
     setContentDesc('');
-    setCreateAt('');
+    setCreateDate('');
   };
 
   const handleSubmit = e => {
@@ -109,11 +108,15 @@ const BlogMain = props => {
 
   return (
     <div className="blog-main-wrap">
-      <Button className="write-btn" onClick={() => toggleModal()}>
-        글쓰기
-      </Button>
+      <div className="header-setting-wrap">
 
-      <FormSelect {...configFilter} />
+        <FormSelect {...configFilter} />
+
+        <Button className="write-btn" onClick={() => toggleModal()}>
+          글쓰기
+        </Button>
+      </div>
+      
       {currentUser && [
         <Modal {...configModal}>
           <div className="modal-wrap">
@@ -178,33 +181,31 @@ const BlogMain = props => {
                 createdDate
               } = content;
 
+              if(!contentTitle) return null;
+
+              const configBlogContent = {
+                contentTitle,
+                contentThumbnail,
+                contentDesc,
+                createdDate
+              };
+
               return (
                 <div className="show-row" key={index}>
-                  <div className="show-img">
-                    <img src={contentThumbnail} alt="img" />
+
+                  <BlogItem {...configBlogContent} />                  
+
+                  {isAdmin && [
+                    <div className="show-del-btn-wrap">
+                      <Button onClick={() => dispatch(deleteContentStart(documentID))}>
+                        삭제
+                      </Button>
                   </div>
-                  <div className="show-text">
-                    <div className="show-title">
-                      <p className="show-titie-first">{contentTitle}</p>
-                      <p
-                        dangerouslySetInnerHTML={{ __html: contentDesc }}
-                      />
-                      <span>
-                        {moment(createdDate.toDate().toString()).format('YYYY-MM-DD')}
-                      </span>
+                  ]}
+                  {!isAdmin && [
+                    <div className="hide">
                     </div>
-                    {isAdmin && [
-                      <div className="show-del-btn-wrap" key={index}>
-                        <Button onClick={() => dispatch(deleteContentStart(documentID))}>
-                          삭제
-                        </Button>
-                    </div>
-                    ]}
-                    {!isAdmin && [
-                      <div key={index}>
-                      </div>
-                    ]}                    
-                  </div>
+                  ]} 
                 </div>
               )
             })}  

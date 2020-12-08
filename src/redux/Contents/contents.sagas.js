@@ -18,7 +18,7 @@ export function* addContent({ payload: {
       contentTitle,
       contentThumbnail,
       contentDesc,
-      contentsAdminUserUID: auth.currentUser.uid,
+      contentsAdminUserUID: auth.uid,
       createdDate: timestamp
     });
 

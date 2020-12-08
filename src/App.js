@@ -5,9 +5,10 @@ import { checkUserSession } from './redux/User/user.actions';
 
 //layouts
 import MainLayout from './layouts/MainLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 
 //hoc
-// import WithAuth from './hoc/withAuth';
+import WithAuth from './hoc/withAuth';
 // import WithAdminAuth from './hoc/withAdminAuth';
 
 //pages
@@ -16,6 +17,7 @@ import Blog from './pages/Blog';
 import Inquire from './pages/Inquire';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
+import Dashboard from './pages/Dashboard';
 
 //components
 
@@ -69,6 +71,13 @@ const App = props => {
             <MainLayout>
               <Registration />
             </MainLayout>
+          )} />
+          <Route path="/dashboard" render={() => (
+            <WithAuth>
+              <DashboardLayout>
+                <Dashboard />
+              </DashboardLayout>
+            </WithAuth>
           )} />
       </Switch>
     </div>
