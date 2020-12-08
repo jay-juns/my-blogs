@@ -1,12 +1,8 @@
 import React from 'react';
-import './styles.scss';
+import UserProfileSetting from './../../components/UserProfileSetting';
 
 const Dashboard = props => {
-  return (
-    <h1>
-      안녕하세요
-    </h1>
-  );
+  return <UserProfileSetting />;
 };
 
 export default Dashboard;

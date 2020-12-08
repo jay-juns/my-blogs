@@ -119,47 +119,45 @@ const BlogMain = props => {
       
       {currentUser && [
         <Modal {...configModal}>
-          <div className="modal-wrap">
-            <form onSubmit={handleSubmit}>
-              <h2>새로운 글쓰기</h2>
-              <FormSelect 
-                label="태그 선택"
-                options={[{
-                  value: "잡담",
-                  name: "잡담"                
-                }, {
-                  value: "정보",
-                  name: "정보"
-                }]}
-                handleChange={e => setContentTag(e.target.value)}
-              />
+          <form onSubmit={handleSubmit}>
+            <h2>새로운 글쓰기</h2>
+            <FormSelect 
+              label="태그 선택"
+              options={[{
+                value: "잡담",
+                name: "잡담"                
+              }, {
+                value: "정보",
+                name: "정보"
+              }]}
+              handleChange={e => setContentTag(e.target.value)}
+            />
 
-              <FormInput 
-                label="제목"
-                formClass="modal-items"
-                type="text"
-                value={contentTitle}
-                handleChange={e => setContentTitle(e.target.value)}
-              />
+            <FormInput 
+              label="제목"
+              formClass="modal-items"
+              type="text"
+              value={contentTitle}
+              handleChange={e => setContentTitle(e.target.value)}
+            />
 
-              <FormInput 
-                label="이미지"
-                formClass="modal-items"
-                type="url"
-                value={contentThumbnail}
-                handleChange={e => setContentThumbnail(e.target.value)}
-              />
+            <FormInput 
+              label="이미지"
+              formClass="modal-items"
+              type="url"
+              value={contentThumbnail}
+              handleChange={e => setContentThumbnail(e.target.value)}
+            />
 
-              <CKEditor
-                onChange={evt => setContentDesc(evt.editor.getData())}
-              />
-              <div className="btn-wrap">
-                <Button className="ent-btn" type="submit">
-                  생성하기
-                </Button> 
-              </div>
-            </form>
-          </div>
+            <CKEditor
+              onChange={evt => setContentDesc(evt.editor.getData())}
+            />
+            <div className="btn-wrap">
+              <Button className="ent-btn" type="submit">
+                생성하기
+              </Button> 
+            </div>
+          </form>
         </Modal>
       ]}
 

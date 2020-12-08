@@ -14,7 +14,7 @@ const BlogItem = ({
     <div className="show-item-wrap">
       <div>
         <p>
-          displayname
+          
         </p>
       </div>
       <div className="show-img">
