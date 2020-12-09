@@ -19,6 +19,7 @@ const Signup = props => {
   const history = useHistory();
   const { currentUser } = useSelector(mapState);
   const [displayName, setDisplayName] = useState('');
+  const [userID, setUserID] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -37,6 +38,7 @@ const Signup = props => {
     setEmail('');
     setPassword('');
     setConfirmPassword('');
+    setUserID('');
   }
 
   const handleFormSubmit = event => {
@@ -44,6 +46,7 @@ const Signup = props => {
 
     dispatch(signUpUserStart({
       displayName,
+      userID,
       email,
       password,
       confirmPassword
@@ -61,9 +64,17 @@ const Signup = props => {
         <form onSubmit={handleFormSubmit}>
           <FormInput
             type="text"
+            name="userID"
+            value={userID}
+            placeholder="사용자 이름 입력"
+            handleChange={e => setUserID(e.target.value)}
+          />
+
+          <FormInput
+            type="text"
             name="displayName"
             value={displayName}
-            placeholder="닉네임 입력"
+            placeholder="별명 입력"
             handleChange={e => setDisplayName(e.target.value)}
           />
 

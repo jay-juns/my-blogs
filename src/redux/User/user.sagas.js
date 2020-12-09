@@ -75,29 +75,41 @@ export function* onSignOutUserStart() {
 
 
 export function* signUpUser({ payload: {
+  userID,
   displayName,
   email,
   password,
   confirmPassword
 }}) {
   
-  if (password !== confirmPassword) {
-    
-    const err = ['비밀번호가 일치하지 않습니다.'];
-    
+  if (userID === '' || displayName === '' || email === '' || password === '' || confirmPassword === '' ) {
     yield put(
-      userError(err)
-    );
+      setAlert({
+        text: '빈칸을 모두 채워 주세요',
+        color: 'danger'
+      }));    
+    
+    return;
+
+  } else if (password !== confirmPassword) {
+
+    yield put(
+      setAlert({
+        text: '비밀번호가 일치하지 않습니다.',
+        color: 'danger'
+      }));    
+    
     return;
   }
 
   try {
 
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName };
+    const additionalData = { displayName, userID };
     yield getSnapshotFromUserAuth(user, additionalData); 
 
   } catch(e) {
+    
     yield put(
       setAlert({
         text: '실패했어요',
