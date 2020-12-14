@@ -32,6 +32,8 @@
         background-color: #fff;
         box-shadow: 0 1px rgba(140,140,140,.9),0 0 2px rgba(140,140,140,.9);
         padding: 1.5rem .5rem;
+        max-height: 32px;
+        overflow: hidden;
         
         p {
           font-size: 1.2rem;

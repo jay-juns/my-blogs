@@ -60,25 +60,31 @@ const App = props => {
           </MainLayout>
         )}
         />
+        <Route path="/inquire/:inquireType" render={() => (
+          <MainLayout>
+            <Inquire />
+          </MainLayout>
+        )}
+        />
         <Route path="/login" 
           render={() =>  (
             <MainLayout>
               <Login />
             </MainLayout>
-          )} />
-          <Route path="/registration" 
-          render={() =>  (
-            <MainLayout>
-              <Registration />
-            </MainLayout>
-          )} />
-          <Route path="/dashboard" render={() => (
-            <WithAuth>
-              <DashboardLayout>
-                <Dashboard />
-              </DashboardLayout>
-            </WithAuth>
-          )} />
+        )} />
+        <Route path="/registration" 
+        render={() =>  (
+          <MainLayout>
+            <Registration />
+          </MainLayout>
+        )} />
+        <Route path="/dashboard" render={() => (
+          <WithAuth>
+            <DashboardLayout>
+              <Dashboard />
+            </DashboardLayout>
+          </WithAuth>
+        )} />
       </Switch>
     </div>
   );

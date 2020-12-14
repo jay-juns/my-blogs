@@ -1,11 +1,11 @@
 import { firestore } from './../../firebase/utils';
 
-export const handleAddContent = contents => {
+export const handleAddContent = content => {
   return new Promise((resolve, reject) => {
     firestore
       .collection('contents')
       .doc()
-      .set(contents)
+      .set(content)
       .then(() => {
         resolve();
       })
@@ -22,7 +22,7 @@ export const handleFetchContents = ({ filterType, startAtferDoc, psersistContent
     let ref = firestore.collection('contents').orderBy('createdDate', 'desc').limit(pageSize);
     
 
-    if (filterType) ref = ref.where('contentTag', '==', filterType);
+    if (filterType) ref = ref.where('contentTag ', '==', filterType);
     if (startAtferDoc) ref = ref.startAfter(startAtferDoc);
       
     ref

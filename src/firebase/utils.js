@@ -11,7 +11,7 @@ export const firestore = firebase.firestore();
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 GoogleProvider.setCustomParameters({ prompt: 'select_account' });
 
-export const handleUserProfile = async ({ userAuth, additionalData }) => {
+export const handleUserProfile = async ({ userAuth, additionalData, bioData }) => {
   if (!userAuth) return;
   const { uid } = userAuth;
 
@@ -19,18 +19,19 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   const snapshot = await userRef.get();
 
   if (!snapshot.exists) {
-    const { displayName, userID, email } = userAuth;
+    const { displayName, userId, email } = userAuth;
     const timestamp = new Date();
     const userRoles = ['user'];
     
     try {
       await userRef.set({
-        userID,
+        userId,
         displayName,
         email,
         createdDate: timestamp,
         userRoles,
-        ...additionalData
+        ...additionalData,
+        ...bioData
       });
     } catch(err) {
       // console.log(err); 

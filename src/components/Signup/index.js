@@ -6,6 +6,7 @@ import { signUpUserStart } from './../../redux/User/user.actions';
 import './styles.scss';
 
 import FormInput from '../Forms/FormInput';
+import FormTextArea from '../Forms/FormTextArea';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
 
@@ -19,8 +20,9 @@ const Signup = props => {
   const history = useHistory();
   const { currentUser } = useSelector(mapState);
   const [displayName, setDisplayName] = useState('');
-  const [userID, setUserID] = useState('');
+  const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
+  const [bio, setBio] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -35,10 +37,12 @@ const Signup = props => {
 
   const reset = () => {
     setDisplayName('');
+    setUserId('');
     setEmail('');
+    setBio('');
     setPassword('');
     setConfirmPassword('');
-    setUserID('');
+    setUserId('');
   }
 
   const handleFormSubmit = event => {
@@ -46,8 +50,9 @@ const Signup = props => {
 
     dispatch(signUpUserStart({
       displayName,
-      userID,
+      userId,
       email,
+      bio,
       password,
       confirmPassword
     }));
@@ -64,10 +69,10 @@ const Signup = props => {
         <form onSubmit={handleFormSubmit}>
           <FormInput
             type="text"
-            name="userID"
-            value={userID}
+            name="userId"
+            value={userId}
             placeholder="사용자 이름 입력"
-            handleChange={e => setUserID(e.target.value)}
+            handleChange={e => setUserId(e.target.value)}
           />
 
           <FormInput
@@ -90,7 +95,7 @@ const Signup = props => {
             type="password"
             name="password"
             value={password}
-            placeholder="비밀번호 입력"
+            placeholder="비밀번호 설정"
             handleChange={e => setPassword(e.target.value)}
           />
 
@@ -102,7 +107,14 @@ const Signup = props => {
             handleChange={e => setConfirmPassword(e.target.value)}
           />
 
-          <Button type="submit">
+          <FormTextArea
+            type="textarea"
+            placeholder="자기소개"
+            value={bio}
+            handleChange={e => setBio(e.target.value)}
+          ></FormTextArea>
+
+          <Button typ e="submit">
             회원가입
           </Button>
         </form>

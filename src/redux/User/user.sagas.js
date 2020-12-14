@@ -5,9 +5,9 @@ import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } fr
 import { handleResetPasswordAPI } from './user.helpers';
 import { setAlert } from './../Alert/alert.action';
 
-export function* getSnapshotFromUserAuth(user, additionalData={}) {
+export function* getSnapshotFromUserAuth(user, additionalData={}, bioData={}) {
   try {
-    const userRef = yield call(handleUserProfile, { userAuth: user, additionalData });
+    const userRef = yield call(handleUserProfile, { userAuth: user, additionalData, bioData });
     const snapshot = yield userRef.get();
     yield put(
       signInSuccess({
@@ -75,23 +75,25 @@ export function* onSignOutUserStart() {
 
 
 export function* signUpUser({ payload: {
-  userID,
+  userId,
   displayName,
   email,
+  bio,
   password,
   confirmPassword
 }}) {
   
-  if (userID === '' || displayName === '' || email === '' || password === '' || confirmPassword === '' ) {
+  if(displayName === 'admin' || displayName === '관리자' || userId === 'admin') {
     yield put(
       setAlert({
-        text: '빈칸을 모두 채워 주세요',
+        text: '사용할 수 없는 이름입니다.',
         color: 'danger'
-      }));    
-    
-    return;
+      })); 
+      
+      return;
+  }
 
-  } else if (password !== confirmPassword) {
+  if (password !== confirmPassword) {
 
     yield put(
       setAlert({
@@ -105,14 +107,15 @@ export function* signUpUser({ payload: {
   try {
 
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName, userID };
-    yield getSnapshotFromUserAuth(user, additionalData); 
+    const additionalData = { displayName, userId };
+    const bioData = { bio };
+    yield getSnapshotFromUserAuth(user, additionalData, bioData); 
 
   } catch(e) {
     
     yield put(
       setAlert({
-        text: '실패했어요',
+        text: e,
         color: 'danger'
       }));
   }

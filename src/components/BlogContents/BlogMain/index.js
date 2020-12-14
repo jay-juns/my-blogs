@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContentsStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
+
+import { addContentStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import BlogItem from './../BlogItem';
@@ -25,11 +26,11 @@ const BlogMain = props => {
   const history = useHistory();
   const { filterType } = useParams();
   const [hideModal, setHideModal] = useState(true);
-  const [contentTag, setContentTag] = useState('잡담');
+  const [contentTag, setContentTag] = useState('chat');
   const [contentTitle, setContentTitle] = useState('');
   const [contentThumbnail, setContentThumbnail] = useState('');
   const [contentDesc, setContentDesc] = useState('');
-  const [createdDate, setCreateDate] = useState(toString());
+  const [createdDate, setCreateDate] = useState('');
   const { data, queryDoc, isLastPage } = contents;
   const isAdmin = checkUserIsAdmin(currentUser);
 
@@ -49,7 +50,7 @@ const BlogMain = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setContentTag('잡담');
+    setContentTag('');
     setContentTitle('');
     setContentThumbnail('');
     setContentDesc('');
@@ -60,7 +61,7 @@ const BlogMain = props => {
     e.preventDefault();
 
     dispatch(
-      addContentsStart({
+      addContentStart({
         contentTag,
         contentTitle,
         contentThumbnail,
@@ -79,19 +80,20 @@ const BlogMain = props => {
   const configFilter = {
     defaultValue: filterType,
     options: [{
-      name: '전체',
-      value: ''
+      name: "전체",
+      value: ""
     },
     {
-      name: '잡담',
-      value: 'chat'
+      name: "잡담",
+      value: "chat"
     },
     {
-      name: '정보',
-      value: 'info'
+      name: "정보",
+      value: "info"
     }],
     handleChange: handleFilter
   };
+
   const handleLoadMore = () => {
     dispatch(
       fetchContentsStart({ 
@@ -124,11 +126,11 @@ const BlogMain = props => {
             <FormSelect 
               label="태그 선택"
               options={[{
-                value: "잡담",
-                name: "잡담"                
+                name: "잡담",
+                value: "chat"               
               }, {
-                value: "정보",
-                name: "정보"
+                name: "정보",
+                value: "info"
               }]}
               handleChange={e => setContentTag(e.target.value)}
             />
@@ -148,6 +150,7 @@ const BlogMain = props => {
               value={contentThumbnail}
               handleChange={e => setContentThumbnail(e.target.value)}
             />
+
 
             <CKEditor
               onChange={evt => setContentDesc(evt.editor.getData())}
@@ -191,17 +194,17 @@ const BlogMain = props => {
               return (
                 <div className="show-row" key={index}>
 
-                  <BlogItem {...configBlogContent} />                  
+                  <BlogItem {...configBlogContent} key={index} />                  
 
                   {isAdmin && [
-                    <div className="show-del-btn-wrap">
+                    <div className="show-del-btn-wrap" key={index}>
                       <Button onClick={() => dispatch(deleteContentStart(documentID))}>
                         삭제
                       </Button>
                   </div>
                   ]}
                   {!isAdmin && [
-                    <div className="hide">
+                    <div className="hide" key={index}>
                     </div>
                   ]} 
                 </div>

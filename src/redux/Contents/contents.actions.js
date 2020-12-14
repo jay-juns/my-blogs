@@ -1,6 +1,6 @@
 import contentsTypes from './contents.types';
 
-export const addContentsStart = contentData => ({
+export const addContentStart = contentData => ({
   type: contentsTypes.ADD_CONTENT_START,
   payload: contentData
 });

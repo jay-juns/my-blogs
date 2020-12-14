@@ -1,0 +1,21 @@
+import inquiresTypes from './inquires.types';
+
+export const addInquiresStart = inquireData => ({
+  type: inquiresTypes.ADD_INQUIRES_START,
+  payload: inquireData
+});
+
+export const fetchInquiresStart = (filters={}) => ({
+  type: inquiresTypes.FETCH_INQUIRES_START,
+  payload: filters
+});
+
+export const setInquires = inquires => ({
+  type: inquiresTypes.SET_INQUIRES,
+  payload: inquires
+});
+
+export const deleteInquireStart = inquireID => ({
+  type: inquiresTypes.DELETE_INQUIRE_START,
+  payload: inquireID
+});

@@ -1,24 +1,14 @@
-import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { setContents, fetchContentsStart } from './contents.actions';
 import { handleAddContent, handleFetchContents, handleDeleteContent } from './contents.helpers';
 import  contentsTypes from './contents.types';
 
-export function* addContent({ payload: {
-    contentTag,
-    contentTitle,
-    contentThumbnail,
-    contentDesc
-} }) {
+export function* addContent({ payload }) {
 
   try {
     const timestamp = new Date();
     yield handleAddContent({
-      contentTag,
-      contentTitle,
-      contentThumbnail,
-      contentDesc,
-      contentsAdminUserUID: auth.uid,
+      ...payload,
       createdDate: timestamp
     });
 
@@ -31,7 +21,7 @@ export function* addContent({ payload: {
   }
 }
 
-export function* onAddContentsStart() {
+export function* onAddContentStart() {
   yield takeLatest(contentsTypes.ADD_CONTENT_START, addContent)
 }
 
@@ -73,7 +63,7 @@ export function* onDeleteContentStart() {
 
 export default function* contentsSagas() {
   yield all([
-    call(onAddContentsStart),
+    call(onAddContentStart),
     call(onFetchContentsStart),
     call(onDeleteContentStart)
   ])

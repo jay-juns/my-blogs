@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const UserProfile = props => {
   const { currentUser } = props;
-  const { userID } = currentUser;
+  const { userId } = currentUser;
 
   return (
     <div className="user-profile">
@@ -15,7 +15,7 @@ const UserProfile = props => {
           <FontAwesomeIcon className="i" icon={faUser} />
         </span>
         <span className="display-name">
-          {userID && userID}
+          {userId && userId}
         </span>
       </div>
     </div>

@@ -1,10 +1,10 @@
 import React from 'react';
-import UserBoard from './../../components/UserBoard';
+import InquireBoard from './../../components/InquireBoard';
 
 const Inquire = props => {
   return (
     <div className="all">
-      <UserBoard />
+      <InquireBoard />
     </div>
   );
 };
