@@ -6,7 +6,6 @@ import { signUpUserStart } from './../../redux/User/user.actions';
 import './styles.scss';
 
 import FormInput from '../Forms/FormInput';
-import FormTextArea from '../Forms/FormTextArea';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
 
@@ -22,7 +21,6 @@ const Signup = props => {
   const [displayName, setDisplayName] = useState('');
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
-  const [bio, setBio] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -39,10 +37,8 @@ const Signup = props => {
     setDisplayName('');
     setUserId('');
     setEmail('');
-    setBio('');
     setPassword('');
     setConfirmPassword('');
-    setUserId('');
   }
 
   const handleFormSubmit = event => {
@@ -52,7 +48,6 @@ const Signup = props => {
       displayName,
       userId,
       email,
-      bio,
       password,
       confirmPassword
     }));
@@ -107,14 +102,7 @@ const Signup = props => {
             handleChange={e => setConfirmPassword(e.target.value)}
           />
 
-          <FormTextArea
-            type="textarea"
-            placeholder="자기소개"
-            value={bio}
-            handleChange={e => setBio(e.target.value)}
-          ></FormTextArea>
-
-          <Button typ e="submit">
+          <Button type="submit">
             회원가입
           </Button>
         </form>

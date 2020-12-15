@@ -26,11 +26,10 @@ const InquireBoard = props => {
   const history = useHistory();
   const [hideModal, setHideModal] = useState(true);
   const { inquireType } = useParams();
-  
+  const [inquireDesc, setInquireDesc] = useState('');
   const [createdDate, setCreateDate] = useState('');
   const [inquireTag, setInquireTag] = useState('suggest');
   const [inquireTitle, setInquireTitle] = useState('');
-  const [inquireDesc, setInquireDesc] = useState('');
   const { dataSelf } = inquires;
   const isAdmin = checkUserIsAdmin(currentUser);
 
@@ -52,8 +51,8 @@ const InquireBoard = props => {
     setHideModal(true);
     setInquireTag('');
     setInquireTitle('');
-    setInquireDesc('');
     setCreateDate('');
+    setInquireDesc('');
   };
   
   const handleSubmit = e => {
@@ -152,29 +151,51 @@ const InquireBoard = props => {
 
       <div>
         <div>
+
+        <div className="show-item-wrap">
+          <div>
+            <p>
+              No
+            </p>
+          </div>
+
+          <div className="show-text">
+            <div className="show-title">
+              <p className="show-titie-first">
+                타이틀
+              </p>
+              <p>
+                닉네임
+              </p>
+              <span>
+                작성날짜
+              </span>
+            </div>
+                          
+          </div>  
+        </div>
+
         {(Array.isArray(dataSelf) && dataSelf.length > 0) && dataSelf.map((inquire, index) => {
               const {
                 inquireTitle,
-                inquireDesc,
                 textID,
                 createdDate
               } = inquire;
-
-              const { displayName } = currentUser;
-
+              
               
               if(!inquireTitle) return null;
 
+
               const configInquireContent = {
                 inquireTitle,
-                inquireDesc,
                 createdDate,
-                displayName
+                index
               };
+
 
               return (
                 <div className="show-row" key={index}>
-                    
+
                   <InquireItem {...configInquireContent} />                  
 
                   {isAdmin && [

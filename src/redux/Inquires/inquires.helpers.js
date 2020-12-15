@@ -37,9 +37,7 @@ export const handleFetchInquires = ({ inquireType }) => {
         })
       ];
 
-        resolve({
-          dataSelf
-        });
+        resolve({ dataSelf });
       })
       .catch(err => {
         reject(err)

@@ -3,9 +3,8 @@ import moment from 'moment';
 
 const InquireItem = ({
   inquireTitle,
-  inquireDesc,
   createdDate,
-  displayName
+  index
 }) => {
   
   if(!inquireTitle) return null;
@@ -15,16 +14,16 @@ const InquireItem = ({
     <div className="show-item-wrap">
       <div>
         <p>
-          {displayName}
+          {index}
         </p>
       </div>
 
       <div className="show-text">
         <div className="show-title">
           <p className="show-titie-first">{inquireTitle}</p>
-          <p
-            dangerouslySetInnerHTML={{ __html: inquireDesc }}
-          />
+          <p>
+            
+          </p>
           <span>
             {moment(createdDate.toDate().toString()).format('YYYY-MM-DD')}
           </span>

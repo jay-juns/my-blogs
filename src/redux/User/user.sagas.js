@@ -5,9 +5,9 @@ import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } fr
 import { handleResetPasswordAPI } from './user.helpers';
 import { setAlert } from './../Alert/alert.action';
 
-export function* getSnapshotFromUserAuth(user, additionalData={}, bioData={}) {
+export function* getSnapshotFromUserAuth(user, additionalData={}) {
   try {
-    const userRef = yield call(handleUserProfile, { userAuth: user, additionalData, bioData });
+    const userRef = yield call(handleUserProfile, { userAuth: user, additionalData });
     const snapshot = yield userRef.get();
     yield put(
       signInSuccess({
@@ -17,7 +17,7 @@ export function* getSnapshotFromUserAuth(user, additionalData={}, bioData={}) {
     );
     
   } catch(err) {
-    // console.log(err);
+    console.log(err);
   }
 }
 
@@ -75,10 +75,9 @@ export function* onSignOutUserStart() {
 
 
 export function* signUpUser({ payload: {
-  userId,
   displayName,
+  userId,
   email,
-  bio,
   password,
   confirmPassword
 }}) {
@@ -108,8 +107,7 @@ export function* signUpUser({ payload: {
 
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName, userId };
-    const bioData = { bio };
-    yield getSnapshotFromUserAuth(user, additionalData, bioData); 
+    yield getSnapshotFromUserAuth(user, additionalData); 
 
   } catch(e) {
     

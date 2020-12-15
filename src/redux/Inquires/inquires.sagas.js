@@ -17,7 +17,7 @@ export function* addInquire({ payload }) {
     );
 
   } catch(err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
