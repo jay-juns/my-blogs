@@ -4,6 +4,7 @@ import moment from 'moment';
 const InquireItem = ({
   inquireTitle,
   createdDate,
+  displayName,
   index
 }) => {
   
@@ -12,7 +13,7 @@ const InquireItem = ({
   return (  
   
     <div className="show-item-wrap">
-      <div>
+      <div className="show-item-header-title">
         <p>
           {index}
         </p>
@@ -22,10 +23,10 @@ const InquireItem = ({
         <div className="show-title">
           <p className="show-titie-first">{inquireTitle}</p>
           <p>
-            
+            {displayName}
           </p>
           <span>
-            {moment(createdDate.toDate().toString()).format('YYYY-MM-DD')}
+            {moment(createdDate.toDate().toString()).format('MM-DD')}
           </span>
         </div>
                       

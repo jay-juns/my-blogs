@@ -16,4 +16,49 @@
     max-width: 1080px;
     margin: 0 auto;
   }
+
+  .show-item-world-wrap {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .show-row {
+    width: 100%;
+    margin-bottom: .5rem;
+    
+    &:first-child {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+   
+    &:nth-last-child() {
+      margin-bottom: 0;
+    }
+
+    .show-item-wrap {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+
+      .show-item-header-title {
+        min-width: 60px;
+        text-align: center;
+      }
+
+      .show-text {
+        flex: 1;
+
+        .show-title {
+          display: flex;
+          align-items: center;
+
+          .show-titie-first {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
 }

@@ -30,7 +30,8 @@ const InquireBoard = props => {
   const [createdDate, setCreateDate] = useState('');
   const [inquireTag, setInquireTag] = useState('suggest');
   const [inquireTitle, setInquireTitle] = useState('');
-  const { dataSelf } = inquires;
+  const [displayName, setDisplayName] =useState(currentUser ? currentUser.displayName : null);
+  const { data } = inquires;
   const isAdmin = checkUserIsAdmin(currentUser);
 
   useEffect(() => {
@@ -49,10 +50,11 @@ const InquireBoard = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setInquireTag('');
+    setInquireTag('suggest');
     setInquireTitle('');
     setCreateDate('');
     setInquireDesc('');
+    setDisplayName(currentUser.displayName);
   };
   
   const handleSubmit = e => {
@@ -63,6 +65,7 @@ const InquireBoard = props => {
         inquireTag,
         inquireTitle,
         inquireDesc,
+        displayName,
         createdDate
       })
     );
@@ -121,6 +124,15 @@ const InquireBoard = props => {
               }]}
               handleChange={e => setInquireTag(e.target.value)}
             />
+         
+            <FormInput {...currentUser}
+              label="필명"
+              formClass="hide"
+              type="text"
+              disabled="disabled" 
+              value={displayName}
+              handleChange={e => setDisplayName(e.target.value)}
+            />
 
             <FormInput 
               label="제목"
@@ -128,7 +140,7 @@ const InquireBoard = props => {
               type="text"
               value={inquireTitle}
               handleChange={e => setInquireTitle(e.target.value)}
-            />
+            />  
 
             <CKEditor
               onChange={evt => setInquireDesc(evt.editor.getData())}
@@ -136,7 +148,7 @@ const InquireBoard = props => {
 
             <div className="btn-wrap">
               <Button className="ent-btn" type="submit">
-                생성하기
+                글쓰기
               </Button> 
             </div>
           </form>
@@ -149,70 +161,72 @@ const InquireBoard = props => {
         </Modal>
       ]}
 
-      <div>
-        <div>
-
-        <div className="show-item-wrap">
-          <div>
-            <p>
-              No
-            </p>
-          </div>
-
-          <div className="show-text">
-            <div className="show-title">
-              <p className="show-titie-first">
-                타이틀
-              </p>
+      <div className="show-item-world-wrap">
+        <div className="show-row">
+          <div className="show-item-wrap">
+            <div className="show-item-header-title">
               <p>
-                닉네임
+                No
               </p>
-              <span>
-                작성날짜
-              </span>
             </div>
-                          
-          </div>  
+
+            <div className="show-text">
+              <div className="show-title">
+                <p className="show-titie-first">
+                  제목
+                </p>
+                <p>
+                  필명
+                </p>
+                <span>
+                  일시
+                </span>
+              </div>
+                            
+            </div>  
+          </div>
         </div>
 
-        {(Array.isArray(dataSelf) && dataSelf.length > 0) && dataSelf.map((inquire, index) => {
-              const {
-                inquireTitle,
-                textID,
-                createdDate
-              } = inquire;
-              
-              
-              if(!inquireTitle) return null;
+        {(Array.isArray(data) && data.length > 0) && data.map((inquire, index) => {
+          const {
+            inquireTitle,
+            textID,
+            createdDate,
+            displayName
+          } = inquire;
+          
+          
+          if(!inquireTitle) return null;
 
 
-              const configInquireContent = {
-                inquireTitle,
-                createdDate,
-                index
-              };
+          const configInquireContent = {
+            inquireTitle,
+            createdDate,
+            displayName,
+            index
+          };
 
 
-              return (
-                <div className="show-row" key={index}>
+          return (
+            <div className="show-row" key={index}> 
 
-                  <InquireItem {...configInquireContent} />                  
+              <InquireItem {...configInquireContent} />                  
 
-                  {isAdmin && [
-                    <div className="show-del-btn-wrap">
-                      <Button onClick={() => dispatch(deleteInquireStart(textID))}>
-                        삭제
-                      </Button>
-                  </div>
-                  ]}
-                  {!isAdmin && [
-                    <div className="hide">
-                    </div>
-                  ]} 
+              {isAdmin && [
+                <div className="show-del-btn-wrap">
+                  <Button onClick={() => dispatch(deleteInquireStart(textID))}>
+                    삭제
+                  </Button>
+              </div>
+              ]}
+              {!isAdmin && [
+                <div className="hide">
                 </div>
-              )
-            })}  
-        </div>
+              ]} 
+            </div>
+          )
+        })}  
+        
       </div>
     </div>
   );

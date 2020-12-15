@@ -50,7 +50,7 @@ const BlogMain = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setContentTag('');
+    setContentTag('chat');
     setContentTitle('');
     setContentThumbnail('');
     setContentDesc('');

@@ -9,7 +9,7 @@ export function* addInquire({ payload }) {
     const timestamp = new Date();
     yield handleAddInquire({
       ...payload,
-      createdDate: timestamp
+      createdDate: timestamp     
     });
 
     yield put(

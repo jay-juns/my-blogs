@@ -2,6 +2,7 @@ import { firestore } from '../../firebase/utils';
 
 export const handleAddInquire = inquire => {
   return new Promise((resolve, reject) => {
+
     firestore
       .collection('inquires')
       .doc()
@@ -20,14 +21,12 @@ export const handleFetchInquires = ({ inquireType }) => {
     
     let ref = firestore.collection('inquires').orderBy('createdDate', 'desc');
     
-
     if (inquireType) ref = ref.where('inquireTag', '==', inquireType);
       
     ref
       .get()  
       .then(snapshot => {
-   
-        const dataSelf = [
+        const data = [
 
           ...snapshot.docs.map(doc => {
           return {
@@ -37,7 +36,7 @@ export const handleFetchInquires = ({ inquireType }) => {
         })
       ];
 
-        resolve({ dataSelf });
+        resolve({ data });
       })
       .catch(err => {
         reject(err)
