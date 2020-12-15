@@ -19,3 +19,13 @@ export const deleteInquireStart = inquireID => ({
   type: inquiresTypes.DELETE_INQUIRE_START,
   payload: inquireID
 });
+
+export const fetchInquireStart = inquireID => ({
+  type: inquiresTypes.FETCH_INQUIRE_START,
+  payload: inquireID
+});
+
+export const setInquire = inquire => ({
+  type: inquiresTypes.SET_INQUIRE,
+  payload: inquire
+});

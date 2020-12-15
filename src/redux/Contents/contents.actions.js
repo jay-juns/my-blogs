@@ -24,3 +24,8 @@ export const fetchContentStart = contentID => ({
   type: contentsTypes.FETCH_CONTENT_START,
   payload: contentID
 });
+
+export const setContent = content => ({
+  type: contentsTypes.SET_CONTENT,
+  payload: content
+});

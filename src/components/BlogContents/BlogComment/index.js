@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const BlogComment = props => {
+const BlogComment = ({}) => {
 
   return (
     <div className="BlogComment">

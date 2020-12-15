@@ -59,3 +59,25 @@ export const handleDeleteInquire = textID => {
       })
   });
 }
+
+
+export const handleFetchInquire = (inquireID) => {
+  return new Promise((resolve, reject) => {    
+     firestore
+      .collection('inquires')
+      .doc(inquireID) 
+      .get()  
+      .then(snapshot => {
+        
+        if (snapshot.exists) {
+          resolve({
+            ...snapshot.data(),
+            textID: inquireID
+          });
+        }
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}

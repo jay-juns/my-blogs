@@ -19,7 +19,7 @@ const mapState = ({ contentsData, user }) => ({
   currentUser: user.currentUser
 })
 
-const BlogMain = props => {
+const BlogMain = ({}) => {
   const { contents } = useSelector(mapState);
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();

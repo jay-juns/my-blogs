@@ -18,14 +18,12 @@ import Inquire from './pages/Inquire';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
-
-//components
+import InquireDetails from './pages/InquireDetails';
 
 //default css
 import './default.scss';
 
 const App = props => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,7 +46,7 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="/blog/:filterType" render={() => (
+        <Route path="blog/:filterType" render={() => (
           <MainLayout>
             <Blog />
           </MainLayout>
@@ -60,9 +58,15 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="/inquire/:inquireType" render={() => (
+        <Route path="inquire/:inquireType" render={() => (
           <MainLayout>
             <Inquire />
+          </MainLayout>
+        )}
+        />
+        <Route path="inquire/:inquireID" render={() => (
+          <MainLayout>
+            <InquireDetails />
           </MainLayout>
         )}
         />

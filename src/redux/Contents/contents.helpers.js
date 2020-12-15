@@ -66,3 +66,22 @@ export const handleDeleteContent = documentID => {
       })
   });
 }
+
+export const handleFetchContent = contentID => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('contents')
+      .doc(contentID)
+      .get()
+      .then(snapshot => {
+        if (snapshot.exists) {
+          resolve(
+            snapshot.data()
+          );
+        }
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+}

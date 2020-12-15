@@ -1,6 +1,6 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { fetchInquiresStart, setInquires  } from './inquires.actions';
-import { handleFetchInquires, handleAddInquire, handleDeleteInquire } from './inquires.helpers';
+import { fetchInquiresStart, setInquires, setInquire  } from './inquires.actions';
+import { handleFetchInquires, handleAddInquire, handleDeleteInquire, handleFetchInquire } from './inquires.helpers';
 import  inquiresTypes from './inquires.types';
 
 export function* addInquire({ payload }) {
@@ -55,16 +55,32 @@ export function* deleteInquire({ payload }) {
   }
 }
 
-
 export function* onDeleteInquireStart() {
   yield takeLatest(inquiresTypes.DELETE_INQUIRE_START, deleteInquire);
 }
 
 
+
+export function* fetchInquire({ payload }) {
+  try {
+    const inquire = yield handleFetchInquire(payload);
+    yield put(
+      setInquire(inquire)
+    );
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+export function* onFetchInquireStart() {
+  yield takeLatest(inquiresTypes.FETCH_INQUIRE_START, fetchInquire);
+}
+
 export default function* inquiresSagas() {
   yield all([
     call(onAddInquiresStart),
     call(onFetchInquiresStart),
-    call(onDeleteInquireStart)
+    call(onDeleteInquireStart),
+    call(onFetchInquireStart)
   ])
 }

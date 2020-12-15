@@ -19,7 +19,7 @@ const mapState = ({ inquiresData, user }) => ({
   currentUser: user.currentUser
 })
 
-const InquireBoard = props => {
+const InquireBoard = ({}) => {
   const { inquires } = useSelector(mapState);
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
@@ -201,6 +201,7 @@ const InquireBoard = props => {
 
           const configInquireContent = {
             inquireTitle,
+            textID,
             createdDate,
             displayName,
             index
