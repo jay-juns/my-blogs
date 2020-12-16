@@ -1,21 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 
-const InquireItem = ({
-  inquireTitle,
-  createdDate,
-  displayName,
-  textID,
-  index
-}) => {
+const InquireItem = (inquire) => {
+
+  const {
+    inquireTitle,
+    createdDate,
+    displayName,
+    textID,
+    index
+  } = inquire;
   
   if(!inquireTitle) return null;
 
   return (  
   
     <div className="show-item-wrap">
-      <Link to={`/inquire/${textID}`}>
+      <NavLink to={`/inquire/${textID}`}>
         <div className="show-item-header-title">
           <p>
             {index}
@@ -34,7 +36,7 @@ const InquireItem = ({
           </div>
                         
         </div>
-      </Link>  
+      </NavLink>  
     </div>
   );
 }
