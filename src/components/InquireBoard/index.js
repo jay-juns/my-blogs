@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,12 +13,14 @@ import Modal from '../Forms/Modal';
 
 import InquireItem from './InquireItem';
 
+import './styles.scss';
+
 const mapState = ({ inquiresData, user }) => ({
   inquires: inquiresData.inquires,
   currentUser: user.currentUser
 })
 
-const InquireBoard = ({  }) => {
+const InquireBoard = ({}) => {
   const { inquires } = useSelector(mapState);
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const InquireBoard = ({  }) => {
   const { inquireType } = useParams();
   const [inquireDesc, setInquireDesc] = useState('');
   const [createdDate, setCreateDate] = useState('');
-  const [inquireTag, setInquireTag] = useState('suggest');
+  const [inquireTag, setInquireTag] = useState('의견');
   const [inquireTitle, setInquireTitle] = useState('');
   const [displayName, setDisplayName] =useState(currentUser ? currentUser.displayName : null);
   const { data } = inquires;
@@ -37,8 +38,7 @@ const InquireBoard = ({  }) => {
   useEffect(() => {
     dispatch(
       fetchInquiresStart({ inquireType })
-    );
-    
+    )
   }, [inquireType]);
 
   const toggleModal = () => setHideModal(!hideModal);
@@ -50,7 +50,7 @@ const InquireBoard = ({  }) => {
 
   const resetForm = () => {
     setHideModal(true);
-    setInquireTag('suggest');
+    setInquireTag('의견');
     setInquireTitle('');
     setCreateDate('');
     setInquireDesc('');
@@ -85,11 +85,11 @@ const InquireBoard = ({  }) => {
     },
     {
       name: "제안",
-      value: "suggest"
+      value: "제안"
     },
     {
       name: "의견",
-      value: "opinion"
+      value: "의견"
     }],
     handleChange: handleFilter
   };
@@ -117,10 +117,10 @@ const InquireBoard = ({  }) => {
               label="태그 선택"
               options={[{
                 name: "제안",
-                value: "suggest"               
+                value: "제안"               
               }, {
                 name: "의견",
-                value: "opinion"
+                value: "의견"
               }]}
               handleChange={e => setInquireTag(e.target.value)}
             />

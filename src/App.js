@@ -52,7 +52,7 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="/inquire" render={() => (
+        <Route exact path="/inquire" render={() => (
           <MainLayout>
             <Inquire />
           </MainLayout>
