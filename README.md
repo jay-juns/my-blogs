@@ -4,7 +4,7 @@
 <br />
 
 >**그밖에 이용한 라이브러리:**
--redux saga, thuink, hooks, react-router-dom, scss, moment, reselect, uuid
+-redux saga, thuink, hooks, react-router-dom, scss, moment, reselect, uuid, fontawesome
 <br />
 <br />
 
@@ -20,6 +20,9 @@
 - [ ] 계정 중복체크
 - [ ] 유저 정보 수정
 - [ ] 유저 로고, 배너 이미지 넣기
+- [ ] 블로글 자기 이미지 업로드
+- [ ] 블로글 이미지 여러개 업로드시 슬라이드 기능 추가
+- [ ] 이미지 없을 때 없다는 이미지 추가
 - [ ] 회원 탈퇴
 - [ ] 블로글 세부글 보여주기(모달로)
 - [ ] 각종 얼럿 추가(예: 로그인 실패및 비밀번호 중복, 글 완료 메세지 등)
