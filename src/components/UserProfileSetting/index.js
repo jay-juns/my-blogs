@@ -43,7 +43,7 @@ const UserProfileSetting = props => {
                 type="text"
               />
               <span className="modify-sub-text">
-                닉네임을 변경이 가능합니다. My Blog 이용규약을 위반한 사용자 이름은 계정이 영구정지될 수 있으니 주의하세요.
+                닉네임을 변경이 가능합니다. My Blogs 이용규약을 위반한 사용자 이름은 계정이 영구정지될 수 있으니 주의하세요.
               </span>
             </div>  
           </div>
