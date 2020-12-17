@@ -2,11 +2,7 @@ import React from 'react';
 import InquireCard from './../../components/InquireBoard/InquireCard';
 
 const InquireDetails = ({}) => {
-  return (
-    <div>
-      <InquireCard />
-    </div>
-  );
+  return <InquireCard />;
 }
 
 export default InquireDetails;

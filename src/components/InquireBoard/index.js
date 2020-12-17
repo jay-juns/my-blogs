@@ -102,7 +102,7 @@ const InquireBoard = ({}) => {
         
         <FormSelect {...configFilter} />
 
-        <Button onClick={() => toggleModal()}>
+        <Button className="inquire-write-btn" onClick={() => toggleModal()}>
           글쓰기
         </Button>
       </div>
@@ -162,20 +162,23 @@ const InquireBoard = ({}) => {
 
       <div className="show-item-world-wrap">
         <div className="show-row">
-          <div className="show-item-wrap">
+          <div className="show-item-wrap--head">
             <div className="show-item-header-title">
               <p>
                 No
               </p>
             </div>
 
-            <div className="show-text">
-              <div className="show-title">
-                <p className="show-titie-first">
+            <div className="show-text--head">
+              <div className="show-title--head">
+              <p className="show-tag--head">
+                Tag
+              </p>
+                <p className="show-titie-first--head">
                   제목
                 </p>
-                <p>
-                  필명
+                <p className="show-title-nick--head">
+                  작성자
                 </p>
                 <span>
                   일시
@@ -191,6 +194,7 @@ const InquireBoard = ({}) => {
             inquireTitle,
             documentID,
             displayName,
+            inquireTag,
             createdDate
           } = inquire;
           
@@ -201,6 +205,7 @@ const InquireBoard = ({}) => {
             inquireTitle,
             documentID, 
             displayName,
+            inquireTag,
             createdDate,
             index
           };

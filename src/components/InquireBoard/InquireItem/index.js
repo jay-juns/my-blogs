@@ -7,6 +7,7 @@ const InquireItem = (inquireText) => {
     inquireTitle,
     displayName,
     documentID,
+    inquireTag,
     createdDate,
     index
   } = inquireText;
@@ -14,6 +15,7 @@ const InquireItem = (inquireText) => {
   if(!inquireTitle || !displayName || !documentID) return null;
 
   const toDate = createdDate.toDate().toString();
+  console.log(inquireTag);
 
   return (  
   
@@ -25,10 +27,13 @@ const InquireItem = (inquireText) => {
 
         <div className="show-text">
           <div className="show-title">
+            <p className="show-tag">
+              {inquireTag}
+            </p>
             <p className="show-titie-first">
               {inquireTitle}
             </p>
-            <p>
+            <p className="show-title-nick">
               {displayName}
             </p>
             <span>
