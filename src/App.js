@@ -46,7 +46,7 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="blog/:filterType" render={() => (
+        <Route path="/blog/:filterType" render={() => (
           <MainLayout>
             <Blog />
           </MainLayout>
@@ -58,13 +58,13 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="inquire/:inquireType" render={() => (
+        <Route path="/inquire/:inquireType" render={() => (
           <MainLayout>
             <Inquire />
           </MainLayout>
         )}
         />
-        <Route path="inquire/:inquireID" render={() => (
+        <Route path="/inquireText/:inquireID" render={() => (
           <MainLayout>
             <InquireDetails />
           </MainLayout>

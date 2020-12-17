@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { fetchInquireStart, setInquire  } from './../../../redux/Inquires/inquires.actions';
-import moment from 'moment';
 import './styles.scss';
 
 const mapState = state => ({
@@ -17,7 +16,6 @@ const InquireCard = ({}) => {
 
   const {
     inquireTitle,
-    createdDate,
     displayName,
     inquireDesc
   } = inquire;
@@ -41,7 +39,7 @@ const InquireCard = ({}) => {
       <div>
         <p>{displayName}</p>
         <span>
-          {moment(createdDate.toDate().toString()).format('MM-DD')}
+          
         </span>
       </div>
 

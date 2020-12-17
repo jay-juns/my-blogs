@@ -2,41 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-const InquireItem = (inquire) => {
-
+const InquireItem = (inquireText) => {
   const {
     inquireTitle,
-    createdDate,
     displayName,
-    textID,
+    documentID,
+    createdDate,
     index
-  } = inquire;
+  } = inquireText;
   
-  if(!inquireTitle || !displayName || !textID) return null;
+  if(!inquireTitle || !displayName || !documentID) return null;
+
+  const toDate = createdDate.toDate().toString();
 
   return (  
   
     <div className="show-item-wrap">
-      <Link to={`/inquire/${textID}`}>
+      <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
-          <p>
-            {index}
-          </p>
+          <p>{index}</p>
         </div>
 
         <div className="show-text">
           <div className="show-title">
-            <p className="show-titie-first">{inquireTitle}</p>
+            <p className="show-titie-first">
+              {inquireTitle}
+            </p>
             <p>
               {displayName}
             </p>
             <span>
-              {moment(createdDate.toDate().toString()).format('MM-DD')}
+              {moment(toDate).format('MM-DD')}
             </span>
           </div>
                         
         </div>
-      </Link>  
+      </Link>
     </div>
   );
 }

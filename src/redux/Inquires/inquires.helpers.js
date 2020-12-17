@@ -31,7 +31,7 @@ export const handleFetchInquires = ({ inquireType }) => {
           ...snapshot.docs.map(doc => {
           return {
             ...doc.data(),
-            textID: doc.id
+            documentID: doc.id
           }
         })
       ];
@@ -45,11 +45,11 @@ export const handleFetchInquires = ({ inquireType }) => {
 }
 
 
-export const handleDeleteInquire = textID => {
+export const handleDeleteInquire = documentID => {
   return new Promise((resolve, reject) => {
     firestore
       .collection('inquires')
-      .doc(textID)
+      .doc(documentID)
       .delete()
       .then(() => {
         resolve();
@@ -72,7 +72,7 @@ export const handleFetchInquire = (inquireID) => {
         if (snapshot.exists) {
           resolve({
             ...snapshot.data(),
-            textID: inquireID
+            documentID: inquireID
           });
         }
       })

@@ -25,10 +25,9 @@ const InquireBoard = ({}) => {
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [hideModal, setHideModal] = useState(true);
   const { inquireType } = useParams();
+  const [hideModal, setHideModal] = useState(true);
   const [inquireDesc, setInquireDesc] = useState('');
-  const [createdDate, setCreateDate] = useState('');
   const [inquireTag, setInquireTag] = useState('의견');
   const [inquireTitle, setInquireTitle] = useState('');
   const [displayName, setDisplayName] =useState(currentUser ? currentUser.displayName : null);
@@ -52,7 +51,7 @@ const InquireBoard = ({}) => {
     setHideModal(true);
     setInquireTag('의견');
     setInquireTitle('');
-    setCreateDate('');
+    
     setInquireDesc('');
     setDisplayName(currentUser.displayName);
   };
@@ -65,8 +64,8 @@ const InquireBoard = ({}) => {
         inquireTag,
         inquireTitle,
         inquireDesc,
-        displayName,
-        createdDate
+        displayName
+        
       })
     );
     resetForm();
@@ -190,23 +189,21 @@ const InquireBoard = ({}) => {
         {(Array.isArray(data) && data.length > 0) && data.map((inquire, index) => {
           const {
             inquireTitle,
-            textID,
-            createdDate,
-            displayName
+            documentID,
+            displayName,
+            createdDate
           } = inquire;
           
           
           if(!inquireTitle) return null;
 
-
           const configInquireContent = {
             inquireTitle,
-            textID,
-            createdDate,
+            documentID, 
             displayName,
+            createdDate,
             index
           };
-
 
           return (
             <div className="show-row" key={index}> 
@@ -215,7 +212,7 @@ const InquireBoard = ({}) => {
 
               {isAdmin && [
                 <div className="show-del-btn-wrap">
-                  <Button onClick={() => dispatch(deleteInquireStart(textID))}>
+                  <Button onClick={() => dispatch(deleteInquireStart(documentID))}>
                     삭제
                   </Button>
               </div>
