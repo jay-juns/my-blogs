@@ -8,7 +8,7 @@
 <br />
 <br />
 
-# 현재 완료 기능 및 앞으로 작업해야 할 기능 (계속 업데이트 할 예정입니다.)
+# 현재 완료 기능 및 앞으로 작업해야 할 기능 (***계속 업데이트 할 예정입니다.***)
 
 - [x] 로그인, 구글 로그인, 회원가입 
 - [x] 블로글 글쓰기
@@ -27,8 +27,35 @@
 <br />
 <br />
 
-# 스크린샷 (계속 업데이트 할 예정입니다.)
+# 스크린샷 (***계속 업데이트 할 예정입니다.***)
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/101479920-4d518d80-3996-11eb-820e-316e58c3789d.png" />
+  <img src="https://user-images.githubusercontent.com/64716396/102492234-bcc12e80-40b4-11eb-9e25-a920532314ec.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492239-bf238880-40b4-11eb-8044-a83473669db8.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492245-c0ed4c00-40b4-11eb-87a5-a7edaf4ac200.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492248-c21e7900-40b4-11eb-96f5-1fb63b03941e.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492255-c3e83c80-40b4-11eb-9ca8-0812d223fae8.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492260-c5196980-40b4-11eb-98c4-21df03995251.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492266-c6e32d00-40b4-11eb-8804-b8280c07d520.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492271-c8145a00-40b4-11eb-98c2-194e011fd3b8.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492274-ca76b400-40b4-11eb-9963-54b1ffb4add1.png" />
+</div>
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/102492278-cc407780-40b4-11eb-87fa-cc420a66de2d.png" />
 </div>
 
