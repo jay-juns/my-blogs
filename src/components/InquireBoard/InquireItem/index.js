@@ -16,12 +16,14 @@ const InquireItem = (inquireText) => {
     displayName,
     documentID,
     inquireTag,
-    createdDate,
-    index
+    classBg,
+    pos,
+    createdDate
   } = inquireText;
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const isAdmin = checkUserIsAdmin(currentUser);
+
   
   if(!inquireTitle || !displayName || !documentID) return null;
 
@@ -32,12 +34,12 @@ const InquireItem = (inquireText) => {
     <div className="show-item-wrap">
       <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
-          <p>{index}</p>
+          <p>{pos}</p>
         </div>
 
         <div className="show-text">
           <div className="show-title">
-            <p className="show-tag">
+            <p className={`${classBg} show-tag`}>
               {inquireTag}
             </p>
             <p className="show-titie-first">

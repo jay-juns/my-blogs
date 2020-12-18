@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
 
 import CKEditor from 'ckeditor4-react';
@@ -11,6 +10,7 @@ import Button from '../Forms/Button';
 import Modal from '../Forms/Modal';
 
 import InquireItem from './InquireItem';
+import Pagination from './InquirePagination';
 
 import './styles.scss';
 
@@ -30,8 +30,18 @@ const InquireBoard = ({}) => {
   const [inquireTag, setInquireTag] = useState('제안');
   const [inquireTitle, setInquireTitle] = useState('');
   const [displayName, setDisplayName] =useState(currentUser ? currentUser.displayName : null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(14);
+
   const { data } = inquires;
-  
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = (Array.isArray(data) && data.length > 0) && data.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
 
   useEffect(() => {
     dispatch(
@@ -50,7 +60,6 @@ const InquireBoard = ({}) => {
     setHideModal(true);
     setInquireTag('제안');
     setInquireTitle('');
-    
     setInquireDesc('');
     setDisplayName(currentUser.displayName);
   };
@@ -92,6 +101,8 @@ const InquireBoard = ({}) => {
     handleChange: handleFilter
   };
 
+
+
   return (
     <div className="inquire-board">
       <div className="inquire-title">
@@ -115,7 +126,7 @@ const InquireBoard = ({}) => {
               label="태그 선택"
               options={[{
                 name: "제안",
-                value: "제안"               
+                value: "제안"             
               }, {
                 name: "의견",
                 value: "의견"
@@ -188,7 +199,9 @@ const InquireBoard = ({}) => {
           </div>
         </div>
 
-        {(Array.isArray(data) && data.length > 0) && data.map((inquire, index) => {
+        
+        
+        {(Array.isArray(data) && data.length > 0) && currentPosts.map((inquire, pos) => {
           const {
             inquireTitle,
             documentID,
@@ -197,26 +210,42 @@ const InquireBoard = ({}) => {
             createdDate
           } = inquire;
           
-          
           if(!inquireTitle) return null;
-
+          
+          const classBg = inquireTag === '제안' ? 'green' : 'blue';
+           
           const configInquireContent = {
             inquireTitle,
             documentID, 
             displayName,
             inquireTag,
+            classBg,
             createdDate,
-            index
+            pos
           };
 
           return (
-            <div className="show-row"> 
-              <InquireItem {...configInquireContent} key={index} />                  
+            <div className="show-row" key={pos}> 
+              <InquireItem
+              {...configInquireContent}
+               />            
             </div>
           )
         })}  
-        
+         
+
       </div>
+      {
+        ((Array.isArray(data)) && [
+          <Pagination 
+            postsPerPage={postsPerPage}
+            totalPosts={data.length}
+            currentPage={currentPage}
+            paginate={paginate}
+          />
+        ])
+      }  
+      
     </div>
   );
 }
