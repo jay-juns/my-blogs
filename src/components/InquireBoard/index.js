@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addInquiresStart, fetchInquiresStart, deleteInquireStart  } from './../../redux/Inquires/inquires.actions';
-import { checkUserIsAdmin } from './../../Utils';
+import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
 
 import CKEditor from 'ckeditor4-react';
 import FormInput from '../Forms/FormInput';
@@ -28,11 +27,11 @@ const InquireBoard = ({}) => {
   const { inquireType } = useParams();
   const [hideModal, setHideModal] = useState(true);
   const [inquireDesc, setInquireDesc] = useState('');
-  const [inquireTag, setInquireTag] = useState('의견');
+  const [inquireTag, setInquireTag] = useState('제안');
   const [inquireTitle, setInquireTitle] = useState('');
   const [displayName, setDisplayName] =useState(currentUser ? currentUser.displayName : null);
   const { data } = inquires;
-  const isAdmin = checkUserIsAdmin(currentUser);
+  
 
   useEffect(() => {
     dispatch(
@@ -49,7 +48,7 @@ const InquireBoard = ({}) => {
 
   const resetForm = () => {
     setHideModal(true);
-    setInquireTag('의견');
+    setInquireTag('제안');
     setInquireTitle('');
     
     setInquireDesc('');
@@ -211,21 +210,8 @@ const InquireBoard = ({}) => {
           };
 
           return (
-            <div className="show-row" key={index}> 
-
-              <InquireItem {...configInquireContent} />                  
-
-              {isAdmin && [
-                <div className="show-del-btn-wrap">
-                  <Button onClick={() => dispatch(deleteInquireStart(documentID))}>
-                    삭제
-                  </Button>
-              </div>
-              ]}
-              {!isAdmin && [
-                <div className="hide">
-                </div>
-              ]} 
+            <div className="show-row"> 
+              <InquireItem {...configInquireContent} key={index} />                  
             </div>
           )
         })}  

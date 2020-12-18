@@ -1,6 +1,14 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { checkUserIsAdmin } from './../../../Utils';
+import { deleteInquireStart  } from './../../../redux/Inquires/inquires.actions';
+import Button from './../../Forms/Button';
 import moment from 'moment';
+
+const mapState = ({ user }) => ({
+  currentUser: user.currentUser
+})
 
 const InquireItem = (inquireText) => {
   const {
@@ -11,11 +19,13 @@ const InquireItem = (inquireText) => {
     createdDate,
     index
   } = inquireText;
+  const { currentUser } = useSelector(mapState);
+  const dispatch = useDispatch();
+  const isAdmin = checkUserIsAdmin(currentUser);
   
   if(!inquireTitle || !displayName || !documentID) return null;
 
   const toDate = createdDate.toDate().toString();
-  console.log(inquireTag);
 
   return (  
   
@@ -39,6 +49,18 @@ const InquireItem = (inquireText) => {
             <span>
               {moment(toDate).format('MM-DD')}
             </span>
+            
+            {isAdmin && [
+              <div className="show-del-btn-wrap">
+                <Button onClick={() => dispatch(deleteInquireStart(documentID))}>
+                  삭제
+                </Button>
+              </div>
+            ]}
+            {!isAdmin && [
+              <div className="hide">
+              </div>
+            ]} 
           </div>
                         
         </div>

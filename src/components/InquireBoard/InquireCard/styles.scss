@@ -49,6 +49,14 @@
     .detail-body {
       flex: 1;
       padding: 2rem 1.5rem;
+      
+      .desc {
+        
+        p {
+          line-height: 1.5;
+          font-size: 1.5rem;
+        }
+      }
     }
   }
 
