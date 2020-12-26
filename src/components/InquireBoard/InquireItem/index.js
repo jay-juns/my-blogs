@@ -31,7 +31,7 @@ const InquireItem = (inquireText) => {
 
   return (  
   
-    <div className="show-item-wrap">
+    <div className="show-item-wrap" >
       <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
           <p>{pos}</p>
@@ -53,16 +53,12 @@ const InquireItem = (inquireText) => {
             </span>
             
             {isAdmin && [
-              <div className="show-del-btn-wrap">
+              <div className="show-del-btn-wrap" key={documentID}>
                 <Button onClick={() => dispatch(deleteInquireStart(documentID))}>
                   삭제
                 </Button>
               </div>
             ]}
-            {!isAdmin && [
-              <div className="hide">
-              </div>
-            ]} 
           </div>
                         
         </div>

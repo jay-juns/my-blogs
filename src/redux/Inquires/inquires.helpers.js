@@ -81,3 +81,19 @@ export const handleFetchInquire = (inquireID) => {
       })
   });
 }
+
+
+export const handleEditInquire = (inquire) => {
+  return new Promise((resolve, reject) => {    
+     firestore
+      .collection('inquires')
+      .doc(inquire.id) 
+      .update(inquire)  
+      .then(() =>{
+        resolve();
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}

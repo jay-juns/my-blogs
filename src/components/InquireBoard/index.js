@@ -29,7 +29,16 @@ const InquireBoard = ({}) => {
   const [inquireDesc, setInquireDesc] = useState('');
   const [inquireTag, setInquireTag] = useState('제안');
   const [inquireTitle, setInquireTitle] = useState('');
-  const [displayName, setDisplayName] =useState(currentUser ? currentUser.displayName : null);
+
+  let userInfo = [];
+  
+  for (let name in currentUser) { 
+    if (name.includes('displayName')) {
+      userInfo.push(currentUser.displayName); 
+    }
+  }
+
+  const [displayName, setDisplayName] = useState(userInfo[0]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(14);
@@ -61,7 +70,7 @@ const InquireBoard = ({}) => {
     setInquireTag('제안');
     setInquireTitle('');
     setInquireDesc('');
-    setDisplayName(currentUser.displayName);
+    setDisplayName(userInfo[0]);
   };
   
   const handleSubmit = e => {
@@ -73,7 +82,6 @@ const InquireBoard = ({}) => {
         inquireTitle,
         inquireDesc,
         displayName
-        
       })
     );
     resetForm();
@@ -133,13 +141,13 @@ const InquireBoard = ({}) => {
               }]}
               handleChange={e => setInquireTag(e.target.value)}
             />
-         
-            <FormInput {...currentUser}
+              
+            <FormInput   
               label="필명"
               formClass="hide"
               type="text"
               disabled="disabled" 
-              value={displayName}
+              value={userInfo[0]}
               handleChange={e => setDisplayName(e.target.value)}
             />
 
@@ -225,7 +233,7 @@ const InquireBoard = ({}) => {
           };
 
           return (
-            <div className="show-row" key={pos}> 
+            <div className="show-row" key={documentID}> 
               <InquireItem
               {...configInquireContent}
                />            

@@ -16,6 +16,16 @@ const Header = props => {
   // const [signIsOpen, setSignOpen] = useState(false)
   const { currentUser } = useSelector(mapState);
 
+  let userInfo = [];
+  
+  for (let name in currentUser) { 
+    if (name.includes('displayName')) {
+      userInfo.push(currentUser.displayName); 
+    }
+  }
+
+  userInfo = `"${userInfo[0]}"`;
+  const userF = userInfo.substr(1, 1); 
   
   return (
     <div className="header-row-wrapper">
@@ -66,9 +76,9 @@ const Header = props => {
               <NavLink 
               to="/dashboard"
               activeClassName="active"
-              className="link"
+              className="link user-link"
               >
-                프로필
+                {userF}
               </NavLink>
             </div>
           )}

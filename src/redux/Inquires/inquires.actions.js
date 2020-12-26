@@ -29,3 +29,8 @@ export const setInquire = inquire => ({
   type: inquiresTypes.SET_INQUIRE,
   payload: inquire
 });
+
+export const updateInquire = inquire => ({
+  type: inquiresTypes.EDIT_INQUIRE,
+  payload: inquire
+});
