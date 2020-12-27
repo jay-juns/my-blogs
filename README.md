@@ -41,21 +41,28 @@
 
 ## 스크린샷
 #### 메인 페이지
+
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103167658-6bf9c480-4870-11eb-9cd9-72ce34e077b6.png" width="90%" />
 </div>
 <br />
+
 #### 컨텐츠 페이지
+
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103167659-6d2af180-4870-11eb-9010-b6be89c81d24.png" width="90%" />
 </div>
 <br />
+
 #### 문의 사항 페이지
+
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103167660-6e5c1e80-4870-11eb-996b-558ef396aecb.png" width="90%" />
 </div>
 <br />
+
 #### 유저 프로필 페이지
+
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103167661-6f8d4b80-4870-11eb-8720-201c8eafe180.png" width="90%" />
 </div>
@@ -63,6 +70,7 @@
 ## 기능 영상
 
 #### 문의사항 글 작성 및 수정
+
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103168132-f55ec600-4873-11eb-8d70-3cb1a97b03e9.gif" width="90%" />
 </div>
