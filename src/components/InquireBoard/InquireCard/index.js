@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import { fetchInquireStart, setInquire, updateInquire  } from './../../../redux/Inquires/inquires.actions';
 
+import CKEditor from 'ckeditor4-react';
 
 import Button from './../../Forms/Button';
 import Modal from './../../Forms/Modal';
@@ -22,14 +23,23 @@ const InquireCard = ({}) => {
   const { inquireID } = useParams();
   const { inquire } = useSelector(mapState);
   const [hideModal, setHideModal] = useState(true);
-  const [{}, setInquireTitle] = useState('');
-
   const {
     inquireTitle,
     displayName,
     inquireTag,
-    inquireDesc
+    inquireDesc,
+    documentID
   } = inquire;
+
+  const [inquireEditTitle, setinquireEditTitle] = useState(inquireTitle);
+  const [inquireEditDesc, setinquireEditDesc] = useState(inquireDesc);
+
+  const resetForm = () => {
+    setHideModal(true);
+    setinquireEditTitle(inquireTitle);
+    setinquireEditDesc(inquireDesc);
+  };
+
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -53,13 +63,18 @@ const InquireCard = ({}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    
     dispatch(
       updateInquire({
         inquireTag,
-        inquireTitle,
-        inquireDesc
+        inquireTitle: inquireEditTitle,
+        inquireDesc: inquireEditDesc,
+        displayName,
+        id: documentID
       })
     );
+
+    resetForm();
   };
 
 
@@ -98,13 +113,12 @@ const InquireCard = ({}) => {
                   label="제목"
                   formClass="modal-items"
                   type="text"
-                  value={inquireTitle}
-                  handleChange={e => setInquireTitle(e.target.value)}
+                  value={inquireEditTitle}
+                  handleChange={e => setinquireEditTitle(e.target.value)}
                 />  
 
-                <textarea
-                
-                  type="inline"
+                <CKEditor
+                  onChange={evt => setinquireEditDesc(evt.editor.getData())}
                 />
 
                 <div className="btn-wrap">
