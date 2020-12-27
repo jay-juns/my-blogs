@@ -57,3 +57,8 @@
 </div>
 
 ## 기능 영상
+
+#### 문의사항 글 작성 및 수정
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/103167739-12de6080-4871-11eb-9391-5be8237244ff.gif" width="90%" />
+</div>
