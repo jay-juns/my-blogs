@@ -1,10 +1,10 @@
 ## 작업환경
-1. 프론트 - React, Redux 
+1. 프론트 - React, hooks, Redux, redux saga, thunk 
 2. 서버 - Firebase firestore
 <br />
 
 >**그밖에 이용한 라이브러리:**
--redux saga, thuink, hooks, react-router-dom, scss, moment, reselect, uuid, fontawesome
+- react-router-dom, scss, moment, reselect, uuid, fontawesome
 <br />
 <br />
 
