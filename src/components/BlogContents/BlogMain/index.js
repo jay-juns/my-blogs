@@ -203,10 +203,6 @@ const BlogMain = ({}) => {
                       </Button>
                   </div>
                   ]}
-                  {!isAdmin && [
-                    <div className="hide" key={index}>
-                    </div>
-                  ]} 
                 </div>
               )
             })}  

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
+import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
 
@@ -11,10 +12,14 @@ import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import './styles.scss';
 
 const mapState = state => ({
-  inquire: state.inquiresData.inquire
+  inquire: state.inquiresData.inquire,
+  currentUser: state.user.currentUser
 })
 
 const InquireCard = ({}) => {
@@ -22,6 +27,8 @@ const InquireCard = ({}) => {
   const history = useHistory();
   const { inquireID } = useParams();
   const { inquire } = useSelector(mapState);
+  const { currentUser } = useSelector(mapState);
+  const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
   const {
     inquireTitle,
@@ -32,12 +39,17 @@ const InquireCard = ({}) => {
   } = inquire;
 
   const [inquireEditTitle, setinquireEditTitle] = useState('');
-  const [inquireEditDesc, setinquireEditDesc] = useState(inquireDesc);
-
+  const [inquireEditDesc, setinquireEditDesc] = useState('');
+  const [inquireEditTag, setInquireEditTag] = useState('제안');
+  const [show, setShow] = useState(false);
+  const showModal = !show ? '' : 'show-modal';
+  const adminClass = isAdmin ? '' : 'hide';
   const resetForm = () => {
     setHideModal(true);
+    setShow(false);
     setinquireEditTitle('');
-    setinquireEditDesc(inquireDesc);
+    setinquireEditDesc('');
+    setInquireEditTag('제안');
   };
 
 
@@ -66,7 +78,7 @@ const InquireCard = ({}) => {
     
     dispatch(
       updateInquire({
-        inquireTag,
+        inquireTag: inquireEditTag,
         inquireTitle: inquireEditTitle,
         inquireDesc: inquireEditDesc,
         displayName,
@@ -75,6 +87,13 @@ const InquireCard = ({}) => {
     );
     resetForm();
   };
+
+  const handleDelete = () => {
+    dispatch(
+      deleteInquireStart(documentID)
+    );
+    history.push('/inquire');
+  }
 
 
   return(
@@ -85,17 +104,27 @@ const InquireCard = ({}) => {
       <div className="detail-container">
         <div className="detail-header"> 
           <div className="detail-header-left">
-            <div>
-              <p className="detail-title">{inquireTitle}</p> 
-              <p className="detail-displayName">{displayName} <strong>님</strong></p>
-            </div>
-            <div>
-              <Button onClick={() => toggleModal()}>수정하기</Button>
-              <Button onClick={() => dispatch(deleteInquireStart(documentID))}>
-                삭제
-              </Button> 
-            </div>
-            <Modal {...configModal}>
+            <div className="detail-header-left--up">
+              <div className="detail-header-left--up-contents">
+                <p className="detail-title">{inquireTitle}</p> 
+                <p className="detail-displayName">{displayName} <strong>님</strong></p>
+              </div>
+
+              <div className={`detail-header-left--up-btn-area ${adminClass}`}>
+              
+                <div className={`toggle-modal ${showModal}`}>
+                  <Button onClick={() => toggleModal()}>수정하기</Button>
+                  <Button onClick={() => handleDelete()}>
+                    삭제
+                  </Button>
+                </div>
+                {isAdmin && [
+                  <Button className="threedot-btn" onClick={() => setShow(!show)}>
+                    <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
+                  </Button>
+                ]}
+              </div>
+              <Modal {...configModal}>
               <form onSubmit={handleSubmit}>
                 <h2>글 수정하기</h2>
 
@@ -108,7 +137,7 @@ const InquireCard = ({}) => {
                     name: "의견",
                     value: "의견"
                   }]}
-                  
+                  handleChange={e => setInquireEditTag(e.target.value)}
                 />
 
                 <FormInput 
@@ -130,6 +159,13 @@ const InquireCard = ({}) => {
                 </div>
               </form>
             </Modal>
+            </div>
+            
+            <div className="detail-header-left--footer-wrapper">
+              <span>
+                {inquireTag}
+              </span>
+            </div>
           </div>
           
         </div>

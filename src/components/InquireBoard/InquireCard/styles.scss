@@ -21,26 +21,115 @@
     min-height: 300px;
 
     .detail-header {
+      width: 100%;
 
       .detail-header-left {
+        width: 100%;
         background-color: #f1f1f1;
-        padding: 1.2rem 1.5rem;
+        padding: 1.2rem 0;
         display: flex;
         flex-direction: column;
         border-bottom: 2px solid $blue;
-  
-        .detail-title {
-          font-weight: 400;
-          font-size: 1.8rem;
-          margin-bottom: .8rem;
+
+        .detail-header-left--up {
+          display: flex;
+          align-items: center;
+          padding: 0 1.5rem;
+
+          .detail-header-left--up-contents {
+            flex: 1;
+            
+            .detail-title {
+              font-weight: 400;
+              font-size: 1.8rem;
+              margin-bottom: .8rem;
+            }
+      
+            .detail-displayName {
+              font-size: 1.3rem;
+              font-weight: 700;
+      
+              strong {
+                font-weight: 400;
+              }
+            }  
+          }
+
+          .detail-header-left--up-btn-area {
+            position: relative;
+            min-width: 100px;
+            display: flex;
+            justify-content: flex-end;
+
+            .toggle-modal {
+              flex-direction: column;
+              align-items: flex-start;
+              position: absolute;
+              top: 0;
+              right: 0;
+              z-index: 1060;
+              padding: .8rem;
+              font-size: 1.4rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 1.42857143;
+              text-align: left;
+              text-decoration: none;
+              text-shadow: none;
+              text-transform: none;
+              letter-spacing: normal;
+              word-break: normal;
+              word-spacing: normal;
+              word-wrap: normal;
+              white-space: normal;
+              background-color: #fff;
+              -webkit-background-clip: padding-box;
+              background-clip: padding-box;
+              border: 1px solid #ccc;
+              border: 1px solid rgba(0,0,0,.2);
+              border-radius: 6px;
+              -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+              box-shadow: 0 5px 10px rgba(0,0,0,.2);
+              line-break: auto;
+              display: none;
+              opacity: 0;
+
+              button {
+                width: 100%;
+                padding: .4rem;
+                text-align: left;
+
+                &:hover {
+                  background-color:rgba(0, 0, 0, 0.05);
+                }
+              }
+            }
+            .toggle-modal.show-modal {
+              top: 24px;
+              right: 0;
+              display: flex;
+              opacity: 1;
+            }
+            .threedot-btn {
+              border-radius: .4rem;
+              padding: .4rem;
+              
+              &:hover {
+                background-color:rgba(0, 0, 0, 0.08);
+              }
+            }
+            .toggle-modal.show-modal + .threedot-btn {
+              background-color:rgba(0, 0, 0, 0.08);
+            }
+          }
         }
-  
-        .detail-displayName {
-          font-size: 1.3rem;
-          font-weight: 700;
-  
-          strong {
-            font-weight: 400;
+
+        .detail-header-left--footer-wrapper {
+          padding: 0 1.5rem;
+          margin-top: .8rem;
+
+          span {
+            font-size: 1.3rem;
           }
         }
       }
