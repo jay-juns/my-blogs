@@ -60,6 +60,20 @@ export const handleDeleteInquire = documentID => {
   });
 }
 
+export const handleEditInquire = (inquire) => {
+  return new Promise((resolve, reject) => {    
+     firestore
+      .collection('inquires')
+      .doc(inquire.id) 
+      .update(inquire)  
+      .then(() =>{
+        resolve();
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}
 
 export const handleFetchInquire = (inquireID) => {
   return new Promise((resolve, reject) => {    
@@ -75,22 +89,6 @@ export const handleFetchInquire = (inquireID) => {
             documentID: inquireID
           });
         }
-      })
-      .catch(err => {
-        reject(err)
-      })
-  });
-}
-
-
-export const handleEditInquire = (inquire) => {
-  return new Promise((resolve, reject) => {    
-     firestore
-      .collection('inquires')
-      .doc(inquire.id) 
-      .update(inquire)  
-      .then(() =>{
-        resolve();
       })
       .catch(err => {
         reject(err)

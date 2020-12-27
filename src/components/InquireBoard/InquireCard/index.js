@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { fetchInquireStart, setInquire, updateInquire  } from './../../../redux/Inquires/inquires.actions';
+import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
 
 import CKEditor from 'ckeditor4-react';
 
@@ -31,12 +31,12 @@ const InquireCard = ({}) => {
     documentID
   } = inquire;
 
-  const [inquireEditTitle, setinquireEditTitle] = useState(inquireTitle);
+  const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState(inquireDesc);
 
   const resetForm = () => {
     setHideModal(true);
-    setinquireEditTitle(inquireTitle);
+    setinquireEditTitle('');
     setinquireEditDesc(inquireDesc);
   };
 
@@ -73,7 +73,6 @@ const InquireCard = ({}) => {
         id: documentID
       })
     );
-
     resetForm();
   };
 
@@ -92,6 +91,9 @@ const InquireCard = ({}) => {
             </div>
             <div>
               <Button onClick={() => toggleModal()}>수정하기</Button>
+              <Button onClick={() => dispatch(deleteInquireStart(documentID))}>
+                삭제
+              </Button> 
             </div>
             <Modal {...configModal}>
               <form onSubmit={handleSubmit}>
@@ -124,7 +126,7 @@ const InquireCard = ({}) => {
                 <div className="btn-wrap">
                   <Button className="ent-btn" type="submit">
                     수정 완료
-                  </Button> 
+                  </Button>
                 </div>
               </form>
             </Modal>
