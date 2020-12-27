@@ -39,28 +39,5 @@
 <br />
 
 ## 스크린샷
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492234-bcc12e80-40b4-11eb-9e25-a920532314ec.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492239-bf238880-40b4-11eb-8044-a83473669db8.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492245-c0ed4c00-40b4-11eb-87a5-a7edaf4ac200.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492248-c21e7900-40b4-11eb-96f5-1fb63b03941e.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492255-c3e83c80-40b4-11eb-9ca8-0812d223fae8.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102599388-c0aa8a80-4160-11eb-9ade-b523ea00208f.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492274-ca76b400-40b4-11eb-9963-54b1ffb4add1.png" />
-</div>
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/102492278-cc407780-40b4-11eb-87fa-cc420a66de2d.png" />
-</div>
+
 
