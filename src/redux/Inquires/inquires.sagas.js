@@ -49,7 +49,7 @@ export function* deleteInquire({ payload }) {
   try {
     yield handleDeleteInquire(payload);
     yield put (
-      fetchInquiresStart()
+      fetchInquireStart()
     );
 
   } catch(err) {
