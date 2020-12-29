@@ -3,15 +3,15 @@ import './styles.scss';
 
 const FormInput = ({ handleChange, label, formClass, ...otherProps }) => {
   return (
-    <div className={formClass}>
+    <section className={formClass}>
       {label && (
         <label>
           {label}
         </label>
       )}
 
-      <input className="formInput"  onChange={handleChange} {...otherProps} />
-    </div>
+      <input className="formInput" onChange={handleChange} {...otherProps} />
+    </section>
   );
 }
 

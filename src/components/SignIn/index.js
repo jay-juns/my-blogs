@@ -70,7 +70,8 @@ const SignIn = props => {
               type="email"
               name="email"
               value={email}
-              placeholder= "Email"
+              autoComplete="username"
+              placeholder= "이메일 입력"
               handleChange={e => setEmail(e.target.value)}
             />
 
@@ -78,7 +79,10 @@ const SignIn = props => {
               type="password"
               name="password"
               value={password}
-              placeholder= "Password"
+              placeholder= "비밀번호 입력"
+              autoComplete="new-password"
+              aria-describedby="password-constraints" 
+              required=""
               handleChange={e => setPassword(e.target.value)}
             />
 

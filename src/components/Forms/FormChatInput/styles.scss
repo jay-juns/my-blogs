@@ -1,0 +1,29 @@
+.chat-enter {
+  resize: none;
+  width: 100%;
+  height: 15px;
+  background-color: transparent;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #a7a7a7;
+  margin-top: 1rem;
+  padding: .4rem;
+  overflow: hidden;
+}
+
+.chat-enter:focus {
+  outline: none !important;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #a7a7a7;
+}
+
+.comment-btn-wrap {
+  display: none;
+}
+
+.chat-enter.show-btn + .comment-btn-wrap {
+  display: flex;
+}

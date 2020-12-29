@@ -11,6 +11,7 @@ import Button from './../../Forms/Button';
 import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
+import FormChatInput from './../../Forms/FormChatInput';
 
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -177,6 +178,20 @@ const InquireCard = ({}) => {
       </div>
       <div className="detail-btn-wrap">
         <Button className="back-btn" onClick={() => history.goBack()}>목록으로 이동</Button>
+      </div>
+      <div>
+        <div>
+          <h3>댓글 0개</h3>
+        </div>
+        
+        <FormChatInput 
+          label="코멘트 작성"
+          formClass="chat-input"
+        />
+
+        <div>
+
+        </div>
       </div>
     </div>
   );
