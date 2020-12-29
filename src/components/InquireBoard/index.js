@@ -81,8 +81,7 @@ const InquireBoard = ({}) => {
         inquireTag,
         inquireTitle,
         inquireDesc,
-        displayName,
-        comment: []
+        displayName
       })
     );
     resetForm();

@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart,
-  addInquireComments } from './../../../redux/Inquires/inquires.actions';
+addInquireComments } from './../../../redux/Inquires/inquires.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
+// import moment from 'moment';
 
 import Button from './../../Forms/Button';
 import Modal from './../../Forms/Modal';
@@ -111,12 +112,17 @@ const InquireCard = ({}) => {
 
   const handleChat = () => {
 
-    if( !currentUser ) return null;
+    if( !currentUser ) return null;   
 
     dispatch(
       addInquireComments({
-        chatUserName,
-        inquireComments
+        comments: [
+          {
+            chatUserName,
+            inquireComments
+          }
+        ],
+        id: documentID
       })
     )
   }
@@ -190,6 +196,7 @@ const InquireCard = ({}) => {
               <span>
                 {inquireTag}
               </span>
+              <p></p>
             </div>
           </div>
           
@@ -217,7 +224,7 @@ const InquireCard = ({}) => {
         />
 
         <div>
-
+             여기에 채팅이 옵니다       
         </div>
       </div>
     </div>

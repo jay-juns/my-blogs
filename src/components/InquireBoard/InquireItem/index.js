@@ -16,7 +16,7 @@ const InquireItem = (inquireText) => {
   } = inquireText;
 
   
-  if(!inquireTitle || !displayName || !documentID) return null;
+  if(!inquireTitle || !displayName || !documentID) return null;  
 
   const toDate = createdDate.toDate().toString();
 
