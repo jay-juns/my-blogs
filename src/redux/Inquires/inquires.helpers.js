@@ -95,3 +95,18 @@ export const handleFetchInquire = (inquireID) => {
       })
   });
 }
+
+export const handleAddInquireComments = inquireComment => {
+  return new Promise((resolve, reject) => {    
+     firestore
+      .collection('inquires')
+      .doc() 
+      .set(inquireComment)  
+      .then(() => {
+        resolve();
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
+import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart,
+  addInquireComments } from './../../../redux/Inquires/inquires.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -42,9 +43,12 @@ const InquireCard = ({}) => {
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');
+  const [inquireComments, setInquireComments] = useState('');
+  
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
   const adminClass = isAdmin ? '' : 'hide';
+  
   const resetForm = () => {
     setHideModal(true);
     setShow(false);
@@ -53,6 +57,15 @@ const InquireCard = ({}) => {
     setInquireEditTag('제안');
   };
 
+  let userChatInfo = [];
+  
+  for (let name in currentUser) { 
+    if (name.includes('displayName')) {
+      userChatInfo.push(currentUser.displayName); 
+    }
+  }
+
+  const chatUserName = userChatInfo[0];  
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -96,6 +109,17 @@ const InquireCard = ({}) => {
     history.push('/inquire');
   }
 
+  const handleChat = () => {
+
+    if( !currentUser ) return null;
+
+    dispatch(
+      addInquireComments({
+        chatUserName,
+        inquireComments
+      })
+    )
+  }
 
   return(
     <div className="detail-wrap">
@@ -187,6 +211,9 @@ const InquireCard = ({}) => {
         <FormChatInput 
           label="코멘트 작성"
           formClass="chat-input"
+          value={inquireComments}
+          handleChange={e => setInquireComments(e.target.value)}
+          onClick={() => handleChat()}
         />
 
         <div>

@@ -81,7 +81,8 @@ const InquireBoard = ({}) => {
         inquireTag,
         inquireTitle,
         inquireDesc,
-        displayName
+        displayName,
+        comment: []
       })
     );
     resetForm();
@@ -233,7 +234,7 @@ const InquireBoard = ({}) => {
           };
 
           return (
-            <div className="show-row" key={documentID}> 
+            <div className="show-row" key={documentID}>  
               <InquireItem
               {...configInquireContent}
                />            

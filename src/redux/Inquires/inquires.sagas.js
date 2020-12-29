@@ -1,7 +1,9 @@
 import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire } from './inquires.actions';
-import { handleFetchInquires, handleAddInquire, handleDeleteInquire, handleFetchInquire, handleEditInquire } from './inquires.helpers';
+import { handleFetchInquires, handleAddInquire, 
+  handleDeleteInquire, handleFetchInquire, 
+  handleEditInquire, handleAddInquireComments } from './inquires.helpers';
 import  inquiresTypes from './inquires.types';
 
 export function* addInquire({ payload }) {
@@ -24,7 +26,7 @@ export function* addInquire({ payload }) {
 }
 
 export function* onAddInquiresStart() {
-  yield takeLatest(inquiresTypes.ADD_INQUIRES_START, addInquire)
+  yield takeLatest(inquiresTypes.ADD_INQUIRES_START, addInquire);
 }
 
 
@@ -69,7 +71,7 @@ export function* fetchInquire({ payload }) {
     yield put(
       setInquire(inquire)
     );
-  } catch (err) {
+  } catch(err) {
     // console.log(err);
   }
 }
@@ -86,7 +88,7 @@ export function* editInquire({ payload }) {
     yield put(
       fetchInquireStart(payload.id)
     );
-  } catch (err) {
+  } catch(err) {
     // console.log(err);
   }
 }
@@ -95,12 +97,33 @@ export function* onEditInquireStart() {
   yield takeLatest(inquiresTypes.EDIT_INQUIRE, editInquire);
 }
 
+
+export function* addInquireComments({ payload }) {
+  try {
+    const timestamp = new Date();
+    yield handleAddInquireComments({
+      ...payload,
+      timestamp
+    });
+    yield put(
+      fetchInquireStart()
+    )
+  } catch(err) {
+    // console.log(err);
+  }
+}
+
+export function* onAddInquireComments() {
+  yield takeLatest(inquiresTypes.ADD_INQUIRECOMMENTS, addInquireComments);
+}
+
 export default function* inquiresSagas() {
   yield all([
     call(onAddInquiresStart),
     call(onFetchInquiresStart),
     call(onDeleteInquireStart),
     call(onFetchInquireStart),
-    call(onEditInquireStart)
+    call(onEditInquireStart),
+    call(onAddInquireComments)
   ])
 }
