@@ -10,12 +10,10 @@ export function* addInquire({ payload }) {
 
   try {
     const timestamp = new Date();
-    const comments = [];
     yield handleAddInquire({
       ...payload,
       inquireAdminUserUID: auth.currentUser.uid,
-      createdDate: timestamp,
-      comments    
+      createdDate: timestamp
     });
 
     yield put(
@@ -108,7 +106,7 @@ export function* addInquireComments({ payload }) {
       date: timestamp      
     });
     yield put(
-      fetchInquiresStart()
+      fetchInquireStart()
     )
   } catch(err) {
     // console.log(err);

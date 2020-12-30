@@ -44,7 +44,7 @@ const FormChatInput = ({ label, formClass, handleChange, ...otherProps }) => {
       </textarea>
       <div className="comment-btn-wrap">
         <button onClick={() => handleCancle()}>취소</button>
-        <button {...otherProps}>입력하기</button>
+        <button {...otherProps}>보내기</button>
       </div>
     </section>
   );

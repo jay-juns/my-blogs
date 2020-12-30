@@ -96,12 +96,12 @@ export const handleFetchInquire = (inquireID) => {
   });
 }
 
-export const handleAddInquireComments = inquireComment => {
+export const handleAddInquireComments = (inquireComment) => {
   return new Promise((resolve, reject) => {    
      firestore
       .collection('inquires')
-      .doc() 
-      .set(inquireComment)  
+      .doc(inquireComment.id) 
+      .update({"items": inquireComment})  
       .then(() => {
         resolve();
       })

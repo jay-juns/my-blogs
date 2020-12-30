@@ -112,16 +112,12 @@ const InquireCard = ({}) => {
 
   const handleChat = () => {
 
-    if( !currentUser ) return null;   
+    if( !currentUser ) return null;
 
     dispatch(
       addInquireComments({
-        comments: [
-          {
-            chatUserName,
-            inquireComments
-          }
-        ],
+        chatUserName,
+        inquireComments,
         id: documentID
       })
     )
@@ -224,7 +220,7 @@ const InquireCard = ({}) => {
         />
 
         <div>
-             여기에 채팅이 옵니다       
+                
         </div>
       </div>
     </div>
