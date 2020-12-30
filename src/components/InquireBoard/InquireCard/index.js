@@ -14,6 +14,7 @@ import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
+import InquireComments from './../InquireComment';
 
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -85,7 +86,6 @@ const InquireCard = ({}) => {
         setInquire({})
       )
     }
-
   }, []);
 
   const handleSubmit = e => {
@@ -121,6 +121,10 @@ const InquireCard = ({}) => {
         id: documentID
       })
     )
+  }
+
+  const configInqure = {
+    inquire
   }
 
   return(
@@ -220,7 +224,7 @@ const InquireCard = ({}) => {
         />
 
         <div>
-                
+           <InquireComments {...configInqure}/>           
         </div>
       </div>
     </div>

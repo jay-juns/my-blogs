@@ -75,6 +75,22 @@ export const handleEditInquire = (inquire) => {
   });
 }
 
+export const handleAddInquireComments = (inquireComment) => {
+  return new Promise((resolve, reject) => {    
+
+     firestore
+      .collection('inquires')
+      .doc(inquireComment.id) 
+      .update( {"items": [inquireComment] })  
+      .then(() => {
+        resolve();
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}
+
 export const handleFetchInquire = (inquireID) => {
   return new Promise((resolve, reject) => {    
      firestore
@@ -89,22 +105,6 @@ export const handleFetchInquire = (inquireID) => {
             documentID: inquireID
           });
         }
-      })
-      .catch(err => {
-        reject(err)
-      })
-  });
-}
-
-export const handleAddInquireComments = (inquireComment) => {
-  return new Promise((resolve, reject) => {    
-
-     firestore
-      .collection('inquires')
-      .doc(inquireComment.id) 
-      .update( {"items": [inquireComment] })  
-      .then(() => {
-        resolve();
       })
       .catch(err => {
         reject(err)
