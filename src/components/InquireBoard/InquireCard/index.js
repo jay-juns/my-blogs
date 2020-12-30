@@ -44,7 +44,7 @@ const InquireCard = ({}) => {
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');
-  const [inquireComments, setInquireComments] = useState('');
+  const [inquireText, setInquireText] = useState('');
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
@@ -66,7 +66,7 @@ const InquireCard = ({}) => {
     }
   }
 
-  const chatUserName = userChatInfo[0];  
+  const author = userChatInfo[0];  
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -112,12 +112,12 @@ const InquireCard = ({}) => {
 
   const handleChat = () => {
 
-    if( !currentUser ) return null;
+    if(!currentUser) return null;
 
     dispatch(
       addInquireComments({
-        chatUserName,
-        inquireComments,
+        author,
+        inquireText,
         id: documentID
       })
     )
@@ -214,8 +214,8 @@ const InquireCard = ({}) => {
         <FormChatInput 
           label="코멘트 작성"
           formClass="chat-input"
-          value={inquireComments}
-          handleChange={e => setInquireComments(e.target.value)}
+          value={inquireText}
+          handleChange={e => setInquireText(e.target.value)}
           onClick={() => handleChat()}
         />
 
