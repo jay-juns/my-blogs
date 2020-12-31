@@ -34,8 +34,3 @@ export const updateInquire = inquire => ({
   type: inquiresTypes.EDIT_INQUIRE,
   payload: inquire
 });
-
-export const addInquireComments = inquireComments => ({
-  type: inquiresTypes.ADD_INQUIRECOMMENTS,
-  payload: inquireComments
-});

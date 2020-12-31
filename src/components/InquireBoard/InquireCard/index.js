@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 
-import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart,
-addInquireComments } from './../../../redux/Inquires/inquires.actions';
+import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
+import { addInquireComments, fetchInquireComments, setInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -14,7 +14,6 @@ import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
-import InquireComments from './../InquireComment';
 
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,15 +22,18 @@ import './styles.scss';
 
 const mapState = state => ({
   inquire: state.inquiresData.inquire,
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  inquireComments: state.messages.inquireComments
 })
 
 const InquireCard = ({}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { inquireID } = useParams();
-  const { inquire } = useSelector(mapState);
-  const { currentUser } = useSelector(mapState);
+  const { inquire, currentUser, inquireComments } = useSelector(mapState);
+
+  console.log(inquireComments)
+
   const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
   const {
@@ -88,6 +90,18 @@ const InquireCard = ({}) => {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(
+      fetchInquireComments()
+    )
+
+    return () => {
+      dispatch(
+        setInquireComments({})
+      )
+    }
+  }, []);
+
   const handleSubmit = e => {
     e.preventDefault();
     
@@ -122,10 +136,7 @@ const InquireCard = ({}) => {
       })
     )
   }
-
-  const configInqure = {
-    inquire
-  }
+  
 
   return(
     <div className="detail-wrap">
@@ -150,7 +161,7 @@ const InquireCard = ({}) => {
                   </Button>
                 </div>
                 {isAdmin && [
-                  <Button className="threedot-btn" onClick={() => setShow(!show)}>
+                  <Button key="showButton" className="threedot-btn" onClick={() => setShow(!show)}>
                     <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
                   </Button>
                 ]}
@@ -224,7 +235,7 @@ const InquireCard = ({}) => {
         />
 
         <div>
-           <InquireComments {...configInqure}/>           
+                    
         </div>
       </div>
     </div>

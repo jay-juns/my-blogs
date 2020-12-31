@@ -20,8 +20,7 @@ const mapState = ({ inquiresData, user }) => ({
 })
 
 const InquireBoard = ({}) => {
-  const { inquires } = useSelector(mapState);
-  const { currentUser } = useSelector(mapState);
+  const { inquires, currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const history = useHistory();
   const { inquireType } = useParams();

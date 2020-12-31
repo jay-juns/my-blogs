@@ -3,19 +3,17 @@ import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire } from './inquires.actions';
 import { handleFetchInquires, handleAddInquire, 
   handleDeleteInquire, handleFetchInquire, 
-  handleEditInquire, handleAddInquireComments } from './inquires.helpers';
+  handleEditInquire } from './inquires.helpers';
 import  inquiresTypes from './inquires.types';
 
 export function* addInquire({ payload }) {
 
   try {
     const timestamp = new Date();
-    const items = {}
     yield handleAddInquire({
       ...payload,
       inquireAdminUserUID: auth.currentUser.uid,
-      createdDate: timestamp,
-      items
+      createdDate: timestamp
     });
 
     yield put(
@@ -100,24 +98,6 @@ export function* onEditInquireStart() {
 }
 
 
-export function* addInquireComments({ payload }) {
-  try {
-    const timestamp = new Date();
-    yield handleAddInquireComments({
-      ...payload,
-      date: timestamp      
-    });
-    yield put(
-      fetchInquireStart(payload.id)
-    )
-  } catch(err) {
-    // console.log(err);
-  }
-}
-
-export function* onAddInquireComments() {
-  yield takeLatest(inquiresTypes.ADD_INQUIRECOMMENTS, addInquireComments);
-}
 
 export default function* inquiresSagas() {
   yield all([
@@ -125,7 +105,6 @@ export default function* inquiresSagas() {
     call(onFetchInquiresStart),
     call(onDeleteInquireStart),
     call(onFetchInquireStart),
-    call(onEditInquireStart),
-    call(onAddInquireComments)
+    call(onEditInquireStart)
   ])
 }
