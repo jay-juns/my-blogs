@@ -152,6 +152,14 @@
     
               .show-titie-first {
                 flex: 1;
+
+                .comment-length {
+                  margin-left: .4rem;
+                  color: $blue;
+                  position: relative;
+                  top: -2px;
+                  font-weight: 600;
+                }
               }
               
               .show-title-nick {

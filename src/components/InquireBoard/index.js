@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
+import { fetchInquireComments, setInquireComments } from './../../redux/Comments/InquireComments/InquireComments.actions';
 
 import CKEditor from 'ckeditor4-react';
 import FormInput from '../Forms/FormInput';
@@ -14,13 +15,14 @@ import Pagination from './InquirePagination';
 
 import './styles.scss';
 
-const mapState = ({ inquiresData, user }) => ({
+const mapState = ({ inquiresData, user, messages }) => ({
   inquires: inquiresData.inquires,
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  inquireComments: messages.inquireComments
 })
 
 const InquireBoard = ({}) => {
-  const { inquires, currentUser } = useSelector(mapState);
+  const { inquires, currentUser, inquireComments } = useSelector(mapState);
   const dispatch = useDispatch();
   const history = useHistory();
   const { inquireType } = useParams();
@@ -56,6 +58,18 @@ const InquireBoard = ({}) => {
       fetchInquiresStart({ inquireType })
     )
   }, [inquireType]);
+
+  useEffect(() => {
+    dispatch(
+      fetchInquireComments()
+    )
+
+    return () => {
+      dispatch(
+        setInquireComments({})
+      )
+    }
+  }, []);
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -218,17 +232,29 @@ const InquireBoard = ({}) => {
           } = inquire;
           
           if(!inquireTitle) return null;
-          
+
+          let comLengResult = [];
+
+          if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0 ) {
+            inquireComments.messageData.forEach((el) => {
+              comLengResult.push(el.id);
+            })
+          }
+
           const classBg = inquireTag === '제안' ? 'green' : 'blue';
-           
+     
           const configInquireContent = {
             inquireTitle,
             documentID, 
             displayName,
             inquireTag,
             classBg,
-            createdDate
+            createdDate,
+            comLengResult
           };
+        
+
+          
 
           return (
             <div className="show-row" key={documentID}>  

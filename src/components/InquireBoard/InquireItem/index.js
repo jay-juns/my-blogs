@@ -9,10 +9,19 @@ const InquireItem = (inquireText) => {
     documentID,
     inquireTag,
     classBg,
-    createdDate
+    createdDate,
+    comLengResult
   } = inquireText;
 
-  
+  let comMsg = comLengResult.filter((lengID) => {
+    if(lengID === documentID) {
+      return true;
+    }
+    return false;
+  });
+
+  const comLeng = comMsg.length === 0 ? '' : `[${comMsg.length}]`;
+
   if(!inquireTitle || !displayName || !documentID) return null;  
 
   const toDate = createdDate.toDate().toString();
@@ -31,7 +40,8 @@ const InquireItem = (inquireText) => {
               {inquireTag}
             </p>
             <p className="show-titie-first">
-              {inquireTitle}
+              <span>{inquireTitle}</span> 
+              <span className="comment-length">{comLeng}</span>
             </p>
             <p className="show-title-nick">
               {displayName}
