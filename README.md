@@ -2,6 +2,7 @@
 1. 프론트 - React, hooks, Redux, redux saga, thunk 
 2. 서버 - Firebase firestore
 <br />
+<br />
 
 >**그밖에 이용한 라이브러리:**
 - react-router-dom, scss, moment, reselect, uuid, fontawesome
@@ -10,6 +11,8 @@
 
 ## 현재 작업 앱의 목적
 - 글로벌 기업 앱(트위치, 유투브, 인스타그램, 넷플릭스 등등)의 일부 기능들을 스스로 직접 구현하기 위함입니다.
+<br />
+<br />
 
 ## 현재 완료 기능 및 앞으로 작업해야 할 기능
 
