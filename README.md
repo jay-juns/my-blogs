@@ -8,6 +8,9 @@
 <br />
 <br />
 
+## 현재 작업 앱의 목적
+- 글로벌 기업 앱(트위치, 유투브, 인스타그램, 넷플릭스 등등)의 일부 기능들을 스스로 직접 구현하기 위함입니다.
+
 ## 현재 완료 기능 및 앞으로 작업해야 할 기능
 
 - [x] ~~로그인, 구글 로그인, 회원가입~~ 
@@ -31,10 +34,12 @@
 - [ ] 회원 탈퇴
 - [ ] 블로그 카드 클릭시 디테일 정보 보여주기 (넷플릭스처럼 모달로)
 - [ ] 각종 얼럿 추가(예: 로그인 실패및 비밀번호 중복, 글 완료 메세지 등)
-- [ ] 댓글 쓰기 및 수정 및 삭제
+- [x] ~~댓글 쓰기 및 수정 및 삭제~~
 - [ ] 좋아요 및 각종 신고 기능
 - [ ] 검색기능
 - [ ] 모바일 버전 UI
+- [ ] 테스트코드 작성
+- [ ] 타입 스크립트 적용
 
 <br />
 <br />
@@ -57,7 +62,7 @@
 #### 문의 사항 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103167660-6e5c1e80-4870-11eb-996b-558ef396aecb.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/103433811-1ab84f00-4c3b-11eb-939a-a94c6ac6219a.png" width="90%" />
 </div>
 <br />
 
@@ -73,4 +78,10 @@
 
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103168132-f55ec600-4873-11eb-8d70-3cb1a97b03e9.gif" width="90%" />
+</div>
+
+#### 문의사항 글 안에서 댓글 등록
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/103433813-1db33f80-4c3b-11eb-8aab-47232ff69ee2.gif" width="90%" />
 </div>
