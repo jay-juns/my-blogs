@@ -114,7 +114,7 @@ const BlogMain = ({}) => {
 
         <FormSelect {...configFilter} />
 
-        <Button className="write-btn" onClick={() => toggleModal()}>
+        <Button className="write-btn btn" onClick={() => toggleModal()}>
           글쓰기
         </Button>
       </div>
@@ -156,7 +156,7 @@ const BlogMain = ({}) => {
               onChange={evt => setContentDesc(evt.editor.getData())}
             />
             <div className="btn-wrap">
-              <Button className="ent-btn" type="submit">
+              <Button className="ent-btn btn" type="submit">
                 생성하기
               </Button> 
             </div>

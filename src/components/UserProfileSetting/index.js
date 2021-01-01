@@ -20,7 +20,7 @@ const UserProfileSetting = props => {
             </span>
           </div>
           <div className="profile-left-menu">
-            <Button className="update-btn">
+            <Button className="update-btn btn">
               프로필 사진 업데이트
             </Button>
             <span>10MB 이내의 JPEG, PNG, GIF 형식이어야 합니다</span>

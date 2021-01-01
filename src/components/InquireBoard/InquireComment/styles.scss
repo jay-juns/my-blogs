@@ -1,6 +1,33 @@
-.inquire-comment-area {
+.inquire-text {
+  margin: 3rem 0;
 
-  span {
-    color: #000;
+  .inquire-comment-area {
+    margin-top: 3rem;
+  
+    .inqure-comment-area--head {
+      display: flex;
+      align-items: center;
+      color: #000;
+  
+      p {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+  
+      span {
+        font-size: 1.3rem;
+        text-indent: .6rem;
+        color: #666;
+      }
+    }
+  
+    .inqure-comment-area--body {
+      margin-top: .8rem;
+  
+      p {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
   }
 }

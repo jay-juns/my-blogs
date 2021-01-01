@@ -1,14 +1,16 @@
+@import './../../../var.scss';
+
 .chat-enter {
   resize: none;
   width: 100%;
-  height: 15px;
+  height: 19px;
   background-color: transparent;
   border-left: 0;
   border-top: 0;
   border-right: 0;
   border-bottom: 1px solid #a7a7a7;
   margin-top: 1rem;
-  padding: .4rem;
+  padding: .4rem 0 0;
   overflow: hidden;
 }
 
@@ -22,6 +24,23 @@
 
 .comment-btn-wrap {
   display: none;
+  margin-top: .8rem;
+  justify-content: flex-end;
+
+  button {
+    padding: .8rem;
+    border-radius: .4rem;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 400;
+    margin-right: .4rem;
+  }
+
+  .comment-submit-btn {
+    background-color: $blue;
+    color: #fff;
+    margin-right: 0;
+  }
 }
 
 .chat-enter.show-btn + .comment-btn-wrap {

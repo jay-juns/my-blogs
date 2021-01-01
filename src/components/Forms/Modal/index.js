@@ -13,7 +13,7 @@ const Modal = ({ hideModal, toggleModal, children }) => {
     <>
       <div className="overLay" onClick={() => toggleModal()}></div>
       <div className="modal-wrap">
-        <button className="closed-btn" onClick={() => toggleModal()}>
+        <button className="closed-btn btn" onClick={() => toggleModal()}>
           <FontAwesomeIcon className="i" icon={faTimes} />
         </button>
         <div className="modal-contents">

@@ -119,7 +119,7 @@ const InquireBoard = ({}) => {
         
         <FormSelect {...configFilter} />
 
-        <Button className="inquire-write-btn" onClick={() => toggleModal()}>
+        <Button className="inquire-write-btn btn" onClick={() => toggleModal()}>
           글쓰기
         </Button>
       </div>
@@ -163,7 +163,7 @@ const InquireBoard = ({}) => {
             />
 
             <div className="btn-wrap">
-              <Button className="ent-btn" type="submit">
+              <Button className="ent-btn btn" type="submit">
                 글쓰기
               </Button> 
             </div>
@@ -182,7 +182,7 @@ const InquireBoard = ({}) => {
           <div className="show-item-wrap--head">
             <div className="show-item-header-title">
               <p>
-                No
+                추천수
               </p>
             </div>
 
@@ -208,7 +208,7 @@ const InquireBoard = ({}) => {
 
         
         
-        {(Array.isArray(data) && data.length > 0) && currentPosts.map((inquire, pos) => {
+        {(Array.isArray(data) && data.length > 0) && currentPosts.map((inquire) => {
           const {
             inquireTitle,
             documentID,
@@ -227,8 +227,7 @@ const InquireBoard = ({}) => {
             displayName,
             inquireTag,
             classBg,
-            createdDate,
-            pos
+            createdDate
           };
 
           return (

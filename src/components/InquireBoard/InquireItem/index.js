@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import moment from 'moment';
-
 
 const InquireItem = (inquireText) => {
   const {
@@ -11,7 +9,6 @@ const InquireItem = (inquireText) => {
     documentID,
     inquireTag,
     classBg,
-    pos,
     createdDate
   } = inquireText;
 
@@ -25,7 +22,7 @@ const InquireItem = (inquireText) => {
     <div className="show-item-wrap" >
       <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
-          <p>{pos + 1}</p>
+          <p></p>
         </div>
 
         <div className="show-text">

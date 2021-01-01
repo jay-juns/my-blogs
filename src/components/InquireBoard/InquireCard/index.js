@@ -7,13 +7,14 @@ import { addInquireComments, fetchInquireComments, setInquireComments } from './
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
-// import moment from 'moment';
 
 import Button from './../../Forms/Button';
 import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
+
+import InquireComments from './../InquireComment';
 
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,8 +32,6 @@ const InquireCard = ({}) => {
   const history = useHistory();
   const { inquireID } = useParams();
   const { inquire, currentUser, inquireComments } = useSelector(mapState);
-
-  console.log(inquireComments)
 
   const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
@@ -70,6 +69,11 @@ const InquireCard = ({}) => {
   }
 
   const author = userChatInfo[0];  
+  const resetInput = () => {
+    setInquireText('');
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("submitBtn").classList.remove('btn');
+  }
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -124,7 +128,8 @@ const InquireCard = ({}) => {
     history.push('/inquire');
   }
 
-  const handleChat = () => {
+  const handleChat = e => {
+    e.preventDefault();
 
     if(!currentUser) return null;
 
@@ -134,9 +139,28 @@ const InquireCard = ({}) => {
         inquireText,
         id: documentID
       })
-    )
+    );
+    resetInput();
+  };
+
+  let comBoxResult;
+  let comLeng = 0;
+
+  if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0) {
+
+    comBoxResult = inquireComments.messageData.filter((keyID) => {
+      if (keyID.id === documentID) {
+        return true;
+      }
+      return false;
+    });
+
+    comLeng = Object.keys(comBoxResult).length;   
   }
   
+  const configInquireComments = {
+    comBoxResult
+  }
 
   return(
     <div className="detail-wrap">
@@ -219,24 +243,23 @@ const InquireCard = ({}) => {
         </div>
       </div>
       <div className="detail-btn-wrap">
-        <Button className="back-btn" onClick={() => history.goBack()}>목록으로 이동</Button>
+        <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
       </div>
-      <div>
-        <div>
-          <h3>댓글 0개</h3>
+      <div className="inquire-detail-comment-wrapper">
+        <div className="inquire-detail-comment-wrapper--header">
+          <p>댓글 {comLeng}개</p>
         </div>
-        
-        <FormChatInput 
-          label="코멘트 작성"
-          formClass="chat-input"
-          value={inquireText}
-          handleChange={e => setInquireText(e.target.value)}
-          onClick={() => handleChat()}
-        />
+        <form onSubmit={handleChat}>
+          <FormChatInput 
+            label="댓글 작성"
+            formClass="chat-input"
+            value={inquireText}
+            handleChange={e => setInquireText(e.target.value)}
+          />
+        </form>
 
-        <div>
-                    
-        </div>
+        <InquireComments {...configInquireComments}/>         
+        
       </div>
     </div>
   );

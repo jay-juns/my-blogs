@@ -46,7 +46,17 @@ button {
   border: 0;
   cursor: pointer;
 }
-
+button:not(.btn) {
+ color:#fff !important;
+ background-color:#e6e6ea !important;
+ cursor: context-menu !important;
+}
+button:not(.btn):hover {
+  color:#fff !important;
+ background-color:#e6e6ea !important;
+ cursor: context-menu !important;
+}
+ 
 .hide {
   display: none !important;
 }
