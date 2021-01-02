@@ -7,7 +7,7 @@
 >**그밖에 이용한 라이브러리:**
 - react-router-dom, scss, moment, reselect, uuid, fontawesome
 <br />
-<font color="green"> Some green text </font>
+- ![#1589F0](https://placehold.it/15/1589F0/000000?text=+) `#1589F0`
 <br />
 
 ## 앱의 용도/목적
