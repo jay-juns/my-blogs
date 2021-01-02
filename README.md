@@ -4,7 +4,7 @@
 <br />
 <br />
 
-<em style="color: red !important;">글자 색 변경중</em>
+<em><a style="color: red !important;">글자 색 변경중</a></em>
 
 >**그밖에 이용한 라이브러리:**
 - react-router-dom, scss, moment, reselect, uuid, fontawesome
