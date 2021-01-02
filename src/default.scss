@@ -47,13 +47,15 @@ button {
   cursor: pointer;
 }
 button:not(.btn) {
- color:#fff !important;
+ color:#adadad !important;
  background-color:#e6e6ea !important;
+ border: none !important;
  cursor: context-menu !important;
 }
 button:not(.btn):hover {
-  color:#fff !important;
+ color:#adadad !important;
  background-color:#e6e6ea !important;
+ border: none !important;
  cursor: context-menu !important;
 }
  

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
 import { addInquireComments, fetchInquireComments, setInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
@@ -249,6 +249,8 @@ const InquireCard = ({}) => {
         <div className="inquire-detail-comment-wrapper--header">
           <p>댓글 {comLeng}개</p>
         </div>
+
+        {currentUser &&[
         <form onSubmit={handleChat}>
           <FormChatInput 
             label="댓글 작성"
@@ -257,9 +259,14 @@ const InquireCard = ({}) => {
             handleChange={e => setInquireText(e.target.value)}
           />
         </form>
+        ]} 
+        {!currentUser && [
+        <div className="show-guest-user">
+          <Link to={'/login'}>로그인을 해야 댓글 작성이 가능합니다. 먼저 로그인을 해주세요.</Link>
+        </div>
+        ]}
 
-        <InquireComments {...configInquireComments}/>         
-        
+          <InquireComments {...configInquireComments}/> 
       </div>
     </div>
   );

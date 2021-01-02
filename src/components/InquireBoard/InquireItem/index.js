@@ -31,7 +31,7 @@ const InquireItem = (inquireText) => {
     <div className="show-item-wrap" >
       <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
-          <p></p>
+          <p>0</p>
         </div>
 
         <div className="show-text">

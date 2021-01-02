@@ -27,7 +27,6 @@ export const handleFetchInquires = ({ inquireType }) => {
       .get()  
       .then(snapshot => {
         const data = [
-
           ...snapshot.docs.map(doc => {
           return {
             ...doc.data(),

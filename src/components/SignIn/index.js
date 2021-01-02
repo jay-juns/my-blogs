@@ -30,7 +30,11 @@ const SignIn = props => {
   useEffect(() => {
     if (currentUser) {
       resetForm();
-      history.push('/');
+      if(history.length > 0) {
+        history.goBack();
+      } else {
+        history.push('/');
+      }
     }
 
   }, [currentUser]);
@@ -86,7 +90,7 @@ const SignIn = props => {
               handleChange={e => setPassword(e.target.value)}
             />
 
-            <Button className="login-btn" type="submit">
+            <Button className="login-btn btn" type="submit">
               로그인
             </Button>
 
