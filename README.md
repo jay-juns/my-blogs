@@ -7,6 +7,7 @@
 >**그밖에 이용한 라이브러리:**
 - react-router-dom, scss, moment, reselect, uuid, fontawesome
 <br />
+<font color="green"> Some green text </font>
 <br />
 
 ## 앱의 용도/목적
@@ -113,7 +114,6 @@
 <br />
 <br />
 <br />
-<font color="green"> Some green text </font>
 ---------------------------------------
 ### 배포는 준비중입니다.
 ---------------------------------------
