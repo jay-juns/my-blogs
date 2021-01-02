@@ -113,7 +113,6 @@
 <br />
 <br />
 <br />
-<em style="color: red !important;"><a style="color: red !important;">글자 색 변경중</a></em>
 
 ---------------------------------------
 ### 배포는 준비중입니다.
