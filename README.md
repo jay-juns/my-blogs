@@ -107,6 +107,12 @@
   <img src="https://user-images.githubusercontent.com/64716396/103433813-1db33f80-4c3b-11eb-8aab-47232ff69ee2.gif" width="90%" />
 </div>
 
+#### 메인에서 문의사항 디테일 페이지로 이동
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/103498292-90b0f600-4e87-11eb-9555-dc8dc9ef9878.gif" width="90%" />
+</div>
+
 <br />
 <br />
 <br />
