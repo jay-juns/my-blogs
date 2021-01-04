@@ -7,7 +7,8 @@ const LoadMore = ({
   
   return (
     <div className="add-btn-wrap">
-      <Button className="add-btn" onClick={() => onLoadMoreEvt()}>
+      <div className="add-btn--line"></div>
+      <Button className="add-btn btn" onClick={() => onLoadMoreEvt()}>
       더보기
     </Button>
     </div>

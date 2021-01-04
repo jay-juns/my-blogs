@@ -4,19 +4,14 @@
   .main-row {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
 
     .other-main {
-      margin-right: 1rem;
       position: relative;
       width: 260px;
       height: 160px;
       box-shadow: 0 1px rgba(140,140,140,.9),0 0 2px rgba(140,140,140,.9);
-
-      &:nth-last-child() {
-        margin-right: 0;
-      }
 
       .other-img {
         width: 100%;

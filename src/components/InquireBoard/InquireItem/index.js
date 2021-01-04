@@ -20,8 +20,6 @@ const InquireItem = (inquireText) => {
     return false;
   });
 
-  const comLeng = comMsg.length === 0 ? '' : `[${comMsg.length}]`;
-
   if(!inquireTitle || !displayName || !documentID) return null;  
 
   const toDate = createdDate.toDate().toString();
@@ -31,7 +29,7 @@ const InquireItem = (inquireText) => {
     <div className="show-item-wrap" >
       <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
-          <p>0</p>
+          <p className="rec-number">0</p>
         </div>
 
         <div className="show-text">
@@ -40,13 +38,13 @@ const InquireItem = (inquireText) => {
               {inquireTag}
             </p>
             <p className="show-titie-first">
-              <span>{inquireTitle}</span> 
-              <span className="comment-length">{comLeng}</span>
+              <span className="show-titie-first--middle">{inquireTitle}</span> 
+              {comMsg.length === 0 ? '': (<span className="comment-length">[{comMsg.length}]</span>)}
             </p>
             <p className="show-title-nick">
               {displayName}
             </p>
-            <span>
+            <span className="show-title-day">
               {moment(toDate).format('MM-DD')}
             </span>
             

@@ -42,7 +42,7 @@ const InquireBoard = ({}) => {
   const [displayName, setDisplayName] = useState(userInfo[0]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(14);
+  const [postsPerPage] = useState(11);
 
   const { data } = inquires;
 
@@ -51,7 +51,6 @@ const InquireBoard = ({}) => {
   const currentPosts = (Array.isArray(data) && data.length > 0) && data.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
-
 
   useEffect(() => {
     dispatch(
@@ -121,8 +120,6 @@ const InquireBoard = ({}) => {
     }],
     handleChange: handleFilter
   };
-
-
 
   return (
     <div className="inquire-board">
@@ -211,7 +208,7 @@ const InquireBoard = ({}) => {
                 <p className="show-title-nick--head">
                   작성자
                 </p>
-                <span>
+                <span className="show-title-day--head">
                   일시
                 </span>
               </div>
@@ -220,8 +217,6 @@ const InquireBoard = ({}) => {
           </div>
         </div>
 
-        
-        
         {(Array.isArray(data) && data.length > 0) && currentPosts.map((inquire) => {
           const {
             inquireTitle,
@@ -241,7 +236,7 @@ const InquireBoard = ({}) => {
             })
           }
 
-          const classBg = inquireTag === '제안' ? 'green' : 'blue';
+          const classBg = inquireTag === '제안' ? 'greenBg' : 'blueBg';
      
           const configInquireContent = {
             inquireTitle,
@@ -251,10 +246,7 @@ const InquireBoard = ({}) => {
             classBg,
             createdDate,
             comLengResult
-          };
-        
-
-          
+          };     
 
           return (
             <div className="show-row" key={documentID}>  
@@ -263,8 +255,7 @@ const InquireBoard = ({}) => {
                />            
             </div>
           )
-        })}  
-         
+        })}       
 
       </div>
       {

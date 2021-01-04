@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.scss';
 
-
 const FormChatInput = ({ label, value, formClass, handleChange, ...otherProps }) => {
 
   const textareaHeight = (e) => {
