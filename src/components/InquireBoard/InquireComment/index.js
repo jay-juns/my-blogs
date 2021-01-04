@@ -3,7 +3,6 @@ import './styles.scss';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-
 export const InquireComments = props => {
   const { comBoxResult } = props;
   const items = comBoxResult;

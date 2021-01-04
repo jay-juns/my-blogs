@@ -1,3 +1,5 @@
+@import "./../../../var.scss";
+
 .overLay {
   background-color: rgba(0, 0, 0, 0.65);
   width: 100%;
@@ -58,18 +60,18 @@
 
       .ent-btn {
         min-width: 80px;
-        background-color: #00BCD4;
+        background-color: $primaryBg;
         margin-left: auto;
         margin-top: 2rem;
         color: #fff;
         font-weight: 600;
-        font-siZe: 1.5rem;
-        padding: .8rem;
+        font-size: $buttonFontSize;
+        padding: .6rem;
         border-radius: .4rem;
         transition: background-color .4s ease-in;
   
         &:hover {
-          background-color: #009baf;
+          background-color: $primaryBgHover;
         }
       }
     }

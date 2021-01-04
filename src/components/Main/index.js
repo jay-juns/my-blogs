@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.scss';
 import SliderMain from '../Slider/sliderMain';
 import MainContent from './mainContent';
 

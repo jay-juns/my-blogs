@@ -1,0 +1,141 @@
+@import "./../../../var.scss";
+
+.main-inquire {
+  margin-bottom: 2rem;
+  position: relative;
+
+  .main-inquire-add-btn-wrapper {
+    position: absolute;
+    right: 0;
+    top: -52px;
+
+    .inquire-add-btn {
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: .8rem;
+      border-radius: .4rem;
+      color: #333;
+      font-size: $buttonFontSize;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      span {
+        margin-left: .6rem;
+      }
+    }
+  }
+
+  .main-inquire-items-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    background-color: #fff;
+    border-bottom: .1rem solid #cacaca;
+
+    .main-inquire-items-header-recommend {
+      width: 6%;
+    }
+
+    .main-inquire-items-header-tag {
+      width: 6%;
+    }
+
+    .main-inquire-items-header-title {
+      width: 78%;
+    }
+
+    .main-inquire-items-header-name {
+      width: 12%;
+      text-align: left;
+    }
+
+    .main-inquire-items-header-day {
+      width: 8%;
+    }
+  }
+
+  .main-inquire-items-container {
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border-bottom: 1px solid #e4e4e4;
+    display: flex;
+    align-items: center;
+    
+   
+    &:last-child {
+      border: 0;
+    }
+
+    .main-inquire-items-row {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #333;
+
+      &:hover {
+        background-color:#eaeaea;
+      }
+
+      .main-inquire-items-recommend {
+        width: 6%;
+        text-align: center;
+      }
+
+      .main-inquire-items-tag {
+        width: 8%;
+        text-align: center;
+
+        .main-inquire-items-tag--name {
+          background-color: #b1b1b1;
+          border-radius: 8rem;
+          margin: 0 1rem;
+          font-weight: 600;
+          font-size: 1.3rem;
+          color: #fff;
+          padding: 0.3rem 1.2rem;
+          text-align: center;
+        }
+      }
+
+      .main-inquire-items-title {
+        width: 76%;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+
+        .main-inquire-items-title--contents {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .comment-length {
+          margin-left: .4rem;
+          color: $blue;
+          position: relative;
+          top: -2px;
+          right: 3px;
+          font-weight: 600;
+        }
+      }
+
+      .main-inquire-items-name {
+        width: 12%;
+      }
+
+      .main-inquire-items-day {
+        width: 8%;
+        text-align: center;
+      }
+    }
+  }
+}

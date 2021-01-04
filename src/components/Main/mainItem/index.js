@@ -49,9 +49,7 @@ const MainItems = ({ }) => {
             contentDesc
           };
 
-          return (
-            <OtherMain {...configContent} key={pos}/>
-          );
+          return ( <OtherMain {...configContent} key={pos}/> );
         })}
       </div>
     </div>

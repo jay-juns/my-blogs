@@ -162,6 +162,8 @@ const InquireCard = ({}) => {
     comBoxResult
   }
 
+  let classBg = inquireTag === '제안' ? 'greenBg' : 'blueBg';
+
   return(
     <div className="detail-wrap">
       <div className="detail-head-title">
@@ -228,10 +230,9 @@ const InquireCard = ({}) => {
             </div>
             
             <div className="detail-header-left--footer-wrapper">
-              <span>
+              <span className={`detail-header-left--tag ${classBg}`}>
                 {inquireTag}
               </span>
-              <p></p>
             </div>
           </div>
           
@@ -243,7 +244,7 @@ const InquireCard = ({}) => {
         </div>
       </div>
       <div className="detail-btn-wrap">
-        <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
+        <Link className="back-btn" to={'/inquire'}>목록으로 이동</Link>
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">

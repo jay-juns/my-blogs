@@ -1,5 +1,36 @@
+@import "./../../../var.scss";
+
 .main-content {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
+
+  .main-content--top {
+    min-height: 223px;
+    position: relative;
+
+    
+    .main-contents--all-btn {
+      position: absolute;
+      right: 0;
+      top: -54px;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: .8rem;
+      border-radius: .4rem;
+      color: #333;
+      font-size: $buttonFontSize;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      span {
+        margin-left: .6rem;
+      }
+    }
+  }
+
+  .main-title-h3 {
+    margin: 3rem 0;
+  }
 }

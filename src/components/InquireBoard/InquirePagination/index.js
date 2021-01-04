@@ -16,10 +16,7 @@ export const pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) 
             e.preventDefault();
             paginate(number);
           }} 
-          href='#' 
-          to={{
-            pathname: "/inquire"
-          }}
+          to={`/inquire?page=${number}`}
           className={currentPage === number ? 'page active' : 'page'} 
           key={number}>
             {number}

@@ -5,6 +5,7 @@ const otherMain = ({
   contentThumbnail,
   contentDesc
 }) => {
+  
   if(!contentThumbnail || !contentTitle || !contentDesc) return null;
 
   return (

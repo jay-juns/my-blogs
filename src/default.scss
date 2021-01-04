@@ -1,3 +1,5 @@
+@import "./var.scss";
+
 html {
   font-size: 10px;
 }
@@ -37,6 +39,26 @@ a {
 
 p {
   margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+.redBg {
+  background-color: $red !important;
+}
+
+.blueBg {
+  background-color: $blue !important;
+}
+
+.greenBg {
+  background-color: $green !important;
+}
+
+.lightGrayBg {
+  background-color: $lightGray !important;
 }
 
 button {

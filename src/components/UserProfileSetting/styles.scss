@@ -1,3 +1,5 @@
+@import "./../../var.scss";
+
 .user-profile-setting {  
   padding: 1rem 0;
 
@@ -47,6 +49,7 @@
           background-color: #f3f3f3;
           border-radius: .4rem;
           padding: .8rem;
+          font-size: $buttonFontSize;
 
           &:hover {
             color: #039be5;
@@ -133,7 +136,9 @@
       .save-btn {
         color: #575757;
         background-color: #e6e6ea;
-        margin:.4rem 2rem 0 0;
+        margin-right: 2rem;
+        height: 40px;
+        font-size: $buttonFontSize;
       }
     }
   }
