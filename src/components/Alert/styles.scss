@@ -1,9 +1,12 @@
+@import "./../../var.scss";
+
 .notification-items {
   position: fixed;
   right: 32px;
   top: 62px;
   transform: translateX(0);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   padding: .5rem 0 0;
   margin: 0;
   display: block;
@@ -25,12 +28,12 @@
     height: 4px;
   }
 
-  .bar.error {
-    background-color: #ef3434;
+  .bar.danger {
+    background-color: $red;
   }
 
   .bar.success {
-    background-color: #1F69FF;
+    background-color: $blue;
   }
 }
 
@@ -43,7 +46,7 @@
     0% {
         transform: translateX(220%);
     }
-
+    
     100% {
       transform: translateX(0);
     }
@@ -53,6 +56,7 @@
     0% {
       transform: translateX(0);
     }
+
 
     100% {
       transform: translateX(220%);

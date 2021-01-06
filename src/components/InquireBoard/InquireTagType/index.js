@@ -1,5 +1,3 @@
-import { actions } from "react-table";
-
 const TagType = (inquireTag) => {
 
   switch(inquireTag) {

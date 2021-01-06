@@ -5,15 +5,11 @@ import './styles.scss';
 
 import Logo from './../../assets/logo.png';
 
-// import Modal from './../Modal';
-
 const mapState = (state) => ({
   currentUser: state.user.currentUser
 });
 
 const Header = props => {
-  // const [isOpen, setIsOpen] = useState(false) 
-  // const [signIsOpen, setSignOpen] = useState(false)
   const { currentUser } = useSelector(mapState);
 
   let userInfo = [];
@@ -105,12 +101,6 @@ const Header = props => {
         </div>
 
       </div>
-      {/* <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        로그인
-      </Modal>
-      <Modal open={signIsOpen} onClose={() => setSignOpen(false)}>
-        회원가입
-      </Modal> */}
     </div>
   );
 };

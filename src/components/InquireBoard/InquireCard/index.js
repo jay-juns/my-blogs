@@ -82,7 +82,7 @@ const InquireCard = ({}) => {
     hideModal,
     toggleModal
   };
-  
+
   useEffect(() => {
     dispatch(
       fetchInquireStart(inquireID)
@@ -186,7 +186,7 @@ const InquireCard = ({}) => {
                       삭제
                     </Button>
                   </div>,
-                  <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)} key="manageBtn">
+                  <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)}>
                     <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
                   </Button>
                 ]}

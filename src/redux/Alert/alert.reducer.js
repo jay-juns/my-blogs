@@ -1,8 +1,10 @@
 import alertTypes from './alert.types';
 
 const INITIAL_STATE = {
-  text: '',
-  color: ''
+  alertMessages:{
+    text: '',
+    color: ''
+  }
 }
 
 const alertReducer = (state=INITIAL_STATE, action) => {
@@ -10,7 +12,7 @@ const alertReducer = (state=INITIAL_STATE, action) => {
     case alertTypes.SET_ALERT:
       return {
         ...state,
-        contents: action.msg
+        alertMessages: action.payload
       }
     case alertTypes.RESET_ALERT:
         return {

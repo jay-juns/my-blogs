@@ -23,17 +23,10 @@ export function* getSnapshotFromUserAuth(user, additionalData={}) {
 
 export function* emailSignIn({ payload: { email, password } }) {
   try {
-
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
-    yield getSnapshotFromUserAuth(user)
-
+    yield getSnapshotFromUserAuth(user);
   } catch(err) {
     // console.log(err);
-    yield put(
-      setAlert({
-        text: '비밀번호나 패스워드가 일치하지 않습니다',
-        color: 'danger'
-      }));
   }
 }
 
