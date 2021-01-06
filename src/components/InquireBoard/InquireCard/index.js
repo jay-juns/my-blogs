@@ -16,6 +16,8 @@ import FormChatInput from './../../Forms/FormChatInput';
 
 import InquireComments from './../InquireComment';
 
+import TagType from './../InquireTagType';
+
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -50,7 +52,6 @@ const InquireCard = ({}) => {
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
-  const adminClass = isAdmin ? '' : 'hide';
   
   const resetForm = () => {
     setHideModal(true);
@@ -162,8 +163,6 @@ const InquireCard = ({}) => {
     comBoxResult
   }
 
-  let classBg = inquireTag === '제안' ? 'greenBg' : 'blueBg';
-
   return(
     <div className="detail-wrap">
       <div className="detail-head-title">
@@ -178,16 +177,16 @@ const InquireCard = ({}) => {
                 <p className="detail-displayName">{displayName} <strong>님</strong></p>
               </div>
 
-              <div className={`detail-header-left--up-btn-area ${adminClass}`}>
+              <div className="detail-header-left--up-btn-area">
               
-                <div className={`toggle-modal ${showModal}`}>
-                  <Button onClick={() => toggleModal()}>수정하기</Button>
-                  <Button onClick={() => handleDelete()}>
-                    삭제
-                  </Button>
-                </div>
                 {isAdmin && [
-                  <Button key="showButton" className="threedot-btn" onClick={() => setShow(!show)}>
+                  <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
+                    <Button onClick={() => toggleModal()}>수정하기</Button>
+                    <Button onClick={() => handleDelete()}>
+                      삭제
+                    </Button>
+                  </div>,
+                  <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)} key="manageBtn">
                     <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
                   </Button>
                 ]}
@@ -204,6 +203,9 @@ const InquireCard = ({}) => {
                   }, {
                     name: "의견",
                     value: "의견"
+                  }, {
+                    name: "기타",
+                    value: "기타"
                   }]}
                   handleChange={e => setInquireEditTag(e.target.value)}
                 />
@@ -221,7 +223,7 @@ const InquireCard = ({}) => {
                 />
 
                 <div className="btn-wrap">
-                  <Button className="ent-btn" type="submit">
+                  <Button className="ent-btn btn" type="submit">
                     수정 완료
                   </Button>
                 </div>
@@ -230,7 +232,7 @@ const InquireCard = ({}) => {
             </div>
             
             <div className="detail-header-left--footer-wrapper">
-              <span className={`detail-header-left--tag ${classBg}`}>
+              <span className={`detail-header-left--tag ${TagType(inquireTag)}`}>
                 {inquireTag}
               </span>
             </div>
@@ -252,7 +254,7 @@ const InquireCard = ({}) => {
         </div>
 
         {currentUser &&[
-        <form onSubmit={handleChat}>
+        <form onSubmit={handleChat} key="formChatArea">
           <FormChatInput 
             label="댓글 작성"
             formClass="chat-input"
@@ -262,7 +264,7 @@ const InquireCard = ({}) => {
         </form>
         ]} 
         {!currentUser && [
-        <div className="show-guest-user">
+        <div className="show-guest-user" key="currentUserBtn">
           <Link to={'/login'}>로그인을 해야 댓글 작성이 가능합니다. 먼저 로그인을 해주세요.</Link>
         </div>
         ]}

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+import Tagtype from './../../InquireBoard/InquireTagType';
+
 const MainInquireItem = props => {
   const { queDataLeng, comLengResult } = props;
   const items = queDataLeng;
@@ -33,14 +35,13 @@ const MainInquireItem = props => {
           }
           return false;
         });
-        let classBg = inquireTag === '제안' ? 'greenBg' : 'blueBg';
 
         return (
           <div className="main-inquire-items-container" key={pos}>
             <Link className="main-inquire-items-row" to={`/inquireText/${documentID}`}>
               <div className="main-inquire-items-recommend">0</div>
               <div className="main-inquire-items-tag">
-                <p className={`main-inquire-items-tag--name ${classBg}`}>{inquireTag}</p>
+                <p className={`main-inquire-items-tag--name ${Tagtype(inquireTag)}`}>{inquireTag}</p>
               </div>
               <div className="main-inquire-items-title">
                 <p className="main-inquire-items-title--contents">{inquireTitle}</p>

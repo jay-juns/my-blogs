@@ -117,6 +117,10 @@ const InquireBoard = ({}) => {
     {
       name: "의견",
       value: "의견"
+    },
+    {
+      name: "기타",
+      value: "기타"
     }],
     handleChange: handleFilter
   };
@@ -148,6 +152,9 @@ const InquireBoard = ({}) => {
               }, {
                 name: "의견",
                 value: "의견"
+              }, {
+                name: "기타",
+                value: "기타"
               }]}
               handleChange={e => setInquireTag(e.target.value)}
             />
@@ -235,15 +242,12 @@ const InquireBoard = ({}) => {
               comLengResult.push(el.id);
             })
           }
-
-          const classBg = inquireTag === '제안' ? 'greenBg' : 'blueBg';
-     
+          
           const configInquireContent = {
             inquireTitle,
             documentID, 
             displayName,
             inquireTag,
-            classBg,
             createdDate,
             comLengResult
           };     
