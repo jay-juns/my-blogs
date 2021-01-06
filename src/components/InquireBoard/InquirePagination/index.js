@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+export const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
@@ -26,4 +26,4 @@ export const pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) 
   )
 }
 
-export default pagination;
+export default Pagination;

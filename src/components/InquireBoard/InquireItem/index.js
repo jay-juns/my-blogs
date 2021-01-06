@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import TagType from './../InquireTagType';
 
 const InquireItem = (inquireText) => {
   const {
@@ -8,7 +9,6 @@ const InquireItem = (inquireText) => {
     displayName,
     documentID,
     inquireTag,
-    classBg,
     createdDate,
     comLengResult
   } = inquireText;
@@ -34,7 +34,7 @@ const InquireItem = (inquireText) => {
 
         <div className="show-text">
           <div className="show-title">
-            <p className={`${classBg} show-tag`}>
+            <p className={`${TagType(inquireTag)} show-tag`}>
               {inquireTag}
             </p>
             <p className="show-titie-first">
