@@ -1,5 +1,5 @@
 ## 작업환경
-1. 프론트 - react, hooks, redux, redux saga, thunk 
+1. 프론트 - react, hooks, redux, redux saga 
 2. 서버 - Firebase firestore
 <br />
 <br />
