@@ -68,7 +68,7 @@ const SignIn = props => {
   }
 
   const configAuthWrapper = {
-    headline: '마이 Blogs Log-In'
+    headline: '마이 Blogs 로그인'
   };
 
   const configAlert = {

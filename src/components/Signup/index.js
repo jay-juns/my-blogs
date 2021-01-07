@@ -64,7 +64,7 @@ const Signup = props => {
   }
 
   const configAuthWrapper = {
-    headline: '마이 Blogs Sign-In'
+    headline: '마이 Blogs 회원가입'
   };
 
 

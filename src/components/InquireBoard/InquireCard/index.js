@@ -196,6 +196,7 @@ const InquireCard = ({}) => {
               <div className="detail-header-left--up-btn-area">
               
                 {isAdmin && [
+                  <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
                   <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
                     <Button className="btn" onClick={() => toggleModal()}>수정하기</Button>
                     <Button className="btn" onClick={() => handleDelete()}>
