@@ -82,7 +82,7 @@
       color: #333;
 
       &:hover {
-        background-color:#eaeaea;
+        background-color:$lightGray;
       }
 
       .main-inquire-items-recommend {
@@ -95,7 +95,7 @@
         text-align: center;
 
         .main-inquire-items-tag--name {
-          background-color: #b1b1b1;
+          background-color: $midiumGray;
           border-radius: 8rem;
           margin: 0 1rem;
           font-weight: 600;

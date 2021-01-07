@@ -43,9 +43,6 @@ const Signup = props => {
 
   }, [userId, displayName, email, password, confirmPassword]);
 
-
-
-
   const reset = () => {
     setDisplayName('');
     setUserId('');
@@ -67,7 +64,7 @@ const Signup = props => {
   }
 
   const configAuthWrapper = {
-    headline: '회원가입'
+    headline: '마이 Blogs Sign-In'
   };
 
 
@@ -105,7 +102,7 @@ const Signup = props => {
             type="password"
             name="password"
             value={password}
-            placeholder="비밀번호 설정"
+            placeholder="비밀번호 입력"
             autoComplete="new-password"
             handleChange={e => setPassword(e.target.value)}
           />

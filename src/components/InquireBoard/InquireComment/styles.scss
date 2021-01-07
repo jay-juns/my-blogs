@@ -1,10 +1,12 @@
+@import "./../../../var.scss";
 .inquire-text {
   margin: 3rem 0;
 
   .inquire-comment-area {
+    position: relative;
     margin-top: 3rem;
   
-    .inqure-comment-area--head {
+    &--head {
       display: flex;
       align-items: center;
       color: #000;
@@ -21,12 +23,25 @@
       }
     }
   
-    .inqure-comment-area--body {
+    &--body {
       margin-top: .8rem;
   
       p {
         font-size: 1.3rem;
         font-weight: 400;
+      }
+    }
+    &--delete-btn {
+      position: absolute;
+      right: 0;
+      top: -4px;
+
+      button {
+        color: $midiumGray;
+
+        &:hover {
+          color: $red;
+        }
       }
     }
   }

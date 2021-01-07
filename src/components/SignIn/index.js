@@ -68,7 +68,7 @@ const SignIn = props => {
   }
 
   const configAuthWrapper = {
-    headline: '로그인'
+    headline: '마이 Blogs Log-In'
   };
 
   const configAlert = {
@@ -117,7 +117,7 @@ const SignIn = props => {
             />
 
             <Button id="loginBtn" className="login-btn" type="submit" disabled>
-              로그인
+              이메일 로그인
             </Button>
 
             <div className="sign-in-social">
