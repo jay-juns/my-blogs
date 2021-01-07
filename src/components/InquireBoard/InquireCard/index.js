@@ -13,6 +13,7 @@ import Modal from './../../Forms/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
+import Alert from './../../Alert';
 
 import InquireComments from './../InquireComment';
 
@@ -49,6 +50,7 @@ const InquireCard = ({}) => {
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');
   const [inquireText, setInquireText] = useState('');
+  const [hideAlert, setHideAlert] = useState(false);
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
@@ -109,6 +111,13 @@ const InquireCard = ({}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if(inquireEditTitle === '' || inquireEditDesc === '') {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+      return setHideAlert(false); 
+    }
     
     dispatch(
       updateInquire({
@@ -163,12 +172,19 @@ const InquireCard = ({}) => {
     comBoxResult
   }
 
+  const configAlert = {
+    text: '수정할 제목과 내용을 채워 주세요',
+    color: 'danger',
+    hideAlert: hideAlert
+  }; 
+
   return(
     <div className="detail-wrap">
       <div className="detail-head-title">
         <h3>문의 내용</h3>
       </div>
       <div className="detail-container">
+      {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
         <div className="detail-header"> 
           <div className="detail-header-left">
             <div className="detail-header-left--up">
@@ -181,8 +197,8 @@ const InquireCard = ({}) => {
               
                 {isAdmin && [
                   <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
-                    <Button onClick={() => toggleModal()}>수정하기</Button>
-                    <Button onClick={() => handleDelete()}>
+                    <Button className="btn" onClick={() => toggleModal()}>수정하기</Button>
+                    <Button className="btn" onClick={() => handleDelete()}>
                       삭제
                     </Button>
                   </div>,

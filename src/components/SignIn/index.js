@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { emailSignInStart, googleSignInStart, signInSuccess } from './../../redux/User/user.actions';
+import { emailSignInStart, googleSignInStart } from './../../redux/User/user.actions';
 
 import './styles.scss';
 
@@ -15,17 +15,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  userErr: user.userErr
+
 });
 
 const SignIn = props => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, userErr } = useSelector(mapState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
-
+  
   useEffect(() => {
     if (currentUser) {
       resetForm();
@@ -34,9 +36,30 @@ const SignIn = props => {
       } else {
         history.push('/');
       }
-    }
+    }    
 
   }, [currentUser]);
+
+  useEffect(() => {
+    if(email !== '' && password !=='') {
+      document.getElementById("loginBtn").disabled = false;
+      document.getElementById("loginBtn").classList.add('btn');
+    } else {
+      document.getElementById("loginBtn").disabled = true;
+      document.getElementById("loginBtn").classList.remove('btn');
+    }
+
+  }, [email, password]);
+
+  useEffect(() => {
+    if(userErr.code === 'auth/wrong-password' || userErr.code === 'auth/user-not-found') {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+    }
+    setHideAlert(false);
+    return () => (userErr.code= '');
+  }, [userErr]);
 
   const resetForm = () => {
     setEmail('');
@@ -44,40 +67,31 @@ const SignIn = props => {
     setHideAlert(false);
   }
 
+  const configAuthWrapper = {
+    headline: '로그인'
+  };
+
+  const configAlert = {
+    text: '패스워드 또는 이메일 주소가 틀렸습니다. 다시 입력해주세요',
+    color: 'danger',
+    hideAlert: hideAlert
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
-    
-    dispatch(emailSignInStart({ email, password }));
-    const emailTarget = document.getElementById('email').value;
-    const passwordTarget = document.getElementById('password').value;
 
-    if(emailTarget === '' || passwordTarget === '') {
-      const alertTimes = setTimeout(() => {
-        setHideAlert(true);
-      }, 30);
-    }
-    setHideAlert(false);
-    console.log(hideAlert, '21312');
+    dispatch(emailSignInStart({ email, password }));
+
   }
 
   const handleGoogleSignIn = () => {
     dispatch(googleSignInStart());
   }
 
-  const configAuthWrapper = {
-    headline: '로그인'
-  };
-
-  const configAlert = {
-    text: '패스워드 또는 이메일 주소가 틀렸습니다. 다시 시도해주세요',
-    color: 'danger',
-    hideAlert: hideAlert
-  }  
-
   return (
     <AuthWrapper {...configAuthWrapper}>
       
-      {hideAlert && <Alert {...configAlert} />}
+      {hideAlert && <Alert {...configAlert} key="signIn"/>}
       
       <div className="sign-in">
         <div className="sign-in-content-wrap">
@@ -87,7 +101,6 @@ const SignIn = props => {
             <FormInput 
               type="email"
               name="email"
-              id="email"
               value={email}
               autoComplete="username"
               placeholder= "이메일 입력"
@@ -97,21 +110,18 @@ const SignIn = props => {
             <FormInput 
               type="password"
               name="password"
-              id="password"
               value={password}
               placeholder= "비밀번호 입력"
               autoComplete="new-password"
-              aria-describedby="password-constraints" 
-              required=""
               handleChange={e => setPassword(e.target.value)}
             />
 
-            <Button className="login-btn btn" type="submit">
+            <Button id="loginBtn" className="login-btn" type="submit" disabled>
               로그인
             </Button>
 
             <div className="sign-in-social">
-              <Button onClick={handleGoogleSignIn}>
+              <Button className="btn" onClick={handleGoogleSignIn}>
                 <FontAwesomeIcon className="i" icon={faGoogle} />
                 <p>Google계정으로 이용하기</p>
               </Button>

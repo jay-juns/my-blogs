@@ -9,6 +9,7 @@ import FormInput from '../Forms/FormInput';
 import FormSelect from '../Forms/FormSelect';
 import Button from '../Forms/Button';
 import Modal from '../Forms/Modal';
+import Alert from '../Alert';
 
 import InquireItem from './InquireItem';
 import Pagination from './InquirePagination';
@@ -30,6 +31,7 @@ const InquireBoard = ({}) => {
   const [inquireDesc, setInquireDesc] = useState('');
   const [inquireTag, setInquireTag] = useState('제안');
   const [inquireTitle, setInquireTitle] = useState('');
+  const [hideAlert, setHideAlert] = useState(false);
 
   let userInfo = [];
   
@@ -88,6 +90,13 @@ const InquireBoard = ({}) => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    if(inquireTitle === '' || inquireDesc === '') {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+      return setHideAlert(false); 
+    }
+
     dispatch(
       addInquiresStart({
         inquireTag,
@@ -125,12 +134,19 @@ const InquireBoard = ({}) => {
     handleChange: handleFilter
   };
 
+  const configAlert = {
+    text: '제목과 내용을 채워 주세요',
+    color: 'danger',
+    hideAlert: hideAlert
+  }; 
+
   return (
     <div className="inquire-board">
       <div className="inquire-title">
         <h3>문의 게시판</h3>
       </div>
       <div className="inquire-contents">
+      {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
         
         <FormSelect {...configFilter} />
 
@@ -140,7 +156,7 @@ const InquireBoard = ({}) => {
       </div>
 
       {currentUser && [
-        <Modal {...configModal}>
+        <Modal {...configModal} key="inquireModal">
           <form onSubmit={handleSubmit}>
             <h2>새로운 글쓰기</h2>
 
@@ -181,7 +197,7 @@ const InquireBoard = ({}) => {
             />
 
             <div className="btn-wrap">
-              <Button className="ent-btn btn" type="submit">
+              <Button id="inquireWriteBtn" className="ent-btn btn" type="submit">
                 글쓰기
               </Button> 
             </div>
@@ -190,7 +206,7 @@ const InquireBoard = ({}) => {
       ]}
 
       {!currentUser && [
-        <Modal {...configModal}>
+        <Modal {...configModal} key="inquireUnModal">
           글을 작성 하려면 먼저 로그인을 해야 합니다.
         </Modal>
       ]}

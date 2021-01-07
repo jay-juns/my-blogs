@@ -3,7 +3,7 @@ import './styles.scss';
 
 const Button = ({ children, ...otherProps }) => {
   return (
-    <button className="btn" {...otherProps}>
+    <button className="" {...otherProps}>
       {children}
     </button>
   );

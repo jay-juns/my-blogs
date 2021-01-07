@@ -3,7 +3,6 @@ import { auth, handleUserProfile, getCurrentUser, GoogleProvider } from './../..
 import userTypes from './user.types';
 import { signInSuccess, signOutUserSuccess, resetPasswordSuccess, userError } from './user.actions';
 import { handleResetPasswordAPI } from './user.helpers';
-import { setAlert } from './../Alert/alert.action';
 
 export function* getSnapshotFromUserAuth(user, additionalData={}) {
   try {
@@ -27,6 +26,7 @@ export function* emailSignIn({ payload: { email, password } }) {
     yield getSnapshotFromUserAuth(user);
   } catch(err) {
     // console.log(err);
+    yield put(userError(err));
   }
 }
 
@@ -76,23 +76,13 @@ export function* signUpUser({ payload: {
 }}) {
   
   if(displayName === 'admin' || displayName === '관리자' || userId === 'admin') {
-    yield put(
-      setAlert({
-        text: '사용할 수 없는 이름입니다.',
-        color: 'danger'
-      })); 
-      
-      return;
+    yield put(userError('사용할수 없는 이름입니다')); 
+    return;
   }
 
   if (password !== confirmPassword) {
 
-    yield put(
-      setAlert({
-        text: '비밀번호가 일치하지 않습니다.',
-        color: 'danger'
-      }));    
-    
+    yield put(userError('비밀번호가 일치하지 않습니다'));    
     return;
   }
 
@@ -102,13 +92,9 @@ export function* signUpUser({ payload: {
     const additionalData = { displayName, userId };
     yield getSnapshotFromUserAuth(user, additionalData); 
 
-  } catch(e) {
+  } catch(err) {
     
-    yield put(
-      setAlert({
-        text: e,
-        color: 'danger'
-      }));
+    yield put(userError(err));
   }
 }
 
