@@ -14,3 +14,9 @@ export const setInquireComments = inquireComments => ({
   type: InquireCommentsTypes.SET_INQUIRECOMMENTS,
   payload: inquireComments
 });
+
+
+export const deleteInquireComments = inquireCommentsID => ({
+  type: InquireCommentsTypes.DELETE_INQUIRESCOMMENTS,
+  payload: inquireCommentsID
+});

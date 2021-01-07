@@ -8,25 +8,26 @@ import './styles.scss';
 import FormInput from '../Forms/FormInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
-import Alert from '../Alert/GlobelAlert';
+import Alert from '../Alert';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  userErr: user.userErr
+
 });
 
 const SignIn = props => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, userErr } = useSelector(mapState);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [text, setText] = useState('');
-  const [color, setColor] = useState('');
-
+  const [hideAlert, setHideAlert] = useState(false);
+  
   useEffect(() => {
     if (currentUser) {
       resetForm();
@@ -35,36 +36,63 @@ const SignIn = props => {
       } else {
         history.push('/');
       }
-    }
+    }    
 
   }, [currentUser]);
+
+  useEffect(() => {
+    if(email !== '' && password !=='') {
+      document.getElementById("loginBtn").disabled = false;
+      document.getElementById("loginBtn").classList.add('btn');
+    } else {
+      document.getElementById("loginBtn").disabled = true;
+      document.getElementById("loginBtn").classList.remove('btn');
+    }
+
+  }, [email, password]);
+
+  useEffect(() => {
+    if(userErr.code === 'auth/wrong-password' || userErr.code === 'auth/user-not-found') {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+    }
+    setHideAlert(false);
+    return () => (userErr.code= '');
+  }, [userErr]);
 
   const resetForm = () => {
     setEmail('');
     setPassword('');
-    setText('');
-    setColor('');
+    setHideAlert(false);
+  }
+
+  const configAuthWrapper = {
+    headline: '마이 Blogs Log-In'
+  };
+
+  const configAlert = {
+    text: '패스워드 또는 이메일 주소가 틀렸습니다. 다시 입력해주세요',
+    color: 'danger',
+    hideAlert: hideAlert
   }
 
   const handleSubmit = e => {
     e.preventDefault();
+
     dispatch(emailSignInStart({ email, password }));
+
   }
 
   const handleGoogleSignIn = () => {
     dispatch(googleSignInStart());
   }
 
-  const configAuthWrapper = {
-    headline: '로그인'
-  };
-  
   return (
     <AuthWrapper {...configAuthWrapper}>
-      <Alert 
-        color={color}
-        text={text}
-      />
+      
+      {hideAlert && <Alert {...configAlert} key="signIn"/>}
+      
       <div className="sign-in">
         <div className="sign-in-content-wrap">
 
@@ -85,17 +113,15 @@ const SignIn = props => {
               value={password}
               placeholder= "비밀번호 입력"
               autoComplete="new-password"
-              aria-describedby="password-constraints" 
-              required=""
               handleChange={e => setPassword(e.target.value)}
             />
 
-            <Button className="login-btn btn" type="submit">
-              로그인
+            <Button id="loginBtn" className="login-btn" type="submit" disabled>
+              이메일 로그인
             </Button>
 
             <div className="sign-in-social">
-              <Button onClick={handleGoogleSignIn}>
+              <Button className="btn" onClick={handleGoogleSignIn}>
                 <FontAwesomeIcon className="i" icon={faGoogle} />
                 <p>Google계정으로 이용하기</p>
               </Button>

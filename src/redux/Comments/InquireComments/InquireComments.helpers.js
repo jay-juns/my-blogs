@@ -16,7 +16,7 @@ export const handleAddInquireComments = inquireComment => {
   });
 }
 
-export const handleFetchInquireComments = ({}) => {
+export const handleFetchInquireComments = () => {
   return new Promise((resolve, reject) => {  
     
     let ref = firestore.collection('inquireComments').orderBy('createAt', 'desc');
@@ -39,6 +39,21 @@ export const handleFetchInquireComments = ({}) => {
       })
       .catch(err => {
         reject(err)
+      })
+  });
+}
+
+export const handleDeleteInquireComments = documentID => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('inquireComments')
+      .doc(documentID)
+      .delete()
+      .then(() => {
+        resolve();
+      })
+      .catch(err => {
+        reject(err);
       })
   });
 }

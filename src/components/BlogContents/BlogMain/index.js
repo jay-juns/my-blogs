@@ -13,6 +13,7 @@ import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import Button from './../../Forms/Button';
 import LoadMore from './../../LoadMore';
+import Alert from './../../Alert';
 
 const mapState = ({ contentsData, user }) => ({
   contents: contentsData.contents,
@@ -31,6 +32,7 @@ const BlogMain = ({}) => {
   const [contentThumbnail, setContentThumbnail] = useState('');
   const [contentDesc, setContentDesc] = useState('');
   const [createdDate, setCreateDate] = useState('');
+  const [hideAlert, setHideAlert] = useState(false);
   const { data, queryDoc, isLastPage } = contents;
   const isAdmin = checkUserIsAdmin(currentUser);
 
@@ -59,6 +61,13 @@ const BlogMain = ({}) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if(contentTitle === '' || contentDesc === '' || contentThumbnail === '') {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+      return setHideAlert(false); 
+    }
 
     dispatch(
       addContentStart({
@@ -108,9 +117,16 @@ const BlogMain = ({}) => {
     onLoadMoreEvt: handleLoadMore,
   };
 
+  const configAlert = {
+    text: '제목과 내용을 채워 주세요',
+    color: 'danger',
+    hideAlert: hideAlert
+  };
+
   return (
     <div className="blog-main-wrap">
       <div className="header-setting-wrap">
+        {hideAlert && <Alert {...configAlert} key="blogWrite"/>}
 
         <FormSelect {...configFilter} />
 
@@ -198,7 +214,7 @@ const BlogMain = ({}) => {
 
                   {isAdmin && [
                     <div className="show-del-btn-wrap" key={index}>
-                      <Button onClick={() => dispatch(deleteContentStart(documentID))}>
+                      <Button className="btn" onClick={() => dispatch(deleteContentStart(documentID))}>
                         삭제
                       </Button>
                   </div>

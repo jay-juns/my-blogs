@@ -13,7 +13,6 @@ const mapState = ({ user }) => ({
   currentUser: user.currentUser
 });
 
-
 const Signup = props => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,6 +23,7 @@ const Signup = props => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+
   useEffect(() => {
     if (currentUser) {
       reset();
@@ -32,6 +32,16 @@ const Signup = props => {
 
   }, [currentUser]);
 
+  useEffect(() => {
+    if(userId !== '' || displayName !== '' || email !== '' || password !=='' || confirmPassword !=='') {
+      document.getElementById("signUpBtn").disabled = false;
+      document.getElementById("signUpBtn").classList.add('btn');
+    } else {
+      document.getElementById("signUpBtn").disabled = true;
+      document.getElementById("signUpBtn").classList.remove('btn');
+    }
+
+  }, [userId, displayName, email, password, confirmPassword]);
 
   const reset = () => {
     setDisplayName('');
@@ -54,8 +64,9 @@ const Signup = props => {
   }
 
   const configAuthWrapper = {
-    headline: '회원가입'
+    headline: '마이 Blogs Sign-In'
   };
+
 
   return (
     <AuthWrapper {...configAuthWrapper}>
@@ -83,6 +94,7 @@ const Signup = props => {
             name="email"
             value={email}
             placeholder="가입할 이메일 주소 입력"
+            autoComplete="username"
             handleChange={e => setEmail(e.target.value)}
           />
 
@@ -90,7 +102,8 @@ const Signup = props => {
             type="password"
             name="password"
             value={password}
-            placeholder="비밀번호 설정"
+            placeholder="비밀번호 입력"
+            autoComplete="new-password"
             handleChange={e => setPassword(e.target.value)}
           />
 
@@ -98,11 +111,12 @@ const Signup = props => {
             type="password"
             name="confirmPassword"
             value={confirmPassword}
+            autoComplete="confirm-password"
             placeholder="비밀번호 확인"
             handleChange={e => setConfirmPassword(e.target.value)}
           />
 
-          <Button type="submit">
+          <Button id="signUpBtn" type="submit" disabled>
             회원가입
           </Button>
         </form>

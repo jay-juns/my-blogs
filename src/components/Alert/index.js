@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import ReactDom from 'react-dom';
+
 import './styles.scss';
 
-const Alert = ({ alertClass, message }) => {
-  const [exit, setExit] = useState(false);
+const Alert = ({ text, color, hideAlert }) => {
+
+  const [exit, setExit] = useState(!hideAlert);
   const [width, setWidth] = useState(0);
   const [intervalID, setIntervalID] = useState(null);
 
@@ -12,12 +15,10 @@ const Alert = ({ alertClass, message }) => {
         if (prev < 100) {
           return prev + 0.5;
         }
-
         clearInterval(id);
         return prev;
       });
-    }, 20);
-
+    }, 10);
     setIntervalID(id);
   };
 
@@ -27,30 +28,31 @@ const Alert = ({ alertClass, message }) => {
 
   const handleCloseNotification = () => {
     handlePauseTimer();
-    setExit(true);
+    setExit(hideAlert);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (width === 100) {
-      
-      handleCloseNotification()
+      handleCloseNotification();
     }
-    
   }, [width])
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleStartTimer();
   }, []);
 
-  return (
+  return ReactDom.createPortal(
+    <>
     <div
       onMouseEnter={handlePauseTimer}
       onMouseLeave={handleStartTimer} 
-      className={`${alertClass} ${exit ? "exit" : ""}`}
+      className={`notification-items ${color} ${exit ? "exit" : ""}`}
     >
-      <p>{message}</p>
-      <div className={"bar error"} style={{ width: `${width}%` }} />
+      <p>{text}</p>
+      <div className={`bar ${color}`} style={{ width: `${width}%` }} />
     </div>
+    </>,
+    document.getElementById('portal')
   );
 };
 

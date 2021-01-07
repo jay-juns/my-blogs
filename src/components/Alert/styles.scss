@@ -1,23 +1,29 @@
+@import "./../../var.scss";
+
 .notification-items {
   position: fixed;
   right: 32px;
   top: 62px;
   transform: translateX(0);
-  font-size: 1.3rem;
+  font-weight: 600;
   padding: .5rem 0 0;
   margin: 0;
+  text-indent: .5rem;
   display: block;
-  color: #666;
   box-shadow: 0 0 5px rgba(0,0,0,.4),0 0 1px rgba(0,0,0,.4);
   border-radius: .4rem;
-  font-weight: 600;
-  text-align: center;
   overflow: hidden;
   animation: SlideLeft 0.4s;
   animation-fill-mode: forwards;
   min-width: 160px;
+  z-index: 105;
+  background-color: #fff;
 
   p {
+    color: #666;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
     padding: 0 .6rem .5rem;
   } 
 
@@ -25,12 +31,12 @@
     height: 4px;
   }
 
-  .bar.error {
-    background-color: #ef3434;
+  .bar.danger {
+    background-color: $red;
   }
 
   .bar.success {
-    background-color: #1F69FF;
+    background-color: $blue;
   }
 }
 
@@ -43,7 +49,7 @@
     0% {
         transform: translateX(220%);
     }
-
+    
     100% {
       transform: translateX(0);
     }
@@ -53,6 +59,7 @@
     0% {
       transform: translateX(0);
     }
+
 
     100% {
       transform: translateX(220%);
