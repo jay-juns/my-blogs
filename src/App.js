@@ -75,19 +75,22 @@ const App = props => {
             <MainLayout>
               <Login />
             </MainLayout>
-        )} />
+        )} 
+        />
         <Route path="/registration" render={() =>  (
           <MainLayout>
             <Registration />
           </MainLayout>
-        )} />
+        )} 
+        />
         <Route path="/dashboard" render={() => (
           <WithAuth>
             <DashboardLayout>
               <Dashboard />
             </DashboardLayout>
           </WithAuth>
-        )} />
+        )} 
+        />
       </Switch>
     </div>
   );
