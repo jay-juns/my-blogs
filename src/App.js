@@ -52,13 +52,14 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route exact path="/inquire" render={() => (
+
+        <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (
           <MainLayout>
             <Inquire />
           </MainLayout>
         )}
         />
-        <Route path="/inquire/:inquireType" render={() => (
+        <Route path="/inquirePage=/:inquirePageNumber/:inquireType" render={() => (
           <MainLayout>
             <Inquire />
           </MainLayout>
@@ -70,14 +71,12 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="/login" 
-          render={() =>  (
+        <Route path="/login" render={() =>  (
             <MainLayout>
               <Login />
             </MainLayout>
         )} />
-        <Route path="/registration" 
-        render={() =>  (
+        <Route path="/registration" render={() =>  (
           <MainLayout>
             <Registration />
           </MainLayout>

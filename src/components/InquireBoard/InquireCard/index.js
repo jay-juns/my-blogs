@@ -135,7 +135,7 @@ const InquireCard = ({}) => {
     dispatch(
       deleteInquireStart(documentID)
     );
-    history.push('/inquire');
+    history.back('/inquirePage');
   }
 
   const handleChat = e => {
@@ -263,7 +263,7 @@ const InquireCard = ({}) => {
         </div>
       </div>
       <div className="detail-btn-wrap">
-        <Link className="back-btn" to={'/inquire'}>목록으로 이동</Link>
+        <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">

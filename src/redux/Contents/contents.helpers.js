@@ -20,7 +20,6 @@ export const handleFetchContents = ({ filterType, startAtferDoc, psersistContent
     const pageSize = 4;
 
     let ref = firestore.collection('contents').orderBy('createdDate', 'desc').limit(pageSize);
-    
 
     if (filterType) ref = ref.where('contentTag ', '==', filterType);
     if (startAtferDoc) ref = ref.startAfter(startAtferDoc);

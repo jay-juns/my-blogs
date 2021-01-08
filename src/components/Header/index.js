@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink  } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from  'react-redux';
 import './styles.scss';
 
@@ -11,6 +11,7 @@ const mapState = (state) => ({
 
 const Header = props => {
   const { currentUser } = useSelector(mapState);
+  const { inquirePageNumber } = useParams();
 
   let userInfo = [];
   
@@ -55,7 +56,7 @@ const Header = props => {
           
           
             <NavLink 
-            to="/inquire"
+            to={`/inquirePage=/${inquirePageNumber === undefined ? '1' : inquirePageNumber}`}
             activeClassName="active"
             className="link"
             >

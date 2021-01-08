@@ -24,9 +24,9 @@ const mapState = ({ inquiresData, user, messages }) => ({
 
 const InquireBoard = ({}) => {
   const { inquires, currentUser, inquireComments } = useSelector(mapState);
+  const { inquireType, inquirePageNumber } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { inquireType } = useParams();
   const [hideModal, setHideModal] = useState(true);
   const [inquireDesc, setInquireDesc] = useState('');
   const [inquireTag, setInquireTag] = useState('제안');
@@ -43,7 +43,7 @@ const InquireBoard = ({}) => {
 
   const [displayName, setDisplayName] = useState(userInfo[0]);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(inquirePageNumber);
   const [postsPerPage] = useState(11);
 
   const { data } = inquires;
@@ -85,6 +85,7 @@ const InquireBoard = ({}) => {
     setInquireTitle('');
     setInquireDesc('');
     setDisplayName(userInfo[0]);
+    setCurrentPage(1);
   };
   
   const handleSubmit = e => {
@@ -110,7 +111,7 @@ const InquireBoard = ({}) => {
 
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/inquire/${nextFilter}`);
+    history.push(`/inquirePage=/${inquirePageNumber}/${nextFilter}`);
   };
 
   const configFilter = {

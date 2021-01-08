@@ -225,5 +225,12 @@
       background-color: $blue;
       color: #fff;
     }
+    .page.none {
+      color:#adadad;
+      background-color: transparent;
+      pointer-events: none;
+      border: none;
+      cursor: context-menu;
+    }
   }
 }

@@ -18,7 +18,7 @@ export const handleAddInquire = inquire => {
 
 export const handleFetchInquires = ({ inquireType }) => {
   return new Promise((resolve, reject) => {
-    
+
     let ref = firestore.collection('inquires').orderBy('createdDate', 'desc');
     
     if (inquireType) ref = ref.where('inquireTag', '==', inquireType);

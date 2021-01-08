@@ -57,7 +57,7 @@ const MainInquire = ({ }) => {
   return (
     <div className="main-inquire">
       <div className="main-inquire-add-btn-wrapper">
-        <Link className="inquire-add-btn" to={'/inquire'}>
+        <Link className="inquire-add-btn" to={'/inquirePage=/1'}>
         <FontAwesomeIcon className="i" icon={faThLarge} />
           <span>모두 보기</span>
         </Link>
