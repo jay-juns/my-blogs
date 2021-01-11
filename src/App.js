@@ -30,6 +30,9 @@ const App = props => {
     dispatch(checkUserSession());
 
   }, []);
+  window.document.oncontextmenu = new Function("return false"); 
+  window.document.onselectstart = new Function("return false"); 
+  window.document.ondragstart = new Function("return false");
 
   return (
     <div className="App">
