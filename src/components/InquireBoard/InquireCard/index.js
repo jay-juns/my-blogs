@@ -218,10 +218,16 @@ const InquireCard = ({}) => {
                   options={[{
                     name: "제안",
                     value: "제안"             
-                  }, {
+                  }, 
+                  {
                     name: "의견",
                     value: "의견"
-                  }, {
+                  },
+                  {
+                    name: "버그제보",
+                    value: "버그제보"
+                  }, 
+                  {
                     name: "기타",
                     value: "기타"
                   }]}

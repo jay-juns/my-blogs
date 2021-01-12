@@ -5,6 +5,8 @@ const TagType = (inquireTag) => {
        return 'greenBg';
     case '의견' :
       return 'blueBg';
+    case '버그제보' :
+      return 'redBg';
     case '기타' :
       return '';   
     default:

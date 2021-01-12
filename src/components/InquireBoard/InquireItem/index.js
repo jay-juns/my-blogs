@@ -34,8 +34,8 @@ const InquireItem = (inquireText) => {
 
         <div className="show-text">
           <div className="show-title">
-            <p className={`${TagType(inquireTag)} show-tag`}>
-              {inquireTag}
+            <p className="show-tag">
+              <span className={`${TagType(inquireTag)} show-tag--span`}>{inquireTag}</span>
             </p>
             <p className="show-titie-first">
               <span className="show-titie-first--middle">{inquireTitle}</span> 
