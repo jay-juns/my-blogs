@@ -58,7 +58,7 @@ const SignIn = props => {
       }, 30);
     }
     setHideAlert(false);
-    return () => (userErr.code= '');
+    return () => (userErr.code = '');
   }, [userErr]);
 
   const resetForm = () => {
