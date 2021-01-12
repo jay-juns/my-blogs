@@ -46,6 +46,7 @@ const InquireCard = ({}) => {
     documentID
   } = inquire;
 
+
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');

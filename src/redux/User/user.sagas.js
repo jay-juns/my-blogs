@@ -74,15 +74,15 @@ export function* signUpUser({ payload: {
   password,
   confirmPassword
 }}) {
-  
-  if(displayName === 'admin' || displayName === '관리자' || userId === 'admin') {
-    yield put(userError('사용할수 없는 이름입니다')); 
-    return;
-  }
 
   if (password !== confirmPassword) {
 
-    yield put(userError('비밀번호가 일치하지 않습니다'));    
+    const err = {
+      code:'비밀번호 불일치',
+      message:'비밀번호가 일치하지 않습니다'
+    };
+
+    yield put(userError(err));    
     return;
   }
 
@@ -90,7 +90,8 @@ export function* signUpUser({ payload: {
 
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     const additionalData = { displayName, userId };
-    yield getSnapshotFromUserAuth(user, additionalData); 
+    yield getSnapshotFromUserAuth(user, additionalData);
+  
 
   } catch(err) {
     

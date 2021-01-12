@@ -140,3 +140,21 @@ button:not(.btn):hover {
     }
   }
 }
+
+.loading__bar__icon {
+	border: 1px solid rgba($lightBlue, .1);
+	border-top-color: rgba($lightBlue, .75);
+	border-radius: 100%;
+	height: 22px;
+	width: 22px;
+	animation: rotate .8s infinite linear;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}

@@ -2,27 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signUpUserStart } from './../../redux/User/user.actions';
-// import { setAlert } from './../../redux/Alert/alert.action';
+
 import './styles.scss';
 
 import FormInput from '../Forms/FormInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
+import Alert from '../Alert';
 
 const mapState = ({ user }) => ({
-  currentUser: user.currentUser
+  currentUser: user.currentUser,
+  userErr: user.userErr
 });
 
 const Signup = props => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { currentUser } = useSelector(mapState);
+  const { currentUser, userErr } = useSelector(mapState);
   const [displayName, setDisplayName] = useState('');
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [hideAlert, setHideAlert] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
@@ -33,7 +35,7 @@ const Signup = props => {
   }, [currentUser]);
 
   useEffect(() => {
-    if(userId !== '' || displayName !== '' || email !== '' || password !=='' || confirmPassword !=='') {
+    if(userId !== '' && displayName !== '' && email !== '' && password !=='' && confirmPassword !=='') {
       document.getElementById("signUpBtn").disabled = false;
       document.getElementById("signUpBtn").classList.add('btn');
     } else {
@@ -43,12 +45,23 @@ const Signup = props => {
 
   }, [userId, displayName, email, password, confirmPassword]);
 
+  useEffect(() => {
+    if(userErr.code) {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+    }
+    setHideAlert(false);
+    return () => (userErr.code = '');
+  }, [userErr]);
+
   const reset = () => {
     setDisplayName('');
     setUserId('');
     setEmail('');
     setPassword('');
     setConfirmPassword('');
+    setHideAlert(false);
   }
 
   const handleFormSubmit = event => {
@@ -63,14 +76,21 @@ const Signup = props => {
     }));
   }
 
+  const configAlert = {
+    text: `${userErr.message}`,
+    color: 'danger',
+    hideAlert: hideAlert
+  }
+
   const configAuthWrapper = {
     headline: '마이 Blogs 회원가입'
   };
 
-
   return (
     <AuthWrapper {...configAuthWrapper}>
       <div className="sign-up"> 
+
+      {hideAlert && <Alert {...configAlert} key="signUp"/>}
 
         <form onSubmit={handleFormSubmit}>
           <FormInput

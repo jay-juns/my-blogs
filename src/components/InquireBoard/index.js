@@ -43,7 +43,7 @@ const InquireBoard = ({}) => {
 
   const [displayName, setDisplayName] = useState(userInfo[0]);
 
-  const [currentPage, setCurrentPage] = useState(inquirePageNumber);
+  const [currentPage, setCurrentPage] = useState(Number(inquirePageNumber));
   const [postsPerPage] = useState(11);
 
   const { data } = inquires;

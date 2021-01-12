@@ -52,13 +52,13 @@ const SignIn = props => {
   }, [email, password]);
 
   useEffect(() => {
-    if(userErr.code === 'auth/wrong-password' || userErr.code === 'auth/user-not-found') {
+    if(userErr.code) {
       setTimeout(() => {
         setHideAlert(true);
       }, 30);
     }
     setHideAlert(false);
-    return () => (userErr.code= '');
+    return () => (userErr.code = '');
   }, [userErr]);
 
   const resetForm = () => {
@@ -72,7 +72,7 @@ const SignIn = props => {
   };
 
   const configAlert = {
-    text: '패스워드 또는 이메일 주소가 틀렸습니다. 다시 입력해주세요',
+    text: userErr.code === 'auth/wrong-password' || userErr.code === 'auth/user-not-found' ? '패스워드 또는 이메일 주소가 틀렸습니다.':'너무 많은 요청을 보내셨습니다. 잠시 후에 다시 시도해주세요.',
     color: 'danger',
     hideAlert: hideAlert
   }
@@ -120,13 +120,15 @@ const SignIn = props => {
               이메일 로그인
             </Button>
 
-            <div className="sign-in-social">
-              <Button className="btn" onClick={handleGoogleSignIn}>
-                <FontAwesomeIcon className="i" icon={faGoogle} />
-                <p>Google계정으로 이용하기</p>
-              </Button>
-            </div>
           </form>
+
+          <div className="sign-in-social">
+            <Button className="btn" onClick={handleGoogleSignIn}>
+              <FontAwesomeIcon className="i" icon={faGoogle} />
+              <p>Google계정으로 이용하기</p>
+            </Button>
+          </div>
+          
         </div>
       </div>
     </AuthWrapper>
