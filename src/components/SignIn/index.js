@@ -120,13 +120,15 @@ const SignIn = props => {
               이메일 로그인
             </Button>
 
-            <div className="sign-in-social">
-              <Button className="btn" onClick={handleGoogleSignIn}>
-                <FontAwesomeIcon className="i" icon={faGoogle} />
-                <p>Google계정으로 이용하기</p>
-              </Button>
-            </div>
           </form>
+
+          <div className="sign-in-social">
+            <Button className="btn" onClick={handleGoogleSignIn}>
+              <FontAwesomeIcon className="i" icon={faGoogle} />
+              <p>Google계정으로 이용하기</p>
+            </Button>
+          </div>
+          
         </div>
       </div>
     </AuthWrapper>

@@ -56,7 +56,7 @@ const Header = props => {
           
           
             <NavLink 
-            to={`/inquirePage=/${inquirePageNumber === undefined ? '1' : inquirePageNumber}`}
+            to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
             activeClassName="active"
             className="link"
             >

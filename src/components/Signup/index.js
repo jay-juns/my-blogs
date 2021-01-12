@@ -76,8 +76,6 @@ const Signup = props => {
     }));
   }
 
-  console.log(userErr, '132');
-
   const configAlert = {
     text: `${userErr.message}`,
     color: 'danger',
