@@ -31,7 +31,15 @@ const Header = props => {
         
         <div className="header-left">
           <div className="header-logo">
-            <img src={Logo} alt="logo" />
+            
+            <NavLink
+            exact 
+            to="/"
+            activeClassName="active"
+            className="link"
+            >
+              <img src={Logo} alt="logo" />
+            </NavLink>
           </div>
 
           <nav>
