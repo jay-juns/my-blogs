@@ -27,8 +27,9 @@ const App = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     dispatch(checkUserSession());
-
+    
   }, []);
   
   window.document.oncontextmenu = new Function("return false"); 
@@ -56,7 +57,6 @@ const App = props => {
           </MainLayout>
         )}
         />
-
         <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (
           <MainLayout>
             <Inquire />
