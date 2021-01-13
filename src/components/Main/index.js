@@ -3,7 +3,6 @@ import SliderMain from '../Slider/sliderMain';
 import MainContent from './mainContent';
 import Modal from './../Forms/Modal';
 
-
 const Main = props => {
   
   const [hideModal, setHideModal] = useState(false);
@@ -29,7 +28,6 @@ const Main = props => {
         </div>
       </Modal> 
       
-
       <SliderMain />
       <div className="main-contents">
         <MainContent />

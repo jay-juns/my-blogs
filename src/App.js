@@ -57,7 +57,6 @@ const App = props => {
           </MainLayout>
         )}
         />
-
         <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (
           <MainLayout>
             <Inquire />
