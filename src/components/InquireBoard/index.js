@@ -85,7 +85,7 @@ const InquireBoard = ({}) => {
     setInquireTitle('');
     setInquireDesc('');
     setDisplayName(userInfo[0]);
-    setCurrentPage(1);
+    setCurrentPage(Number(inquirePageNumber));
   };
   
   const handleSubmit = e => {
@@ -109,9 +109,11 @@ const InquireBoard = ({}) => {
     resetForm();
   };
 
+  
+
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/inquirePage=/${inquirePageNumber}/${nextFilter}`);
+    history.push(`/inquirePage=/${Number(1)}/${nextFilter}`);
   };
 
   const configFilter = {
@@ -151,7 +153,7 @@ const InquireBoard = ({}) => {
         <h3>문의 게시판</h3>
       </div>
       <div className="inquire-contents">
-      {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
+        {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
         
         <FormSelect {...configFilter} />
 
@@ -296,6 +298,7 @@ const InquireBoard = ({}) => {
             totalPosts={data.length}
             currentPage={currentPage}
             paginate={paginate}
+            
           />
         ])
       }  
