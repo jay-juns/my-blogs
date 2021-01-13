@@ -85,7 +85,7 @@ const InquireBoard = ({}) => {
     setInquireTitle('');
     setInquireDesc('');
     setDisplayName(userInfo[0]);
-    setCurrentPage(1);
+    setCurrentPage(Number(inquirePageNumber));
   };
   
   const handleSubmit = e => {
@@ -109,9 +109,11 @@ const InquireBoard = ({}) => {
     resetForm();
   };
 
+  
+
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/inquirePage=/${inquirePageNumber}/${nextFilter}`);
+    history.push(`/inquirePage=/${Number(1)}/${nextFilter}`);
   };
 
   const configFilter = {
@@ -127,6 +129,10 @@ const InquireBoard = ({}) => {
     {
       name: "의견",
       value: "의견"
+    },
+    {
+      name: "버그제보",
+      value: "버그제보"
     },
     {
       name: "기타",
@@ -147,7 +153,7 @@ const InquireBoard = ({}) => {
         <h3>문의 게시판</h3>
       </div>
       <div className="inquire-contents">
-      {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
+        {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
         
         <FormSelect {...configFilter} />
 
@@ -166,10 +172,16 @@ const InquireBoard = ({}) => {
               options={[{
                 name: "제안",
                 value: "제안"             
-              }, {
+              }, 
+              {
                 name: "의견",
                 value: "의견"
-              }, {
+              },
+              {
+                name: "버그제보",
+                value: "버그제보"
+              }, 
+              {
                 name: "기타",
                 value: "기타"
               }]}
@@ -286,6 +298,7 @@ const InquireBoard = ({}) => {
             totalPosts={data.length}
             currentPage={currentPage}
             paginate={paginate}
+            
           />
         ])
       }  

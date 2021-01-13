@@ -79,28 +79,29 @@
   
         .show-text--head {
           flex: 1;
+          width: calc(100% - 60px);
   
           .show-title--head {
             display: flex;
             align-items: center;
   
             .show-tag--head {
-              min-width: 80px;
+              width: 10%;
               text-align: center;
             }
   
             .show-titie-first--head {
-              flex: 1;
+              width: 72%;
               text-align: center;
             }
   
             .show-title-nick--head {
-              min-width: 100px;
+              width: 12%;
               text-align: left;
             }
   
             .show-title-day--head {
-              width: 60px;
+              width: 6%;
               text-align: center;
             }
           }
@@ -145,19 +146,23 @@
               align-items: center;
   
               .show-tag {
-                width: 4%;
-                background-color: $midiumGray;
-                border-radius: 8rem;
-                margin: 0 1rem;
-                font-weight: 600;
-                font-size: 1.3rem;
-                color: #fff;
-                padding: 0.3rem 0.6rem;
-                text-align: center;
+                width: 10%;
+                display: flex;
+                justify-content: center;
+
+                .show-tag--span {
+                  background-color: $midiumGray;
+                  border-radius: 1.4rem;
+                  padding: .6rem .8rem;
+                  font-weight: 600;
+                  font-size: 1.3rem;
+                  color: #fff;
+                  text-align: center;
+                }
               }
               
               .show-titie-first {
-                width: 78%;
+                width: 72%;
                 overflow: hidden;
                 display: flex;
                 align-items: flex-start;

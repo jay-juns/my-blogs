@@ -141,6 +141,32 @@ button:not(.btn):hover {
   }
 }
 
+.ex-wrapper {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.5;
+
+  h3 {
+    color: $red;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2.4rem;
+  }
+
+  p {
+    text-align: left;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+
+    strong {
+      color: $red;
+    }
+  }
+}
+
 .loading__bar__icon {
 	border: 1px solid rgba($lightBlue, .1);
 	border-top-color: rgba($lightBlue, .75);

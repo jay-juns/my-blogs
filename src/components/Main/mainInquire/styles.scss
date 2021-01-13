@@ -42,11 +42,11 @@
     }
 
     .main-inquire-items-header-tag {
-      width: 6%;
+      width: 10%;
     }
 
     .main-inquire-items-header-title {
-      width: 78%;
+      width: 74%;
     }
 
     .main-inquire-items-header-name {
@@ -91,23 +91,28 @@
       }
 
       .main-inquire-items-tag {
-        width: 8%;
+        width: 10%;
         text-align: center;
 
         .main-inquire-items-tag--name {
-          background-color: $midiumGray;
-          border-radius: 8rem;
+          display: flex;
+          justify-content: center;
           margin: 0 1rem;
-          font-weight: 600;
-          font-size: 1.3rem;
-          color: #fff;
-          padding: 0.3rem 0.6rem;
-          text-align: center;
+
+          .main-inquire-items-tag--name-span {
+            background-color: $midiumGray;
+            border-radius: 1.4rem;
+            padding: .6rem .8rem;
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: #fff;
+            text-align: center;
+          }
         }
       }
 
       .main-inquire-items-title {
-        width: 76%;
+        width: 74%;
         overflow: hidden;
         display: flex;
         align-items: flex-start;

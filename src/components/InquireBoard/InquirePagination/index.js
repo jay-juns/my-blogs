@@ -12,6 +12,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
     pageNumbers.push(i);
   }
 
+
   return (
     <div className="paging-number">
       
@@ -25,7 +26,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
       {pageNumbers.map(number => (
         <Link 
           onClick={() => {paginate(number)}} 
-          to={`/inquirePage=/${number}`}
+          to={`/inquirePage=/${ number}`}
           className={currentPage === number.toString() || currentPage === number ? `page active` : `page ${number}`} 
           key={number}>
             {number}
