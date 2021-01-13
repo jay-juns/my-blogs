@@ -27,8 +27,9 @@ const App = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     dispatch(checkUserSession());
-
+    
   }, []);
   
   window.document.oncontextmenu = new Function("return false"); 
