@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
-import { fetchInquireStart, setInquire, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
-import { addInquireComments, fetchInquireComments, setInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
+import { fetchInquireStart, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
+import { addInquireComments, fetchInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -45,7 +45,6 @@ const InquireCard = ({}) => {
     inquireDesc,
     documentID
   } = inquire;
-
 
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
@@ -90,28 +89,18 @@ const InquireCard = ({}) => {
     dispatch(
       fetchInquireStart(inquireID)
     )
-
-    return () => {
-      dispatch(
-        setInquire({})
-      )
-    }
   }, []);
 
   useEffect(() => {
     dispatch(
       fetchInquireComments()
     )
-
-    return () => {
-      dispatch(
-        setInquireComments({})
-      )
-    }
   }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if(setShow(true)) setShow(false);
 
     if(inquireEditTitle === '' || inquireEditDesc === '') {
       setTimeout(() => {
@@ -135,8 +124,9 @@ const InquireCard = ({}) => {
   const handleDelete = () => {
     dispatch(
       deleteInquireStart(documentID)
-    );
-    history.back('/inquirePage');
+    )
+
+    history.goBack()
   }
 
   const handleChat = e => {

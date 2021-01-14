@@ -14,14 +14,15 @@ const mapState = (state) => ({
   currentUser: state.user.currentUser
 });
 
-export const InquireComments = props => {
+const InquireComments = props => {
   const { comBoxResult } = props;
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const isAdmin = checkUserIsAdmin(currentUser);
   const items = comBoxResult;
-  
 
+  console.log(items, 'messageData');
+  
   return (
     
     <div className="inquire-text">
@@ -43,7 +44,7 @@ export const InquireComments = props => {
               <span>{nowTime}</span>
             </div>
             <div className="inquire-comment-area--body">
-              <p>{inquireText}</p>  
+              <pre id={`${uid}`}>{inquireText}</pre>  
             </div>
            {isAdmin &&
             <div className="inquire-comment-area--delete-btn" key="controlCommentSettings">
