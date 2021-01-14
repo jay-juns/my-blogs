@@ -26,9 +26,14 @@
     &--body {
       margin-top: .8rem;
   
-      p {
+      pre {
         font-size: 1.3rem;
         font-weight: 400;
+        max-height: 150px;
+        overflow: hidden;
+      }
+      pre.all-pre {
+        max-height: initial;
       }
     }
     &--delete-btn {
