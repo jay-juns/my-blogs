@@ -6,7 +6,10 @@ export const handleAddInquireComments = inquireComment => {
      firestore
       .collection('inquireComments')
       .doc() 
-      .set(inquireComment)  
+      .set({ 
+        ...inquireComment,
+        inquireID: inquireComment.id 
+      })  
       .then(() => {
         resolve();
       })
@@ -62,7 +65,8 @@ export const handleFetchInquireComment = ({ inquireID }) => {
   return new Promise((resolve, reject) => {
     
     let db = firestore.collection('inquireComments').where('id', '==', inquireID).orderBy('createAt', 'desc');
-    
+    // if(inquireID) db = db.where('id', '==', inquireID);
+
     db
       .get()
       .then(snapshot => {
@@ -70,7 +74,8 @@ export const handleFetchInquireComment = ({ inquireID }) => {
         const messageRoomData = [
             ...snapshot.docs.map(doc => {
             return {
-              ...doc.data()
+              ...doc.data(),
+              documentID: doc.id
             }
           })
         ];

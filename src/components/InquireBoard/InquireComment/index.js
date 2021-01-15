@@ -33,6 +33,9 @@ const InquireComments = props => {
           dispatch(
             deleteInquireComments(documentID)
           );
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
         }
       
         return (

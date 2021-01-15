@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { fetchInquireComments, setInquireComments, setInquireComment } from './InquireComments.actions';
-import {  handleAddInquireComments, handleFetchInquireComments, handleDeleteInquireComments, handleFetchInquireComment } from './InquireComments.helpers';
+import { fetchInquireComment, fetchInquireComments, setInquireComments, setInquireComment } from './InquireComments.actions';
+import { handleAddInquireComments, handleFetchInquireComments, handleDeleteInquireComments, handleFetchInquireComment } from './InquireComments.helpers';
 import  InquireCommentsTypes from './InquireComments.types';
 
 //add
@@ -15,7 +15,10 @@ export function* addInquireComments({ payload }) {
       createAt: timestamp      
     });
     yield put(
-      fetchInquireComments()
+      fetchInquireComment({
+        ...payload,
+        inquireID: payload.id
+      })
     )
   } catch(err) {
     // console.log(err);
@@ -72,7 +75,7 @@ export function* fetchInquireCommentStart({ payload }) {
       setInquireComment(inquireComment)
     );
   } catch(err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 

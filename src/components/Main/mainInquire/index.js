@@ -35,10 +35,6 @@ const MainInquire = ({ }) => {
     )
   }, []);
 
-  console.log(inquireComment);
-  
-
-
   const configMainInquire = {
     data
   };

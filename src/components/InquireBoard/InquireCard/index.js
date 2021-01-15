@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { fetchInquireStart, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
-import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
+import { addInquireComments, fetchInquireComment, setInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -92,11 +92,14 @@ const InquireCard = ({}) => {
     )
   }, []);
 
+
   useEffect(() => {
+     
     dispatch(
       fetchInquireComment({ inquireID })
     )
-  }, [inquireID]);
+
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -143,7 +146,7 @@ const InquireCard = ({}) => {
       })
     );
     resetInput();
-  };
+  }; 
 
   const configInquireComments = {
     messageRoomData
@@ -186,49 +189,49 @@ const InquireCard = ({}) => {
                 ]}
               </div>
               <Modal {...configModal}>
-              <form onSubmit={handleSubmit}>
-                <h2>글 수정하기</h2>
+                <form onSubmit={handleSubmit}>
+                  <h2>글 수정하기</h2>
 
-                <FormSelect 
-                  label="태그 선택"
-                  options={[{
-                    name: "제안",
-                    value: "제안"             
-                  }, 
-                  {
-                    name: "의견",
-                    value: "의견"
-                  },
-                  {
-                    name: "버그제보",
-                    value: "버그제보"
-                  }, 
-                  {
-                    name: "기타",
-                    value: "기타"
-                  }]}
-                  handleChange={e => setInquireEditTag(e.target.value)}
-                />
+                  <FormSelect 
+                    label="태그 선택"
+                    options={[{
+                      name: "제안",
+                      value: "제안"             
+                    }, 
+                    {
+                      name: "의견",
+                      value: "의견"
+                    },
+                    {
+                      name: "버그제보",
+                      value: "버그제보"
+                    }, 
+                    {
+                      name: "기타",
+                      value: "기타"
+                    }]}
+                    handleChange={e => setInquireEditTag(e.target.value)}
+                  />
 
-                <FormInput 
-                  label="제목"
-                  formClass="modal-items"
-                  type="text"
-                  value={inquireEditTitle}
-                  handleChange={e => setinquireEditTitle(e.target.value)}
-                />  
+                  <FormInput 
+                    label="제목"
+                    formClass="modal-items"
+                    type="text"
+                    value={inquireEditTitle}
+                    handleChange={e => setinquireEditTitle(e.target.value)}
+                  />  
 
-                <CKEditor
-                  onChange={evt => setinquireEditDesc(evt.editor.getData())}
-                />
+                  <CKEditor
+                    onChange={evt => setinquireEditDesc(evt.editor.getData())}
+                  />
 
-                <div className="btn-wrap">
-                  <Button className="ent-btn btn" type="submit">
-                    수정 완료
-                  </Button>
-                </div>
-              </form>
-            </Modal>
+                  <div className="btn-wrap">
+                    <Button className="ent-btn btn" type="submit">
+                      수정 완료
+                    </Button>
+                  </div>
+                </form>
+              </Modal>
             </div>
             
             <div className="detail-header-left--footer-wrapper">

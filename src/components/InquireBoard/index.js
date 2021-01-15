@@ -298,7 +298,7 @@ const InquireBoard = ({}) => {
             totalPosts={data.length}
             currentPage={currentPage}
             paginate={paginate}
-            
+            key="inquirePagination"
           />
         ])
       }  
