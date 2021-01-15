@@ -15,11 +15,11 @@ const mapState = (state) => ({
 });
 
 const InquireComments = props => {
-  const { roomMessage } = props;
+  const { messageRoomData } = props;
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const isAdmin = checkUserIsAdmin(currentUser);
-  const items = roomMessage;
+  const items = messageRoomData;
   
   return (
     

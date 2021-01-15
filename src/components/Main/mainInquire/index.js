@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchInquiresStart } from './../../../redux/Inquires/inquires.actions';
-import { fetchInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
+import { fetchInquiresMainStart } from './../../../redux/Inquires/inquires.actions';
+import { fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 
 import MainInquireItem from './../mainInquireItem';
 
@@ -13,45 +13,34 @@ import './styles.scss'
 
 const mapState = ({ inquiresData, messages }) => ({
   inquires: inquiresData.inquires,
-  inquireComments: messages.inquireComments
+  inquireComment: messages.inquireComment
 })
 
 const MainInquire = ({ }) => {
 
   const dispatch = useDispatch();
-  const { inquires, inquireComments } = useSelector(mapState);
+  const { inquires, inquireComment } = useSelector(mapState);
   const { data } = inquires;
 
   useEffect(() => {
     dispatch(
-      fetchInquiresStart()
+      fetchInquiresMainStart()
     )
   }, []);
 
   useEffect(() => {
+
     dispatch(
-      fetchInquireComments()
+      fetchInquireComment({ })
     )
   }, []);
 
-  let queData;
-  let queDataLeng;
-  let comLengResult = [];
+  console.log(inquireComment);
+  
 
-  if(Array.isArray(data) && data.length > 1) {
-    queData = Object.entries(data);
-    queDataLeng = queData.slice(0, 4);
-  }
-
-  if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0 ) {
-    inquireComments.messageData.forEach((el) => {
-      comLengResult.push(el.id);
-    })
-  }
 
   const configMainInquire = {
-    queDataLeng,
-    comLengResult
+    data
   };
 
   return (

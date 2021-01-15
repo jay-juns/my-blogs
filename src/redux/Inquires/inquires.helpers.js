@@ -43,6 +43,35 @@ export const handleFetchInquires = ({ inquireType }) => {
   });
 }
 
+export const handleFetchMainInquires = ({ inquireType }) => {
+  return new Promise((resolve, reject) => {
+
+    const limitPage = 4;
+
+    let ref = firestore.collection('inquires').orderBy('createdDate', 'desc').limit(limitPage);
+    
+    if (inquireType) ref = ref.where('inquireTag', '==', inquireType);
+      
+    ref
+      .get()  
+      .then(snapshot => {
+        const data = [
+          ...snapshot.docs.map(doc => {
+          return {
+            ...doc.data(),
+            documentID: doc.id
+          }
+        })
+      ];
+
+        resolve({ data });
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}
+
 
 export const handleDeleteInquire = documentID => {
   return new Promise((resolve, reject) => {

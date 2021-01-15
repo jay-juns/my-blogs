@@ -1,10 +1,13 @@
 import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire } from './inquires.actions';
-import { handleFetchInquires, handleAddInquire, 
+import { handleFetchInquires, handleFetchMainInquires, handleAddInquire, 
   handleDeleteInquire, handleFetchInquire, 
   handleEditInquire } from './inquires.helpers';
 import  inquiresTypes from './inquires.types';
+
+
+//add
 
 export function* addInquire({ payload }) {
 
@@ -30,6 +33,8 @@ export function* onAddInquiresStart() {
 }
 
 
+//fetches
+
 export function* fetchInquires({ payload }) {
   try {
     const inquires = yield handleFetchInquires(payload);
@@ -45,7 +50,24 @@ export function* onFetchInquiresStart() {
   yield takeLatest(inquiresTypes.FETCH_INQUIRES_START, fetchInquires);
 }
 
+//main fetches
 
+export function* fetchMainInquires({ payload }) {
+  try {
+    const inquires = yield handleFetchMainInquires(payload);
+    yield put(
+      setInquires(inquires)
+    );
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+export function* onFetchInquiresMainStart() {
+  yield takeLatest(inquiresTypes.FETCH_INQUIRES_MAIN_START, fetchMainInquires);
+}
+
+//delete
 
 export function* deleteInquire({ payload }) {
   try {
@@ -63,7 +85,7 @@ export function* onDeleteInquireStart() {
   yield takeLatest(inquiresTypes.DELETE_INQUIRE_START, deleteInquire);
 }
 
-
+//sets
 
 export function* fetchInquire({ payload }) {
   try {
@@ -80,7 +102,7 @@ export function* onFetchInquireStart() {
   yield takeLatest(inquiresTypes.FETCH_INQUIRE_START, fetchInquire);
 }
 
-
+//update
 
 export function* editInquire({ payload }) {
   try {
@@ -103,6 +125,7 @@ export default function* inquiresSagas() {
   yield all([
     call(onAddInquiresStart),
     call(onFetchInquiresStart),
+    call(onFetchInquiresMainStart),
     call(onDeleteInquireStart),
     call(onFetchInquireStart),
     call(onEditInquireStart)

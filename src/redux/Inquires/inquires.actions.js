@@ -10,6 +10,11 @@ export const fetchInquiresStart = (filters={}) => ({
   payload: filters
 });
 
+export const fetchInquiresMainStart = (filters={}) => ({
+  type: inquiresTypes.FETCH_INQUIRES_MAIN_START,
+  payload: filters
+});
+
 export const setInquires = inquires => ({
   type: inquiresTypes.SET_INQUIRES,
   payload: inquires

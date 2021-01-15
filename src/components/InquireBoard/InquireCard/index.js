@@ -45,13 +45,13 @@ const InquireCard = ({}) => {
     inquireDesc,
     documentID
   } = inquire;
+  const { messageRoomData } = inquireComment;
 
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');
   const [inquireText, setInquireText] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
-  const roomMessage = inquireComment.messageRoomData;
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
@@ -144,11 +144,10 @@ const InquireCard = ({}) => {
     );
     resetInput();
   };
-  
-  const configInquireComments = {
-    roomMessage
-  }
 
+  const configInquireComments = {
+    messageRoomData
+  }
 
   const configAlert = {
     text: '수정할 제목과 내용을 채워 주세요',
@@ -251,7 +250,12 @@ const InquireCard = ({}) => {
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">
-          <p>댓글 {roomMessage.length}개</p>
+           {(Array.isArray(messageRoomData) && messageRoomData.length > 0) && [
+               <p key="messageEx">댓글 {inquireComment.messageRoomData.length}개</p>
+           ]}
+           {(Array.isArray(messageRoomData) && messageRoomData.length < 1) && [
+               <p key="messageNone">등록된 댓글이 없습니다</p>
+           ]}
         </div>
 
         {currentUser &&[
