@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { fetchInquireStart, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
-import { addInquireComments, fetchInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
+import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -27,14 +27,14 @@ import './styles.scss';
 const mapState = state => ({
   inquire: state.inquiresData.inquire,
   currentUser: state.user.currentUser,
-  inquireComments: state.messages.inquireComments
+  inquireComment: state.messages.inquireComment
 })
 
 const InquireCard = ({}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { inquireID } = useParams();
-  const { inquire, currentUser, inquireComments } = useSelector(mapState);
+  const { inquire, currentUser, inquireComment } = useSelector(mapState);
 
   const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
@@ -51,6 +51,7 @@ const InquireCard = ({}) => {
   const [inquireEditTag, setInquireEditTag] = useState('제안');
   const [inquireText, setInquireText] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
+  const roomMessage = inquireComment.messageRoomData;
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
@@ -93,9 +94,9 @@ const InquireCard = ({}) => {
 
   useEffect(() => {
     dispatch(
-      fetchInquireComments()
+      fetchInquireComment({ inquireID })
     )
-  }, []);
+  }, [inquireID]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -143,25 +144,11 @@ const InquireCard = ({}) => {
     );
     resetInput();
   };
-
-  let comBoxResult;
-  let comLeng = 0;
-
-  if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0) {
-
-    comBoxResult = inquireComments.messageData.filter((keyID) => {
-      if (keyID.id === documentID) {
-        return true;
-      }
-      return false;
-    });
-
-    comLeng = Object.keys(comBoxResult).length;   
-  }
   
   const configInquireComments = {
-    comBoxResult
+    roomMessage
   }
+
 
   const configAlert = {
     text: '수정할 제목과 내용을 채워 주세요',
@@ -264,7 +251,7 @@ const InquireCard = ({}) => {
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">
-          <p>댓글 {comLeng}개</p>
+          <p>댓글 {roomMessage.length}개</p>
         </div>
 
         {currentUser &&[

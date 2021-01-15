@@ -57,3 +57,28 @@ export const handleDeleteInquireComments = documentID => {
       })
   });
 }
+
+export const handleFetchInquireComment = ({ inquireID }) => {
+  return new Promise((resolve, reject) => {
+    
+    let db = firestore.collection('inquireComments').where('id', '==', inquireID).orderBy('createAt', 'desc');
+    
+    db
+      .get()
+      .then(snapshot => {
+        
+        const messageRoomData = [
+            ...snapshot.docs.map(doc => {
+            return {
+              ...doc.data()
+            }
+          })
+        ];
+
+        resolve({ messageRoomData });
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
+}
