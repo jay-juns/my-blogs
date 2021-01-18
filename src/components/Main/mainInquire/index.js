@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchInquiresStart } from './../../../redux/Inquires/inquires.actions';
-import { fetchInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
-
+import { fetchInquiresMainStart } from './../../../redux/Inquires/inquires.actions';
 import MainInquireItem from './../mainInquireItem';
 
 import { faThLarge } from '@fortawesome/free-solid-svg-icons';
@@ -11,47 +9,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './styles.scss'
 
-const mapState = ({ inquiresData, messages }) => ({
-  inquires: inquiresData.inquires,
-  inquireComments: messages.inquireComments
+const mapState = ({ inquiresData }) => ({
+  inquires: inquiresData.inquires
 })
 
-const MainInquire = ({ }) => {
-
+const MainInquire = ({}) => {
   const dispatch = useDispatch();
-  const { inquires, inquireComments } = useSelector(mapState);
+  const { inquires } = useSelector(mapState);
   const { data } = inquires;
 
   useEffect(() => {
     dispatch(
-      fetchInquiresStart()
+      fetchInquiresMainStart()
     )
-  }, []);
-
-  useEffect(() => {
-    dispatch(
-      fetchInquireComments()
-    )
-  }, []);
-
-  let queData;
-  let queDataLeng;
-  let comLengResult = [];
-
-  if(Array.isArray(data) && data.length > 1) {
-    queData = Object.entries(data);
-    queDataLeng = queData.slice(0, 4);
-  }
-
-  if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0 ) {
-    inquireComments.messageData.forEach((el) => {
-      comLengResult.push(el.id);
-    })
-  }
+  }, [dispatch]);
 
   const configMainInquire = {
-    queDataLeng,
-    comLengResult
+    data
   };
 
   return (

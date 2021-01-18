@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { fetchInquireComments, setInquireComments } from './InquireComments.actions';
-import {  handleAddInquireComments, handleFetchInquireComments, handleDeleteInquireComments } from './InquireComments.helpers';
+import { fetchInquireComment, fetchInquireComments, setInquireComments, setInquireComment } from './InquireComments.actions';
+import { handleAddInquireComments, handleFetchInquireComments, handleDeleteInquireComments, handleFetchInquireComment } from './InquireComments.helpers';
 import  InquireCommentsTypes from './InquireComments.types';
 
 //add
@@ -15,7 +15,10 @@ export function* addInquireComments({ payload }) {
       createAt: timestamp      
     });
     yield put(
-      fetchInquireComments()
+      fetchInquireComment({
+        ...payload,
+        inquireID: payload.id
+      })
     )
   } catch(err) {
     // console.log(err);
@@ -27,7 +30,7 @@ export function* onAddInquireComments() {
 }
 
 
-//fetch
+//fetches
 
 export function* fetchInquireCommentsStart({ payload }) {
   try {
@@ -62,10 +65,30 @@ export function* onDeleteInquireCommentsStart() {
   yield takeLatest(InquireCommentsTypes.DELETE_INQUIRESCOMMENTS, deleteInquireComments);
 }
 
+
+//fetch
+
+export function* fetchInquireCommentStart({ payload }) {
+  try {
+    const inquireComment = yield handleFetchInquireComment(payload);
+    yield put(
+      setInquireComment(inquireComment)
+    );
+  } catch(err) {
+    // console.log(err);
+  }
+}
+
+
+export function* onFetchInquireCommentStart() {
+  yield takeLatest(InquireCommentsTypes.FETCH_INQUIRECOMMENT, fetchInquireCommentStart);
+}
+
 export default function* inquireCommentsSagas() {
   yield all([
     call(onAddInquireComments),
     call(onFetchInquireCommentsStart),
-    call(onDeleteInquireCommentsStart)
+    call(onDeleteInquireCommentsStart),
+    call(onFetchInquireCommentStart)
   ])
 }

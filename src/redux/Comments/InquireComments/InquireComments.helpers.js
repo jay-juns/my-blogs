@@ -1,12 +1,17 @@
 import { firestore } from '../../../firebase/utils';
 
+//add
+
 export const handleAddInquireComments = inquireComment => {
   return new Promise((resolve, reject) => {    
 
      firestore
       .collection('inquireComments')
       .doc() 
-      .set(inquireComment)  
+      .set({ 
+        ...inquireComment,
+        inquireID: inquireComment.id 
+      })  
       .then(() => {
         resolve();
       })
@@ -15,6 +20,8 @@ export const handleAddInquireComments = inquireComment => {
       })
   });
 }
+
+//fetches
 
 export const handleFetchInquireComments = () => {
   return new Promise((resolve, reject) => {  
@@ -43,6 +50,8 @@ export const handleFetchInquireComments = () => {
   });
 }
 
+//delete
+
 export const handleDeleteInquireComments = documentID => {
   return new Promise((resolve, reject) => {
     firestore
@@ -56,4 +65,32 @@ export const handleDeleteInquireComments = documentID => {
         reject(err);
       })
   });
+}
+
+//fetch
+
+export const handleFetchInquireComment = ({ inquireID }) => {
+  return new Promise((resolve, reject) => {
+    
+    let db = firestore.collection('inquireComments').where('id', '==', inquireID).orderBy('createAt', 'desc');
+
+    db
+      .get()
+      .then(snapshot => {
+        
+        const messageRoomData = [
+            ...snapshot.docs.map(doc => {
+            return {
+              ...doc.data(),
+              documentID: doc.id
+            }
+          })
+        ];
+
+        resolve({ messageRoomData });
+      })
+      .catch(err => {
+        reject(err);
+      })
+  })
 }

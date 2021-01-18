@@ -109,8 +109,6 @@ const InquireBoard = ({}) => {
     resetForm();
   };
 
-  
-
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
     history.push(`/inquirePage=/${Number(1)}/${nextFilter}`);
@@ -298,7 +296,7 @@ const InquireBoard = ({}) => {
             totalPosts={data.length}
             currentPage={currentPage}
             paginate={paginate}
-            
+            key="inquirePagination"
           />
         ])
       }  

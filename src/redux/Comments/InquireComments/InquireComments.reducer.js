@@ -1,7 +1,8 @@
 import InquireCommentsTypes from './InquireComments.types';
 
 const INITIAL_STATE = {
-  inquireComments: {}
+  inquireComments: {},
+  inquireComment: {}
 }
 
 const inquireCommentsReducer = (state=INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const inquireCommentsReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         inquireComments: action.payload
+      }
+    case InquireCommentsTypes.SET_INQUIRECOMMENT:
+      return {
+        ...state,
+        inquireComment: action.payload
       }
     default:
       return state;

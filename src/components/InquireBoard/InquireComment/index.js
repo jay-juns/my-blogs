@@ -15,13 +15,11 @@ const mapState = (state) => ({
 });
 
 const InquireComments = props => {
-  const { comBoxResult } = props;
+  const { messageRoomData } = props;
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
   const isAdmin = checkUserIsAdmin(currentUser);
-  const items = comBoxResult;
-
-  console.log(items, 'messageData');
+  const items = messageRoomData;
   
   return (
     
@@ -35,6 +33,10 @@ const InquireComments = props => {
           dispatch(
             deleteInquireComments(documentID)
           );
+          
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
         }
       
         return (

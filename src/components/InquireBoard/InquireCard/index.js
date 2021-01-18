@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { fetchInquireStart, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
-import { addInquireComments, fetchInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
+import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -27,14 +27,14 @@ import './styles.scss';
 const mapState = state => ({
   inquire: state.inquiresData.inquire,
   currentUser: state.user.currentUser,
-  inquireComments: state.messages.inquireComments
+  inquireComment: state.messages.inquireComment
 })
 
 const InquireCard = ({}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { inquireID } = useParams();
-  const { inquire, currentUser, inquireComments } = useSelector(mapState);
+  const { inquire, currentUser, inquireComment } = useSelector(mapState);
 
   const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
@@ -45,6 +45,7 @@ const InquireCard = ({}) => {
     inquireDesc,
     documentID
   } = inquire;
+  const { messageRoomData } = inquireComment;
 
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
@@ -76,6 +77,7 @@ const InquireCard = ({}) => {
     setInquireText('');
     document.getElementById("submitBtn").disabled = true;
     document.getElementById("submitBtn").classList.remove('btn');
+    document.getElementById("commentContent").style.height = "19px";
   }
 
   const toggleModal = () => setHideModal(!hideModal);
@@ -89,13 +91,13 @@ const InquireCard = ({}) => {
     dispatch(
       fetchInquireStart(inquireID)
     )
-  }, []);
+  }, [dispatch, inquireID]);
 
   useEffect(() => {
     dispatch(
-      fetchInquireComments()
+      fetchInquireComment({ inquireID })
     )
-  }, []);
+  }, [dispatch, inquireID]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -142,25 +144,10 @@ const InquireCard = ({}) => {
       })
     );
     resetInput();
-  };
+  }; 
 
-  let comBoxResult;
-  let comLeng = 0;
-
-  if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0) {
-
-    comBoxResult = inquireComments.messageData.filter((keyID) => {
-      if (keyID.id === documentID) {
-        return true;
-      }
-      return false;
-    });
-
-    comLeng = Object.keys(comBoxResult).length;   
-  }
-  
   const configInquireComments = {
-    comBoxResult
+    messageRoomData
   }
 
   const configAlert = {
@@ -200,49 +187,49 @@ const InquireCard = ({}) => {
                 ]}
               </div>
               <Modal {...configModal}>
-              <form onSubmit={handleSubmit}>
-                <h2>글 수정하기</h2>
+                <form onSubmit={handleSubmit}>
+                  <h2>글 수정하기</h2>
 
-                <FormSelect 
-                  label="태그 선택"
-                  options={[{
-                    name: "제안",
-                    value: "제안"             
-                  }, 
-                  {
-                    name: "의견",
-                    value: "의견"
-                  },
-                  {
-                    name: "버그제보",
-                    value: "버그제보"
-                  }, 
-                  {
-                    name: "기타",
-                    value: "기타"
-                  }]}
-                  handleChange={e => setInquireEditTag(e.target.value)}
-                />
+                  <FormSelect 
+                    label="태그 선택"
+                    options={[{
+                      name: "제안",
+                      value: "제안"             
+                    }, 
+                    {
+                      name: "의견",
+                      value: "의견"
+                    },
+                    {
+                      name: "버그제보",
+                      value: "버그제보"
+                    }, 
+                    {
+                      name: "기타",
+                      value: "기타"
+                    }]}
+                    handleChange={e => setInquireEditTag(e.target.value)}
+                  />
 
-                <FormInput 
-                  label="제목"
-                  formClass="modal-items"
-                  type="text"
-                  value={inquireEditTitle}
-                  handleChange={e => setinquireEditTitle(e.target.value)}
-                />  
+                  <FormInput 
+                    label="제목"
+                    formClass="modal-items"
+                    type="text"
+                    value={inquireEditTitle}
+                    handleChange={e => setinquireEditTitle(e.target.value)}
+                  />  
 
-                <CKEditor
-                  onChange={evt => setinquireEditDesc(evt.editor.getData())}
-                />
+                  <CKEditor
+                    onChange={evt => setinquireEditDesc(evt.editor.getData())}
+                  />
 
-                <div className="btn-wrap">
-                  <Button className="ent-btn btn" type="submit">
-                    수정 완료
-                  </Button>
-                </div>
-              </form>
-            </Modal>
+                  <div className="btn-wrap">
+                    <Button className="ent-btn btn" type="submit">
+                      수정 완료
+                    </Button>
+                  </div>
+                </form>
+              </Modal>
             </div>
             
             <div className="detail-header-left--footer-wrapper">
@@ -264,7 +251,12 @@ const InquireCard = ({}) => {
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">
-          <p>댓글 {comLeng}개</p>
+           {(Array.isArray(messageRoomData) && messageRoomData.length > 0) && [
+               <p key="messageEx">댓글 {inquireComment.messageRoomData.length}개</p>
+           ]}
+           {(Array.isArray(messageRoomData) && messageRoomData.length < 1) && [
+               <p key="messageNone">등록된 댓글이 없습니다</p>
+           ]}
         </div>
 
         {currentUser &&[
