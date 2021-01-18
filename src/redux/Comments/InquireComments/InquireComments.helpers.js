@@ -1,5 +1,7 @@
 import { firestore } from '../../../firebase/utils';
 
+//add
+
 export const handleAddInquireComments = inquireComment => {
   return new Promise((resolve, reject) => {    
 
@@ -18,6 +20,8 @@ export const handleAddInquireComments = inquireComment => {
       })
   });
 }
+
+//fetches
 
 export const handleFetchInquireComments = () => {
   return new Promise((resolve, reject) => {  
@@ -46,6 +50,8 @@ export const handleFetchInquireComments = () => {
   });
 }
 
+//delete
+
 export const handleDeleteInquireComments = documentID => {
   return new Promise((resolve, reject) => {
     firestore
@@ -61,11 +67,12 @@ export const handleDeleteInquireComments = documentID => {
   });
 }
 
+//fetch
+
 export const handleFetchInquireComment = ({ inquireID }) => {
   return new Promise((resolve, reject) => {
     
     let db = firestore.collection('inquireComments').where('id', '==', inquireID).orderBy('createAt', 'desc');
-    // if(inquireID) db = db.where('id', '==', inquireID);
 
     db
       .get()

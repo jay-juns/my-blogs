@@ -15,18 +15,15 @@ export const setInquireComments = inquireComments => ({
   payload: inquireComments
 });
 
-
 export const deleteInquireComments = inquireCommentsID => ({
   type: InquireCommentsTypes.DELETE_INQUIRESCOMMENTS,
   payload: inquireCommentsID
 });
 
-
 export const fetchInquireComment = (inquireRoomComments={}) => ({
   type: InquireCommentsTypes.FETCH_INQUIRECOMMENT,
   payload: inquireRoomComments
 });
-
 
 export const setInquireComment = inquireComment => ({
   type: InquireCommentsTypes.SET_INQUIRECOMMENT,

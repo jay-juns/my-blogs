@@ -29,6 +29,7 @@ const FormChatInput = ({ label, value, formClass, handleChange, ...otherProps })
     document.getElementById("submitBtn").disabled = true;
     document.getElementById("submitBtn").classList.remove('btn');
     document.getElementById("commentContent").innerHTML = '';
+    document.getElementById("commentContent").style.height = "19px";
     value = ''; 
   }
 
@@ -48,6 +49,7 @@ const FormChatInput = ({ label, value, formClass, handleChange, ...otherProps })
         onFocus={() => onFocus()}
         value={value}
         onChange={handleChange}
+        placeholder="댓글 입력하기"
       >
       </textarea>
       <div className="comment-btn-wrap">

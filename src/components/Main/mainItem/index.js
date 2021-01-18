@@ -8,7 +8,7 @@ const mapState = ({ contentsData }) => ({
   contents: contentsData.contents
 });
 
-const MainItems = ({ }) => {
+const MainItems = ({}) => {
   const dispatch = useDispatch();
   const { contents } = useSelector(mapState);
 
@@ -18,7 +18,7 @@ const MainItems = ({ }) => {
     dispatch(
       fetchContentsStart()
     )
-  }, []);
+  }, [dispatch]);
 
   if (!Array.isArray(data)) return null;
   if (data.length < 1) {

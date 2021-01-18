@@ -109,8 +109,6 @@ const InquireBoard = ({}) => {
     resetForm();
   };
 
-  
-
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
     history.push(`/inquirePage=/${Number(1)}/${nextFilter}`);

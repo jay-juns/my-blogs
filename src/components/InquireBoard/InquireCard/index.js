@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { fetchInquireStart, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
-import { addInquireComments, fetchInquireComment, setInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
+import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
 import CKEditor from 'ckeditor4-react';
@@ -77,6 +77,7 @@ const InquireCard = ({}) => {
     setInquireText('');
     document.getElementById("submitBtn").disabled = true;
     document.getElementById("submitBtn").classList.remove('btn');
+    document.getElementById("commentContent").style.height = "19px";
   }
 
   const toggleModal = () => setHideModal(!hideModal);
@@ -90,16 +91,13 @@ const InquireCard = ({}) => {
     dispatch(
       fetchInquireStart(inquireID)
     )
-  }, []);
-
+  }, [dispatch, inquireID]);
 
   useEffect(() => {
-     
     dispatch(
       fetchInquireComment({ inquireID })
     )
-
-  }, []);
+  }, [dispatch, inquireID]);
 
   const handleSubmit = e => {
     e.preventDefault();

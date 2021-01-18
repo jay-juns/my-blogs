@@ -45,7 +45,7 @@ const InquireItem = (inquireText) => {
               {displayName}
             </p>
             <span className="show-title-day">
-              {moment(toDate).format('MM-DD')}
+              {moment(toDate).format("MM/DD")}
             </span>
             
           </div>

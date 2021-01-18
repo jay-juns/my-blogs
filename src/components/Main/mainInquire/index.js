@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchInquiresMainStart } from './../../../redux/Inquires/inquires.actions';
-import { fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
-
 import MainInquireItem from './../mainInquireItem';
 
 import { faThLarge } from '@fortawesome/free-solid-svg-icons';
@@ -11,29 +9,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './styles.scss'
 
-const mapState = ({ inquiresData, messages }) => ({
-  inquires: inquiresData.inquires,
-  inquireComment: messages.inquireComment
+const mapState = ({ inquiresData }) => ({
+  inquires: inquiresData.inquires
 })
 
-const MainInquire = ({ }) => {
-
+const MainInquire = ({}) => {
   const dispatch = useDispatch();
-  const { inquires, inquireComment } = useSelector(mapState);
+  const { inquires } = useSelector(mapState);
   const { data } = inquires;
 
   useEffect(() => {
     dispatch(
       fetchInquiresMainStart()
     )
-  }, []);
-
-  useEffect(() => {
-
-    dispatch(
-      fetchInquireComment({ })
-    )
-  }, []);
+  }, [dispatch]);
 
   const configMainInquire = {
     data
