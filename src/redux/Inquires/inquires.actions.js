@@ -39,3 +39,8 @@ export const updateInquire = inquire => ({
   type: inquiresTypes.EDIT_INQUIRE,
   payload: inquire
 });
+
+export const InquireLike = (inquire) => ({
+  type: inquiresTypes.INQUIRE_LIKE,
+  payload: inquire
+})

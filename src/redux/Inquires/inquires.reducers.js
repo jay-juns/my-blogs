@@ -1,8 +1,10 @@
 import inquiresTypes from './inquires.types';
+import { handleLike } from './inquires.utils';
 
 const INITIAL_STATE = {
   inquires: [],
-  inquire:{}
+  inquire:{},
+  likeInfo: []
 }
 
 const inquiresReducer = (state=INITIAL_STATE, action) => {
@@ -16,7 +18,15 @@ const inquiresReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         inquire: action.payload
-      }  
+      }
+    case inquiresTypes.INQUIRE_LIKE:
+      return {
+        ...state,
+        likeInfo: handleLike({
+         count: state.likeInfo,
+         box: action.payload
+        })
+      }    
     default:
       return state;
   }

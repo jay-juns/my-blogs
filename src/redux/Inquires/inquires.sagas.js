@@ -16,6 +16,10 @@ export function* addInquire({ payload }) {
     yield handleAddInquire({
       ...payload,
       inquireAdminUserUID: auth.currentUser.uid,
+      likeInfo: {
+        likeCount: 0,
+        userInfo:[]
+      },
       createdDate: timestamp
     });
 

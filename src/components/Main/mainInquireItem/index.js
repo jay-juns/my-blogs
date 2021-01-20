@@ -66,8 +66,8 @@ const MainInquireItem = props => {
               <div className="main-inquire-items-title">
                 <p className="main-inquire-items-title--contents">{inquireTitle}</p>
                 {
-                  (Array.isArray(inquireComments.messageData)) && [
-                    commentLengsResult.length === 0 ? '': (<span className="comment-length" key={pos}>[{commentLengsResult.length}]</span>)
+                  (Array.isArray(inquireComments.messageData)) && inquireComments.messageData.length > 0 && [
+                    commentLengsResult.length === 0 || !commentLengsResult ? '': (<span className="comment-length" key={pos}>[{commentLengsResult.length}]</span>)
                   ]
                 }
               </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
-import { fetchInquireStart, updateInquire, deleteInquireStart } from './../../../redux/Inquires/inquires.actions';
+import { fetchInquireStart, updateInquire, deleteInquireStart, InquireLike } from './../../../redux/Inquires/inquires.actions';
 import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
@@ -144,7 +144,13 @@ const InquireCard = ({}) => {
       })
     );
     resetInput();
-  }; 
+  };
+  
+  const handleLike = (inquire) => {
+    dispatch(
+      InquireLike(inquire)
+    )
+  }
 
   const configInquireComments = {
     messageRoomData
@@ -248,6 +254,10 @@ const InquireCard = ({}) => {
       </div>
       <div className="detail-btn-wrap">
         <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
+        <Button className="like-btn btn" onClick={() => handleLike(inquire)}>
+          <p>추천</p>
+          <span>0</span>
+        </Button>
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">
