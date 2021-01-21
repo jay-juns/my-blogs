@@ -161,7 +161,7 @@ const InquireCard = ({}) => {
 
     if(!currentUser) return;
 
-    let userArray = likeInfo.userInfo;
+    let userArray = likeInfo[0].userInfo;
     const userID = currentUser ? currentUser.id : null;
      
     if(currentUser && !userArray.includes(userID)) {
@@ -177,10 +177,10 @@ const InquireCard = ({}) => {
         inquireTag,
         inquireDesc,
         documentID,
-        likeInfo: {
+        likeInfo: [{
           likeCount: userArray.length,
           userInfo: userArray
-        }
+        }]
     }))
   }
 
@@ -277,7 +277,7 @@ const InquireCard = ({}) => {
       <div className="detail-btn-wrap">
         <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
         
-        {(Array.isArray(likeInfo.userInfo) && likeInfo.userInfo.length < 1)  && [
+        {(Array.isArray(likeInfo) && likeInfo.length < 1)  && [
           <Button key="recommendZeroBtn" className={`like-btn btn`} onClick={() => handleLike()}>
             <FontAwesomeIcon className="i" icon={faThumbsUp} />
             <p>추천</p>
@@ -285,11 +285,11 @@ const InquireCard = ({}) => {
           </Button>
         ]}
 
-        {(Array.isArray(likeInfo.userInfo) && likeInfo.userInfo.length > 0)  && [
-          <Button key="recommendBtn" className={`${currentUser && likeInfo.userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
+        {(Array.isArray(likeInfo) && likeInfo.length > 0)  && [
+          <Button key="recommendBtn" className={`${currentUser && likeInfo[0].userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
             <FontAwesomeIcon className="i" icon={faThumbsUp} />
             <p>추천</p>
-            <span>{likeInfo.likeCount}</span>
+            <span>{likeInfo[0].likeCount}</span>
           </Button>
         ]}               
         

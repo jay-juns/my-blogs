@@ -16,10 +16,10 @@ export function* addInquire({ payload }) {
     yield handleAddInquire({
       ...payload,
       inquireAdminUserUID: auth.currentUser.uid,
-      likeInfo: {
+      likeInfo: [{
         likeCount: 0,
         userInfo:[]
-      },
+      }],
       createdDate: timestamp
     });
 
@@ -132,7 +132,7 @@ export function* likeInquire({ payload }) {
       fetchInquireStart(payload.documentID)
     );
   } catch(err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 

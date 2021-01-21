@@ -30,7 +30,7 @@ const InquireItem = (inquireText) => {
     <div className="show-item-wrap" >
       <Link to={`/inquireText/${documentID}`}>
         <div className="show-item-header-title">
-          <p className="rec-number">{likeInfo.likeCount}</p>
+          <p className="rec-number">{likeInfo[0].likeCount}</p>
         </div>
 
         <div className="show-text">

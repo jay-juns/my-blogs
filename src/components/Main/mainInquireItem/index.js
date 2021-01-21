@@ -57,7 +57,7 @@ const MainInquireItem = props => {
         return (
           <div className="main-inquire-items-container" key={pos}>
             <Link className="main-inquire-items-row" to={`/inquireText/${documentID}`}>
-              <div className="main-inquire-items-recommend">{likeInfo.likeCount}</div>
+              <div className="main-inquire-items-recommend">{likeInfo[0].likeCount}</div>
               <div className="main-inquire-items-tag">
                 <p className="main-inquire-items-tag--name">
                   <span className={`${Tagtype(inquireTag)} main-inquire-items-tag--name-span`}>{inquireTag}</span>
