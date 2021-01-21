@@ -176,6 +176,7 @@
   .detail-btn-wrap {
     width: 100%;
     padding: 1.5rem 0;
+    position: relative;
 
     .back-btn {
       background-color: rgba(0, 0, 0, 0.1);
@@ -187,6 +188,34 @@
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
+    }
+
+    .like-btn {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      padding: .8rem;
+      border-radius: .4rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.1);
+      color: #333;
+
+      p {
+        padding: 0 .4rem;
+        line-height: 1;      
+      }
+
+      &:hover {
+        background-color: $blue;
+        color: #fff;
+      }
+    }
+
+    .like-btn.isLike {
+      background-color: $blue;
+      color: #fff;
     }
   }
 

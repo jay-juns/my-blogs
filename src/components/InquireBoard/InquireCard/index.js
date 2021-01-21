@@ -19,7 +19,7 @@ import InquireComments from './../InquireComment';
 
 import TagType from './../InquireTagType';
 
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './styles.scss';
@@ -43,6 +43,7 @@ const InquireCard = ({}) => {
     displayName,
     inquireTag,
     inquireDesc,
+    likeInfo,
     documentID
   } = inquire;
   const { messageRoomData } = inquireComment;
@@ -145,22 +146,43 @@ const InquireCard = ({}) => {
     );
     resetInput();
   };
-  
-  const handleLike = (inquire) => {
-    dispatch(
-      InquireLike(inquire)
-    )
-  }
 
   const configInquireComments = {
     messageRoomData
-  }
+  };
 
   const configAlert = {
     text: '수정할 제목과 내용을 채워 주세요',
     color: 'danger',
     hideAlert: hideAlert
-  }; 
+  };
+  
+  const handleLike = () => {
+
+    if(!currentUser) return;
+
+    let userArray = likeInfo.userInfo;
+    const userID = currentUser ? currentUser.id : null;
+     
+    if(currentUser && !userArray.includes(userID)) {
+      userArray.push(userID);
+    } else {
+      userArray.pop(userID)
+    }
+
+    dispatch(
+      InquireLike({
+        inquireTitle,
+        displayName,
+        inquireTag,
+        inquireDesc,
+        documentID,
+        likeInfo: {
+          likeCount: userArray.length,
+          userInfo: userArray
+        }
+    }))
+  }
 
   return(
     <div className="detail-wrap">
@@ -254,10 +276,23 @@ const InquireCard = ({}) => {
       </div>
       <div className="detail-btn-wrap">
         <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
-        <Button className="like-btn btn" onClick={() => handleLike(inquire)}>
-          <p>추천</p>
-          <span>0</span>
-        </Button>
+        
+        {(Array.isArray(likeInfo.userInfo) && likeInfo.userInfo.length < 1)  && [
+          <Button key="recommendZeroBtn" className={`like-btn btn`} onClick={() => handleLike()}>
+            <FontAwesomeIcon className="i" icon={faThumbsUp} />
+            <p>추천</p>
+            <span>0</span>
+          </Button>
+        ]}
+
+        {(Array.isArray(likeInfo.userInfo) && likeInfo.userInfo.length > 0)  && [
+          <Button key="recommendBtn" className={`${currentUser && likeInfo.userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
+            <FontAwesomeIcon className="i" icon={faThumbsUp} />
+            <p>추천</p>
+            <span>{likeInfo.likeCount}</span>
+          </Button>
+        ]}               
+        
       </div>
       <div className="inquire-detail-comment-wrapper">
         <div className="inquire-detail-comment-wrapper--header">
