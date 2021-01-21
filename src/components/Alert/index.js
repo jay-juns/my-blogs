@@ -18,7 +18,7 @@ const Alert = ({ text, color, hideAlert }) => {
         clearInterval(id);
         return prev;
       });
-    }, 10);
+    }, 7);
     setIntervalID(id);
   };
 

@@ -1,5 +1,7 @@
 import { firestore } from '../../firebase/utils';
 
+//add
+
 export const handleAddInquire = inquire => {
   return new Promise((resolve, reject) => {
 
@@ -15,6 +17,8 @@ export const handleAddInquire = inquire => {
       })
   });
 }
+
+//fetches
 
 export const handleFetchInquires = ({ inquireType }) => {
   return new Promise((resolve, reject) => {
@@ -43,6 +47,8 @@ export const handleFetchInquires = ({ inquireType }) => {
   });
 }
 
+//main fetches
+
 export const handleFetchMainInquires = ({ inquireType }) => {
   return new Promise((resolve, reject) => {
 
@@ -63,7 +69,6 @@ export const handleFetchMainInquires = ({ inquireType }) => {
           }
         })
       ];
-
         resolve({ data });
       })
       .catch(err => {
@@ -72,6 +77,7 @@ export const handleFetchMainInquires = ({ inquireType }) => {
   });
 }
 
+//delete
 
 export const handleDeleteInquire = documentID => {
   return new Promise((resolve, reject) => {
@@ -88,6 +94,8 @@ export const handleDeleteInquire = documentID => {
   });
 }
 
+//update
+
 export const handleEditInquire = (inquire) => {
   return new Promise((resolve, reject) => {    
      firestore
@@ -103,6 +111,8 @@ export const handleEditInquire = (inquire) => {
   });
 }
 
+//fetch
+
 export const handleFetchInquire = (inquireID) => {
   return new Promise((resolve, reject) => {    
      firestore
@@ -117,6 +127,23 @@ export const handleFetchInquire = (inquireID) => {
             documentID: inquireID
           });
         }
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}
+
+//like
+
+export const handleLikeInquire = (inquireID) => {
+  return new Promise((resolve, reject) => {    
+     firestore
+      .collection('inquires')
+      .doc(inquireID.documentID) 
+      .update(inquireID)  
+      .then(() => {
+        resolve()
       })
       .catch(err => {
         reject(err)

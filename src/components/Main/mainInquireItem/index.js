@@ -42,7 +42,7 @@ const MainInquireItem = props => {
   return (
     <div className="main-inquire-items">
       {(Array.isArray(items) && items.length > 0) && items.map((items, pos) => {
-        const { createdDate, displayName, inquireTitle, inquireTag, documentID } = items;
+        const { createdDate, displayName, inquireTitle, likeInfo, inquireTag, documentID } = items;
         const newTime = createdDate.toDate().toString();
         let commentLengsResult;
         if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0 ) {
@@ -57,7 +57,7 @@ const MainInquireItem = props => {
         return (
           <div className="main-inquire-items-container" key={pos}>
             <Link className="main-inquire-items-row" to={`/inquireText/${documentID}`}>
-              <div className="main-inquire-items-recommend">0</div>
+              <div className="main-inquire-items-recommend">{likeInfo[0].likeCount}</div>
               <div className="main-inquire-items-tag">
                 <p className="main-inquire-items-tag--name">
                   <span className={`${Tagtype(inquireTag)} main-inquire-items-tag--name-span`}>{inquireTag}</span>
@@ -66,8 +66,8 @@ const MainInquireItem = props => {
               <div className="main-inquire-items-title">
                 <p className="main-inquire-items-title--contents">{inquireTitle}</p>
                 {
-                  (Array.isArray(inquireComments.messageData)) && [
-                    commentLengsResult.length === 0 ? '': (<span className="comment-length" key={pos}>[{commentLengsResult.length}]</span>)
+                  (Array.isArray(inquireComments.messageData)) && inquireComments.messageData.length > 0 && [
+                    commentLengsResult.length === 0 || !commentLengsResult ? '': (<span className="comment-length" key={pos}>[{commentLengsResult.length}]</span>)
                   ]
                 }
               </div>

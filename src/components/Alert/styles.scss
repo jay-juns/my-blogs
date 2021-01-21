@@ -2,9 +2,9 @@
 
 .notification-items {
   position: fixed;
-  right: 32px;
-  top: 62px;
-  transform: translateX(0);
+  left: 64px;
+  bottom: 32px;
+  transform: translateY(0);
   font-weight: 600;
   padding: 0;
   margin: 0;
@@ -14,11 +14,13 @@
   box-shadow: 0 0 5px rgba(0,0,0,.4),0 0 1px rgba(0,0,0,.4);
   border-radius: .4rem;
   overflow: hidden;
-  animation: SlideLeft 0.4s;
+  animation: SlideLeft 0.3s;
   animation-fill-mode: forwards;
   min-width: 160px;
   z-index: 105;
   background-color: #fff;
+  opacity: 1;
+  visibility: visible;
 
   p {
     color: #666;
@@ -44,25 +46,29 @@
 .notification-items.exit {
   animation: SlideRight 0.4s;
   animation-fill-mode: forwards;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity ease-in-out .4s,
+  visibility ease-in-out .4s;
 }
 
 @keyframes SlideLeft {
     0% {
-        transform: translateX(220%);
+        transform: translateY(220%);
     }
     
     100% {
-      transform: translateX(0);
+      transform: translateY(0);
     }
 }
 
 @keyframes SlideRight {
     0% {
-      transform: translateX(0);
+      transform: translateY(0);
     }
 
 
     100% {
-      transform: translateX(220%);
+      transform: translateY(220%);
     }
 }

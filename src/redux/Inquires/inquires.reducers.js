@@ -16,7 +16,7 @@ const inquiresReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         inquire: action.payload
-      }  
+      } 
     default:
       return state;
   }

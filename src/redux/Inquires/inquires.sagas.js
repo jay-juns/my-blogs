@@ -2,7 +2,7 @@ import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire } from './inquires.actions';
 import { handleFetchInquires, handleFetchMainInquires, handleAddInquire, 
-  handleDeleteInquire, handleFetchInquire, 
+  handleDeleteInquire, handleFetchInquire, handleLikeInquire,
   handleEditInquire } from './inquires.helpers';
 import  inquiresTypes from './inquires.types';
 
@@ -16,6 +16,10 @@ export function* addInquire({ payload }) {
     yield handleAddInquire({
       ...payload,
       inquireAdminUserUID: auth.currentUser.uid,
+      likeInfo: [{
+        likeCount: 0,
+        userInfo:[]
+      }],
       createdDate: timestamp
     });
 
@@ -119,6 +123,23 @@ export function* onEditInquireStart() {
   yield takeLatest(inquiresTypes.EDIT_INQUIRE, editInquire);
 }
 
+//like
+
+export function* likeInquire({ payload }) {
+  try {
+    yield handleLikeInquire(payload);
+    yield put(
+      fetchInquireStart(payload.documentID)
+    );
+  } catch(err) {
+    // console.log(err);
+  }
+}
+
+export function* onLikeInquireStart() {
+  yield takeLatest(inquiresTypes.INQUIRE_LIKE, likeInquire);
+}
+
 
 
 export default function* inquiresSagas() {
@@ -128,6 +149,7 @@ export default function* inquiresSagas() {
     call(onFetchInquiresMainStart),
     call(onDeleteInquireStart),
     call(onFetchInquireStart),
-    call(onEditInquireStart)
+    call(onEditInquireStart),
+    call(onLikeInquireStart)
   ])
 }

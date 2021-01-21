@@ -256,6 +256,7 @@ const InquireBoard = ({}) => {
             inquireTitle,
             documentID,
             displayName,
+            likeInfo,
             inquireTag,
             createdDate
           } = inquire;
@@ -274,6 +275,7 @@ const InquireBoard = ({}) => {
             inquireTitle,
             documentID, 
             displayName,
+            likeInfo,
             inquireTag,
             createdDate,
             comLengResult
