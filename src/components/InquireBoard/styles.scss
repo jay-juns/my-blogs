@@ -2,6 +2,7 @@
 
 .inquire-board {
   width: 100%;
+  height: 100%;
 
   .inquire-title {
     width: 100%;
@@ -40,7 +41,7 @@
   .show-item-world-wrap {
     width: 100%;
     max-width: 1080px;
-    min-height: 536px;
+    min-height: 720px;
     display: flex;
     flex-direction: column;
     margin: .5rem auto;

@@ -53,18 +53,11 @@ const InquireCard = ({}) => {
   const [inquireEditTag, setInquireEditTag] = useState('제안');
   const [inquireText, setInquireText] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
+  const [text, setText] = useState('');
+  const [color, setColor] = useState('');
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
-  
-  const resetForm = () => {
-    setHideModal(true);
-    setShow(false);
-    setinquireEditTitle('');
-    setinquireEditDesc('');
-    setInquireEditTag('제안');
-  };
-
   let userChatInfo = [];
   
   for (let name in currentUser) { 
@@ -74,6 +67,16 @@ const InquireCard = ({}) => {
   }
 
   const author = userChatInfo[0];  
+  
+  const resetForm = () => {
+    setHideModal(true);
+    setShow(false);
+    setinquireEditTitle('');
+    setinquireEditDesc('');
+    setInquireEditTag('제안');
+    setText('');
+    setColor('');
+  };
   const resetInput = () => {
     setInquireText('');
     document.getElementById("submitBtn").disabled = true;
@@ -106,6 +109,8 @@ const InquireCard = ({}) => {
     if(setShow(true)) setShow(false);
 
     if(inquireEditTitle === '' || inquireEditDesc === '') {
+      setText('수정할 제목과 내용을 작성 해주세요');
+      setColor('danger');
       setTimeout(() => {
         setHideAlert(true);
       }, 30);
@@ -144,22 +149,25 @@ const InquireCard = ({}) => {
         id: documentID
       })
     );
+    setText('댓글 작성 완료');
+    setColor('success');
+    setTimeout(() => {
+      setHideAlert(true);
+    }, 300);
     resetInput();
-  };
-
-  const configInquireComments = {
-    messageRoomData
-  };
-
-  const configAlert = {
-    text: '수정할 제목과 내용을 채워 주세요',
-    color: 'danger',
-    hideAlert: hideAlert
+    setHideAlert(false); 
   };
   
   const handleLike = () => {
 
-    if(!currentUser) return;
+    if(!currentUser) {
+      setText('로그인한 사용자만 가능합니다');
+      setColor('danger');
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+      return setHideAlert(false); 
+    }
 
     let userArray = likeInfo[0].userInfo;
     const userID = currentUser ? currentUser.id : null;
@@ -167,7 +175,8 @@ const InquireCard = ({}) => {
     if(currentUser && !userArray.includes(userID)) {
       userArray.push(userID);
     } else {
-      userArray.pop(userID)
+      const deUserID = userArray.indexOf(userID);
+      userArray.splice(deUserID, 1);
     }
 
     dispatch(
@@ -184,13 +193,25 @@ const InquireCard = ({}) => {
     }))
   }
 
+  const configInquireComments = {
+    messageRoomData
+  };
+
+  const configAlert = {
+    text: text,
+    color: color,
+    hideAlert: hideAlert
+  };
+
   return(
     <div className="detail-wrap">
       <div className="detail-head-title">
         <h3>문의 내용</h3>
       </div>
       <div className="detail-container">
+      
       {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
+      
         <div className="detail-header"> 
           <div className="detail-header-left">
             <div className="detail-header-left--up">

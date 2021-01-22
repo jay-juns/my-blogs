@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
-
 import './styles.scss';
 
 const Alert = ({ text, color, hideAlert }) => {
@@ -18,7 +17,7 @@ const Alert = ({ text, color, hideAlert }) => {
         clearInterval(id);
         return prev;
       });
-    }, 7);
+    }, 10);
     setIntervalID(id);
   };
 
