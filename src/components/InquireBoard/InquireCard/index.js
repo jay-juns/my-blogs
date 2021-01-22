@@ -152,14 +152,19 @@ const InquireCard = ({}) => {
   };
 
   const configAlert = {
-    text: '수정할 제목과 내용을 채워 주세요',
+    text: !currentUser ? '로그인 먼저 해주세요!' : '수정할 제목과 내용을 채워 주세요',
     color: 'danger',
     hideAlert: hideAlert
   };
   
   const handleLike = () => {
 
-    if(!currentUser) return;
+    if(!currentUser) {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+      return setHideAlert(false); 
+    }
 
     let userArray = likeInfo[0].userInfo;
     const userID = currentUser ? currentUser.id : null;
@@ -167,7 +172,8 @@ const InquireCard = ({}) => {
     if(currentUser && !userArray.includes(userID)) {
       userArray.push(userID);
     } else {
-      userArray.pop(userID)
+      const deUserID = userArray.indexOf(userID);
+      userArray.splice(deUserID, 1);
     }
 
     dispatch(
@@ -182,6 +188,8 @@ const InquireCard = ({}) => {
           userInfo: userArray
         }]
     }))
+
+    console.log(userArray, '2131');
   }
 
   return(
@@ -190,7 +198,9 @@ const InquireCard = ({}) => {
         <h3>문의 내용</h3>
       </div>
       <div className="detail-container">
+      
       {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
+      
         <div className="detail-header"> 
           <div className="detail-header-left">
             <div className="detail-header-left--up">
