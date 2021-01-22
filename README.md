@@ -25,17 +25,14 @@
 - [x] ~~문의 사항 댓글 쓰기~~
 - [x] ~~메인 문의 최신 정보 추가~~
 - [x] ~~문의 사항 디테일 페이지 들어갔을 때 페이지 정보에 맞게 뒤로가기~~
-- [ ] 문의 사항 페이지가 10개 넘어가면 그 수만 보여주고, 10개 안에서 이동 변경 / 다음 페이지/ 이전 페이지 버튼 추가
+- [x] ~~문의 사항 페이지가 10개 넘어가면 그 수만 보여주고, 10개 안에서 이동 변경 / 다음 페이지/ 이전 페이지 버튼 추가~~
+- [x] ~~문의 사항 추천 기능 추가~~
+- [x] ~~각종 얼럿 추가~~
 - [ ] 문의 사항 페이지 조회수 추가
 - [ ] 계정 중복체크
 - [ ] 유저 정보 수정
 - [ ] 유저 로고, 배너 이미지 넣기
-- [ ] 블로그 이미지 업로드 / 블로그 이미지 여러개 업로드시 슬라이드 기능 추가
-- [ ] 이미지 없을 때 없다는 이미지 추가
 - [ ] 회원 탈퇴
-- [ ] 블로그 카드 클릭시 디테일 정보 보여주기
-- [ ] 각종 얼럿 추가(예: 로그인 실패및 비밀번호 중복, 글 완료 메세지 등) 60% 완료
-- [ ] 좋아요 및 각종 신고 기능
 - [ ] 검색기능
 - [ ] 모바일 버전 UI
 - [ ] 테스트코드 작성
@@ -48,42 +45,42 @@
 #### 메인 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103497640-8261da80-4e85-11eb-912d-2f33d222f0a9.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477240-f2c18600-5ce4-11eb-8af1-d17e14002674.png" width="90%" />
 </div>
 <br />
 
 #### 로그인 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103453265-81ad3500-4d1b-11eb-9f53-1336b6249337.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477270-fa812a80-5ce4-11eb-9049-3d20e648d28a.png" width="90%" />
 </div>
 <br />
 
 #### 회원가입 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103453267-8376f880-4d1b-11eb-8414-e87161bec180.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477283-fc4aee00-5ce4-11eb-8560-61ab7d529d12.png" width="90%" />
 </div>
 <br />
 
 #### 컨텐츠 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103497643-83930780-4e85-11eb-8968-e38f5959ac7b.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477251-f5bc7680-5ce4-11eb-8c7c-ffb98fa17744.png" width="90%" />
 </div>
 <br />
 
 #### 문의 사항 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103497647-84c43480-4e85-11eb-9a37-170b55f346ee.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477258-f7863a00-5ce4-11eb-90c0-ef9d27dcae1b.png" width="90%" />
 </div>
 <br />
 
 #### 문의 사항 디테일 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103497769-d4a2fb80-4e85-11eb-82ed-0a38f896654c.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477263-f8b76700-5ce4-11eb-87a1-53ce537761fe.png" width="90%" />
 </div>
 <br />
 
@@ -111,6 +108,18 @@
 
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/103498292-90b0f600-4e87-11eb-9555-dc8dc9ef9878.gif" width="90%" />
+</div>
+
+#### 추천 기능 (비로그인시)
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/105477289-fead4800-5ce4-11eb-8d14-173a6beb535e.gif" width="90%" />
+</div>
+
+#### 추천 기능 (로그인시)
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/105477295-010fa200-5ce5-11eb-8296-42a9c7905bc1.gif" width="90%" />
 </div>
 
 <br />
