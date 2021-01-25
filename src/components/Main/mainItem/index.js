@@ -38,7 +38,8 @@ const MainItems = ({}) => {
           const {
             contentTitle,
             contentThumbnail,
-            contentDesc
+            contentDesc,
+            documentID
           } = content;
 
           if(!contentThumbnail || !contentTitle || !contentDesc) return null;
@@ -46,7 +47,8 @@ const MainItems = ({}) => {
           const configContent = {
             contentTitle,
             contentThumbnail,
-            contentDesc
+            contentDesc,
+            documentID
           };
 
           return ( <OtherMain {...configContent} key={pos}/> );

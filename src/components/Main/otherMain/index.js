@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const otherMain = ({
   contentTitle,
   contentThumbnail,
-  contentDesc
+  contentDesc,
+  documentID
 }) => {
   
   if(!contentThumbnail || !contentTitle || !contentDesc) return null;
 
   return (
     <div className="other-main">
+      <Link className="main-inquire-items-row" to={`/blogDetail/${documentID}`}>
       <div className="other-img">
         <img src={contentThumbnail} alt="img" />
       </div>
@@ -19,6 +22,7 @@ const otherMain = ({
         dangerouslySetInnerHTML={{ __html: contentDesc }}
       />  
       </div>
+      </Link>
     </div>
   );
 };
