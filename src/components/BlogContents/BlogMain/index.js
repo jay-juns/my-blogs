@@ -118,7 +118,7 @@ const BlogMain = ({}) => {
   };
 
   const configAlert = {
-    text: '제목과 이미지URL, 그리고 내용을 채워 주세요',
+    text: '제목과 이미지URL, 그리고 내용을 채워 주세요.',
     color: 'danger',
     hideAlert: hideAlert
   };
@@ -182,7 +182,7 @@ const BlogMain = ({}) => {
 
       {!currentUser && [
         <Modal {...configModal}>
-          글을 작성 하려면 먼저 로그인을 해야 합니다.
+          <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p>
         </Modal>
       ]}
       
@@ -204,6 +204,7 @@ const BlogMain = ({}) => {
                 contentTitle,
                 contentThumbnail,
                 contentDesc,
+                documentID,
                 createdDate
               };
 
@@ -211,7 +212,7 @@ const BlogMain = ({}) => {
                 <div className="show-row" key={index}>
 
                   <BlogItem {...configBlogContent} key={index} />                  
-
+                  
                   {isAdmin && [
                     <div className="show-del-btn-wrap" key={index}>
                       <Button className="btn" onClick={() => dispatch(deleteContentStart(documentID))}>

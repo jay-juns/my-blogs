@@ -4,16 +4,23 @@
   margin-top: 1rem;
 
   .main-row {
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    height: 224px;
+    overflow: hidden;
 
     .other-main {
-      position: relative;
       width: 260px;
       height: 160px;
       box-shadow: 0 1px rgba(140,140,140,.9),0 0 2px rgba(140,140,140,.9);
+      margin-left: 1.2rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+      transform: translateX(0);
+
+      &:first-child {
+        margin-left: .1rem;
+      }
 
       .other-img {
         width: 100%;

@@ -218,7 +218,7 @@ const InquireBoard = ({}) => {
 
       {!currentUser && [
         <Modal {...configModal} key="inquireUnModal">
-          글을 작성 하려면 먼저 로그인을 해야 합니다.
+         <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p> 
         </Modal>
       ]}
 

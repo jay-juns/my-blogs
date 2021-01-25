@@ -109,11 +109,11 @@ const InquireCard = ({}) => {
     if(setShow(true)) setShow(false);
 
     if(inquireEditTitle === '' || inquireEditDesc === '') {
-      setText('수정할 제목과 내용을 작성 해주세요');
+      setText('수정할 제목과 내용을 작성 해주세요.');
       setColor('danger');
       setTimeout(() => {
         setHideAlert(true);
-      }, 30);
+      }, 120);
       return setHideAlert(false); 
     }
     
@@ -149,7 +149,7 @@ const InquireCard = ({}) => {
         id: documentID
       })
     );
-    setText('댓글 작성 완료');
+    setText('댓글 작성 완료.');
     setColor('success');
     setTimeout(() => {
       setHideAlert(true);
@@ -161,7 +161,7 @@ const InquireCard = ({}) => {
   const handleLike = () => {
 
     if(!currentUser) {
-      setText('로그인한 사용자만 가능합니다');
+      setText('로그인한 사용자만 가능합니다.');
       setColor('danger');
       setTimeout(() => {
         setHideAlert(true);
@@ -301,7 +301,7 @@ const InquireCard = ({}) => {
         {(Array.isArray(likeInfo) && likeInfo.length < 1)  && [
           <Button key="recommendZeroBtn" className={`like-btn btn`} onClick={() => handleLike()}>
             <FontAwesomeIcon className="i" icon={faThumbsUp} />
-            <p>추천</p>
+            <p>추천하기</p>
             <span>0</span>
           </Button>
         ]}
@@ -309,7 +309,7 @@ const InquireCard = ({}) => {
         {(Array.isArray(likeInfo) && likeInfo.length > 0)  && [
           <Button key="recommendBtn" className={`${currentUser && likeInfo[0].userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
             <FontAwesomeIcon className="i" icon={faThumbsUp} />
-            <p>추천</p>
+            <p>추천하기</p>
             <span>{likeInfo[0].likeCount}</span>
           </Button>
         ]}               

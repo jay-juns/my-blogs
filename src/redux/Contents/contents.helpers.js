@@ -17,7 +17,7 @@ export const handleAddContent = content => {
 
 export const handleFetchContents = ({ filterType, startAtferDoc, psersistContents=[] }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 4;
+    const pageSize = 8;
 
     let ref = firestore.collection('contents').orderBy('createdDate', 'desc').limit(pageSize);
 

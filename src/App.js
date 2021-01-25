@@ -18,6 +18,7 @@ import Inquire from './pages/Inquire';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
+import BlogDetails from './pages/BlogDetails';
 import InquireDetails from './pages/InquireDetails';
 
 //default css
@@ -57,6 +58,12 @@ const App = props => {
           </MainLayout>
         )}
         />
+        <Route path="/blogDetail/:blogID" render={() => (
+          <MainLayout>
+            <BlogDetails />
+          </MainLayout>
+        )}
+        />
         <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (
           <MainLayout>
             <Inquire />
@@ -69,7 +76,7 @@ const App = props => {
           </MainLayout>
         )}
         />
-        <Route path="/inquireText/:inquireID" render={() => (
+        <Route path="/inquireDetail/:inquireID" render={() => (
           <MainLayout>
             <InquireDetails />
           </MainLayout>
