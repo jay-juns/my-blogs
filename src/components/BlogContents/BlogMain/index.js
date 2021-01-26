@@ -103,11 +103,11 @@ const BlogMain = ({}) => {
     },
     {
       name: "잡담",
-      value: "chat"
+      value: "잡담"
     },
     {
       name: "정보",
-      value: "info"
+      value: "정보"
     }],
     handleChange: handleFilter
   };
@@ -152,10 +152,10 @@ const BlogMain = ({}) => {
               label="태그 선택"
               options={[{
                 name: "잡담",
-                value: "chat"               
+                value: "잡담"               
               }, {
                 name: "정보",
-                value: "info"
+                value: "정보"
               }]}
               handleChange={e => setContentTag(e.target.value)}
             />
