@@ -7,6 +7,7 @@ const BlogItem = ({
   contentTitle,
   contentThumbnail,
   contentDesc,
+  author,
   createdDate,
   documentID
 }) => {
@@ -24,12 +25,17 @@ const BlogItem = ({
         <div className="show-text">
           <div className="show-title">
             <p className="show-titie-first">{contentTitle}</p>
-            <p
+            <p className="blog-item-body-text"
               dangerouslySetInnerHTML={{ __html: contentDesc }}
             />
-            <span>
-              {nowTime}
-            </span>
+            <div className="blog-item-footer-wrapper">
+              <p className="blog-item-author">
+                {author}
+              </p>
+              <span>
+                {nowTime}
+              </span>
+            </div>
           </div>
                         
         </div> 

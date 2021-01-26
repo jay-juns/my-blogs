@@ -41,8 +41,6 @@ const InquireBoard = ({}) => {
     }
   }
 
-  const [displayName, setDisplayName] = useState(userInfo[0]);
-
   const [currentPage, setCurrentPage] = useState(Number(inquirePageNumber));
   const [postsPerPage] = useState(16);
 
@@ -58,7 +56,7 @@ const InquireBoard = ({}) => {
     dispatch(
       fetchInquiresStart({ inquireType })
     )
-  }, [inquireType]);
+  }, [dispatch, inquireType]);
 
   useEffect(() => {
     dispatch(
@@ -70,7 +68,7 @@ const InquireBoard = ({}) => {
         setInquireComments({})
       )
     }
-  }, []);
+  }, [dispatch]);
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -84,7 +82,6 @@ const InquireBoard = ({}) => {
     setInquireTag('제안');
     setInquireTitle('');
     setInquireDesc('');
-    setDisplayName(userInfo[0]);
     setCurrentPage(Number(inquirePageNumber));
   };
   
@@ -103,7 +100,7 @@ const InquireBoard = ({}) => {
         inquireTag,
         inquireTitle,
         inquireDesc,
-        displayName
+        displayName: userInfo[0]
       })
     );
     resetForm();
@@ -184,16 +181,7 @@ const InquireBoard = ({}) => {
                 value: "기타"
               }]}
               handleChange={e => setInquireTag(e.target.value)}
-            />
-              
-            <FormInput   
-              label="필명"
-              formClass="hide"
-              type="text"
-              disabled="disabled" 
-              value={userInfo[0]}
-              handleChange={e => setDisplayName(e.target.value)}
-            />
+            />          
 
             <FormInput 
               label="제목"

@@ -36,12 +36,20 @@ const BlogMain = ({}) => {
   const { data, queryDoc, isLastPage } = contents;
   const isAdmin = checkUserIsAdmin(currentUser);
 
+  let userInfo = [];
+  
+  for (let name in currentUser) { 
+    if (name.includes('displayName')) {
+      userInfo.push(currentUser.displayName); 
+    }
+  }
+
   useEffect(() => {
     dispatch(
       fetchContentsStart({ filterType })
     );
     
-  }, [filterType]);
+  }, [dispatch, filterType]);
   
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -75,7 +83,8 @@ const BlogMain = ({}) => {
         contentTitle,
         contentThumbnail,
         contentDesc,
-        createdDate
+        createdDate,
+        author: userInfo[0]
       })
     );
     resetForm();
@@ -195,6 +204,7 @@ const BlogMain = ({}) => {
                 contentThumbnail,
                 contentDesc,
                 documentID,
+                author,
                 createdDate
               } = content;
 
@@ -205,6 +215,7 @@ const BlogMain = ({}) => {
                 contentThumbnail,
                 contentDesc,
                 documentID,
+                author,
                 createdDate
               };
 
