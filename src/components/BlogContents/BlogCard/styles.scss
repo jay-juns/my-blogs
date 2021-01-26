@@ -1,11 +1,8 @@
 .content-main {
   width: 100%;
   max-width: 660px;
-  margin: 0 auto;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 5%;
+  margin: 0 auto 2rem;
+  padding: 3rem 0 0;
 
   .content-box {
     background-color: #fff;

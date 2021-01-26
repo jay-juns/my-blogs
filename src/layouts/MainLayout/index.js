@@ -7,6 +7,7 @@ const MainLayout = props => {
     <div className="full-wrap">
       <Header {...props} />
       <div className="main">
+        <div className="main-box"></div>
         {props.children}
       </div>
       <Footer />
