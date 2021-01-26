@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
-import { fetchInquireStart, updateInquire, deleteInquireStart, InquireLike } from './../../../redux/Inquires/inquires.actions';
+import { fetchInquireStart, updateInquire, deleteInquireStart, inquireLike } from './../../../redux/Inquires/inquires.actions';
 import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
@@ -180,7 +180,7 @@ const InquireCard = ({}) => {
     }
 
     dispatch(
-      InquireLike({
+      inquireLike({
         inquireTitle,
         displayName,
         inquireTag,

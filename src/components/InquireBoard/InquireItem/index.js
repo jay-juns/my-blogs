@@ -14,7 +14,7 @@ const InquireItem = (inquireText) => {
     comLengResult
   } = inquireText;
 
-  let comMsg = comLengResult.filter((lengID) => {
+  const comMsg = comLengResult.filter((lengID) => {
     if(lengID === documentID) {
       return true;
     }

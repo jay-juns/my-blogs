@@ -36,28 +36,29 @@ const BlogCard = ({}) => {
 
   return (
     <div className="content-main">
-      <div className="content-head">
-        
-        <div className="content-name">
-          <p>{author}</p>
+      <div className="content-box">
+        <div className="content-head">
+          <div className="content-name">
+            <p>{author}</p>
+          </div>
+          <div className="content-head-time">
+            <span>{nowTime}</span>
+          </div>
         </div>
-        <div className="content-head-time">
-          <span>{nowTime}</span>
-        </div>
-      </div>
-      <div className="content-body">
-        <div className="content-body-thumbnail">
-        <img src={contentThumbnail} alt="img" /> 
-        </div>
-        <div className="content-body-title">
-          <p>
-            {contentTitle}
-          </p>
-        </div>
-        <div className="content-body-text">
-          <span
-          className="desc"
-          dangerouslySetInnerHTML={{ __html: contentDesc }} />
+        <div className="content-body">
+          <div className="content-body-thumbnail">
+          <img src={contentThumbnail} alt="img" /> 
+          </div>
+          <div className="content-body-title">
+            <p>
+              {contentTitle}
+            </p>
+          </div>
+          <div className="content-body-text">
+            <span
+            className="desc"
+            dangerouslySetInnerHTML={{ __html: contentDesc }} />
+          </div>
         </div>
       </div>
     </div>
