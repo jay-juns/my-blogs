@@ -50,6 +50,7 @@ export const handleFetchContents = ({ filterType, startAtferDoc, psersistContent
   });
 }
 
+//delete
 
 export const handleDeleteContent = documentID => {
   return new Promise((resolve, reject) => {

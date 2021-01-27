@@ -103,28 +103,6 @@
                 }
               }
             }
-    
-            .show-del-btn-wrap {
-              position: absolute;
-              left: 10px;
-              bottom: 5px;
-              min-width: 40px;
-              bottom: 4px;
-              
-              button {
-                width: 100%;
-                background-color: #f3f3f3;
-                color: #333;
-                font-size: 1.3rem;
-                padding: .2rem .5rem;
-                border-radius: .4rem;
-    
-                &:hover {
-                  color: $red;
-                  background-color: #e4e4e4;
-                }
-              }
-            }
           }
 
         }

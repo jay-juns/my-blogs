@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { fetchContentStart } from '../../../redux/Contents/contents.actions';
+import { fetchContentStart, deleteContentStart } from '../../../redux/Contents/contents.actions';
+import { checkUserIsAdmin } from './../../../Utils';
+
+import Button from './../../Forms/Button';
 
 import './styles.scss';
 
-const mapState = ({ contentsData }) => ({
-  content: contentsData.content
+const mapState = ({ contentsData, user }) => ({
+  content: contentsData.content,
+  currentUser: user.currentUser
 })
 
 const BlogCard = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { blogID } = useParams(); 
   const [isPending, setIsPending] = useState(false);
-  const { content } = useSelector(mapState);
+  const { content, currentUser } = useSelector(mapState);
   const {
     author,
     contentDesc,
@@ -27,6 +32,7 @@ const BlogCard = () => {
   
   const timeNow = createdDate ? createdDate.toDate().toString() : null;
   const nowTime = moment(timeNow).fromNow();
+  const isAdmin = checkUserIsAdmin(currentUser);
 
   useEffect(() => {
     dispatch(
@@ -37,11 +43,19 @@ const BlogCard = () => {
     }, 200)
   }, [dispatch, blogID]);
 
+  const handleDelete = () => {
+    dispatch(
+      deleteContentStart(blogID)
+    )
+
+    history.goBack()
+  }
+
   return (
     
     <div className="content-main">
       {!isPending && (
-        <div className="content-box">
+        <div className="content-box"  key="blog-dummy-content">
           <div className="content-head">
             <div className="content-name">
               <p></p>
@@ -68,7 +82,7 @@ const BlogCard = () => {
         </div>
       )}
       {isPending && (
-        <div className="content-box">
+        <div className="content-box" key="blog-main-content">
           <div className="content-head">
             <div className="content-name">
               <p>{author}</p>
@@ -92,6 +106,13 @@ const BlogCard = () => {
               dangerouslySetInnerHTML={{ __html: contentDesc }} />
             </div>
           </div>
+          {isAdmin && [
+            <div className="show-del-btn-wrap" key="delete-blog-btn">
+              <Button className="btn" onClick={() => handleDelete()}>
+                삭제
+              </Button>
+          </div>
+          ]}
         </div>
       )}
 

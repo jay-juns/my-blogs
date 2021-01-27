@@ -1,3 +1,5 @@
+@import "./../../../var.scss";
+
 .content-main {
   width: 100%;
   max-width: 660px;
@@ -5,6 +7,7 @@
   padding: 3rem 0 0;
 
   .content-box {
+    position: relative;
     background-color: #fff;
     box-shadow: 0 1px rgba(140, 140, 140, 0.9), 0 0 2px rgba(140, 140, 140, 0.9);
     
@@ -47,5 +50,26 @@
        min-height: 120px;
      }
    }
+
+   .show-del-btn-wrap {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      min-width: 40px;
+      
+      button {
+        width: 100%;
+        background-color: #f3f3f3;
+        color: #333;
+        font-size: 1.3rem;
+        padding: .2rem .5rem;
+        border-radius: .4rem;
+
+        &:hover {
+          color: $red;
+          background-color: #e4e4e4;
+        }
+      }
+    }
   }
 }

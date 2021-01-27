@@ -3,8 +3,7 @@ import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addContentStart, fetchContentsStart, deleteContentStart } from './../../../redux/Contents/contents.actions';
-import { checkUserIsAdmin } from './../../../Utils';
+import { addContentStart, fetchContentsStart } from './../../../redux/Contents/contents.actions';
 
 import BlogItem from './../BlogItem';
 import CKEditor from 'ckeditor4-react';
@@ -34,7 +33,6 @@ const BlogMain = ({}) => {
   const [createdDate, setCreateDate] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
   const { data, queryDoc, isLastPage } = contents;
-  const isAdmin = checkUserIsAdmin(currentUser);
 
   let userInfo = [];
   
@@ -224,13 +222,6 @@ const BlogMain = ({}) => {
 
                   <BlogItem {...configBlogContent} key={index} />                  
                   
-                  {isAdmin && [
-                    <div className="show-del-btn-wrap" key={index}>
-                      <Button className="btn" onClick={() => dispatch(deleteContentStart(documentID))}>
-                        삭제
-                      </Button>
-                  </div>
-                  ]}
                 </div>
               )
             })}  

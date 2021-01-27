@@ -1,5 +1,5 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { setContents, setContent, fetchContentsStart, setLoadingContent } from './contents.actions';
+import { setContents, setContent, fetchContentsStart, fetchContentStart, setLoadingContent } from './contents.actions';
 import { handleAddContent, handleFetchContents, handleDeleteContent, handleFetchContent } from './contents.helpers';
 import  contentsTypes from './contents.types';
 
@@ -45,12 +45,13 @@ export function* onFetchContentsStart() {
   yield takeLatest(contentsTypes.FETCH_CONTENTS_START, fetchContents);
 }
 
+//delete
 
 export function* deleteContent({ payload }) {
   try {
     yield handleDeleteContent(payload);
     yield put (
-      fetchContentsStart()
+      fetchContentStart()
     );
 
   } catch(err) {
@@ -62,6 +63,7 @@ export function* onDeleteContentStart() {
   yield takeLatest(contentsTypes.DELETE_CONTENT_START, deleteContent);
 }
 
+//fetch
 
 export function* fetchContent({ payload }) {
 
