@@ -12,7 +12,8 @@ const mapState = (state) => ({
 const Header = props => {
   const { currentUser } = useSelector(mapState);
   const { inquirePageNumber } = useParams();
-
+  const mainBg = props.mainBg;
+  const scrollPosition = props.scrollEvent;
   let userInfo = [];
   
   for (let name in currentUser) { 
@@ -22,11 +23,11 @@ const Header = props => {
   }
 
   userInfo = `"${userInfo[0]}"`;
-  const userF = userInfo.substr(1, 1); 
+  const userF = userInfo.substr(1, 1);
+
   
   return (
-    <div className="header-row-wrapper">
-      
+    <div className={`header-row-wrapper ${mainBg && scrollPosition === 0 ? mainBg : ''}`}>
       <div className="header-main-control">
         
         <div className="header-left">

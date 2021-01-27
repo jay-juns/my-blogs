@@ -5,6 +5,7 @@ import { checkUserSession } from './redux/User/user.actions';
 
 //layouts
 import MainLayout from './layouts/MainLayout';
+import OtherLayout from './layouts/OtherLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 
 //hoc
@@ -48,51 +49,51 @@ const App = props => {
         )}
         />
         <Route exact path="/blog" render={() => (
-          <MainLayout>
+          <OtherLayout>
             <Blog />
-          </MainLayout>
+          </OtherLayout>
         )}
         />
         <Route path="/blog/:filterType" render={() => (
-          <MainLayout>
+          <OtherLayout>
             <Blog />
-          </MainLayout>
+          </OtherLayout>
         )}
         />
         <Route path="/blogDetail/:blogID" render={() => (
-          <MainLayout>
+          <OtherLayout>
             <BlogDetails />
-          </MainLayout>
+          </OtherLayout>
         )}
         />
         <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (
-          <MainLayout>
+          <OtherLayout>
             <Inquire />
-          </MainLayout>
+          </OtherLayout>
         )}
         />
         <Route path="/inquirePage=/:inquirePageNumber/:inquireType" render={() => (
-          <MainLayout>
+          <OtherLayout>
             <Inquire />
-          </MainLayout>
+          </OtherLayout>
         )}
         />
         <Route path="/inquireDetail/:inquireID" render={() => (
-          <MainLayout>
+          <OtherLayout>
             <InquireDetails />
-          </MainLayout>
+          </OtherLayout>
         )}
         />
         <Route path="/login" render={() =>  (
-            <MainLayout>
+            <OtherLayout>
               <Login />
-            </MainLayout>
+            </OtherLayout>
         )} 
         />
         <Route path="/registration" render={() =>  (
-          <MainLayout>
+          <OtherLayout>
             <Registration />
-          </MainLayout>
+          </OtherLayout>
         )} 
         />
         <Route path="/dashboard" render={() => (

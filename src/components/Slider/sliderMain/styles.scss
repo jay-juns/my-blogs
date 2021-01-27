@@ -13,13 +13,29 @@
     overflow: hidden;
 
     section {
-      
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
       .active {
-        display: block;
+        opacity: 1;
+        transition: opacity 1s ease;
+        z-index: 10;
       }
       
       .inactive {
-        display: none;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 700ms ease 0.1s;
+        height: var(--heights);
+        width: var(--widths);
+        z-index: 9;
+
+        .slide-image {
+          position: absolute;
+        }
       }
       
       .slides {

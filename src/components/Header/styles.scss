@@ -6,8 +6,9 @@
   background-color: $blue;
   width: 100%;
   height: 54px;
-  color: #d3d3d3;
+  color:rgba(255, 255, 255, 0.5);
   z-index: 102;
+  transition: background-color ease-in 0.3s;
 
   .header-main-control {
     width: 100%;
@@ -17,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     
     .header-left {
       position: relative;
@@ -36,11 +37,11 @@
 
         .link {
           margin-right: 2.4rem;
-          color:#d3d3d3;
+          color:rgba(255, 255, 255, 0.5);
           font-weight: bold;
 
           &:hover {
-            color: #fff;
+            color: rgba(255, 255, 255, 1);
           }
 
           &:last-child {
@@ -48,7 +49,7 @@
           }
         }
         .active {
-          color: #fff;
+          color: rgba(255, 255, 255, 1);
         }
       }
     }
@@ -63,11 +64,11 @@
 
         .link {
           margin-right: 2.4rem;
-          color:#d3d3d3;
+          color:rgba(255, 255, 255, 0.5);
           font-weight: bold;
 
           &:hover {
-            color: #fff;
+            color: rgba(255, 255, 255, 1);
           }
 
           &:last-child {
@@ -92,20 +93,25 @@
         }
 
         span {
-          color:#d3d3d3;
+          color:rgba(255, 255, 255, 0.5);
           font-weight: bold;
           margin-right: 2.4rem;
           cursor: pointer;+
 
           &:hover {
-            color: #fff;
+            color: rgba(255, 255, 255, 1);
           }
         }
         
         .active {
-          color: #fff;
+          color: rgba(255, 255, 255, 1);
         }
       }
     }
   }
+}
+
+.header-row-wrapper.main-bg {
+  background-color: transparent;
+  transition: background-color ease-in 0.3s;
 }

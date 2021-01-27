@@ -19,7 +19,7 @@ const mapState = ({ contentsData, user }) => ({
   currentUser: user.currentUser
 })
 
-const BlogMain = ({}) => {
+const BlogMain = () => {
   const { contents } = useSelector(mapState);
   const { currentUser } = useSelector(mapState);
   const dispatch = useDispatch();
@@ -143,7 +143,7 @@ const BlogMain = ({}) => {
       </div>
       
       {currentUser && [
-        <Modal {...configModal}>
+        <Modal {...configModal} key="blog-modal">
           <form onSubmit={handleSubmit}>
             <h2>새로운 글쓰기</h2>
             <FormSelect 
@@ -188,7 +188,7 @@ const BlogMain = ({}) => {
       ]}
 
       {!currentUser && [
-        <Modal {...configModal}>
+        <Modal {...configModal} key="blogUnLoginModal">
           <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p>
         </Modal>
       ]}

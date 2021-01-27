@@ -15,8 +15,6 @@ const mapState = ({ contentsData, inquiresData }) => ({
 
 const MainPage = () => {
   const { loading, loadingInquire } = useSelector(mapState);
-
-  console.log(loadingInquire);
   
   return (
     <div className="main-content">
