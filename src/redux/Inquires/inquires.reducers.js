@@ -2,7 +2,8 @@ import inquiresTypes from './inquires.types';
 
 const INITIAL_STATE = {
   inquires: [],
-  inquire:{}
+  inquire:{},
+  loadingInquire: false
 }
 
 const inquiresReducer = (state=INITIAL_STATE, action) => {
@@ -16,7 +17,12 @@ const inquiresReducer = (state=INITIAL_STATE, action) => {
       return {
         ...state,
         inquire: action.payload
-      } 
+      }
+    case inquiresTypes.IS_PENDING:
+        return {
+          ...state,
+          loadingInquire: action.payload
+      }   
     default:
       return state;
   }

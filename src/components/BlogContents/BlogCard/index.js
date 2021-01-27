@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -8,14 +8,14 @@ import { fetchContentStart } from '../../../redux/Contents/contents.actions';
 
 import './styles.scss';
 
-const mapState = state => ({
-  content: state.contentsData.content
+const mapState = ({ contentsData }) => ({
+  content: contentsData.content
 })
 
-const BlogCard = ({}) => {
+const BlogCard = () => {
   const dispatch = useDispatch();
-  const { blogID } = useParams();
-
+  const { blogID } = useParams(); 
+  const [isPending, setIsPending] = useState(false);
   const { content } = useSelector(mapState);
   const {
     author,
@@ -32,35 +32,69 @@ const BlogCard = ({}) => {
     dispatch(
       fetchContentStart(blogID)
     )
+    setTimeout(() => {
+      setIsPending(true);  
+    }, 200)
   }, [dispatch, blogID]);
 
   return (
+    
     <div className="content-main">
-      <div className="content-box">
-        <div className="content-head">
-          <div className="content-name">
-            <p>{author}</p>
+      {!isPending && (
+        <div className="content-box">
+          <div className="content-head">
+            <div className="content-name">
+              <p></p>
+            </div>
+            <div className="content-head-time">
+              <span></span>
+            </div>
           </div>
-          <div className="content-head-time">
-            <span>{nowTime}</span>
+          <div className="content-body">
+            <div className="content-body-thumbnail">
+            
+            </div>
+            <div className="content-body-title">
+              <p>
+                
+              </p>
+            </div>
+            <div className="content-body-text">
+              <span
+              className="desc"
+               />
+            </div>
           </div>
         </div>
-        <div className="content-body">
-          <div className="content-body-thumbnail">
-          <img src={contentThumbnail} alt="img" /> 
+      )}
+      {isPending && (
+        <div className="content-box">
+          <div className="content-head">
+            <div className="content-name">
+              <p>{author}</p>
+            </div>
+            <div className="content-head-time">
+              <span>{nowTime}</span>
+            </div>
           </div>
-          <div className="content-body-title">
-            <p>
-              {contentTitle}
-            </p>
-          </div>
-          <div className="content-body-text">
-            <span
-            className="desc"
-            dangerouslySetInnerHTML={{ __html: contentDesc }} />
+          <div className="content-body">
+            <div className="content-body-thumbnail">
+            <img src={contentThumbnail} alt="img" /> 
+            </div>
+            <div className="content-body-title">
+              <p>
+                {contentTitle}
+              </p>
+            </div>
+            <div className="content-body-text">
+              <span
+              className="desc"
+              dangerouslySetInnerHTML={{ __html: contentDesc }} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
     </div>
   );
 }

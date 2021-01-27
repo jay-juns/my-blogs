@@ -1,6 +1,6 @@
 import React from 'react';
 import SliderMain from '../Slider/sliderMain';
-import MainContent from './mainContent';
+import MainPage from './mainPage';
 
 const Main = props => {
   
@@ -9,7 +9,7 @@ const Main = props => {
       
       <SliderMain />
       <div className="main-contents">
-        <MainContent />
+        <MainPage />
       </div>
     </div>
   );

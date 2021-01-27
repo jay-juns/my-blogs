@@ -1,6 +1,6 @@
 import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire } from './inquires.actions';
+import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire, setLoadinginquire } from './inquires.actions';
 import { handleFetchInquires, handleFetchMainInquires, handleAddInquire, 
   handleDeleteInquire, handleFetchInquire, handleLikeInquire,
   handleEditInquire } from './inquires.helpers';
@@ -61,6 +61,9 @@ export function* fetchMainInquires({ payload }) {
     const inquires = yield handleFetchMainInquires(payload);
     yield put(
       setInquires(inquires)
+    );
+    yield put(
+      setLoadinginquire(true)
     );
   } catch (err) {
     // console.log(err);

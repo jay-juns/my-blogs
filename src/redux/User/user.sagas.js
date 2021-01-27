@@ -79,7 +79,7 @@ export function* signUpUser({ payload: {
 
     const err = {
       code:'비밀번호 불일치',
-      message:'비밀번호가 일치하지 않습니다'
+      message:'비밀번호가 일치하지 않습니다.'
     };
 
     yield put(userError(err));    

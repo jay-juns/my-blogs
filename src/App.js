@@ -20,6 +20,7 @@ import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
 import BlogDetails from './pages/BlogDetails';
 import InquireDetails from './pages/InquireDetails';
+import NotFound from './pages/NotFound';
 
 //default css
 import './default.scss';
@@ -100,6 +101,12 @@ const App = props => {
               <Dashboard />
             </DashboardLayout>
           </WithAuth>
+        )} 
+        />
+         <Route path="*" render={() =>  (
+          <MainLayout>
+            <NotFound />
+          </MainLayout>
         )} 
         />
       </Switch>

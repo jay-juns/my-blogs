@@ -2,7 +2,8 @@ import contentsTypes from './contents.types';
 
 const INITIAL_STATE = {
   contents: [],
-  content: {}
+  content: {},
+  loading: false
 }
 
 const contentsReducer = (state=INITIAL_STATE, action) => {
@@ -16,7 +17,12 @@ const contentsReducer = (state=INITIAL_STATE, action) => {
         return {
           ...state,
           content: action.payload
-        }  
+      }
+      case contentsTypes.IS_PENDING:
+        return {
+          ...state,
+          loading: action.payload
+      }  
     default:
       return state;
   }

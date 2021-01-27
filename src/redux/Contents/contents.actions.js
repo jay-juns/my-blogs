@@ -29,3 +29,8 @@ export const setContent = content => ({
   type: contentsTypes.SET_CONTENT,
   payload: content
 });
+
+export const setLoadingContent = isPending => ({
+  type: contentsTypes.IS_PENDING,
+  payload: isPending
+})

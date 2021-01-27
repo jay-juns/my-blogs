@@ -30,7 +30,7 @@ const mapState = state => ({
   inquireComment: state.messages.inquireComment
 })
 
-const InquireCard = ({}) => {
+const InquireCard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { inquireID } = useParams();
@@ -55,6 +55,7 @@ const InquireCard = ({}) => {
   const [hideAlert, setHideAlert] = useState(false);
   const [text, setText] = useState('');
   const [color, setColor] = useState('');
+  const [isPending, setIsPending] = useState(false);
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
@@ -95,6 +96,9 @@ const InquireCard = ({}) => {
     dispatch(
       fetchInquireStart(inquireID)
     )
+    setTimeout(() => {
+      setIsPending(true);  
+    }, 200)
   }, [dispatch, inquireID]);
 
   useEffect(() => {
@@ -208,11 +212,46 @@ const InquireCard = ({}) => {
       <div className="detail-head-title">
         <h3>문의 내용</h3>
       </div>
-      <div className="detail-container">
       
       {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
-      
-        <div className="detail-header"> 
+
+      {!isPending && (
+      <div className="detail-container">
+        <div className="detail-header">
+        
+          <div className="detail-header-left">
+            <div className="detail-header-left--up">
+              <div className="detail-header-left--up-contents">
+                <p className="detail-title"></p> 
+                <p className="detail-displayName"> <strong>님</strong></p>
+              </div>
+
+              <div className="detail-header-left--up-btn-area">
+              
+              </div>
+             
+            </div>
+            
+            <div className="detail-header-left--footer-wrapper">
+              <span className="detail-header-left--tag">
+                
+              </span>
+            </div>
+          </div>
+          
+        </div>
+        <div className="detail-body">
+          <span
+          className="desc"
+           />
+        </div>
+      </div>
+      )}
+
+      {isPending && (
+      <div className="detail-container">
+        <div className="detail-header">
+        
           <div className="detail-header-left">
             <div className="detail-header-left--up">
               <div className="detail-header-left--up-contents">
@@ -295,6 +334,9 @@ const InquireCard = ({}) => {
           dangerouslySetInnerHTML={{ __html: inquireDesc }} />
         </div>
       </div>
+      )}
+
+      
       <div className="detail-btn-wrap">
         <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
         

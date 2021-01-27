@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const otherMain = ({
+const MainContentsItems = ({
   contentTitle,
   contentThumbnail,
   contentDesc,
@@ -27,4 +27,4 @@ const otherMain = ({
   );
 };
 
-export default otherMain;
+export default MainContentsItems;
