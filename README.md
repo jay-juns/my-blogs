@@ -29,6 +29,8 @@
 - [x] ~~문의 사항 페이지가 10개 넘어가면 그 수만 보여주고, 10개 안에서 이동 변경 / 다음 페이지/ 이전 페이지 버튼 추가~~
 - [x] ~~문의 사항 추천 기능 추가~~
 - [x] ~~각종 얼럿 추가~~
+- [x] ~~로딩시 더미 아이템 보여주기~~
+- [x] ~~메인 네비게이션 스크롤시 이벤트 추가~~
 - [ ] 문의사항 페이지 조회수 추가
 - [ ] 계정 중복체크
 - [ ] 유저 정보 수정
@@ -46,56 +48,56 @@
 #### 메인 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477240-f2c18600-5ce4-11eb-8af1-d17e14002674.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981418-65fa3c00-60d9-11eb-969a-029042caba96.png" width="100%" />
 </div>
 <br />
 
 #### 로그인 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477270-fa812a80-5ce4-11eb-9049-3d20e648d28a.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981435-698dc300-60d9-11eb-8e3a-004765042487.png" width="100%" />
 </div>
 <br />
 
 #### 회원가입 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477283-fc4aee00-5ce4-11eb-8560-61ab7d529d12.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981437-6a265980-60d9-11eb-8c09-8043970827b6.png" width="100%" />
 </div>
 <br />
 
 #### 컨텐츠 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105662309-c0956b80-5f12-11eb-883f-740d7fa78c32.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981425-67c3ff80-60d9-11eb-9d0b-a02060d362b3.png" width="100%" />
 </div>
 <br />
 
 #### 컨텐츠 디테일 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105662311-c1c69880-5f12-11eb-9480-72e78503ef40.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981426-685c9600-60d9-11eb-9b14-4e4e4d55cf3f.png" width="100%" />
 </div>
 <br />
 
 #### 문의 사항 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477258-f7863a00-5ce4-11eb-90c0-ef9d27dcae1b.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981429-68f52c80-60d9-11eb-93ac-da528a9223d0.png" width="100%" />
 </div>
 <br />
 
 #### 문의 사항 디테일 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477263-f8b76700-5ce4-11eb-87a1-53ce537761fe.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981431-68f52c80-60d9-11eb-96ed-fccb9cbbefcb.png" width="100%" />
 </div>
 <br />
 
 #### 유저 프로필 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103497650-85f56180-4e85-11eb-9062-ae8f933372d3.png" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105981432-698dc300-60d9-11eb-833b-31ec6dc72c30.png" width="100%" />
 </div>
 
 ## 기능 영상
@@ -103,31 +105,31 @@
 #### 문의사항 글 작성 및 수정
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103168132-f55ec600-4873-11eb-8d70-3cb1a97b03e9.gif" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/103168132-f55ec600-4873-11eb-8d70-3cb1a97b03e9.gif" width="100%" />
 </div>
 
 #### 문의사항 글 안에서 댓글 등록
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103433813-1db33f80-4c3b-11eb-8aab-47232ff69ee2.gif" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/103433813-1db33f80-4c3b-11eb-8aab-47232ff69ee2.gif" width="100%" />
 </div>
 
 #### 메인에서 문의사항 디테일 페이지로 이동
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/103498292-90b0f600-4e87-11eb-9555-dc8dc9ef9878.gif" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/103498292-90b0f600-4e87-11eb-9555-dc8dc9ef9878.gif" width="100%" />
 </div>
 
 #### 추천 기능 (비로그인시)
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477289-fead4800-5ce4-11eb-8d14-173a6beb535e.gif" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477289-fead4800-5ce4-11eb-8d14-173a6beb535e.gif" width="100%" />
 </div>
 
 #### 추천 기능 (로그인시)
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105477295-010fa200-5ce5-11eb-8296-42a9c7905bc1.gif" width="90%" />
+  <img src="https://user-images.githubusercontent.com/64716396/105477295-010fa200-5ce5-11eb-8296-42a9c7905bc1.gif" width="100%" />
 </div>
 
 <br />
