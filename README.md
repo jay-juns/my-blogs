@@ -100,6 +100,12 @@
   <img src="https://user-images.githubusercontent.com/64716396/105981432-698dc300-60d9-11eb-833b-31ec6dc72c30.png" width="100%" />
 </div>
 
+#### 404 에러 페이지
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/106001791-bbdbdd80-60f3-11eb-955c-6e4a25c7f0af.png" width="100%" />
+</div>
+
 ## 기능 영상
 
 #### 문의사항 글 작성 및 수정
