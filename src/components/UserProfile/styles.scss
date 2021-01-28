@@ -7,10 +7,17 @@
     align-items: center;
 
     .user-icon {
-      background-color: #e6e6e6;
       padding: 1.2rem;
       border-radius: 50%;
       font-size: 2.6rem;
+      color: #fff;
+
+      img {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .display-name {

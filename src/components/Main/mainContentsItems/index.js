@@ -7,9 +7,10 @@ const MainContentsItems = ({
   contentDesc,
   documentID
 }) => {
-  
-  if(!contentThumbnail || !contentTitle || !contentDesc) return null;
 
+
+  if(!contentThumbnail || !contentTitle || !contentDesc) return null;
+   
   return (
     <div className="other-main">
       <Link className="main-inquire-items-row" to={`/blogDetail/${documentID}`}>

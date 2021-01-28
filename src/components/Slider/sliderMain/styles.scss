@@ -1,16 +1,14 @@
-:root {
-  --heights: 50vh;
-  --widths: 100%;
-}
+@import "./../../../var.scss";
 
 .main-wrap {
   
   .slider-container {
-    height: var(--heights);
-    width: var(--widths);
+    height: $slideHeight;
+    width: $slieWidth;
     position: relative;
     margin: auto;
     overflow: hidden;
+    background-color: $buttonPrimaryHoverColor;
 
     section {
     -webkit-transform: translate3d(0, 0, 0);
@@ -29,8 +27,8 @@
         position: absolute;
         opacity: 0;
         transition: opacity 700ms ease 0.1s;
-        height: var(--heights);
-        width: var(--widths);
+        height: $slideHeight;
+        width: $slieWidth;
         z-index: 9;
 
         .slide-image {
@@ -39,8 +37,8 @@
       }
       
       .slides {
-        height: var(--heights);
-        width: var(--widths);
+        height: $slideHeight;
+        width: $slieWidth;
         position: relative;
 
         .slide-image {
@@ -52,7 +50,7 @@
 
         .slide-title, .slide-text {
           color: #fff;
-          background-color: rgba(0, 0, 0, 0.05);
+          background-color: $buttonPrimaryHoverColor;
           position: absolute;
           text-align: center;
           left: 50%;
@@ -120,13 +118,13 @@
         height: 1.3rem;
         width: 1.3rem;
         margin: 0 3px;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: $buttonWhiteHoverColor;
         border-radius: 50%;
         display: inline-block;
       }
       
       .active-dot, .dot:hover {
-        background-color: #039be5;
+        background-color: $blue;
       }
     }
   }

@@ -19,6 +19,7 @@ import Inquire from './pages/Inquire';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Dashboard from './pages/Dashboard';
+import DashboardFriends from './pages/DashboardFriends';
 import BlogDetails from './pages/BlogDetails';
 import InquireDetails from './pages/InquireDetails';
 import NotFound from './pages/NotFound';
@@ -96,10 +97,18 @@ const App = props => {
           </OtherLayout>
         )} 
         />
-        <Route path="/dashboard" render={() => (
+        <Route exact path="/dashboard" render={() => (
           <WithAuth>
             <DashboardLayout>
               <Dashboard />
+            </DashboardLayout>
+          </WithAuth>
+        )} 
+        />
+        <Route path="/dashboard/friends" render={() => (
+          <WithAuth>
+            <DashboardLayout>
+              <DashboardFriends />
             </DashboardLayout>
           </WithAuth>
         )} 

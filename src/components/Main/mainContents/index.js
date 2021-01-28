@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContentsStart } from './../../../redux/Contents/contents.actions';
 import MainContentsItems from './../mainContentsItems';
+import MainContentsDummy from './mainContentsDummy';
 import './styles.scss';
 
 const mapState = ({ contentsData }) => ({
@@ -38,40 +39,8 @@ const MainContents = () => {
     <div className="main-items">
 
       { !isPending && (
-      <div className="main-row" key="loading-main-contents"> 
-        <div className="other-main">
-          <div className="other-img">
-            
-          </div>
-          <div className="other-contents">
-              
-          </div>
-        </div>
-        <div className="other-main">
-          <div className="other-img">
-            
-          </div>
-          <div className="other-contents">
-              
-          </div>
-        </div>
-        <div className="other-main">
-          <div className="other-img">
-            
-          </div>
-          <div className="other-contents">
-              
-          </div>
-        </div>
-        <div className="other-main">
-          <div className="other-img">
-            
-          </div>
-          <div className="other-contents">
-              
-          </div>
-        </div>
-      </div>) }
+        <MainContentsDummy />
+      )}
 
       { isPending && (<div className="main-row" key="complete-main-contents">
         {data.map((content, pos) => {

@@ -28,6 +28,13 @@ const DashBoardLayout = props => {
             >
               프로필 정보
             </NavLink>
+            <NavLink 
+            to="/dashboard/friends"
+            activeClassName="active-dashboard"
+            className="link-dashboard"
+            >
+              친구 목록
+            </NavLink>
             <span className="sign-out" onClick={() => signOut()}>
               로그아웃
             </span>

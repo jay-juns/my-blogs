@@ -1,5 +1,5 @@
 import React from 'react';
-import UserProfileSetting from './../../components/UserProfileSetting';
+import UserFriends from './../../components/UserFriends';
 import { useSelector } from 'react-redux';
 
 const mapState = ({ user }) => ({
@@ -11,7 +11,7 @@ const Dashboard = props => {
   const configUserProfile = {
     currentUser
   }
-  return <UserProfileSetting {...configUserProfile}/>;
+  return <UserFriends {...configUserProfile}/>;
 };
 
 export default Dashboard;

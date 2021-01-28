@@ -1,0 +1,27 @@
+@import "./../../../var.scss";
+
+form {
+  .upload-fake-btn {
+    background-color: $buttonPrimaryHoverColor;
+    border-radius: .4rem;
+    padding: .8rem;
+    font-size: $buttonFontSize;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue;
+    }
+
+    .upload-input-btn[type="file"] {
+      position: absolute; 
+      width: 1px; 
+      height: 1px; 
+      padding: 0; 
+      margin: -1px; 
+      overflow: hidden; 
+      clip:rect(0,0,0,0); 
+      border: 0;
+    }
+  }
+
+}

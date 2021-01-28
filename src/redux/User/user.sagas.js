@@ -92,7 +92,6 @@ export function* signUpUser({ payload: {
     const additionalData = { displayName, userId };
     yield getSnapshotFromUserAuth(user, additionalData);
   
-
   } catch(err) {
     
     yield put(userError(err));

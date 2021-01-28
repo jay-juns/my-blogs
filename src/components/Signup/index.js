@@ -97,7 +97,7 @@ const Signup = props => {
             type="text"
             name="userId"
             value={userId}
-            placeholder="사용자 이름 입력"
+            placeholder="유저 아이디 입력"
             handleChange={e => setUserId(e.target.value)}
           />
 

@@ -6,8 +6,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from './../Forms/Button';
 import FormInput from './../Forms/FormInput';
+import FormUploadInput from './../Forms/FormUploadInput';
 
 const UserProfileSetting = props => {
+  const { currentUser } = props;
+  const { displayName, color, userImgUrl } = currentUser;
+  const userStyleColor = userImgUrl ? {
+    backgroundColor: '#ffffff',
+    position: 'relative',
+    width: '50px',
+    height: '50px',
+    overflow: 'hidden'
+  } : {backgroundColor: color};
+  const userLogo = userImgUrl ?<img src={`${userImgUrl}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
 
   return (
     <div className="user-profile-setting">
@@ -15,15 +26,13 @@ const UserProfileSetting = props => {
         <h3>프로필 사진</h3>
         <div className="profile-contents">
           <div className="profile-img">
-            <span className="img-wrap">
-              <FontAwesomeIcon className="i" icon={faUser} />
+            <span className="img-wrap" style={userStyleColor}>
+              {userLogo}
             </span>
           </div>
           <div className="profile-left-menu">
-            <Button className="update-btn btn">
-              프로필 사진 업데이트
-            </Button>
-            <span>10MB 이내의 JPEG, PNG, GIF 형식이어야 합니다</span>
+            <FormUploadInput />
+            <span>10MB 이내의 JPEG, PNG 형식이어야 합니다</span>
           </div>
         </div> 
       </div>
@@ -36,14 +45,15 @@ const UserProfileSetting = props => {
         <div className="profile-contents column">
           <div className="profile-item">
             <div className="profile-item-title">
-              사용자 이름
+              별명
             </div>
             <div className="profile-modify">
               <FormInput 
                 type="text"
+                placeholder={displayName}
               />
               <span className="modify-sub-text">
-                닉네임을 변경이 가능합니다. My Blogs 이용규약을 위반한 사용자 이름은 계정이 영구정지될 수 있으니 주의하세요.
+                별명은 변경이 가능합니다. My Blogs 이용규약을 위반한 별명은 계정이 영구정지될 수 있으니 주의하세요.
               </span>
             </div>  
           </div>

@@ -7,6 +7,7 @@
     position: relative;
     display: flex;
     height: 224px;
+    overflow: hidden;
 
     .other-main {
       width: 260px;
@@ -15,7 +16,6 @@
       margin-left: 1.2rem;
       flex-shrink: 0;
       margin-top: .1rem;
-      transform: scale(1);
       transition: all ease-in .3s;
 
       &:first-child {
@@ -23,8 +23,11 @@
       }
 
       &:hover {
-        transform: scale(1.2);
-        z-index: 1;
+        box-shadow: 0 1px $blue,0 0 2px $blue;
+        
+        .other-contents {
+          box-shadow: 0 1px $blue,0 0 2px $blue;
+        }
       }
 
       .other-img {
@@ -45,6 +48,7 @@
         max-height: 32px;
         overflow: hidden;
         color: #000;
+        transition: all ease-in .3s;
         
         p {
           font-size: 1.2rem;
