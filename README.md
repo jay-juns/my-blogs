@@ -31,6 +31,7 @@
 - [x] ~~각종 얼럿 추가~~
 - [x] ~~로딩시 더미 아이템 보여주기~~
 - [x] ~~메인 네비게이션 스크롤시 이벤트 추가~~
+- [x] ~~404 에러페이지 추가~~
 - [ ] 문의사항 페이지 조회수 추가
 - [ ] 계정 중복체크
 - [ ] 유저 정보 수정
@@ -98,6 +99,12 @@
 
 <div>
   <img src="https://user-images.githubusercontent.com/64716396/105981432-698dc300-60d9-11eb-833b-31ec6dc72c30.png" width="100%" />
+</div>
+
+#### 404 에러 페이지
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/106001791-bbdbdd80-60f3-11eb-955c-6e4a25c7f0af.png" width="100%" />
 </div>
 
 ## 기능 영상
