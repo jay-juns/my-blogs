@@ -22,7 +22,7 @@ const mapState = ({ inquiresData, user, messages }) => ({
   inquireComments: messages.inquireComments
 })
 
-const InquireBoard = ({}) => {
+const InquireBoard = () => {
   const { inquires, currentUser, inquireComments } = useSelector(mapState);
   const { inquireType, inquirePageNumber } = useParams();
   const dispatch = useDispatch();

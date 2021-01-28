@@ -11,7 +11,7 @@ export default [
   },
   {
     title: 'My Blogs는 하루에 지친 당신에게 위로가 됩니다.',
-    description: '당신의 상처를 치유 받고 싶듯이 타인에게 또한 배려해주세요.',
+    description: '타인을 배려해주는 당신이 되었으면 합니다.',
     urls: `${image02}`
   },
   {

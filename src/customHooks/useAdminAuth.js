@@ -16,7 +16,7 @@ const useAdminAuth = props => {
       history.push('/');
     }
 
-  }, [currentUser]);
+  }, [history, currentUser]);
 
   return currentUser;
 }

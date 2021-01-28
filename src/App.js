@@ -33,11 +33,11 @@ const App = props => {
     
     dispatch(checkUserSession());
     
-  }, []);
+  }, [dispatch]);
   
-  window.document.oncontextmenu = new Function("return false"); 
-  window.document.onselectstart = new Function("return false"); 
-  window.document.ondragstart = new Function("return false");
+  // window.document.oncontextmenu = new Function("return false"); 
+  // window.document.onselectstart = new Function("return false"); 
+  // window.document.ondragstart = new Function("return false");
 
   return (
     <div className="App">
@@ -105,9 +105,9 @@ const App = props => {
         )} 
         />
          <Route path="*" render={() =>  (
-          <MainLayout>
+          <OtherLayout>
             <NotFound />
-          </MainLayout>
+          </OtherLayout>
         )} 
         />
       </Switch>

@@ -38,7 +38,7 @@ const SignIn = props => {
       }
     }    
 
-  }, [currentUser]);
+  }, [history, currentUser]);
 
   useEffect(() => {
     if(email !== '' && password !=='') {

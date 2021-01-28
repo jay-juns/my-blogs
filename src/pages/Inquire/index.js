@@ -1,7 +1,7 @@
 import React from 'react';
 import InquireBoard from './../../components/InquireBoard';
 
-const Inquire = ({}) => {
+const Inquire = () => {
   return (
     <div className="all">
       <InquireBoard />

@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogCard from './../../components/BlogContents/BlogCard';
 
-const BlogDetails = ({}) => {
+const BlogDetails = () => {
 
   return <BlogCard />;
 }

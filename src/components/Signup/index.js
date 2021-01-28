@@ -32,7 +32,7 @@ const Signup = props => {
       history.push('/');
     }
 
-  }, [currentUser]);
+  }, [history, currentUser]);
 
   useEffect(() => {
     if(userId !== '' && displayName !== '' && email !== '' && password !=='' && confirmPassword !=='') {
