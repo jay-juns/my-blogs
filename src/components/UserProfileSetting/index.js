@@ -12,7 +12,7 @@ const UserProfileSetting = props => {
   const { currentUser } = props;
   const { displayName, color, userImgUrl } = currentUser;
   const userStyleColor = userImgUrl ? {
-    backgroundColor: '#ffffff',
+    backgroundColor: 'transparent',
     position: 'relative',
     width: '50px',
     height: '50px',

@@ -19,10 +19,10 @@ const useStorage = (file) => {
   }
 
   useEffect(() => {
-    // references
+    
     const storageRef = storage.ref(`/users/${userId}/${file.name}`);
     const collectionRef = firestore.collection('users');
-    
+
     storageRef.put(file).on('state_changed', (snap) => {
       let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
       setProgress(percentage);

@@ -5,37 +5,64 @@
   .inquire-comment-area {
     position: relative;
     margin-top: 3rem;
-  
-    &--head {
+    display: flex;
+    
+    &--img {
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
-      color: #000;
-  
-      p {
-        font-size: 1.5rem;
-        font-weight: 600;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: #fff;
+      color: #fff;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
       }
-  
-      span {
-        font-size: 1.3rem;
-        text-indent: .6rem;
-        color: #666;
+    }
+
+    &--contents {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 2rem;
+      
+      .inquire-comment-area--head {
+        display: flex;
+        align-items: center;
+        color: #000;
+    
+        p {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+    
+        span {
+          font-size: 1.3rem;
+          text-indent: .6rem;
+          color: #666;
+        }
+      }
+    
+      .inquire-comment-area--body {
+    
+        pre {
+          font-size: 1.3rem;
+          font-weight: 400;
+          max-height: 150px;
+          margin: 0;
+          overflow: hidden;
+        }
+        pre.all-pre {
+          max-height: initial;
+        }
       }
     }
   
-    &--body {
-      margin-top: .8rem;
-  
-      pre {
-        font-size: 1.3rem;
-        font-weight: 400;
-        max-height: 150px;
-        overflow: hidden;
-      }
-      pre.all-pre {
-        max-height: initial;
-      }
-    }
     &--delete-btn {
       position: absolute;
       right: 0;

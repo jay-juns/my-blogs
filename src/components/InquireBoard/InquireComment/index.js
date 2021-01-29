@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const mapState = (state) => ({
@@ -25,9 +26,14 @@ const InquireComments = props => {
     
     <div className="inquire-text">
       {(Array.isArray(items) && items.length > 0) && items.map((text) => {
-        const { author, inquireText, uid, createAt, documentID } = text;
+        const { author, authorColor, authorImgUrl, inquireText, uid, createAt, documentID } = text;
         const timeZone = createAt.toDate().toString();
         const nowTime = moment(timeZone).fromNow();
+        const userStyleColor = authorImgUrl ? {
+          position: 'relative',
+          overflow: 'hidden'
+        } : {backgroundColor: authorColor};
+        const userLogo = authorImgUrl ? <img src={`${authorImgUrl}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
 
         const handleDelete = () => {
           dispatch(
@@ -41,13 +47,19 @@ const InquireComments = props => {
       
         return (
           <div className="inquire-comment-area" key={uid}>
-            <div className="inquire-comment-area--head">
-              <p>{author}</p>
-              <span>{nowTime}</span>
+            <div className="inquire-comment-area--img" style={userStyleColor}>
+              {userLogo}
             </div>
-            <div className="inquire-comment-area--body">
-              <pre id={`${uid}`}>{inquireText}</pre>  
+            <div className="inquire-comment-area--contents">
+              <div className="inquire-comment-area--head">
+                <p>{author}</p>
+                <span>{nowTime}</span>
+              </div>
+              <div className="inquire-comment-area--body">
+                <pre id={`${uid}`}>{inquireText}</pre>  
+              </div>
             </div>
+            
            {isAdmin &&
             <div className="inquire-comment-area--delete-btn" key="controlCommentSettings">
               <Button className="btn" onClick={() => handleDelete()}>

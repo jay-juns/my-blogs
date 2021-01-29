@@ -31,7 +31,7 @@ const Header = props => {
   }
 
   const imgInfo = currentUser && userInfo[0] ? <img src={`${userInfo[0]}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
-  const userBgStyle = currentUser && userInfo[0] ? {backgroundColor: '#dddddd'} : { backgroundColor: userColor }
+  const userBgStyle = currentUser && userInfo[0] ? {backgroundColor: 'transparent'} : { backgroundColor: userColor }
 
   return (
     <div className={`header-row-wrapper ${mainBg && scrollPosition === 0 ? mainBg : ''}`}>

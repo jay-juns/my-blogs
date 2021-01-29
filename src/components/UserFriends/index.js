@@ -2,8 +2,6 @@ import React from 'react';
 import './styles.scss';
 
 const UserFriends = props => {
-  const { currentUser } = props;
-  console.log(currentUser);
 
   return (
     <div className="user-friends-list-wrapper">

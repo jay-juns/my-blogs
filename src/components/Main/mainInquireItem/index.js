@@ -34,7 +34,7 @@ const MainInquireItem = props => {
   if(items.length < 1) {
     return (
       <div className="main-inquire-items">
-        <p>올라온 글이 없습니다.</p>
+        <p className="un-text">올라온 글이 없습니다.</p>
       </div>
     );
   }

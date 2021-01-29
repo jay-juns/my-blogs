@@ -8,10 +8,10 @@ const UserProfile = props => {
   const { currentUser } = props;
   const { displayName, color, userImgUrl } = currentUser;
   const userStyleColor = userImgUrl ? {
-    backgroundColor: '#ffffff',
+    backgroundColor: 'transparent',
     position: 'relative',
-    width: '26px',
-    height: '26px',
+    width: '35px',
+    height: '35px',
     overflow: 'hidden'
   } : {backgroundColor: color};
   const userLogo = userImgUrl ? <img src={`${userImgUrl}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;

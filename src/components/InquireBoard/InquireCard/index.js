@@ -20,6 +20,7 @@ import InquireComments from './../InquireComment';
 import TagType from './../InquireTagType';
 
 import { faEllipsisH, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './styles.scss';
@@ -44,10 +45,12 @@ const InquireCard = () => {
     inquireTag,
     inquireDesc,
     likeInfo,
-    documentID
+    documentID,
+    userColor,
+    userId,
+    userImgUrl
   } = inquire;
   const { messageRoomData } = inquireComment;
-
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');
@@ -59,15 +62,28 @@ const InquireCard = () => {
   
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
+  const userStyleColor = userImgUrl ? {
+    backgroundColor: 'transparent',
+    position: 'relative',
+    width: '20px',
+    height: '20px',
+    overflow: 'hidden'
+  } : {backgroundColor: userColor};
+  const userLogo = userImgUrl ? <img src={`${userImgUrl}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
+
   let userChatInfo = [];
   
   for (let name in currentUser) { 
     if (name.includes('displayName')) {
-      userChatInfo.push(currentUser.displayName); 
+      userChatInfo.push(currentUser.displayName, currentUser.userId, currentUser.color, currentUser.userImgUrl, currentUser.id); 
     }
   }
 
-  const author = userChatInfo[0];  
+  const author = userChatInfo[0]; 
+  const authorId = userChatInfo[1];
+  const authorColor = userChatInfo[2];
+  const authorImgUrl = userChatInfo[3];
+  const authorUserId = userChatInfo[4];  
   
   const resetForm = () => {
     setHideModal(true);
@@ -127,7 +143,10 @@ const InquireCard = () => {
         inquireTitle: inquireEditTitle,
         inquireDesc: inquireEditDesc,
         displayName,
-        id: documentID
+        id: documentID,
+        userColor,
+        userId,
+        userImgUrl
       })
     );
     resetForm();
@@ -149,6 +168,10 @@ const InquireCard = () => {
     dispatch(
       addInquireComments({
         author,
+        authorId,
+        authorColor,
+        authorUserId,
+        authorImgUrl,
         inquireText,
         id: documentID
       })
@@ -223,7 +246,10 @@ const InquireCard = () => {
             <div className="detail-header-left--up">
               <div className="detail-header-left--up-contents">
                 <p className="detail-title"></p> 
-                <p className="detail-displayName"> <strong>님</strong></p>
+                <div className="detail-user-info-wrap">
+                  <span className="detail-user-img"></span>
+                  <p className="detail-displayName"><strong>님</strong></p>
+                </div> 
               </div>
 
               <div className="detail-header-left--up-btn-area">
@@ -255,8 +281,13 @@ const InquireCard = () => {
           <div className="detail-header-left">
             <div className="detail-header-left--up">
               <div className="detail-header-left--up-contents">
-                <p className="detail-title">{inquireTitle}</p> 
-                <p className="detail-displayName">{displayName} <strong>님</strong></p>
+                <p className="detail-title">{inquireTitle}</p>
+                <div className="detail-user-info-wrap">
+                  <span className="detail-user-img" style={userStyleColor}>
+                    {userLogo}
+                  </span>
+                  <p className="detail-displayName">{displayName} <strong>님</strong></p>
+                </div> 
               </div>
 
               <div className="detail-header-left--up-btn-area">
