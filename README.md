@@ -5,7 +5,7 @@
 <br />
 
 ## 앱의 용도/목적
-- 포트폴리오 작업을 위해 글로벌 기업 앱(Twitch, Youtube, Insta, Netflix,  등등)의 일부 기능들을 스스로 직접 구현하기 위함입니다.
+- 포트폴리오 작업을 위해 글로벌 기업 앱(Twitch, Youtube, Insta, Netflix, Discord 등등)의 일부 기능들을 스스로 직접 구현하기 위함입니다.
 <br />
 <br />
 
