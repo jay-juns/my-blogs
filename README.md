@@ -14,6 +14,9 @@
 - [x] ~~로그인, 구글 로그인, 회원가입~~ 
 - [x] ~~어드민, 유저 구분하기~~
 - [x] ~~메인 슬라이드 기능 추가~~
+- [x] ~~유저 랜덤 로고 추가~~
+- [x] ~~유저 로고 변경~~
+- [x] ~~유저 로고 변경시 업데이트(블로그, 블로그 댓글)~~
 - [x] ~~블로그 글쓰기~~
 - [x] ~~블로그 삭제~~
 - [x] ~~블로그 디테일 페이지 보여주기~~
@@ -49,62 +52,62 @@
 #### 메인 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981418-65fa3c00-60d9-11eb-969a-029042caba96.png" width="100%" />
-</div>
-<br />
-
-#### 로그인 페이지
-
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981435-698dc300-60d9-11eb-8e3a-004765042487.png" width="100%" />
-</div>
-<br />
-
-#### 회원가입 페이지
-
-<div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981437-6a265980-60d9-11eb-8c09-8043970827b6.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355031-01d5b300-6339-11eb-8569-af66c2c4713d.png" width="100%" />
 </div>
 <br />
 
 #### 컨텐츠 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981425-67c3ff80-60d9-11eb-9d0b-a02060d362b3.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355034-039f7680-6339-11eb-82ba-1df0f0fcfde0.png" width="100%" />
 </div>
 <br />
 
 #### 컨텐츠 디테일 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981426-685c9600-60d9-11eb-9b14-4e4e4d55cf3f.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355036-039f7680-6339-11eb-85bc-3cdfacfd4897.png" width="100%" />
 </div>
 <br />
 
 #### 문의 사항 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981429-68f52c80-60d9-11eb-93ac-da528a9223d0.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355037-04380d00-6339-11eb-8b38-778c2b47f18a.png" width="100%" />
 </div>
 <br />
 
 #### 문의 사항 디테일 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981431-68f52c80-60d9-11eb-96ed-fccb9cbbefcb.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355038-04380d00-6339-11eb-99f9-8984b85f95b8.png" width="100%" />
 </div>
 <br />
 
 #### 유저 프로필 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/105981432-698dc300-60d9-11eb-833b-31ec6dc72c30.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355040-04d0a380-6339-11eb-9caf-2c4d6ad66939.png" width="100%" />
 </div>
+
+#### 로그인 페이지
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/106355041-05693a00-6339-11eb-930c-2479d1d55466.png" width="100%" />
+</div>
+<br />
+
+#### 회원가입 페이지
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/106355043-05693a00-6339-11eb-8875-10d54c00112e.png" width="100%" />
+</div>
+<br />
 
 #### 404 에러 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/106001791-bbdbdd80-60f3-11eb-955c-6e4a25c7f0af.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106355044-0601d080-6339-11eb-85b4-1e3b6deb084c.png" width="100%" />
 </div>
 
 ## 기능 영상
