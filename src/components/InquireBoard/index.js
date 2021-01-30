@@ -37,7 +37,7 @@ const InquireBoard = () => {
   
   for (let name in currentUser) { 
     if (name.includes('displayName')) {
-      userInfo.push(currentUser.displayName, currentUser.userId, currentUser.color, currentUser.userImgUrl); 
+      userInfo.push(currentUser.displayName, currentUser.userId, currentUser.color, currentUser.userImgUrl, currentUser.id); 
     }
   }
 
@@ -103,7 +103,8 @@ const InquireBoard = () => {
         displayName: userInfo[0],
         userId: userInfo[1],
         userColor: userInfo[2],
-        userImgUrl: userInfo[3]
+        userImgUrl: userInfo[3],
+        authorUserId: userInfo[4]
       })
     );
     resetForm();

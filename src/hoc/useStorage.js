@@ -22,6 +22,8 @@ const useStorage = (file) => {
     
     const storageRef = storage.ref(`/users/${userId}/${file.name}`);
     const collectionRef = firestore.collection('users');
+    const collectionRefInquires = firestore.collection('inquires');
+    const collectionRefInquiresComment = firestore.collection('inquireComments');
 
     storageRef.put(file).on('state_changed', (snap) => {
       let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
@@ -30,8 +32,21 @@ const useStorage = (file) => {
       setError(err);
     }, async () => {
       const url = await storageRef.getDownloadURL();
-  
       await collectionRef.doc(userId[0]).update({ userImgUrl: url });
+      await collectionRefInquires.where('authorUserId', '==', userId[0]).get().then(function(querySanpshot) {
+        querySanpshot.forEach(function(doc) {
+          doc.ref.update({
+            userImgUrl: url
+          })
+        })
+      });
+      await collectionRefInquiresComment.where('authorUserId', '==', userId[0]).get().then(function(querySanpshot) {
+        querySanpshot.forEach(function(doc) {
+          doc.ref.update({
+            authorImgUrl: url
+          })
+        })
+      });
       setUrl(url);
     });
   }, [file]);

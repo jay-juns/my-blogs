@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useStorage from './../../../hoc/useStorage';
+import './styles.scss';
 
 const ProgressBar = ({ file, setFile }) => {
   const { progress, url } = useStorage(file);
