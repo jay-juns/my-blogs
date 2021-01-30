@@ -142,6 +142,12 @@
   <img src="https://user-images.githubusercontent.com/64716396/105477295-010fa200-5ce5-11eb-8296-42a9c7905bc1.gif" width="100%" />
 </div>
 
+#### 유저 프로필 아바타 업데이트
+
+<div>
+  <img src="https://user-images.githubusercontent.com/64716396/106355436-292d7f80-633b-11eb-8500-2b92c8c6e162.gif" width="100%" />
+</div>
+
 <br />
 <br />
 <br />
