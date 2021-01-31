@@ -80,7 +80,7 @@
 #### 문의 사항 디테일 페이지
 
 <div>
-  <img src="https://user-images.githubusercontent.com/64716396/106355038-04380d00-6339-11eb-99f9-8984b85f95b8.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/64716396/106375097-90474480-63cc-11eb-91da-c12101b4f13c.png" width="100%" />
 </div>
 <br />
 
