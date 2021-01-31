@@ -29,10 +29,13 @@ const InquireComments = props => {
         const { author, authorColor, authorImgUrl, inquireText, uid, createAt, documentID } = text;
         const timeZone = createAt.toDate().toString();
         const nowTime = moment(timeZone).fromNow();
+        const fontColor = {
+          color: authorColor
+        }
         const userStyleColor = authorImgUrl ? {
           position: 'relative',
           overflow: 'hidden'
-        } : {backgroundColor: authorColor};
+        } : { backgroundColor: authorColor };
         const userLogo = authorImgUrl ? <img src={`${authorImgUrl}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
 
         const handleDelete = () => {
@@ -52,7 +55,7 @@ const InquireComments = props => {
             </div>
             <div className="inquire-comment-area--contents">
               <div className="inquire-comment-area--head">
-                <p>{author}</p>
+                <p style={fontColor}>{author}</p>
                 <span>{nowTime}</span>
               </div>
               <div className="inquire-comment-area--body">

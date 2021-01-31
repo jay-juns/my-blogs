@@ -26,7 +26,7 @@ const BlogMain = () => {
   const history = useHistory();
   const { filterType } = useParams();
   const [hideModal, setHideModal] = useState(true);
-  const [contentTag, setContentTag] = useState('chat');
+  const [contentTag, setContentTag] = useState('잡담');
   const [contentTitle, setContentTitle] = useState('');
   const [contentThumbnail, setContentThumbnail] = useState('');
   const [contentDesc, setContentDesc] = useState('');
@@ -58,7 +58,7 @@ const BlogMain = () => {
 
   const resetForm = () => {
     setHideModal(true);
-    setContentTag('chat');
+    setContentTag('잡담');
     setContentTitle('');
     setContentThumbnail('');
     setContentDesc('');

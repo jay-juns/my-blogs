@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/ko';
 
+import BlogCardDummy from './../BlogCardDummy';
+
 import { fetchContentStart, deleteContentStart } from '../../../redux/Contents/contents.actions';
 import { checkUserIsAdmin } from './../../../Utils';
 
@@ -55,31 +57,7 @@ const BlogCard = () => {
     
     <div className="content-main">
       {!isPending && (
-        <div className="content-box"  key="blog-dummy-content">
-          <div className="content-head">
-            <div className="content-name">
-              <p></p>
-            </div>
-            <div className="content-head-time">
-              <span></span>
-            </div>
-          </div>
-          <div className="content-body">
-            <div className="content-body-thumbnail">
-            
-            </div>
-            <div className="content-body-title">
-              <p>
-                
-              </p>
-            </div>
-            <div className="content-body-text">
-              <span
-              className="desc"
-               />
-            </div>
-          </div>
-        </div>
+        <BlogCardDummy />
       )}
       {isPending && (
         <div className="content-box" key="blog-main-content">
