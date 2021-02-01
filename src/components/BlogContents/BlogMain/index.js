@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './styles.scss';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from "react-helmet";
 
 import { addContentStart, fetchContentsStart } from './../../../redux/Contents/contents.actions';
 
@@ -13,6 +13,8 @@ import FormSelect from './../../Forms/FormSelect';
 import Button from './../../Forms/Button';
 import LoadMore from './../../LoadMore';
 import Alert from './../../Alert';
+
+import './styles.scss';
 
 const mapState = ({ contentsData, user }) => ({
   contents: contentsData.contents,
@@ -131,108 +133,113 @@ const BlogMain = () => {
   };
 
   return (
-    <div className="blog-main-wrap">
-      <div className="header-setting-wrap">
-        {hideAlert && <Alert {...configAlert} key="blogWrite"/>}
+    <>
+      <Helmet>
+        <title>Blog - MyBlogs</title>
+      </Helmet>
+      <div className="blog-main-wrap">
+        <div className="header-setting-wrap">
+          {hideAlert && <Alert {...configAlert} key="blogWrite"/>}
 
-        <FormSelect {...configFilter} />
+          <FormSelect {...configFilter} />
 
-        <Button className="write-btn btn" onClick={() => toggleModal()}>
-          글쓰기
-        </Button>
+          <Button className="write-btn btn" onClick={() => toggleModal()}>
+            글쓰기
+          </Button>
+        </div>
+        
+        {currentUser && [
+          <Modal {...configModal} key="blog-modal">
+            <form onSubmit={handleSubmit}>
+              <h2>새로운 글쓰기</h2>
+              <FormSelect 
+                label="태그 선택"
+                options={[{
+                  name: "잡담",
+                  value: "잡담"               
+                }, {
+                  name: "정보",
+                  value: "정보"
+                }]}
+                handleChange={e => setContentTag(e.target.value)}
+              />
+
+              <FormInput 
+                label="제목"
+                formClass="modal-items"
+                type="text"
+                value={contentTitle}
+                handleChange={e => setContentTitle(e.target.value)}
+              />
+
+              <FormInput 
+                label="이미지"
+                formClass="modal-items"
+                type="url"
+                value={contentThumbnail}
+                handleChange={e => setContentThumbnail(e.target.value)}
+              />
+
+
+              <CKEditor
+                onChange={evt => setContentDesc(evt.editor.getData())}
+              />
+              <div className="btn-wrap">
+                <Button className="ent-btn btn" type="submit">
+                  생성하기
+                </Button> 
+              </div>
+            </form>
+          </Modal>
+        ]}
+
+        {!currentUser && [
+          <Modal {...configModal} key="blogUnLoginModal">
+            <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p>
+          </Modal>
+        ]}
+        
+
+        <div className="show-contents">
+          <div className="show-container">
+              {(Array.isArray(data) && data.length > 0) && data.map((content, index) => {
+                const {
+                  contentTitle,
+                  contentThumbnail,
+                  contentDesc,
+                  documentID,
+                  author,
+                  createdDate
+                } = content;
+
+                if(!contentTitle) return null;
+
+                const configBlogContent = {
+                  contentTitle,
+                  contentThumbnail,
+                  contentDesc,
+                  documentID,
+                  author,
+                  createdDate
+                };
+
+                return (
+                  <div className="show-row" key={index}>
+
+                    <BlogItem {...configBlogContent} key={index} />                  
+                    
+                  </div>
+                )
+              })}  
+          </div>
+        </div>        
+
+        {!isLastPage && (
+          <LoadMore {...configLoadMore} />
+        )}    
+
       </div>
-      
-      {currentUser && [
-        <Modal {...configModal} key="blog-modal">
-          <form onSubmit={handleSubmit}>
-            <h2>새로운 글쓰기</h2>
-            <FormSelect 
-              label="태그 선택"
-              options={[{
-                name: "잡담",
-                value: "잡담"               
-              }, {
-                name: "정보",
-                value: "정보"
-              }]}
-              handleChange={e => setContentTag(e.target.value)}
-            />
-
-            <FormInput 
-              label="제목"
-              formClass="modal-items"
-              type="text"
-              value={contentTitle}
-              handleChange={e => setContentTitle(e.target.value)}
-            />
-
-            <FormInput 
-              label="이미지"
-              formClass="modal-items"
-              type="url"
-              value={contentThumbnail}
-              handleChange={e => setContentThumbnail(e.target.value)}
-            />
-
-
-            <CKEditor
-              onChange={evt => setContentDesc(evt.editor.getData())}
-            />
-            <div className="btn-wrap">
-              <Button className="ent-btn btn" type="submit">
-                생성하기
-              </Button> 
-            </div>
-          </form>
-        </Modal>
-      ]}
-
-      {!currentUser && [
-        <Modal {...configModal} key="blogUnLoginModal">
-          <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p>
-        </Modal>
-      ]}
-      
-
-      <div className="show-contents">
-         <div className="show-container">
-            {(Array.isArray(data) && data.length > 0) && data.map((content, index) => {
-              const {
-                contentTitle,
-                contentThumbnail,
-                contentDesc,
-                documentID,
-                author,
-                createdDate
-              } = content;
-
-              if(!contentTitle) return null;
-
-              const configBlogContent = {
-                contentTitle,
-                contentThumbnail,
-                contentDesc,
-                documentID,
-                author,
-                createdDate
-              };
-
-              return (
-                <div className="show-row" key={index}>
-
-                  <BlogItem {...configBlogContent} key={index} />                  
-                  
-                </div>
-              )
-            })}  
-         </div>
-      </div>        
-
-      {!isLastPage && (
-        <LoadMore {...configLoadMore} />
-      )}    
-
-    </div>
+    </>
   );
 };
 

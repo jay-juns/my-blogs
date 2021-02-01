@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import moment from 'moment';
 import 'moment/locale/ko';
+import { Helmet } from "react-helmet";
 
 import BlogCardDummy from './../BlogCardDummy';
 
@@ -54,8 +55,10 @@ const BlogCard = () => {
   }
 
   return (
-    
     <div className="content-main">
+      <Helmet>
+        <title>Blog Detail - MyBlogs</title>
+      </Helmet>
       {!isPending && (
         <BlogCardDummy />
       )}
@@ -93,7 +96,6 @@ const BlogCard = () => {
           ]}
         </div>
       )}
-
     </div>
   );
 }
