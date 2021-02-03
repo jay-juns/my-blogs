@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef }
- from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
 import Header from './../../components/Header';
 import Footer from './../../components/Footer';
 
@@ -26,7 +26,6 @@ const MainLayout = props => {
 
   return (
     <div className="full-wrap" ref={innerRef}>     
-
       <Header {...props} mainBg={mainBg} scrollEvent={scrollTop}/>
       <div className="main">        
         {props.children}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
+
 import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
 import { fetchInquireComments, setInquireComments } from './../../redux/Comments/InquireComments/InquireComments.actions';
 
@@ -147,155 +149,160 @@ const InquireBoard = () => {
   }; 
 
   return (
-    <div className="inquire-board">
-      <div className="inquire-title">
-        <h3>문의 게시판</h3>
-      </div>
-      <div className="inquire-contents">
-        {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
-        
-        <FormSelect {...configFilter} />
+    <>
+      <Helmet>
+        <title> 문의사항 - My Blogs</title>
+      </Helmet>
+      <div className="inquire-board">
+        <div className="inquire-title">
+          <h3>문의 게시판</h3>
+        </div>
+        <div className="inquire-contents">
+          {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
+          
+          <FormSelect {...configFilter} />
 
-        <Button className="inquire-write-btn btn" onClick={() => toggleModal()}>
-          글쓰기
-        </Button>
-      </div>
-
-      {currentUser && [
-        <Modal {...configModal} key="inquireModal">
-          <form onSubmit={handleSubmit}>
-            <h2>새로운 글쓰기</h2>
-
-            <FormSelect 
-              label="태그 선택"
-              options={[{
-                name: "제안",
-                value: "제안"             
-              }, 
-              {
-                name: "의견",
-                value: "의견"
-              },
-              {
-                name: "버그제보",
-                value: "버그제보"
-              }, 
-              {
-                name: "기타",
-                value: "기타"
-              }]}
-              handleChange={e => setInquireTag(e.target.value)}
-            />          
-
-            <FormInput 
-              label="제목"
-              formClass="modal-items"
-              type="text"
-              value={inquireTitle}
-              handleChange={e => setInquireTitle(e.target.value)}
-            />  
-
-            <CKEditor
-              onChange={evt => setInquireDesc(evt.editor.getData())}
-            />
-
-            <div className="btn-wrap">
-              <Button id="inquireWriteBtn" className="ent-btn btn" type="submit">
-                글쓰기
-              </Button> 
-            </div>
-          </form>
-        </Modal>
-      ]}
-
-      {!currentUser && [
-        <Modal {...configModal} key="inquireUnModal">
-         <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p> 
-        </Modal>
-      ]}
-
-      <div className="show-item-world-wrap">
-        <div className="show-row">
-          <div className="show-item-wrap--head">
-            <div className="show-item-header-title">
-              <p>
-                추천수
-              </p>
-            </div>
-
-            <div className="show-text--head">
-              <div className="show-title--head">
-              <p className="show-tag--head">
-                Tag
-              </p>
-                <p className="show-titie-first--head">
-                  제목
-                </p>
-                <p className="show-title-nick--head">
-                  작성자
-                </p>
-                <span className="show-title-day--head">
-                  일시
-                </span>
-              </div>
-                            
-            </div>  
-          </div>
+          <Button className="inquire-write-btn btn" onClick={() => toggleModal()}>
+            글쓰기
+          </Button>
         </div>
 
-        {(Array.isArray(data) && data.length > 0) && currentPosts.map((inquire) => {
-          const {
-            inquireTitle,
-            documentID,
-            displayName,
-            likeInfo,
-            inquireTag,
-            createdDate
-          } = inquire;
-          
-          if(!inquireTitle) return null;
+        {currentUser && [
+          <Modal {...configModal} key="inquireModal">
+            <form onSubmit={handleSubmit}>
+              <h2>새로운 글쓰기</h2>
 
-          let comLengResult = [];
+              <FormSelect 
+                label="태그 선택"
+                options={[{
+                  name: "제안",
+                  value: "제안"             
+                }, 
+                {
+                  name: "의견",
+                  value: "의견"
+                },
+                {
+                  name: "버그제보",
+                  value: "버그제보"
+                }, 
+                {
+                  name: "기타",
+                  value: "기타"
+                }]}
+                handleChange={e => setInquireTag(e.target.value)}
+              />          
 
-          if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0 ) {
-            inquireComments.messageData.forEach((el) => {
-              comLengResult.push(el.id);
-            })
-          }
-          
-          const configInquireContent = {
-            inquireTitle,
-            documentID, 
-            displayName,
-            likeInfo,
-            inquireTag,
-            createdDate,
-            comLengResult
-          };     
+              <FormInput 
+                label="제목"
+                formClass="modal-items"
+                type="text"
+                value={inquireTitle}
+                handleChange={e => setInquireTitle(e.target.value)}
+              />  
 
-          return (
-            <div className="show-row" key={documentID}>  
-              <InquireItem
-              {...configInquireContent}
-               />            
+              <CKEditor
+                onChange={evt => setInquireDesc(evt.editor.getData())}
+              />
+
+              <div className="btn-wrap">
+                <Button id="inquireWriteBtn" className="ent-btn btn" type="submit">
+                  글쓰기
+                </Button> 
+              </div>
+            </form>
+          </Modal>
+        ]}
+
+        {!currentUser && [
+          <Modal {...configModal} key="inquireUnModal">
+          <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p> 
+          </Modal>
+        ]}
+
+        <div className="show-item-world-wrap">
+          <div className="show-row">
+            <div className="show-item-wrap--head">
+              <div className="show-item-header-title">
+                <p>
+                  추천수
+                </p>
+              </div>
+
+              <div className="show-text--head">
+                <div className="show-title--head">
+                <p className="show-tag--head">
+                  Tag
+                </p>
+                  <p className="show-titie-first--head">
+                    제목
+                  </p>
+                  <p className="show-title-nick--head">
+                    작성자
+                  </p>
+                  <span className="show-title-day--head">
+                    일시
+                  </span>
+                </div>
+                              
+              </div>  
             </div>
-          )
-        })}       
+          </div>
 
+          {(Array.isArray(data) && data.length > 0) && currentPosts.map((inquire) => {
+            const {
+              inquireTitle,
+              documentID,
+              displayName,
+              likeInfo,
+              inquireTag,
+              createdDate
+            } = inquire;
+            
+            if(!inquireTitle) return null;
+
+            let comLengResult = [];
+
+            if(Array.isArray(inquireComments.messageData) && inquireComments.messageData.length > 0 ) {
+              inquireComments.messageData.forEach((el) => {
+                comLengResult.push(el.id);
+              })
+            }
+            
+            const configInquireContent = {
+              inquireTitle,
+              documentID, 
+              displayName,
+              likeInfo,
+              inquireTag,
+              createdDate,
+              comLengResult
+            };     
+
+            return (
+              <div className="show-row" key={documentID}>  
+                <InquireItem
+                {...configInquireContent}
+                />            
+              </div>
+            )
+          })}       
+
+        </div>
+        {
+          ((Array.isArray(data)) && [
+            <Pagination 
+              postsPerPage={postsPerPage}
+              totalPosts={data.length}
+              currentPage={currentPage}
+              paginate={paginate}
+              key="inquirePagination"
+            />
+          ])
+        }  
+        
       </div>
-      {
-        ((Array.isArray(data)) && [
-          <Pagination 
-            postsPerPage={postsPerPage}
-            totalPosts={data.length}
-            currentPage={currentPage}
-            paginate={paginate}
-            key="inquirePagination"
-          />
-        ])
-      }  
-      
-    </div>
+    </>
   );
 }
 

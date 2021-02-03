@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 import { fetchInquireStart, updateInquire, deleteInquireStart, inquireLike } from './../../../redux/Inquires/inquires.actions';
 import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
@@ -231,160 +232,163 @@ const InquireCard = () => {
   };
 
   return(
-    <div className="detail-wrap">
-      <div className="detail-head-title">
-        <h3>문의 내용</h3>
-      </div>
-      
-      {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
-
-      {!isPending && (
-        <InquireCardDummy />
-      )}
-
-      {isPending && (
-      <div className="detail-container">
-        <div className="detail-header">
+      <div className="detail-wrap">
+        <Helmet>
+          <title> 문의사항 상세 페이지 - My Blogs</title>
+        </Helmet> 
+        <div className="detail-head-title">
+          <h3>문의 내용</h3>
+        </div>
         
-          <div className="detail-header-left">
-            <div className="detail-header-left--up">
-              <div className="detail-header-left--up-contents">
-                <p className="detail-title">{inquireTitle}</p>
-                <div className="detail-user-info-wrap">
-                  <span className="detail-user-img" style={userStyleColor}>
-                    {userLogo}
-                  </span>
-                  <p className="detail-displayName">{displayName} <strong>님</strong></p>
-                </div> 
-              </div>
+        {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
 
-              <div className="detail-header-left--up-btn-area">
+        {!isPending && (
+          <InquireCardDummy />
+        )}
+
+        {isPending && ( 
+        <div className="detail-container">
+          <div className="detail-header">
+          
+            <div className="detail-header-left">
+              <div className="detail-header-left--up">
+                <div className="detail-header-left--up-contents">
+                  <p className="detail-title">{inquireTitle}</p>
+                  <div className="detail-user-info-wrap">
+                    <span className="detail-user-img" style={userStyleColor}>
+                      {userLogo}
+                    </span>
+                    <p className="detail-displayName">{displayName} <strong>님</strong></p>
+                  </div> 
+                </div>
+
+                <div className="detail-header-left--up-btn-area">
+                
+                  {isAdmin && [
+                    <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
+                    <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
+                      <Button className="btn" onClick={() => toggleModal()}>수정하기</Button>
+                      <Button className="btn" onClick={() => handleDelete()}>
+                        삭제
+                      </Button>
+                    </div>,
+                    <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)}>
+                      <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
+                    </Button>
+                  ]}
+                </div>
+                <Modal {...configModal}>
+                  <form onSubmit={handleSubmit}>
+                    <h2>글 수정하기</h2>
+
+                    <FormSelect 
+                      label="태그 선택"
+                      options={[{
+                        name: "제안",
+                        value: "제안"             
+                      }, 
+                      {
+                        name: "의견",
+                        value: "의견"
+                      },
+                      {
+                        name: "버그제보",
+                        value: "버그제보"
+                      }, 
+                      {
+                        name: "기타",
+                        value: "기타"
+                      }]}
+                      handleChange={e => setInquireEditTag(e.target.value)}
+                    />
+
+                    <FormInput 
+                      label="제목"
+                      formClass="modal-items"
+                      type="text"
+                      value={inquireEditTitle}
+                      handleChange={e => setinquireEditTitle(e.target.value)}
+                    />  
+
+                    <CKEditor
+                      onChange={evt => setinquireEditDesc(evt.editor.getData())}
+                    />
+
+                    <div className="btn-wrap">
+                      <Button className="ent-btn btn" type="submit">
+                        수정 완료
+                      </Button>
+                    </div>
+                  </form>
+                </Modal>
+              </div>
               
-                {isAdmin && [
-                  <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
-                  <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
-                    <Button className="btn" onClick={() => toggleModal()}>수정하기</Button>
-                    <Button className="btn" onClick={() => handleDelete()}>
-                      삭제
-                    </Button>
-                  </div>,
-                  <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)}>
-                    <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
-                  </Button>
-                ]}
+              <div className="detail-header-left--footer-wrapper">
+                <span className={`detail-header-left--tag ${TagType(inquireTag)}`}>
+                  {inquireTag}
+                </span>
               </div>
-              <Modal {...configModal}>
-                <form onSubmit={handleSubmit}>
-                  <h2>글 수정하기</h2>
-
-                  <FormSelect 
-                    label="태그 선택"
-                    options={[{
-                      name: "제안",
-                      value: "제안"             
-                    }, 
-                    {
-                      name: "의견",
-                      value: "의견"
-                    },
-                    {
-                      name: "버그제보",
-                      value: "버그제보"
-                    }, 
-                    {
-                      name: "기타",
-                      value: "기타"
-                    }]}
-                    handleChange={e => setInquireEditTag(e.target.value)}
-                  />
-
-                  <FormInput 
-                    label="제목"
-                    formClass="modal-items"
-                    type="text"
-                    value={inquireEditTitle}
-                    handleChange={e => setinquireEditTitle(e.target.value)}
-                  />  
-
-                  <CKEditor
-                    onChange={evt => setinquireEditDesc(evt.editor.getData())}
-                  />
-
-                  <div className="btn-wrap">
-                    <Button className="ent-btn btn" type="submit">
-                      수정 완료
-                    </Button>
-                  </div>
-                </form>
-              </Modal>
             </div>
             
-            <div className="detail-header-left--footer-wrapper">
-              <span className={`detail-header-left--tag ${TagType(inquireTag)}`}>
-                {inquireTag}
-              </span>
-            </div>
           </div>
+          <div className="detail-body">
+            <span
+            className="desc"
+            dangerouslySetInnerHTML={{ __html: inquireDesc }} />
+          </div>
+        </div>
+        )}
+
+        
+        <div className="detail-btn-wrap">
+          <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
+          
+          {(Array.isArray(likeInfo) && likeInfo.length < 1)  && [
+            <Button key="recommendZeroBtn" className={`like-btn btn`} onClick={() => handleLike()}>
+              <FontAwesomeIcon className="i" icon={faThumbsUp} />
+              <p>추천하기</p>
+              <span>0</span>
+            </Button>
+          ]}
+
+          {(Array.isArray(likeInfo) && likeInfo.length > 0)  && [
+            <Button key="recommendBtn" className={`${currentUser && likeInfo[0].userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
+              <FontAwesomeIcon className="i" icon={faThumbsUp} />
+              <p>추천하기</p>
+              <span>{likeInfo[0].likeCount}</span>
+            </Button>
+          ]}               
           
         </div>
-        <div className="detail-body">
-          <span
-          className="desc"
-          dangerouslySetInnerHTML={{ __html: inquireDesc }} />
+        <div className="inquire-detail-comment-wrapper">
+          <div className="inquire-detail-comment-wrapper--header">
+            {(Array.isArray(messageRoomData) && messageRoomData.length > 0) && [
+                <p key="messageEx">댓글 {inquireComment.messageRoomData.length}개</p>
+            ]}
+            {(Array.isArray(messageRoomData) && messageRoomData.length < 1) && [
+                <p key="messageNone">등록된 댓글이 없습니다</p>
+            ]}
+          </div>
+
+          {currentUser &&[
+          <form onSubmit={handleChat} key="formChatArea">
+            <FormChatInput 
+              label="댓글 작성"
+              formClass="chat-input"
+              value={inquireText}
+              handleChange={e => setInquireText(e.target.value)}
+            />
+          </form>
+          ]} 
+          {!currentUser && [
+          <div className="show-guest-user" key="currentUserBtn">
+            <Link to={'/login'}>로그인을 해야 댓글 작성이 가능합니다. 먼저 로그인을 해주세요.</Link>
+          </div>
+          ]}
+
+            <InquireComments {...configInquireComments}/> 
         </div>
       </div>
-      )}
-
-      
-      <div className="detail-btn-wrap">
-        <Button className="back-btn btn" onClick={() => history.goBack()}>목록으로 이동</Button>
-        
-        {(Array.isArray(likeInfo) && likeInfo.length < 1)  && [
-          <Button key="recommendZeroBtn" className={`like-btn btn`} onClick={() => handleLike()}>
-            <FontAwesomeIcon className="i" icon={faThumbsUp} />
-            <p>추천하기</p>
-            <span>0</span>
-          </Button>
-        ]}
-
-        {(Array.isArray(likeInfo) && likeInfo.length > 0)  && [
-          <Button key="recommendBtn" className={`${currentUser && likeInfo[0].userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
-            <FontAwesomeIcon className="i" icon={faThumbsUp} />
-            <p>추천하기</p>
-            <span>{likeInfo[0].likeCount}</span>
-          </Button>
-        ]}               
-        
-      </div>
-      <div className="inquire-detail-comment-wrapper">
-        <div className="inquire-detail-comment-wrapper--header">
-           {(Array.isArray(messageRoomData) && messageRoomData.length > 0) && [
-               <p key="messageEx">댓글 {inquireComment.messageRoomData.length}개</p>
-           ]}
-           {(Array.isArray(messageRoomData) && messageRoomData.length < 1) && [
-               <p key="messageNone">등록된 댓글이 없습니다</p>
-           ]}
-        </div>
-
-        {currentUser &&[
-        <form onSubmit={handleChat} key="formChatArea">
-          <FormChatInput 
-            label="댓글 작성"
-            formClass="chat-input"
-            value={inquireText}
-            handleChange={e => setInquireText(e.target.value)}
-          />
-        </form>
-        ]} 
-        {!currentUser && [
-        <div className="show-guest-user" key="currentUserBtn">
-          <Link to={'/login'}>로그인을 해야 댓글 작성이 가능합니다. 먼저 로그인을 해주세요.</Link>
-        </div>
-        ]}
-
-          <InquireComments {...configInquireComments}/> 
-      </div>
-    </div>
   );
 }
 
