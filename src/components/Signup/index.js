@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 import { signUpUserStart } from './../../redux/User/user.actions';
 
 import './styles.scss';
@@ -90,7 +90,7 @@ const Signup = props => {
   return (
     <AuthWrapper {...configAuthWrapper}>
       <Helmet>
-        <title>Signup - MyBlogs</title>
+        <title> 회원가입 - My Blogs</title>
       </Helmet>
       <div className="sign-up"> 
 

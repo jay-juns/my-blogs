@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
+
 import { emailSignInStart, googleSignInStart } from './../../redux/User/user.actions';
 
 import './styles.scss';
@@ -92,9 +93,8 @@ const SignIn = props => {
   return (
     <AuthWrapper {...configAuthWrapper}>
       <Helmet>
-        <title>Login - MyBlogs</title>
+        <title>로그인 - My Blogs</title>
       </Helmet>
-      
       {hideAlert && <Alert {...configAlert} key="signIn"/>}
       
       <div className="sign-in">

@@ -1,23 +1,20 @@
 import React from 'react';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 import SliderMain from '../Slider/sliderMain';
 import MainPage from './mainPage';
 
 const Main = props => {
   
   return (
-    <>
+    <div className="main-wrap">
       <Helmet>
-        <title>Home - MyBlogs</title>
+        <title>홈 - My Blogs</title>
       </Helmet>
-      <div className="main-wrap">
-        
-        <SliderMain />
-        <div className="main-contents">
-          <MainPage />
-        </div>
+      <SliderMain />
+      <div className="main-contents">
+        <MainPage />
       </div>
-    </>
+    </div>
   );
 };
 

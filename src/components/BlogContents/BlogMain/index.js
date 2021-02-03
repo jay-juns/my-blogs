@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 import { addContentStart, fetchContentsStart } from './../../../redux/Contents/contents.actions';
 
@@ -135,9 +135,10 @@ const BlogMain = () => {
   return (
     <>
       <Helmet>
-        <title>Blog - MyBlogs</title>
+        <title>블로그 - My Blogs</title>
       </Helmet>
       <div className="blog-main-wrap">
+        
         <div className="header-setting-wrap">
           {hideAlert && <Alert {...configAlert} key="blogWrite"/>}
 
@@ -237,7 +238,6 @@ const BlogMain = () => {
         {!isLastPage && (
           <LoadMore {...configLoadMore} />
         )}    
-
       </div>
     </>
   );

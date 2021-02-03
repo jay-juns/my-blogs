@@ -86,9 +86,9 @@ const App = props => {
         )}
         />
         <Route path="/login" render={() =>  (
-            <OtherLayout>
-              <Login />
-            </OtherLayout>
+          <OtherLayout>
+            <Login />
+          </OtherLayout>
         )} 
         />
         <Route path="/registration" render={() =>  (
@@ -113,7 +113,7 @@ const App = props => {
           </WithAuth>
         )} 
         />
-         <Route path="*" render={() =>  (
+        <Route path="*" render={() =>  (
           <OtherLayout>
             <NotFound />
           </OtherLayout>

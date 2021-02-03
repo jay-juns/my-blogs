@@ -1,6 +1,6 @@
 import React from 'react';
-import { Helmet } from "react-helmet";
 
+import { Helmet } from 'react-helmet-async';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,7 +25,7 @@ const UserProfileSetting = props => {
   return (
     <>
       <Helmet>
-        <title>DashBoard: {displayName} - MyBlogs</title>
+        <title> {displayName} - My Blogs</title>
       </Helmet>
       <div className="user-profile-setting">
         <div className="profile-wrapper">

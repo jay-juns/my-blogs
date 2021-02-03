@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
+
 import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
 import { fetchInquireComments, setInquireComments } from './../../redux/Comments/InquireComments/InquireComments.actions';
 
@@ -150,7 +151,7 @@ const InquireBoard = () => {
   return (
     <>
       <Helmet>
-        <title>Inquire - MyBlogs</title>
+        <title> 문의사항 - My Blogs</title>
       </Helmet>
       <div className="inquire-board">
         <div className="inquire-title">

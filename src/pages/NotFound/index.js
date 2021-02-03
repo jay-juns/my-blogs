@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>404 Error: NotFound - MyBlogs</title>
+        <title> 페이지를 찾을수가 없습니다 - My Blogs</title>
       </Helmet>
       <div className="not-found">
         <p>페이지를 찾을수가 없습니다.</p>

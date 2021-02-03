@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 
 import { fetchInquireStart, updateInquire, deleteInquireStart, inquireLike } from './../../../redux/Inquires/inquires.actions';
 import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
@@ -234,7 +234,7 @@ const InquireCard = () => {
   return(
       <div className="detail-wrap">
         <Helmet>
-          <title>Inquire Detail - MyBlogs</title>
+          <title> 문의사항 상세 페이지 - My Blogs</title>
         </Helmet> 
         <div className="detail-head-title">
           <h3>문의 내용</h3>
