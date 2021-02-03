@@ -25,7 +25,7 @@ import InquireDetails from './pages/InquireDetails';
 import NotFound from './pages/NotFound';
 
 //default css
-import './default.scss';
+import './globelStyles/default.scss';
 
 const App = props => {
   const dispatch = useDispatch();
