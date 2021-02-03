@@ -29,9 +29,6 @@ const InquireComments = props => {
         const { author, authorColor, authorImgUrl, inquireText, uid, createAt, documentID } = text;
         const timeZone = createAt.toDate().toString();
         const nowTime = moment(timeZone).fromNow();
-        const fontColor = {
-          color: authorColor
-        }
         const userStyleColor = authorImgUrl ? {
           position: 'relative',
           overflow: 'hidden'
@@ -55,7 +52,7 @@ const InquireComments = props => {
             </div>
             <div className="inquire-comment-area--contents">
               <div className="inquire-comment-area--head">
-                <p style={fontColor}>{author}</p>
+                <p>{author}</p>
                 <span>{nowTime}</span>
               </div>
               <div className="inquire-comment-area--body">
