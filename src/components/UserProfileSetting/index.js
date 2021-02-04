@@ -27,7 +27,7 @@ const UserProfileSetting = props => {
       <Helmet>
         <title> {displayName} - My Blogs</title>
       </Helmet>
-      <div className="user-profile-setting">
+      <article className="user-profile-setting">
         <div className="profile-wrapper">
           <h3>프로필 사진</h3>
           <div className="profile-contents">
@@ -82,7 +82,7 @@ const UserProfileSetting = props => {
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </>
   );
 }

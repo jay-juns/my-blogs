@@ -34,7 +34,7 @@ const Header = props => {
   const userBgStyle = currentUser && userInfo[0] ? {backgroundColor: 'transparent'} : { backgroundColor: userColor }
 
   return (
-    <div className={`header-row-wrapper ${mainBg && scrollPosition === 0 ? mainBg : ''}`}>
+    <header className={`header-row-wrapper ${mainBg && scrollPosition === 0 ? mainBg : ''}`}>
       <div className="header-main-control">
         
         <div className="header-left">
@@ -119,7 +119,7 @@ const Header = props => {
         </div>
 
       </div>
-    </div>
+    </header>
   );
 };
 
