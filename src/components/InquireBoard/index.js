@@ -114,7 +114,8 @@ const InquireBoard = () => {
 
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/inquirePage=/${Number(1)}/${nextFilter}`);
+    const filterPageNumber = setCurrentPage(1);
+    history.push(`/inquirePage=/${!filterPageNumber ? Number(1) : Number(filterPageNumber)}/${nextFilter}`);
   };
 
   const configFilter = {
@@ -141,6 +142,8 @@ const InquireBoard = () => {
     }],
     handleChange: handleFilter
   };
+
+  const inquireTagInfo = configFilter.defaultValue;
 
   const configAlert = {
     text: '제목과 내용을 채워 주세요',
@@ -297,6 +300,7 @@ const InquireBoard = () => {
               currentPage={currentPage}
               paginate={paginate}
               key="inquirePagination"
+              tagInfo={inquireTagInfo}
             />
           ])
         }  
