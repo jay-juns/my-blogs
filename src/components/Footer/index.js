@@ -3,11 +3,11 @@ import './styles.scss';
 
 const Footer = props => {
   return (
-    <div className="footer-wrap">
+    <footer className="footer-wrap">
       <div className="footer-contents">
         © 2021 My Blogs
       </div>
-    </div>
+    </footer>
   );
 };
 

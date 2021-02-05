@@ -17,8 +17,8 @@ const DashBoardLayout = props => {
   return (
     <div className="dashboardLayout">
       <Header {...props} />
-      <div className="control-panal">
-        <div className="side-bar">
+      <main className="control-panal">
+        <aside className="side-bar">
           <VerticalNav>
             <NavLink 
             to="/dashboard"
@@ -39,11 +39,11 @@ const DashBoardLayout = props => {
               로그아웃
             </span>
           </VerticalNav>
-        </div>
-        <div className="content">
+        </aside>
+        <section className="content">
           {props.children}
-        </div>
-      </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );

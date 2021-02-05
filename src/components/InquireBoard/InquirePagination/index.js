@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage, tagInfo }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
 
   return (
     <div className="paging-number">
@@ -19,14 +17,14 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
       <Link
       className={currentPage <= 1 ? 'page none' : 'page'}
       onClick={() => {paginate(currentPage - 1)}} 
-      to={`/inquirePage=/${currentPage - 1}`}>
+      to={`${tagInfo ? `/inquirePage=/${currentPage - 1}/${tagInfo}` : `/inquirePage=/${currentPage - 1}`}`}>
         <FontAwesomeIcon className="i" icon={faAngleLeft} />
       </Link>
       
       {pageNumbers.map(number => (
         <Link 
           onClick={() => {paginate(number)}} 
-          to={`/inquirePage=/${ number}`}
+          to={`${tagInfo ? `/inquirePage=/${number}/${tagInfo}` : `/inquirePage=/${number}`}`}
           className={currentPage === number.toString() || currentPage === number ? `page active` : `page ${number}`} 
           key={number}>
             {number}
@@ -36,7 +34,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
       <Link
       className={pageNumbers.length < currentPage + 1 ? 'page none' : 'page'}
       onClick={() => {paginate(currentPage + 1)}} 
-      to={`/inquirePage=/${currentPage + 1}`} >
+      to={`${tagInfo ? `/inquirePage=/${currentPage + 1}/${tagInfo}` : `/inquirePage=/${currentPage + 1}`}`} >
         <FontAwesomeIcon className="i" icon={faAngleRight} />
       </Link>
 

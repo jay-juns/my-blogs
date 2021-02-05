@@ -6,10 +6,10 @@ const MainLayout = props => {
   return (
     <div className="full-wrap">
       <Header {...props} />
-      <div className="main">
+      <main className="main">
         <div className="main-box"></div>
         {props.children}
-      </div>
+      </main>
       <Footer />
     </div>
   );

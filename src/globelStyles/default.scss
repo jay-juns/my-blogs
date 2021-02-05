@@ -120,6 +120,7 @@ button:not(.btn):hover {
 
   .control-panal {
     position: relative;
+    display: flex;
     width: 100%;
     margin: 52px 0 0;
     min-height: calc( 100% - 152px);
@@ -127,9 +128,7 @@ button:not(.btn):hover {
 
     .side-bar {
       width: 160px;
-      height: 100%;
       background-color: #fff;
-      position: absolute;
       border-right: 1px solid #e0e0e0;
     }
 
