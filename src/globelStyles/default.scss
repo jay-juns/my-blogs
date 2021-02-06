@@ -90,7 +90,12 @@ button:not(.btn):hover {
   background-color: #f7f7f8;
   margin: 0;
   padding: 0;
-  overflow: auto;
+  overflow-y: auto;
+  position: relative;
+}
+
+.full-wrap.hidden {
+  overflow: hidden;
 }
 
 .main {

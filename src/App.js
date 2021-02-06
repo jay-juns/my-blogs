@@ -5,6 +5,10 @@ import { checkUserSession } from './redux/User/user.actions';
 
 //layouts
 import MainLayout from './layouts/MainLayout';
+import BlogLayout from './layouts/BlogLayout';
+import InquireLayout from './layouts/InquireLayout';
+import LoginLayout from './layouts/LoginLayout';
+import SigninLayout from './layouts/SigninLayout';
 import OtherLayout from './layouts/OtherLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 
@@ -50,51 +54,51 @@ const App = props => {
         )}
         />
         <Route exact path="/blog" render={() => (
-          <OtherLayout>
+          <BlogLayout>
             <Blog />
-          </OtherLayout>
+          </BlogLayout>
         )}
         />
         <Route path="/blog/:filterType" render={() => (
-          <OtherLayout>
+          <BlogLayout>
             <Blog />
-          </OtherLayout>
+          </BlogLayout>
         )}
         />
         <Route path="/blogDetail/:blogID" render={() => (
-          <OtherLayout>
+          <InquireLayout>
             <BlogDetails />
-          </OtherLayout>
+          </InquireLayout>
         )}
         />
         <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (
-          <OtherLayout>
+          <InquireLayout>
             <Inquire />
-          </OtherLayout>
+          </InquireLayout>
         )}
         />
         <Route path="/inquirePage=/:inquirePageNumber/:inquireType" render={() => (
-          <OtherLayout>
+          <InquireLayout>
             <Inquire />
-          </OtherLayout>
+          </InquireLayout>
         )}
         />
         <Route path="/inquireDetail/:inquireID" render={() => (
-          <OtherLayout>
+          <InquireLayout>
             <InquireDetails />
-          </OtherLayout>
+          </InquireLayout>
         )}
         />
         <Route path="/login" render={() =>  (
-          <OtherLayout>
+          <LoginLayout>
             <Login />
-          </OtherLayout>
+          </LoginLayout>
         )} 
         />
         <Route path="/registration" render={() =>  (
-          <OtherLayout>
+          <SigninLayout>
             <Registration />
-          </OtherLayout>
+          </SigninLayout>
         )} 
         />
         <Route exact path="/dashboard" render={() => (

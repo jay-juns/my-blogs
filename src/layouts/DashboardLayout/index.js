@@ -15,7 +15,7 @@ const DashBoardLayout = props => {
   }
   
   return (
-    <div className="dashboardLayout">
+    <div id="fullMain" className="dashboardLayout">
       <Header {...props} />
       <main className="control-panal">
         <aside className="side-bar">
