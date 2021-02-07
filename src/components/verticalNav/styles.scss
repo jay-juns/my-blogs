@@ -27,20 +27,5 @@ height: 100%;
       color: #fff;
       background-color: $blue;
     }
-
-    .sign-out {
-      cursor: pointer;
-      margin: 0 auto;
-      padding: 1rem;
-      color: rgb(187, 187, 187);
-      font-size: 1.4rem;
-      position: absolute;
-      bottom: 14px;
-      left: 20px;
-
-      &:hover {
-        color: $red;
-      }
-    }
   }
 }

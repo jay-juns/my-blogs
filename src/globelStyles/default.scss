@@ -90,7 +90,12 @@ button:not(.btn):hover {
   background-color: #f7f7f8;
   margin: 0;
   padding: 0;
-  overflow: auto;
+  overflow-y: auto;
+  position: relative;
+}
+
+.full-wrap.hidden {
+  overflow: hidden;
 }
 
 .main {
@@ -137,6 +142,21 @@ button:not(.btn):hover {
       max-width: 1080px;
       margin: 0 auto;
       height: 100%;
+    }
+  }
+
+  .sign-out {
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 1rem;
+    color: rgb(187, 187, 187);
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: 14px;
+    left: 20px;
+
+    &:hover {
+      color: $red;
     }
   }
 }

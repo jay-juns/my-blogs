@@ -25,7 +25,7 @@ const MainLayout = props => {
 
 
   return (
-    <div className="full-wrap" ref={innerRef}>     
+    <div id="fullMain" className="full-wrap" ref={innerRef}>     
       <Header {...props} mainBg={mainBg} scrollEvent={scrollTop}/>
       <main className="main">        
         {props.children}
