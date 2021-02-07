@@ -66,9 +66,9 @@ const App = props => {
         )}
         />
         <Route path="/blogDetail/:blogID" render={() => (
-          <InquireLayout>
+          <BlogLayout>
             <BlogDetails />
-          </InquireLayout>
+          </BlogLayout>
         )}
         />
         <Route exact path="/inquirePage=/:inquirePageNumber" render={() => (

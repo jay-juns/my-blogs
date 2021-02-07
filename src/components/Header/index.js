@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from  'react-redux';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import './styles.scss';
 
 import useMediaQuery from './../../customHooks/useMediaQuery';
@@ -145,65 +146,69 @@ const Header = props => {
 
     {!matches && (
       <nav className={ !isOpenNav ? 'mobile-nav' : 'mobile-nav open-mobile-nav'} key="mobile-head-nav">
-        <button className="closed-btn btn" onClick={() => toggleNav()}>
-          <FontAwesomeIcon className="i" icon={faTimes} />
-        </button>
-        {currentUser && (
-        <div className="header-right-item" key="mobile-head-nav-userIcon">
-          <NavLink 
-          to="/dashboard"
-          activeClassName="active"
-          className="link user-link"
-          style={userBgStyle}
-          >
-            {imgInfo}
-          </NavLink>
-        </div>
-        )}
-        {!currentUser && (
-          <div className="header-right-item" key="mobile-head-nav-unLogin-userIcon">
-            <NavLink 
-            to="/login"
-            activeClassName="active"
-            className="link"
-            >
-              로그인
-            </NavLink>
-            <NavLink to="/registration"
-            activeClassName="active"
-            className="link"
-            >
-              회원가입
-            </NavLink>
-          </div> 
-        )}
+        <Scrollbars horizontal autoHide={true}>
+          <div className="mobile-nav-wrap">
+            <button className="closed-btn btn" onClick={() => toggleNav()}>
+              <FontAwesomeIcon className="i" icon={faTimes} />
+            </button>
+            {currentUser && (
+            <div className="mobile-nav-head-login" key="mobile-head-nav-userIcon">
+              <NavLink 
+              to="/dashboard"
+              activeClassName="active"
+              className="mobile-link user-mobile-link"
+              style={userBgStyle}
+              >
+                {imgInfo}
+              </NavLink>
+            </div>
+            )}
+            {!currentUser && (
+              <div className="mobile-nav-head-unLogin" key="mobile-head-nav-unLogin-userIcon">
+                <NavLink 
+                to="/login"
+                activeClassName="active"
+                className="mobile-link"
+                >
+                  로그인
+                </NavLink>
+                <NavLink to="/registration"
+                activeClassName="active"
+                className="mobile-link"
+                >
+                  회원가입
+                </NavLink>
+              </div> 
+            )}
 
-        <NavLink
-          exact 
-          to="/"
-          activeClassName="active"
-          className="link"
-          >
-            홈
-          </NavLink>
-        
-        
-          <NavLink 
-          to="/blog"
-          activeClassName="active"
-          className="link"
-          >
-            블로그
-          </NavLink>
-        
-        
-          <NavLink 
-          to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
-          activeClassName="active"
-          className="link"
-          >
-            문의사항
-          </NavLink>
+            <NavLink
+            exact 
+            to="/"
+            activeClassName="active"
+            className="mobile-link"
+            >
+              홈
+            </NavLink>
+          
+          
+            <NavLink 
+            to="/blog"
+            activeClassName="active"
+            className="mobile-link"
+            >
+              블로그
+            </NavLink>
+          
+          
+            <NavLink 
+            to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
+            activeClassName="active"
+            className="mobile-link"
+            >
+              문의사항
+            </NavLink>
+          </div>
+        </Scrollbars>
       </nav>
     )}
     {!matches && (

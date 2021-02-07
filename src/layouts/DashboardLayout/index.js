@@ -35,10 +35,10 @@ const DashBoardLayout = props => {
             >
               친구 목록
             </NavLink>
-            <span className="sign-out" onClick={() => signOut()}>
-              로그아웃
-            </span>
           </VerticalNav>
+          <span className="sign-out" onClick={() => signOut()}>
+            로그아웃
+          </span>
         </aside>
         <section className="content">
           {props.children}
