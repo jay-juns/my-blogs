@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from  'react-redux';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { useTranslation } from 'react-i18next';
 import './styles.scss';
 
 import useMediaQuery from './../../customHooks/useMediaQuery';
@@ -20,11 +21,17 @@ const mapState = (state) => ({
 const Header = props => {
   const { currentUser } = useSelector(mapState);
   const { inquirePageNumber } = useParams();
+  const { t, i18n } = useTranslation();
   const [isOpenNav, setIsOpenNav] = useState(false);
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  };
+
   const toggleNav = () => {
     setIsOpenNav(!isOpenNav);
     document.getElementById("fullMain").classList.toggle("hidden");
   };
+  
   const mainBg = props.mainBg;
   const scrollPosition = props.scrollEvent;
   let userColor = [];
@@ -70,7 +77,7 @@ const Header = props => {
             activeClassName="active"
             className="link"
             >
-              홈
+              {t('header.home')}
             </NavLink>
           
           
@@ -79,7 +86,7 @@ const Header = props => {
             activeClassName="active"
             className="link"
             >
-              블로그
+              {t('header.blog')}
             </NavLink>
           
           
@@ -88,7 +95,7 @@ const Header = props => {
             activeClassName="active"
             className="link"
             >
-              문의사항
+              {t('header.questions')}
             </NavLink>
             
           </nav>
@@ -122,15 +129,21 @@ const Header = props => {
               activeClassName="active"
               className="link"
               >
-                로그인
+                {t('user.logIn')}
               </NavLink>
               <NavLink to="/registration"
               activeClassName="active"
               className="link"
               >
-                회원가입
+                {t('user.signIn')}
               </NavLink>
             </div>  
+          )}
+          {matches && (
+            <div className="lang-btn-wrapper">
+              <Button className={i18n.language === "ko" ? `btn act-lang-btn` : "btn"} onClick={() => changeLanguage("ko")}>한국어</Button>
+              <Button className={i18n.language === "en" ? `btn act-lang-btn` : "btn"} onClick={() => changeLanguage("en")}>ENGLISH</Button>
+            </div>
           )}
 
           {!matches && (
@@ -140,7 +153,6 @@ const Header = props => {
           )}
 
         </div>
-
       </div>
     </header>
 

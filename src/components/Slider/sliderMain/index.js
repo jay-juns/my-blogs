@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import sliderImage from "../sliderImage";
+import sliderData from "../sliderData";
 import Arrows from '../arrows';
 import Dots from '../dot';
 import Card from '../card';
 import './styles.scss';
 
-const len = sliderImage.length - 1;
+const len = sliderData.length - 1;
 
 const SliderMain = () => {
   const [activeIndex, setActiveIndex] = useState(0);

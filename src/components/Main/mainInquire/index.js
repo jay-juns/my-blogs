@@ -1,6 +1,8 @@
 import React, { useEffect, useState  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import { fetchInquiresMainStart } from './../../../redux/Inquires/inquires.actions';
 import MainInquireItem from './../mainInquireItem';
 
@@ -18,6 +20,7 @@ const MainInquire = () => {
   const { inquires } = useSelector(mapState);
   const { data } = inquires;
   const [isPending, setIsPending] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(
@@ -38,15 +41,15 @@ const MainInquire = () => {
       <div className="main-inquire-add-btn-wrapper">
         <Link className="inquire-add-btn" to={'/inquirePage=/1'}>
         <FontAwesomeIcon className="i" icon={faThLarge} />
-          <span>모두 보기</span>
+          <span>{t('others.viewAll')}</span>
         </Link>
       </div>
       <div className="main-inquire-items-header">
-        <div className="main-inquire-items-header-recommend">추천수</div>
-        <div className="main-inquire-items-header-tag">Tag</div>
-        <div className="main-inquire-items-header-title">제목</div>
-        <div className="main-inquire-items-header-name">작성자</div>
-        <div className="main-inquire-items-header-day">일시</div>
+        <div className="main-inquire-items-header-recommend">{t('questions.like')}</div>
+        <div className="main-inquire-items-header-tag">{t('questions.tag')}</div>
+        <div className="main-inquire-items-header-title">{t('questions.title')}</div>
+        <div className="main-inquire-items-header-name">{t('questions.author')}</div>
+        <div className="main-inquire-items-header-day">{t('questions.date')}</div>
       </div>
       {!isPending && (
         <div className="main-inquire-items" key="inquire-dummy-items">

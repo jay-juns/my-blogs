@@ -26,11 +26,16 @@
 
       span {
         margin-left: .6rem;
+        text-transform: uppercase;
       }
     }
   }
 
   .main-title-h3 {
     margin: 3rem 0;
+
+    h3 {
+      text-transform: uppercase;
+    }
   }
 }

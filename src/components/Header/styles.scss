@@ -36,6 +36,7 @@
         margin-left: 1rem;
 
         .link {
+          text-transform: uppercase;
           margin-right: 2.4rem;
           color:rgba(255, 255, 255, 0.5);
 
@@ -62,6 +63,7 @@
       .header-right-item {
 
         .link {
+          text-transform: uppercase;
           margin-right: 2.4rem;
           color:rgba(255, 255, 255, 0.5);
 
@@ -110,6 +112,19 @@
         
         .active {
           color: rgba(255, 255, 255, 1);
+        }
+      }
+
+      .lang-btn-wrapper {
+        margin-left: 3rem;
+
+        button {
+          font-size: 1.4rem;
+          color: #fff;
+          font-weight: 400;
+        }
+        button.act-lang-btn {
+          color: $blue;
         }
       }
     }
