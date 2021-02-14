@@ -1,0 +1,31 @@
+{
+  "header": {
+    "home": "홈",
+    "blog": "블로그",
+    "questions": "문의사항"
+  },
+  "main": {
+    "mainSliderTitle1": "My Blogs는 누구나 환영합니다.",
+    "mainSliderTitle2": "My Blogs는 하루에 지친 당신에게 위로가 됩니다.",
+    "mainSliderTitle3": "My Blogs는 어떠한 목적없이 도배 및 광고글 작성자는 즉시 추방합니다.",
+    "mainSliderTitle4": "My Blogs는 당신이 행복한 하루를 보내길 진심으로 기원합니다.",
+    "mainSliderDescription1": "편안한 당신의 집에 온 것처럼 이용하세요.",
+    "mainSliderDescription2": "타인을 배려해주는 당신이 되었으면 합니다.",
+    "mainSliderDescription3": "광고, 비방, 욕설, 불법적인 목적으로 글을 작성하시면 영구 추방됩니다.",
+    "mainSliderDescription4": "당신은 꼭 늘 행복하세요."
+  },
+  "user": {
+    "logIn": "로그인",
+    "signIn": "회원가입"
+  },
+  "questions": {
+    "like": "좋아요",
+    "tag": "태그",
+    "title": "제목",
+    "author": "작성자",
+    "date": "일시"
+  },
+  "others": {
+    "viewAll": "모두 보기"
+  }
+}

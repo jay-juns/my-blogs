@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import './styles.scss';
+
 import MainContents from '../mainContents';
 import MainInquire from '../mainInquire';
 
@@ -15,18 +18,19 @@ const mapState = ({ contentsData, inquiresData }) => ({
 
 const MainPage = () => {
   const { loading, loadingInquire } = useSelector(mapState);
+  const { t } = useTranslation();
   
   return (
     <div className="main-content">
       <div className="main-title-h3">
-        <h3>블로그</h3>
+        <h3>{t('header.blog')}</h3>
       </div>
       
       <div className="main-content--top">
         <div>
           <Link className="main-contents--all-btn" to={'/blog'}>
             <FontAwesomeIcon className="i" icon={faThLarge} />
-            <span>모두 보기</span>
+            <span>{t('others.viewAll')}</span>
           </Link>
         </div>
         { !loading && (
@@ -73,7 +77,7 @@ const MainPage = () => {
       </div>
 
       <div className="main-title-h3">
-        <h3>문의사항</h3>
+        <h3>{t('header.questions')}</h3>
       </div>
 
       <div className="main-inquire-wrapper">

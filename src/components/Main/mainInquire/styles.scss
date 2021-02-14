@@ -22,6 +22,7 @@
 
       span {
         margin-left: .6rem;
+        text-transform: uppercase;
       }
     }
   }
@@ -36,6 +37,7 @@
     font-weight: 600;
     background-color: #fff;
     border-bottom: .2rem solid $blue;
+    text-transform: uppercase;
 
     .main-inquire-items-header-recommend {
       width: 6%;

@@ -1,10 +1,10 @@
 import React from 'react';
-import sliderImage from './../sliderImage';
+import sliderData from '../sliderData';
 
 function Dots(props) {
   return (
     <div className="all-dots">
-      {sliderImage.map((slide, index) => (
+      {sliderData.map((slide, index) => (
         <span 
         key={index} className={`${
           props.activeIndex === index ? "dot active-dot" : "dot"

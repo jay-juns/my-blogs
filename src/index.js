@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/createStore';
 import { HelmetProvider } from 'react-helmet-async';
+import './language/i18n';
 import App from './App';
 
 ReactDOM.render(

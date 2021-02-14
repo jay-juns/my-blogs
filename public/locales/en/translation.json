@@ -1,0 +1,31 @@
+{
+  "header": {
+    "home": "home",
+    "blog": "blog",
+    "questions": "questions"
+  },
+  "main": {
+    "mainSliderTitle1": "My Blogs are welcome to everyone.",
+    "mainSliderTitle2": "My Blogs are a comfort to you who are tired in a day.",
+    "mainSliderTitle3": "My Blogs will immediately banish the author of the application and advertisement without any purpose.",
+    "mainSliderTitle4": "My Blogs sincerely wish you a happy day.",
+    "mainSliderDescription1": "Use it as if you came to your comfortable house.",
+    "mainSliderDescription2": "I want you to be considerate of others.",
+    "mainSliderDescription3": "If you write for advertising, slander, swearing, or illegal purposes, you will be deported permanently.",
+    "mainSliderDescription4": "Always be happy."
+  },
+  "user": {
+    "logIn": "log in",
+    "signIn": "sign in"
+  },
+  "questions": {
+    "like": "like",
+    "tag": "tag",
+    "title": "title",
+    "author": "author",
+    "date": "date"
+  },
+  "others": {
+    "viewAll": "view all"
+  }
+}
