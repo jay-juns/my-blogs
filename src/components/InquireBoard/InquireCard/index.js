@@ -10,7 +10,7 @@ import { checkUserIsAdmin } from './../../../Utils';
 import CKEditor from 'ckeditor4-react';
 
 import Button from './../../Forms/Button';
-import Modal from './../../Forms/Modal';
+import Modal from './../../Modals/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
@@ -346,7 +346,7 @@ const InquireCard = () => {
           {(Array.isArray(likeInfo) && likeInfo.length < 1)  && [
             <Button key="recommendZeroBtn" className={`like-btn btn`} onClick={() => handleLike()}>
               <FontAwesomeIcon className="i" icon={faThumbsUp} />
-              <p>추천하기</p>
+              <p>좋아요</p>
               <span>0</span>
             </Button>
           ]}
@@ -354,7 +354,7 @@ const InquireCard = () => {
           {(Array.isArray(likeInfo) && likeInfo.length > 0)  && [
             <Button key="recommendBtn" className={`${currentUser && likeInfo[0].userInfo.includes(currentUser.id) ? 'like-btn btn isLike' : 'like-btn btn'}`} onClick={() => handleLike()}>
               <FontAwesomeIcon className="i" icon={faThumbsUp} />
-              <p>추천하기</p>
+              <p>좋아요</p>
               <span>{likeInfo[0].likeCount}</span>
             </Button>
           ]}               

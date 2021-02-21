@@ -75,6 +75,16 @@ export function* signUpUser({ payload: {
   confirmPassword
 }}) {
 
+  if (displayName === '' || userId === '') {
+    const err = {
+      code: '아이디/닉네임 입력',
+      message: '빈칸에 내용을 채워 주세요.'
+    }
+    
+    yield put(userError(err));
+    return;
+  }
+
   if (password !== confirmPassword) {
 
     const err = {

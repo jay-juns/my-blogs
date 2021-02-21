@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector } from  'react-redux';
 import { Scrollbars } from 'react-custom-scrollbars-2';
@@ -48,7 +48,7 @@ const Header = props => {
 
   const imgInfo = currentUser && userInfo[0] ? <img src={`${userInfo[0]}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
   const userBgStyle = currentUser && userInfo[0] ? {backgroundColor: 'transparent'} : { backgroundColor: userColor }
-  const matches = useMediaQuery("(min-width: 600px)");
+  const matches = useMediaQuery("(min-width: 767px)");
 
   return (
     <>

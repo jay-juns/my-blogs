@@ -34,6 +34,8 @@
       
       nav {
         margin-left: 1rem;
+        font-size: 1.5rem;
+        font-weight: 400;
 
         .link {
           text-transform: uppercase;
@@ -61,6 +63,7 @@
       margin-right: 2rem;
 
       .header-right-item {
+        font-size: 1.5rem;
 
         .link {
           text-transform: uppercase;
@@ -119,12 +122,12 @@
         margin-left: 3rem;
 
         button {
-          font-size: 1.4rem;
-          color: #fff;
+          font-size: 1.3rem;
+          color: $lightGray;
           font-weight: 400;
         }
         button.act-lang-btn {
-          color: $blue;
+          color: $orange;
         }
       }
     }

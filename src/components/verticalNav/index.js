@@ -20,7 +20,7 @@ const VerticalNav = ({ children }) => {
 
   return (
     <div className="vertical-nav">
-      <Scrollbars horizontal autoHide={true} style={scrollBarStyle}>
+      <Scrollbars horizontal="true" autoHide={true} style={scrollBarStyle}>
         <UserProfile {...configUserProfile} />
         <div className="menu">
           {children}

@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signOutUserStart } from '../../redux/User/user.actions';
 
 import Header from './../../components/Header';
 import Footer from './../../components/Footer';
-import VerticalNav from './../../components/verticalNav'
+import VerticalNav from './../../components/verticalNav';
+import Button from './../../components/Forms/Button';
+import ConfirmModal from './../../components/Modals/ConfirmModal';
 
 const DashBoardLayout = props => {
   const dispatch = useDispatch();
+  const [hideModal, setHideModal] = useState(true);
+  const toggleModal = () => setHideModal(!hideModal);
 
-  const signOut = () => {
+  const configModal = {
+    hideModal,
+    toggleModal
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
     dispatch(signOutUserStart());
-  }
+  };
   
   return (
     <div id="fullMain" className="dashboardLayout">
       <Header {...props} />
+      
+      <ConfirmModal {...configModal} key="confirm-modal">
+        <form onSubmit={handleSubmit}>
+          <p>로그아웃을 하시겠습니까?</p>
+          <div className="confirm-modal--btn-wrap">
+            <Button className="btn" onClick={() => toggleModal()}> 
+              취소
+            </Button>
+            <Button className="confirm-modal--ent-btn btn" type="submit">
+              로그아웃
+            </Button> 
+          </div>
+        </form>
+      </ConfirmModal>
+      
       <main className="control-panal">
         <aside className="side-bar">
           <VerticalNav>
@@ -35,9 +61,12 @@ const DashBoardLayout = props => {
             >
               친구 목록
             </NavLink>
+            <Button className="sign-out btn" onClick={() => toggleModal()}>
+              로그아웃
+            </Button>
           </VerticalNav>
-          <span className="sign-out" onClick={() => signOut()}>
-            로그아웃
+          <span className="with-draw">
+            회원탈퇴
           </span>
         </aside>
         <section className="content">
