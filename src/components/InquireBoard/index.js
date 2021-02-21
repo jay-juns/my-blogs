@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
 import { fetchInquireComments, setInquireComments } from './../../redux/Comments/InquireComments/InquireComments.actions';
@@ -10,7 +11,7 @@ import CKEditor from 'ckeditor4-react';
 import FormInput from '../Forms/FormInput';
 import FormSelect from '../Forms/FormSelect';
 import Button from '../Forms/Button';
-import Modal from '../Forms/Modal';
+import Modal from '../Modals/Modal';
 import Alert from '../Alert';
 
 import InquireItem from './InquireItem';
@@ -34,6 +35,7 @@ const InquireBoard = () => {
   const [inquireTag, setInquireTag] = useState('제안');
   const [inquireTitle, setInquireTitle] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
+  const { t } = useTranslation();
 
   let userInfo = [];
   
@@ -158,7 +160,7 @@ const InquireBoard = () => {
       </Helmet>
       <div className="inquire-board">
         <div className="inquire-title">
-          <h3>문의 게시판</h3>
+          <h3>문의 사항</h3>
         </div>
         <div className="inquire-contents">
           {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
@@ -228,23 +230,23 @@ const InquireBoard = () => {
             <div className="show-item-wrap--head">
               <div className="show-item-header-title">
                 <p>
-                  추천수
+                  {t('questions.like')}
                 </p>
               </div>
 
               <div className="show-text--head">
                 <div className="show-title--head">
-                <p className="show-tag--head">
-                  Tag
-                </p>
+                  <p className="show-tag--head">
+                    {t('questions.tag')}
+                  </p>
                   <p className="show-titie-first--head">
-                    제목
+                    {t('questions.title')}
                   </p>
                   <p className="show-title-nick--head">
-                    작성자
+                    {t('questions.author')}
                   </p>
                   <span className="show-title-day--head">
-                    일시
+                    {t('questions.date')}
                   </span>
                 </div>
                               

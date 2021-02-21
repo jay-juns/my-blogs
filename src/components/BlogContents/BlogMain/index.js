@@ -7,7 +7,7 @@ import { addContentStart, fetchContentsStart } from './../../../redux/Contents/c
 
 import BlogItem from './../BlogItem';
 import CKEditor from 'ckeditor4-react';
-import Modal from './../../Forms/Modal';
+import Modal from './../../Modals/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import Button from './../../Forms/Button';

@@ -48,7 +48,7 @@ const Header = props => {
 
   const imgInfo = currentUser && userInfo[0] ? <img src={`${userInfo[0]}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
   const userBgStyle = currentUser && userInfo[0] ? {backgroundColor: 'transparent'} : { backgroundColor: userColor }
-  const matches = useMediaQuery("(min-width: 600px)");
+  const matches = useMediaQuery("(min-width: 767px)");
 
   return (
     <>
