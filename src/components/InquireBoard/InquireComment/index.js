@@ -4,13 +4,12 @@ import { checkUserIsAdmin } from './../../../Utils';
 import { deleteInquireComments } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 
 import Button from './../../Forms/Button';
-import ConfirmModal from './../../Modals/ConfirmModal';
+import ConfirmCommentsModal from './../../Modals/ConfirmCommentsModal';
 
 import './styles.scss';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -24,23 +23,21 @@ const InquireComments = props => {
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
   const [modalType, setModalType] = useState('');
+  const [compareId, setCompareId] = useState({});
   const isAdmin = checkUserIsAdmin(currentUser);
   const items = messageRoomData;
-
-  const toggleModal = (type) =>{
+  const toggleModal = (type, e) =>{
     setHideModal(!hideModal);
     setModalType(type);
+    setCompareId(e);
   };
-
   const cofirmConfigModal = {
     hideModal,
     modalType,
     toggleModal
   };
 
-
   return (
-    
     <div className="inquire-text">
       {(Array.isArray(items) && items.length > 0) && items.map((text) => {
         const { author, authorColor, authorImgUrl, inquireText, uid, createAt, documentID } = text;
@@ -66,21 +63,22 @@ const InquireComments = props => {
       
         return (
           <div className="inquire-comment-area" key={uid}>
-            {isAdmin &&
-              <ConfirmModal {...cofirmConfigModal} key="confirm-inquire-comment-modal">
-              <form onSubmit={handleDeleteSubmit}>
-                <p>글을 삭제하시겠습니까?</p>
-                <div className="confirm-modal--btn-wrap">
-                  <Button className="btn" onClick={() => toggleModal()}> 
-                    취소
-                  </Button>
-                  <Button className="confirm-modal--ent-btn btn" type="submit">
-                    확인
-                  </Button> 
-                </div>
-              </form>
-            </ConfirmModal>
+            {   
+              <ConfirmCommentsModal {...cofirmConfigModal} id={compareId} target={uid}>
+                <form onSubmit={handleDeleteSubmit}>
+                  <p>댓글을 삭제하시겠습니까?</p>
+                  <div className="confirm-modal--btn-wrap">
+                    <Button className="btn" onClick={() => toggleModal()}> 
+                      취소
+                    </Button>
+                    <Button className="confirm-modal--ent-btn btn" type="submit">
+                      확인
+                    </Button> 
+                  </div>
+                </form>
+              </ConfirmCommentsModal>
             }
+
             <div className="inquire-comment-area--img" style={userStyleColor}>
               {userLogo}
             </div>
@@ -96,8 +94,8 @@ const InquireComments = props => {
             
            {isAdmin &&
             <div className="inquire-comment-area--delete-btn" key="controlCommentSettings">
-              <Button className="btn" onClick={() => toggleModal('confirmModal')}>
-                <FontAwesomeIcon className="i" icon={faTrash} />
+              <Button id={uid} className="btn"  type="button" onClick={(e) => toggleModal('ConfirmCommentsModal', e.target.id)}>
+                  삭제
               </Button>
             </div>
            } 

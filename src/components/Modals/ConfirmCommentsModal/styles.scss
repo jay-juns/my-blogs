@@ -1,0 +1,74 @@
+@import "./../../../globelStyles/var.scss";
+
+.confirm-modal-wrap {
+  min-width: 280px;
+  height: auto;
+  padding: 2rem 2rem 1rem;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: .8rem;
+  z-index: 104;
+
+  .confirm-modal--contents {
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  
+      p {
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      button {
+        font-size: 1.3rem;
+        font-weight: 400;
+        padding: .6rem;
+        border-radius: .4rem;
+        transition: background-color .4s ease-in;
+
+        &:hover {
+          background-color: $lightGray;
+        }
+      }
+
+      .confirm-modal--ent-btn {
+        background-color: $red;
+        color: #fff;
+        margin-left: .5rem;
+
+        &:hover {
+          background-color: $darkRed;
+        }
+      }
+    }
+
+    .confirm-modal--btn-wrap {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .confirm-modal--closed-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: .4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    outline:none;
+
+    &:hover {
+      background-color: $lightGray;
+    }
+  }
+}
