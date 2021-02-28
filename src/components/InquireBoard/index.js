@@ -31,6 +31,7 @@ const InquireBoard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [hideModal, setHideModal] = useState(true);
+  const [modalType, setModalType] = useState('');
   const [inquireDesc, setInquireDesc] = useState('');
   const [inquireTag, setInquireTag] = useState('제안');
   const [inquireTitle, setInquireTitle] = useState('');
@@ -74,10 +75,13 @@ const InquireBoard = () => {
     }
   }, [dispatch]);
 
-  const toggleModal = () => setHideModal(!hideModal);
-
+  const toggleModal = (type) =>{
+    setHideModal(!hideModal);
+    setModalType(type);
+  }
   const configModal = {
     hideModal,
+    modalType,
     toggleModal
   };
 
@@ -87,6 +91,7 @@ const InquireBoard = () => {
     setInquireTitle('');
     setInquireDesc('');
     setCurrentPage(Number(inquirePageNumber));
+    setModalType('');
   };
   
   const handleSubmit = e => {
@@ -167,7 +172,7 @@ const InquireBoard = () => {
           
           <FormSelect {...configFilter} />
 
-          <Button className="inquire-write-btn btn" onClick={() => toggleModal()}>
+          <Button className="inquire-write-btn btn" onClick={() => toggleModal('modal')}>
             글쓰기
           </Button>
         </div>
@@ -221,7 +226,7 @@ const InquireBoard = () => {
 
         {!currentUser && [
           <Modal {...configModal} key="inquireUnModal">
-          <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p> 
+            <p className="un-login-text">글을 작성 하려면 먼저 로그인을 해야 합니다.</p> 
           </Modal>
         ]}
 

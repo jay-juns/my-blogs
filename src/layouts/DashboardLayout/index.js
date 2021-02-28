@@ -12,10 +12,15 @@ import ConfirmModal from './../../components/Modals/ConfirmModal';
 const DashBoardLayout = props => {
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const toggleModal = () => setHideModal(!hideModal);
+  const [modalType, setModalType] = useState('');
 
+  const toggleModal = (type) =>{
+    setHideModal(!hideModal);
+    setModalType(type);
+  }
   const configModal = {
     hideModal,
+    modalType,
     toggleModal
   };
 
@@ -61,7 +66,7 @@ const DashBoardLayout = props => {
             >
               친구 목록
             </NavLink>
-            <Button className="sign-out btn" onClick={() => toggleModal()}>
+            <Button className="sign-out btn" onClick={() => toggleModal('confirmModal')}>
               로그아웃
             </Button>
           </VerticalNav>

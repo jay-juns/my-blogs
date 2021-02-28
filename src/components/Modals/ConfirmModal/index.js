@@ -6,8 +6,8 @@ import './styles.scss';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ConfirmModal = ({ hideModal, toggleModal, children }) => {
-  if (hideModal) return null;
+const ConfirmModal = ({ hideModal, modalType, toggleModal, children }) => {
+  if (hideModal || modalType !== 'confirmModal') return null;
 
   return ReactDom.createPortal(
     <>
