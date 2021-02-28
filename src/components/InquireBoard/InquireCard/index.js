@@ -11,7 +11,6 @@ import CKEditor from 'ckeditor4-react';
 
 import Button from './../../Forms/Button';
 import Modal from './../../Modals/Modal';
-import ConfirmModal from './../../Modals/ConfirmModal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
@@ -20,6 +19,7 @@ import Alert from './../../Alert';
 import InquireComments from './../InquireComment';
 import InquireCardDummy from './../InquireCardDummy';
 import TagType from './../InquireTagType';
+import ConfirmModal from './../../Modals/ConfirmModal';
 
 import { faEllipsisH, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -173,7 +173,7 @@ const InquireCard = () => {
     )
 
     history.goBack()
-  }
+  };
 
   const handleChat = e => {
     e.preventDefault();
@@ -278,18 +278,20 @@ const InquireCard = () => {
 
                 <div className="detail-header-left--up-btn-area">
                 
-                  {isAdmin && [
-                    <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
-                    <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
-                      <Button className="btn" onClick={() => toggleModal('modal')}>수정하기</Button>
-                      <Button className="btn" onClick={() => toggleModal('confirmModal')}>
-                        삭제
+                  {isAdmin &&
+                    <> 
+                      <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
+                      <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
+                        <Button className="btn" onClick={() => toggleModal('modal')}>수정하기</Button>
+                        <Button className="btn" onClick={() => toggleModal('confirmModal')}>
+                          삭제
+                        </Button>
+                      </div>
+                      <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)}>
+                        <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
                       </Button>
-                    </div>,
-                    <Button key="showButton" className="threedot-btn btn" onClick={() => setShow(!show)}>
-                      <FontAwesomeIcon className="i" icon={faEllipsisH} /> 
-                    </Button>
-                  ]}
+                    </>
+                  }
                 </div>
                 <Modal {...configModal}>
                   <form onSubmit={handleSubmit}>
@@ -338,7 +340,7 @@ const InquireCard = () => {
 
                 <ConfirmModal {...cofirmConfigModal} key="confirm-inquire-modal">
                   <form onSubmit={handleDeleteSubmit}>
-                    <p>글을 삭제하시겠습니까?</p>
+                    <p>문의사항 글을 삭제하시겠습니까?</p>
                     <div className="confirm-modal--btn-wrap">
                       <Button className="btn" onClick={() => toggleModal()}> 
                         취소
@@ -348,7 +350,8 @@ const InquireCard = () => {
                       </Button> 
                     </div>
                   </form>
-                </ConfirmModal>
+                </ConfirmModal>        
+
               </div>
               
               <div className="detail-header-left--footer-wrapper">
