@@ -28,6 +28,7 @@ const BlogMain = () => {
   const history = useHistory();
   const { filterType } = useParams();
   const [hideModal, setHideModal] = useState(true);
+  const [modalType, setModalType] = useState('');
   const [contentTag, setContentTag] = useState('잡담');
   const [contentTitle, setContentTitle] = useState('');
   const [contentThumbnail, setContentThumbnail] = useState('');
@@ -51,10 +52,13 @@ const BlogMain = () => {
     
   }, [dispatch, filterType]);
   
-  const toggleModal = () => setHideModal(!hideModal);
-
+  const toggleModal = (type) =>{
+    setHideModal(!hideModal);
+    setModalType(type);
+  }
   const configModal = {
     hideModal,
+    modalType,
     toggleModal
   };
 
@@ -65,6 +69,7 @@ const BlogMain = () => {
     setContentThumbnail('');
     setContentDesc('');
     setCreateDate('');
+    setModalType('');
   };
 
   const handleSubmit = e => {
@@ -144,7 +149,7 @@ const BlogMain = () => {
 
           <FormSelect {...configFilter} />
 
-          <Button className="write-btn btn" onClick={() => toggleModal()}>
+          <Button className="write-btn btn" onClick={() => toggleModal('modal')}>
             글쓰기
           </Button>
         </div>

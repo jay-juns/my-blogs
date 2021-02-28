@@ -6,8 +6,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const Modal = ({ hideModal, toggleModal, children }) => {
-  if (hideModal) return null;
+const Modal = ({ hideModal, modalType, toggleModal, children }) => {
+  if (hideModal || modalType !== 'modal') return null;
 
   return ReactDom.createPortal(
     <>

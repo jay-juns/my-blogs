@@ -19,7 +19,7 @@ const UserProfileSetting = props => {
     width: '50px',
     height: '50px',
     overflow: 'hidden'
-  } : {backgroundColor: color};
+  } : { backgroundColor: color };
   const userLogo = userImgUrl ?<img src={`${userImgUrl}`} alt="userLogo" /> : <FontAwesomeIcon className="i" icon={faUser} />;
 
   return (

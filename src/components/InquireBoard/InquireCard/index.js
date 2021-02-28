@@ -11,6 +11,7 @@ import CKEditor from 'ckeditor4-react';
 
 import Button from './../../Forms/Button';
 import Modal from './../../Modals/Modal';
+import ConfirmModal from './../../Modals/ConfirmModal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
@@ -40,6 +41,7 @@ const InquireCard = () => {
 
   const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
+  const [modalType, setModalType] = useState('');
   const {
     inquireTitle,
     displayName,
@@ -59,8 +61,7 @@ const InquireCard = () => {
   const [hideAlert, setHideAlert] = useState(false);
   const [text, setText] = useState('');
   const [color, setColor] = useState('');
-  const [isPending, setIsPending] = useState(false);
-  
+  const [isPending, setIsPending] = useState(false); 
   const [show, setShow] = useState(false);
   const showModal = !show ? '' : 'show-modal';
   const userStyleColor = userImgUrl ? {
@@ -94,18 +95,29 @@ const InquireCard = () => {
     setInquireEditTag('제안');
     setText('');
     setColor('');
+    setModalType('');
   };
   const resetInput = () => {
     setInquireText('');
     document.getElementById("submitBtn").disabled = true;
     document.getElementById("submitBtn").classList.remove('btn');
     document.getElementById("commentContent").style.height = "19px";
-  }
+  };
 
-  const toggleModal = () => setHideModal(!hideModal);
+  const toggleModal = (type) =>{
+    setHideModal(!hideModal);
+    setModalType(type);
+  }; 
 
   const configModal = {
     hideModal,
+    modalType,
+    toggleModal
+  };
+
+  const cofirmConfigModal = {
+    hideModal,
+    modalType,
     toggleModal
   };
 
@@ -153,7 +165,9 @@ const InquireCard = () => {
     resetForm();
   };
 
-  const handleDelete = () => {
+  const handleDeleteSubmit = e => {
+    e.preventDefault();
+
     dispatch(
       deleteInquireStart(documentID)
     )
@@ -267,8 +281,8 @@ const InquireCard = () => {
                   {isAdmin && [
                     <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
                     <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
-                      <Button className="btn" onClick={() => toggleModal()}>수정하기</Button>
-                      <Button className="btn" onClick={() => handleDelete()}>
+                      <Button className="btn" onClick={() => toggleModal('modal')}>수정하기</Button>
+                      <Button className="btn" onClick={() => toggleModal('confirmModal')}>
                         삭제
                       </Button>
                     </div>,
@@ -321,6 +335,20 @@ const InquireCard = () => {
                     </div>
                   </form>
                 </Modal>
+
+                <ConfirmModal {...cofirmConfigModal} key="confirm-inquire-modal">
+                  <form onSubmit={handleDeleteSubmit}>
+                    <p>글을 삭제하시겠습니까?</p>
+                    <div className="confirm-modal--btn-wrap">
+                      <Button className="btn" onClick={() => toggleModal()}> 
+                        취소
+                      </Button>
+                      <Button className="confirm-modal--ent-btn btn" type="submit">
+                        확인
+                      </Button> 
+                    </div>
+                  </form>
+                </ConfirmModal>
               </div>
               
               <div className="detail-header-left--footer-wrapper">
