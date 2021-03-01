@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { checkUserSession } from './redux/User/user.actions';
 
 //layouts
+import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout';
 import BlogLayout from './layouts/BlogLayout';
 import InquireLayout from './layouts/InquireLayout';
@@ -14,9 +15,13 @@ import DashboardLayout from './layouts/DashboardLayout';
 
 //hoc
 import WithAuth from './hoc/withAuth';
-// import WithAdminAuth from './hoc/withAdminAuth';
+import WithAdminAuth from './hoc/withAdminAuth';
+
+//component
+import AdminToolBar from './components/AdminToolBar';
 
 //pages
+import Admin from './pages/Admin';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import Inquire from './pages/Inquire';
@@ -46,6 +51,7 @@ const App = props => {
 
   return (
     <div className="App">
+      <AdminToolBar />
       <Switch>
         <Route exact path="/" render={() => (
           <MainLayout>
@@ -116,6 +122,14 @@ const App = props => {
             </DashboardLayout>
           </WithAuth>
         )} 
+        />
+         <Route path="/admin" render={() => (
+          <WithAdminAuth>
+            <AdminLayout>
+              <Admin />
+            </AdminLayout>
+          </WithAdminAuth>
+        )}
         />
         <Route path="*" render={() =>  (
           <OtherLayout>
