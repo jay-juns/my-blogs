@@ -280,7 +280,7 @@ const InquireCard = () => {
                 
                   {isAdmin &&
                     <> 
-                      <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>,
+                      <div key="background" className={`show-toggle-bg ${showModal}`} onClick={() => setShow(!show)}></div>
                       <div key="showToggleModal" className={`toggle-modal ${showModal}`}>
                         <Button className="btn" onClick={() => toggleModal('modal')}>수정하기</Button>
                         <Button className="btn" onClick={() => toggleModal('confirmModal')}>
