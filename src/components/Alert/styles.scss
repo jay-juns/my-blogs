@@ -2,9 +2,6 @@
 
 .notification-items {
   position: fixed;
-  left: 16px;
-  bottom: 16px;
-  transform: translateY(0);
   font-weight: 600;
   padding: 0;
   margin: 0;
@@ -14,7 +11,6 @@
   box-shadow: 0 0 5px rgba(0,0,0,.4),0 0 1px rgba(0,0,0,.4);
   border-radius: .4rem;
   overflow: hidden;
-  animation: SlideLeft 0.3s;
   animation-fill-mode: forwards;
   min-width: 220px;
   z-index: 105;
@@ -42,9 +38,19 @@
     background-color: $blue;
   }
 }
-
+.notification-items.leftLeft {
+  left: 16px;
+  bottom: 16px;
+  transform: translateY(0);
+  animation: SlideShowleftLeft .3s;
+}
+.notification-items.topCenter {
+  left: 50%;
+  top: 80px;
+  transform: translate(-50%, 0);
+  animation: SlideShowtopCenter .3s;
+}
 .notification-items.exit {
-  animation: SlideRight 0.4s;
   animation-fill-mode: forwards;
   opacity: 0;
   visibility: hidden;
@@ -52,9 +58,17 @@
   visibility ease-in-out .4s;
 }
 
-@keyframes SlideLeft {
+.notification-items.exit.leftLeft {
+  animation: SlideHideleftLeft .4s;
+}
+
+.notification-items.exit.topCenter {
+  animation: SlideHidetopCenter .4s;
+}
+
+@keyframes SlideShowleftLeft {
     0% {
-        transform: translateY(220%);
+      transform: translateY(220%);
     }
     
     100% {
@@ -62,13 +76,32 @@
     }
 }
 
-@keyframes SlideRight {
+@keyframes SlideHideleftLeft {
     0% {
       transform: translateY(0);
     }
 
-
     100% {
       transform: translateY(220%);
     }
+}
+
+@keyframes SlideShowtopCenter {
+  0% {
+    transform: translate(-50%, -220%);
+  }
+
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes SlideHidetopCenter {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  
+  100% {
+    transform: translate(-50%, -220%);
+  }
 }

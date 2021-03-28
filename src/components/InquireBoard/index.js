@@ -155,6 +155,7 @@ const InquireBoard = () => {
   const configAlert = {
     text: '제목과 내용을 채워 주세요',
     color: 'danger',
+    position: 'leftLeft',
     hideAlert: hideAlert
   }; 
 
