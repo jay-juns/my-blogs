@@ -242,6 +242,7 @@ const InquireCard = () => {
   const configAlert = {
     text: text,
     color: color,
+    position: 'leftLeft',
     hideAlert: hideAlert
   };
 

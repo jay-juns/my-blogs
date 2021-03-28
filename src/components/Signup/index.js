@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { signUpUserStart } from './../../redux/User/user.actions';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
 import './styles.scss';
 
-import FormInput from '../Forms/FormInput';
+import FormValidateInput from '../Forms/FormValidateInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
 import Alert from '../Alert';
+import { values } from 'lodash';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
@@ -20,12 +23,36 @@ const Signup = props => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser, userErr } = useSelector(mapState);
-  const [displayName, setDisplayName] = useState('');
-  const [userId, setUserId] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
+  let nameRegex = /^[A-Za-z]+$/;
+
+  const validate = Yup.object({
+    email:Yup.string()
+    .email('이메일 형식이 아닙니다.')
+    .required('이메일을 입력하세요.'),
+    userId:Yup.string()
+    .min(2, '아이디는 최소 2자 이상입니다.')
+    .max(10, '아이디는 최대 글자수는 10글자 이하입니다.')
+    .matches(nameRegex, "아이디는 영어만 가능합니다.")
+    .required('아이디를 입력하세요.'),
+    displayName:Yup.string()
+    .min(2, '별명은 최소 2자 이상입니다.')
+    .required('별명를 입력하세요'),
+    password: Yup.string()
+    .min(5, '비밀번호는 최소 5자 이상입니다.')
+    .matches(
+      /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, 
+      '최소 1개 이상 특수문자를 넣어주세요.'
+    )
+    .required('비밀번호를 입력하세요.'),
+    confirmPassword: Yup.string().when("password", {
+      is: val => (val && val.length > 0 ? true : false),
+      then: Yup.string().oneOf(
+        [Yup.ref("password")],
+        "패스워드와 같지 않습니다."  
+      )
+    })
+  })
 
   useEffect(() => {
     if (currentUser) {
@@ -35,51 +62,35 @@ const Signup = props => {
 
   }, [history, currentUser]);
 
-  useEffect(() => {
-    if(userId !== '' && displayName !== '' && email !== '' && password !=='' && confirmPassword !=='') {
-      document.getElementById("signUpBtn").disabled = false;
-      document.getElementById("signUpBtn").classList.add('btn');
-    } else {
-      document.getElementById("signUpBtn").disabled = true;
-      document.getElementById("signUpBtn").classList.remove('btn');
-    }
+  const reset = () => {
+    setHideAlert(false);
+  };
 
-  }, [userId, displayName, email, password, confirmPassword]);
-
-  useEffect(() => {
+  const handleFormSubmit = (data) => {
+    // event.preventDefault();
+    console.log(userErr, 'error');
+    console.log(data);
     if(userErr.code) {
       setTimeout(() => {
         setHideAlert(true);
       }, 30);
+      setHideAlert(false);
+      return userErr.code = '';
     }
-    setHideAlert(false);
-    return () => (userErr.code = '');
-  }, [userErr]);
-
-  const reset = () => {
-    setDisplayName('');
-    setUserId('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-    setHideAlert(false);
-  }
-
-  const handleFormSubmit = event => {
-    event.preventDefault();
 
     dispatch(signUpUserStart({
-      displayName,
-      userId,
-      email,
-      password,
-      confirmPassword
+      displayName: data.displayName,
+      userId: data.userId,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword
     }));
-  }
+  };
 
   const configAlert = {
-    text: `${userErr.message}`,
+    text: userErr.code === 'auth/email-already-in-use' ? '이미 등록된 계정입니다.' : '에러가 발생했습니다.',
     color: 'danger',
+    position: 'topCenter',
     hideAlert: hideAlert
   }
 
@@ -92,59 +103,71 @@ const Signup = props => {
       <Helmet>
         <title> 회원가입 - My Blogs</title>
       </Helmet>
-      <div className="sign-up"> 
 
-      {hideAlert && <Alert {...configAlert} key="signUp"/>}
+      {hideAlert && <Alert {...configAlert}  key="signUp"/>}
 
-        <form onSubmit={handleFormSubmit}>
-          <FormInput
-            type="text"
-            name="userId"
-            value={userId}
-            placeholder="유저 아이디 입력"
-            handleChange={e => setUserId(e.target.value)}
-          />
+      <Formik
+        initialValues={{
+          email: '',
+          userId: '',
+          displayName: '',
+          password: '',
+          confirmPassword: ''
+        }}
+        validationSchema={validate}
+        onSubmit={values =>{
+          handleFormSubmit(values)
+        }}
+      >
+        <div className="sign-up"> 
+          <Form>
+            <FormValidateInput
+              label="이메일"
+              type="email"
+              name="email"
+              value={values.email}
+              placeholder="가입할 이메일 주소 입력"
+            />
 
-          <FormInput
-            type="text"
-            name="displayName"
-            value={displayName}
-            placeholder="별명 입력"
-            handleChange={e => setDisplayName(e.target.value)}
-          />
+            <FormValidateInput
+              label="유저아이디"
+              type="text"
+              name="userId"
+              value={values.userId}
+              placeholder="유저 아이디 입력"
+            />
 
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            placeholder="가입할 이메일 주소 입력"
-            autoComplete="username"
-            handleChange={e => setEmail(e.target.value)}
-          />
+            <FormValidateInput
+              label="별명"
+              type="text"
+              name="displayName"
+              value={values.displayName}
+              placeholder="별명 입력"
+            />
 
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            placeholder="비밀번호 입력"
-            autoComplete="new-password"
-            handleChange={e => setPassword(e.target.value)}
-          />
+            <FormValidateInput
+              label="비밀번호"
+              type="password"
+              name="password"
+              value={values.password}
+              placeholder="비밀번호 입력"
+            />
 
-          <FormInput
-            type="password"
-            name="confirmPassword"
-            value={confirmPassword}
-            autoComplete="confirm-password"
-            placeholder="비밀번호 확인"
-            handleChange={e => setConfirmPassword(e.target.value)}
-          />
+            <FormValidateInput
+              label="비밀번호 확인"
+              type="password"
+              name="confirmPassword"
+              value={values.confirmPassword}
+              placeholder="비밀번호 확인"
+            />
 
-          <Button id="signUpBtn" type="submit" disabled>
-            회원가입
-          </Button>
-        </form>
-      </div>
+            <Button className="btn" type="submit">
+              회원가입
+            </Button>
+          </Form>
+        </div>
+      </Formik>
+      
     </AuthWrapper>
   )
 }

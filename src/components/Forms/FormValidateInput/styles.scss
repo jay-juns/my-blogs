@@ -1,0 +1,48 @@
+@import "./../../../globelStyles/var.scss";
+
+.formValidationSelection {
+  display: flex;
+  flex-direction: column;
+  margin-top: .5rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+.formValidationTitle {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.formValidationInput {
+  border: none;
+  resize: none;
+  display: flex;
+  align-items: center;
+  text-indent: 6px;
+  width: 100%;
+  padding: 4px 0px;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset, rgba(15, 15, 15, 0.1) 0px 1px 1px inset;
+  cursor: text;
+  margin: 4px 0;
+  fill: currentcolor;
+  line-height: 1.5;
+  background-color:#ddd;
+  font-size: 1.3rem;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -ms-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+
+  &:focus {
+    background-color: #fff;
+  }
+}
+.formValidationError {
+  color: $red;
+  font-size: 12px;
+  padding-bottom: 5px;
+}

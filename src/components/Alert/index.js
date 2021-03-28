@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import './styles.scss';
 
-const Alert = ({ text, color, hideAlert }) => {
+const Alert = ({ text, color, position, hideAlert }) => {
 
   const [exit, setExit] = useState(!hideAlert);
   const [width, setWidth] = useState(0);
@@ -45,7 +45,7 @@ const Alert = ({ text, color, hideAlert }) => {
     <div
       onMouseEnter={handlePauseTimer}
       onMouseLeave={handleStartTimer} 
-      className={`notification-items ${color} ${exit ? "exit" : ""}`}
+      className={`notification-items ${color} ${position} ${exit ? "exit" : ""}`}
     >
       <p>{text}</p>
       <div className={`bar ${color}`} style={{ width: `${width}%` }} />

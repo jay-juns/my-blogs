@@ -134,6 +134,7 @@ const BlogMain = () => {
   const configAlert = {
     text: '제목과 이미지URL, 그리고 내용을 채워 주세요.',
     color: 'danger',
+    position: 'leftLeft',
     hideAlert: hideAlert
   };
 

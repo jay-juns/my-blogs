@@ -2,33 +2,40 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
 import { emailSignInStart, googleSignInStart } from './../../redux/User/user.actions';
-
+import FormValidateInput from './../Forms/FormValidateInput';
 import './styles.scss';
 
-import FormInput from '../Forms/FormInput';
 import Button from '../Forms/Button';
 import AuthWrapper from '../AuthWrapper';
 import Alert from '../Alert';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { values } from 'lodash';
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
   userErr: user.userErr
-
 });
 
 const SignIn = props => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { currentUser, userErr } = useSelector(mapState);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [hideAlert, setHideAlert] = useState(false);
+
+  const validate = Yup.object({
+    email:Yup.string()
+    .email('이메일 형식이 아닙니다.')
+    .required('이메일을 입력하세요'),
+    password: Yup.string()
+    .min(5, '비밀번호는 최소 5자 이상입니다.')
+    .required('비밀번호를 입력하세요.')
+  })
   
   useEffect(() => {
     if (currentUser) {
@@ -39,33 +46,9 @@ const SignIn = props => {
         history.push('/');
       }
     }    
-
   }, [history, currentUser]);
 
-  useEffect(() => {
-    if(email !== '' && password !=='') {
-      document.getElementById("loginBtn").disabled = false;
-      document.getElementById("loginBtn").classList.add('btn');
-    } else {
-      document.getElementById("loginBtn").disabled = true;
-      document.getElementById("loginBtn").classList.remove('btn');
-    }
-
-  }, [email, password]);
-
-  useEffect(() => {
-    if(userErr.code) {
-      setTimeout(() => {
-        setHideAlert(true);
-      }, 30);
-    }
-    setHideAlert(false);
-    return () => (userErr.code = '');
-  }, [userErr]);
-
   const resetForm = () => {
-    setEmail('');
-    setPassword('');
     setHideAlert(false);
   }
 
@@ -73,18 +56,24 @@ const SignIn = props => {
     headline: '마이 Blogs 로그인'
   };
 
+  const handleSubmit = (data) => {
+    // e.preventDefault();
+    if(userErr.code) {
+      setTimeout(() => {
+        setHideAlert(true);
+      }, 30);
+      setHideAlert(false);
+      return userErr.code = '';
+    }
+    dispatch(emailSignInStart({ email: data.email, password: data.password }));
+  }
+
   const configAlert = {
     text: userErr.code === 'auth/wrong-password' || userErr.code === 'auth/user-not-found' ? '패스워드 또는 이메일 주소가 틀렸습니다.':'너무 많은 요청을 보내셨습니다. 잠시 후에 다시 시도해주세요.',
     color: 'danger',
+    position: 'topCenter',
     hideAlert: hideAlert
-  }
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    dispatch(emailSignInStart({ email, password }));
-
-  }
+  };
 
   const handleGoogleSignIn = () => {
     dispatch(googleSignInStart());
@@ -96,45 +85,54 @@ const SignIn = props => {
         <title>로그인 - My Blogs</title>
       </Helmet>
       {hideAlert && <Alert {...configAlert} key="signIn"/>}
-      
-      <div className="sign-in">
-        <div className="sign-in-content-wrap">
+      <Formik
+        initialValues={{
+          email: '',
+          password: ''
+        }}
+        validationSchema={validate}
+        onSubmit={values =>{
+          handleSubmit(values)
+        }}
+      >
+        <div className="sign-in">
+          <div className="sign-in-content-wrap">
+            <Form>
+              <FormValidateInput 
+                label="이메일"
+                type="email"
+                name="email"
+                value={values.email}
+                placeholder= "이메일 입력"
+              />
 
-          <form onSubmit={handleSubmit}>
+              <FormValidateInput
+                label="비밀번호" 
+                type="password"
+                name="password"
+                value={values.password}
+                placeholder= "비밀번호 입력"
+              />
 
-            <FormInput 
-              type="email"
-              name="email"
-              value={email}
-              autoComplete="username"
-              placeholder= "이메일 입력"
-              handleChange={e => setEmail(e.target.value)}
-            />
-
-            <FormInput 
-              type="password"
-              name="password"
-              value={password}
-              placeholder= "비밀번호 입력"
-              autoComplete="new-password"
-              handleChange={e => setPassword(e.target.value)}
-            />
-
-            <Button id="loginBtn" className="login-btn" type="submit" disabled>
-              이메일 로그인
-            </Button>
-
-          </form>
-
-          <div className="sign-in-social">
-            <Button className="btn" onClick={handleGoogleSignIn}>
-              <FontAwesomeIcon className="i" icon={faGoogle} />
-              <p>Google계정으로 이용하기</p>
-            </Button>
+              <Button 
+                className="btn login-btn" 
+                type="submit">
+                이메일 로그인
+              </Button>
+            </Form>
+            <div className="sign-in-social">
+              <Button 
+                className="btn" 
+                onClick={handleGoogleSignIn}>
+                <FontAwesomeIcon className="i" icon={faGoogle} />
+                <p>Google계정으로 이용하기</p>
+              </Button>
+            </div>
+            
           </div>
-          
         </div>
-      </div>
+      
+      </Formik>
     </AuthWrapper>
   );
 }
