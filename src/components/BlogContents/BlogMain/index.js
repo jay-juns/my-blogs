@@ -158,7 +158,7 @@ const BlogMain = () => {
         {currentUser && [
           <Modal {...configModal} key="blog-modal">
             <form onSubmit={handleSubmit}>
-              <h2>새로운 글쓰기</h2>
+              <h2>새로운 글쓰기1</h2>
               <FormSelect 
                 label="태그 선택"
                 options={[{
