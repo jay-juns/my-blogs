@@ -151,7 +151,7 @@ const InquireCard = () => {
     if(setShow(true)) setShow(false);
 
     if(inquireEditTitle === '' || inquireEditDesc === '') {
-      setText('수정할 제목과 내용을 작성 해주세요.');
+      setText('수정할 제목과 내용을 작성 해주세요...');
       setColor('danger');
       setTimeout(() => {
         setHideAlert(true);
