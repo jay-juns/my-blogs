@@ -23,7 +23,8 @@
     "tag": "tag",
     "title": "title",
     "author": "author",
-    "date": "date"
+    "date": "date",
+    "view": "view"
   },
   "others": {
     "viewAll": "view all"

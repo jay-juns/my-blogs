@@ -22,7 +22,7 @@ const inquiresReducer = (state=INITIAL_STATE, action) => {
         return {
           ...state,
           loadingInquire: action.payload
-      }   
+      } 
     default:
       return state;
   }

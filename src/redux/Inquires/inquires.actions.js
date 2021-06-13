@@ -43,9 +43,14 @@ export const updateInquire = inquire => ({
 export const inquireLike = (inquire) => ({
   type: inquiresTypes.INQUIRE_LIKE,
   payload: inquire
-})
+});
+
+export const updateInquireView = view => ({
+  type: inquiresTypes.INQUIRE_VIEW,
+  payload: view
+});
 
 export const setLoadinginquire = isPending => ({
   type: inquiresTypes.IS_PENDING,
   payload: isPending
-})
+});

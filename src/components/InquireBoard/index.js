@@ -3,20 +3,16 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-
 import { addInquiresStart, fetchInquiresStart } from './../../redux/Inquires/inquires.actions';
 import { fetchInquireComments, setInquireComments } from './../../redux/Comments/InquireComments/InquireComments.actions';
-
 import CKEditor from 'ckeditor4-react';
 import FormInput from '../Forms/FormInput';
 import FormSelect from '../Forms/FormSelect';
 import Button from '../Forms/Button';
 import Modal from '../Modals/Modal';
 import Alert from '../Alert';
-
 import InquireItem from './InquireItem';
 import Pagination from './InquirePagination';
-
 import './styles.scss';
 
 const mapState = ({ inquiresData, user, messages }) => ({
@@ -39,7 +35,6 @@ const InquireBoard = () => {
   const { t } = useTranslation();
 
   let userInfo = [];
-  
   for (let name in currentUser) { 
     if (name.includes('displayName')) {
       userInfo.push(currentUser.displayName, currentUser.userId, currentUser.color, currentUser.userImgUrl, currentUser.id); 
@@ -48,9 +43,7 @@ const InquireBoard = () => {
 
   const [currentPage, setCurrentPage] = useState(Number(inquirePageNumber));
   const [postsPerPage] = useState(16);
-
   const { data } = inquires;
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = (Array.isArray(data) && data.length > 0) && data.slice(indexOfFirstPost, indexOfLastPost);
@@ -169,7 +162,7 @@ const InquireBoard = () => {
           <h3>문의 사항</h3>
         </div>
         <div className="inquire-contents">
-          {hideAlert && <Alert {...configAlert} key="inquireWrite"/>}
+          { hideAlert && <Alert {...configAlert} key="inquireWrite" /> } 
           
           <FormSelect {...configFilter} />
 
@@ -239,7 +232,6 @@ const InquireBoard = () => {
                   {t('questions.like')}
                 </p>
               </div>
-
               <div className="show-text--head">
                 <div className="show-title--head">
                   <p className="show-tag--head">
@@ -254,8 +246,10 @@ const InquireBoard = () => {
                   <span className="show-title-day--head">
                     {t('questions.date')}
                   </span>
-                </div>
-                              
+                  <span className="show-title-day--head">
+                    {t('questions.view')}
+                  </span>
+                </div>          
               </div>  
             </div>
           </div>
@@ -266,6 +260,7 @@ const InquireBoard = () => {
               documentID,
               displayName,
               likeInfo,
+              inquireView,
               inquireTag,
               createdDate
             } = inquire;
@@ -285,6 +280,7 @@ const InquireBoard = () => {
               documentID, 
               displayName,
               likeInfo,
+              inquireView,
               inquireTag,
               createdDate,
               comLengResult
@@ -293,7 +289,7 @@ const InquireBoard = () => {
             return (
               <div className="show-row" key={documentID}>  
                 <InquireItem
-                {...configInquireContent}
+                  {...configInquireContent}
                 />            
               </div>
             )

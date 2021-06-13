@@ -23,7 +23,8 @@
     "tag": "태그",
     "title": "제목",
     "author": "작성자",
-    "date": "일시"
+    "date": "일시",
+    "view": "조회수"
   },
   "others": {
     "viewAll": "모두 보기"

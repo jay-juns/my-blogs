@@ -2,29 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
-import { fetchInquireStart, updateInquire, deleteInquireStart, inquireLike } from './../../../redux/Inquires/inquires.actions';
+import { 
+  fetchInquireStart, 
+  updateInquire, 
+  deleteInquireStart,
+  updateInquireView, 
+  inquireLike
+} from './../../../redux/Inquires/inquires.actions';
 import { addInquireComments, fetchInquireComment } from './../../../redux/Comments/InquireComments/InquireComments.actions';
 import { checkUserIsAdmin } from './../../../Utils';
-
 import CKEditor from 'ckeditor4-react';
-
 import Button from './../../Forms/Button';
 import Modal from './../../Modals/Modal';
 import FormInput from './../../Forms/FormInput';
 import FormSelect from './../../Forms/FormSelect';
 import FormChatInput from './../../Forms/FormChatInput';
 import Alert from './../../Alert';
-
 import InquireComments from './../InquireComment';
 import InquireCardDummy from './../InquireCardDummy';
 import TagType from './../InquireTagType';
 import ConfirmModal from './../../Modals/ConfirmModal';
-
 import { faEllipsisH, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import './styles.scss';
 
 const mapState = state => ({
@@ -38,7 +38,6 @@ const InquireCard = () => {
   const history = useHistory();
   const { inquireID } = useParams();
   const { inquire, currentUser, inquireComment } = useSelector(mapState);
-
   const isAdmin = checkUserIsAdmin(currentUser);
   const [hideModal, setHideModal] = useState(true);
   const [modalType, setModalType] = useState('');
@@ -48,12 +47,14 @@ const InquireCard = () => {
     inquireTag,
     inquireDesc,
     likeInfo,
+    inquireView,
     documentID,
     userColor,
     userId,
     userImgUrl
   } = inquire;
   const { messageRoomData } = inquireComment;
+  const [view, setView] = useState(0);
   const [inquireEditTitle, setinquireEditTitle] = useState('');
   const [inquireEditDesc, setinquireEditDesc] = useState('');
   const [inquireEditTag, setInquireEditTag] = useState('제안');
@@ -128,6 +129,14 @@ const InquireCard = () => {
     setTimeout(() => {
       setIsPending(true);  
     }, 200)
+    setView(view + 1)
+    console.log(view);
+    console.log(inquireView);
+    dispatch(
+      updateInquireView({
+        inquireView: view
+      })
+    )
   }, [dispatch, inquireID]);
 
   useEffect(() => {
@@ -158,6 +167,7 @@ const InquireCard = () => {
         displayName,
         id: documentID,
         userColor,
+        inquireView,
         userId,
         userImgUrl
       })
@@ -228,6 +238,7 @@ const InquireCard = () => {
         inquireTag,
         inquireDesc,
         documentID,
+        inquireView,
         likeInfo: [{
           likeCount: userArray.length,
           userInfo: userArray
@@ -359,6 +370,9 @@ const InquireCard = () => {
                 <span className={`detail-header-left--tag ${TagType(inquireTag)}`}>
                   {inquireTag}
                 </span>
+                <div>
+                  {inquireView}
+                </div>
               </div>
             </div>
             

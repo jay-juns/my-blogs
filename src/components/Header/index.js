@@ -72,28 +72,28 @@ const Header = props => {
             <nav key="pc-head-nav">
             
             <NavLink
-            exact 
-            to="/"
-            activeClassName="active"
-            className="link"
+              exact 
+              to="/"
+              activeClassName="active"
+              className="link"
             >
               {t('header.home')}
             </NavLink>
           
           
             <NavLink 
-            to="/blog"
-            activeClassName="active"
-            className="link"
+              to="/blog"
+              activeClassName="active"
+              className="link"
             >
               {t('header.blog')}
             </NavLink>
           
           
             <NavLink 
-            to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
-            activeClassName="active"
-            className="link"
+              to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
+              activeClassName="active"
+              className="link"
             >
               {t('header.questions')}
             </NavLink>
