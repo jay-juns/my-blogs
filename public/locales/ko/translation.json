@@ -2,7 +2,8 @@
   "header": {
     "home": "홈",
     "blog": "블로그",
-    "questions": "문의사항"
+    "questions": "문의사항",
+    "editor": "에디터"
   },
   "main": {
     "mainSliderTitle1": "My Blogs는 누구나 환영합니다.",

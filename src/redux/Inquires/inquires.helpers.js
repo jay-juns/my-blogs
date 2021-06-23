@@ -155,7 +155,7 @@ export const handleUpdateViewInquire = (view) => {
       .doc()
       .update(view)
       .then(() => {
-        resolve
+        resolve()
       })
       .catch(err => {
         reject(err)

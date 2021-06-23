@@ -2,7 +2,8 @@
   "header": {
     "home": "home",
     "blog": "blog",
-    "questions": "questions"
+    "questions": "questions",
+    "editor": "editor"
   },
   "main": {
     "mainSliderTitle1": "My Blogs are welcome to everyone.",
