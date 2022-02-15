@@ -12,6 +12,7 @@ import LoginLayout from './layouts/LoginLayout';
 import SigninLayout from './layouts/SigninLayout';
 import OtherLayout from './layouts/OtherLayout';
 import DashboardLayout from './layouts/DashboardLayout';
+import EditorLayout from './layouts/EditorLayout';
 
 //hoc
 import WithAuth from './hoc/withAuth';
@@ -31,6 +32,7 @@ import Dashboard from './pages/Dashboard';
 import DashboardFriends from './pages/DashboardFriends';
 import BlogDetails from './pages/BlogDetails';
 import InquireDetails from './pages/InquireDetails';
+import Editor from './pages/Editor';
 import NotFound from './pages/NotFound';
 
 //default css
@@ -44,10 +46,6 @@ const App = props => {
     dispatch(checkUserSession());
     
   }, [dispatch]);
-  
-  // window.document.oncontextmenu = new Function("return false"); 
-  // window.document.onselectstart = new Function("return false"); 
-  // window.document.ondragstart = new Function("return false");
 
   return (
     <div className="App">
@@ -93,6 +91,12 @@ const App = props => {
           <InquireLayout>
             <InquireDetails />
           </InquireLayout>
+        )}
+        />
+        <Route path="/editor" render={() => (
+          <EditorLayout>
+            <Editor />
+          </EditorLayout>
         )}
         />
         <Route path="/login" render={() =>  (

@@ -4,7 +4,6 @@ import { firestore } from '../../firebase/utils';
 
 export const handleAddInquire = inquire => {
   return new Promise((resolve, reject) => {
-
     firestore
       .collection('inquires')
       .doc()
@@ -22,9 +21,7 @@ export const handleAddInquire = inquire => {
 
 export const handleFetchInquires = ({ inquireType }) => {
   return new Promise((resolve, reject) => {
-
     let ref = firestore.collection('inquires').orderBy('createdDate', 'desc');
-    
     if (inquireType) ref = ref.where('inquireTag', '==', inquireType);
       
     ref
@@ -135,13 +132,28 @@ export const handleFetchInquire = (inquireID) => {
 }
 
 //like
-
 export const handleLikeInquire = (inquireID) => {
   return new Promise((resolve, reject) => {    
      firestore
       .collection('inquires')
       .doc(inquireID.documentID) 
       .update(inquireID)  
+      .then(() => {
+        resolve()
+      })
+      .catch(err => {
+        reject(err)
+      })
+  });
+}
+
+//vew count
+export const handleUpdateViewInquire = (view) => {
+  return new Promise((resolve, reject)=> {
+    firestore
+      .collection('inquires')
+      .doc()
+      .update(view)
       .then(() => {
         resolve()
       })

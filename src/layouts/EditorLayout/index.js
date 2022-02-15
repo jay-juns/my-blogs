@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const SigninLayout = props => {
+const EditorLayout = props => {
   return (
     <div id="fullMain" className="full-wrap">
       <Header {...props} />
@@ -15,4 +15,4 @@ const SigninLayout = props => {
   );
 };
 
-export default SigninLayout;
+export default EditorLayout;

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import ProgressBar from './../FormUploadPrograssbar';
 import './styles.scss';
 

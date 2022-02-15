@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const MainLayout = props => {
+const LoginLayout = props => {
   return (
     <div id="fullMain" className="full-wrap">
       <Header {...props} />
@@ -15,4 +15,4 @@ const MainLayout = props => {
   );
 };
 
-export default MainLayout;
+export default LoginLayout;

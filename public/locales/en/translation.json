@@ -2,7 +2,8 @@
   "header": {
     "home": "home",
     "blog": "blog",
-    "questions": "questions"
+    "questions": "questions",
+    "editor": "editor"
   },
   "main": {
     "mainSliderTitle1": "My Blogs are welcome to everyone.",
@@ -23,7 +24,8 @@
     "tag": "tag",
     "title": "title",
     "author": "author",
-    "date": "date"
+    "date": "date",
+    "view": "view"
   },
   "others": {
     "viewAll": "view all"

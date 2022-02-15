@@ -9,6 +9,7 @@ const InquireItem = (inquireText) => {
     displayName,
     documentID,
     likeInfo,
+    inquireView,
     inquireTag,
     createdDate,
     comLengResult
@@ -47,6 +48,9 @@ const InquireItem = (inquireText) => {
             </p>
             <span className="show-title-day">
               {moment(toDate).format("MM/DD")}
+            </span>
+            <span className="show-title-day">
+              {inquireView}
             </span>
             
           </div>

@@ -54,10 +54,8 @@ const Header = props => {
     <>
     <header className={`header-row-wrapper ${mainBg && scrollPosition === 0 ? mainBg : ''}`}>
       <div className="header-main-control">
-        
         <div className="header-left">
           <div className="header-logo">
-            
             <NavLink
             exact 
             to="/"
@@ -70,44 +68,43 @@ const Header = props => {
         {
           matches ? (
             <nav key="pc-head-nav">
-            
-            <NavLink
-            exact 
-            to="/"
-            activeClassName="active"
-            className="link"
-            >
-              {t('header.home')}
-            </NavLink>
-          
-          
-            <NavLink 
-            to="/blog"
-            activeClassName="active"
-            className="link"
-            >
-              {t('header.blog')}
-            </NavLink>
-          
-          
-            <NavLink 
-            to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
-            activeClassName="active"
-            className="link"
-            >
-              {t('header.questions')}
-            </NavLink>
-            
-          </nav>
+              <NavLink
+                exact 
+                to="/"
+                activeClassName="active"
+                className="link"
+              >
+                {t('header.home')}
+              </NavLink>
+              <NavLink 
+                to="/blog"
+                activeClassName="active"
+                className="link"
+              >
+                {t('header.blog')}
+              </NavLink>
+              <NavLink 
+                to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
+                activeClassName="active"
+                className="link"
+              >
+                {t('header.questions')}
+              </NavLink>
+              <NavLink 
+                to="/editor"
+                activeClassName="active"
+                className="link"
+              >
+                {t('header.editor')}
+              </NavLink>
+            </nav>
           ) : (
             <div className="hide" key="pc-head-hide-nav"></div>
           )
         }
          
         </div>
-          
-        <div className="header-right">
-          
+        <div className="header-right">        
           {currentUser && matches && (
             <div className="header-right-item" key="pc-head-nav-userIcon">
               <NavLink 
@@ -122,7 +119,6 @@ const Header = props => {
           )}
 
           {!currentUser && matches && (
-            
             <div className="header-right-item" key="pc-head-nav-unLogin-userIcon">
               <NavLink 
               to="/login"
@@ -151,11 +147,9 @@ const Header = props => {
               <FontAwesomeIcon className="i" icon={faBars} />
             </Button>
           )}
-
         </div>
       </div>
     </header>
-
     {!matches && (
       <nav className={ !isOpenNav ? 'mobile-nav' : 'mobile-nav open-mobile-nav'} key="mobile-head-nav">
         <Scrollbars horizontal autoHide={true}>
@@ -182,42 +176,44 @@ const Header = props => {
                 activeClassName="active"
                 className="mobile-link"
                 >
-                  로그인
+                  {t('user.logIn')}
                 </NavLink>
                 <NavLink to="/registration"
                 activeClassName="active"
                 className="mobile-link"
                 >
-                  회원가입
+                  {t('user.signIn')}
                 </NavLink>
               </div> 
             )}
-
             <NavLink
             exact 
             to="/"
             activeClassName="active"
             className="mobile-link"
             >
-              홈
-            </NavLink>
-          
-          
+              {t('header.home')}
+            </NavLink>         
             <NavLink 
             to="/blog"
             activeClassName="active"
             className="mobile-link"
             >
-              블로그
+              {t('header.blog')}
             </NavLink>
-          
-          
             <NavLink 
             to={`/inquirePage=/${isNaN(inquirePageNumber) ? 1 : Number(inquirePageNumber)}`}
             activeClassName="active"
             className="mobile-link"
             >
-              문의사항
+              {t('header.questions')}
+            </NavLink>
+            <NavLink 
+            to="/editor"
+            activeClassName="active"
+            className="mobile-link"
+            >
+              {t('header.editor')}
             </NavLink>
           </div>
         </Scrollbars>

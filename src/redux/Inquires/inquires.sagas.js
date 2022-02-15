@@ -1,11 +1,24 @@
 import { auth } from './../../firebase/utils';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { fetchInquiresStart, fetchInquireStart, setInquires, setInquire, setLoadinginquire } from './inquires.actions';
-import { handleFetchInquires, handleFetchMainInquires, handleAddInquire, 
-  handleDeleteInquire, handleFetchInquire, handleLikeInquire,
-  handleEditInquire } from './inquires.helpers';
+import { 
+  fetchInquiresStart, 
+  fetchInquireStart, 
+  setInquires, 
+  setInquire,
+  setLoadinginquire,
+   
+} from './inquires.actions';
+import { 
+  handleFetchInquires, 
+  handleFetchMainInquires, 
+  handleAddInquire, 
+  handleDeleteInquire, 
+  handleFetchInquire, 
+  handleLikeInquire,
+  handleEditInquire,
+  handleUpdateViewInquire 
+} from './inquires.helpers';
 import  inquiresTypes from './inquires.types';
-
 
 //add
 
@@ -20,6 +33,7 @@ export function* addInquire({ payload }) {
         likeCount: 0,
         userInfo:[]
       }],
+      inquireView: 0,
       createdDate: timestamp
     });
 
@@ -143,7 +157,22 @@ export function* onLikeInquireStart() {
   yield takeLatest(inquiresTypes.INQUIRE_LIKE, likeInquire);
 }
 
+//updateView
+export function* updateViewStart({ payload }) {
+  try {
+    yield handleUpdateViewInquire(payload)
+    yield put(
+      fetchInquireStart(payload)
+    )
+  } catch(err) {
+    console.log(payload)
+    console.log(err)
+  }
+}
 
+export function* onUpdateViewInquireStart() {
+  yield takeLatest(inquiresTypes.INQUIRE_VIEW, updateViewStart)
+}
 
 export default function* inquiresSagas() {
   yield all([
@@ -153,6 +182,7 @@ export default function* inquiresSagas() {
     call(onDeleteInquireStart),
     call(onFetchInquireStart),
     call(onEditInquireStart),
-    call(onLikeInquireStart)
+    call(onLikeInquireStart),
+    call(onUpdateViewInquireStart)
   ])
 }
